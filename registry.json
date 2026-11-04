@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "impeccable",
+  "homepage": "https://impeccable.dev",
+  "items": [
+    {
+      "name": "burning-screen",
+      "type": "registry:component",
+      "title": "Burning-Screen",
+      "description": "A page transition that burns the current screen away from the click and reveals the next page.",
+      "files": [
+        {
+          "path": "registry/impeccable/burning-screen/burning-screen.tsx",
+          "type": "registry:component",
+          "target": "components/ui/burning-screen.tsx"
+        }
+      ]
+    }
+  ]
+}
