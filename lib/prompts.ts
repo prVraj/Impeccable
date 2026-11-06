@@ -4,7 +4,22 @@
 export function burningScreenInstallPrompt(tsSource: string) {
   return `# Burning-Screen
 
-A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below.
+A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
+
+## Before you build: one question
+
+Look through this project first: its router, its pages, and the buttons that move the user to another page. Then ask me this in one message and wait for my answer:
+
+- **Where should it burn?** Suggest the 1–3 buttons in my code that fit best (for example a sign-up or "Get started" button) and the page each one goes to. I can pick one of them or name another.
+
+Ask nothing else. If I say *skip*, wire it to the best suggestion.
+
+## Keep it as it is
+
+The burn is the design. Keep the ragged edge shape and how it grows in surges, the charred band and inner shadow, the flames, the rising ash, the timings and the colors exactly as in the source. If something doesn't fit my project, tell me instead of changing it.
+
+- Add only the component file, the wrapper in the root layout and the wiring for the button I picked. Don't add packages, change other files, or restyle anything.
+- Don't add demo controls (sliders, color pickers, theme toggles or "Try it" buttons) from the Impeccable website. My users only ever see the burn.
 
 ## Fastest path
 
@@ -25,6 +40,8 @@ If the command succeeds, only fix import paths to match this project and skip to
 - Keep the fallbacks: no View Transitions, no WebGL, or \`prefers-reduced-motion: reduce\` all give a short fade instead of the burn.
 
 ## Use it
+
+Wire it to the button I picked, the way this example does:
 
 \`\`\`tsx
 "use client";
@@ -53,7 +70,8 @@ Other routers work the same way, for example \`burn(() => navigate("/welcome"), 
 - On a light page the edge is charred black; on a dark page it glows white. Check both themes.
 - It stays smooth on a phone.
 - With \`prefers-reduced-motion: reduce\`, it is a short fade.
-- Tell me every place where you had to do something differently from the source, and why.
+- The button I picked burns to the right page, and nothing else on the site looks or behaves differently.
+- Finish with a short report: the files you added or changed, where the burn is wired, and every place where you had to do something differently from the source, and why.
 
 ## Source
 
@@ -70,6 +88,27 @@ ${tsSource.trimEnd()}
 export const burningScreenRecreatePrompt = `# Recreate: Burning-Screen
 
 Build a React page transition called Burning-Screen. When the user clicks a button that changes the page (for example "Create account" going to a welcome page), the current screen burns away from the click point and the next page shows through the burned hole. Attach your reference video or image here: [reference]
+
+Fit it to my product like a missing puzzle piece: it should look like it was always part of my site, without changing anything else.
+
+## First: look, ask once, then build
+
+1. Look through this project first: its router, the buttons that move to another page, and its theme (CSS variables, Tailwind theme, shadcn theme, light and dark mode).
+2. Tell me in two or three lines what you found, then ask these questions in **one message**. Give each one options and mark your suggestion. Ask nothing else:
+   1. **Where should it burn?** Suggest the 1–3 buttons that fit best and the page each goes to.
+   2. **Colors?** Keep the black, white and gray default, or match my brand. If you suggest brand colors, name which of my existing color variables you'd use for the char, the glow, the smoke and the ash. If you found no theme, offer the default or let me paste 1–3 colors.
+   3. **Speed?** 2 seconds (default), quicker (1.5s) or slower (2.5s).
+   4. **Rising ash after the burn?** Keep it (default) or turn it off.
+   If I say *skip*, use your suggestions.
+3. After I answer, show a brief of about 5 lines: where it's wired, the colors (by my variable names), the speed, ash on or off, and "everything else is kept as designed". Ask whether to save the brief to \`impeccable.md\` in the project (add a section if the file exists) or keep it in this chat only. Default: chat only.
+4. Build only after I say go.
+
+## What you may change, and what you may not
+
+The burn is the design. Keep the ragged edge shape and how it grows in surges, the charred band and inner shadow, the flames, and the ash rising upward exactly as described below. Only my answers above may change it: the button and page, the four colors, the duration and the rising ash. If something doesn't fit my product, tell me instead of changing it.
+
+- Brand colors: read my variables when the burn starts (for example \`getComputedStyle(document.documentElement).getPropertyValue("--primary")\`) and pass the values in \`colors\`, so the burn follows my light and dark themes. Don't copy hex codes in.
+- No new packages, no changes to files other than the component, the root layout wrapper and the button I picked, and no demo controls (sliders, color pickers or theme toggles) on my site.
 
 ## Stack
 
@@ -105,5 +144,6 @@ Build a React page transition called Burning-Screen. When the user clicks a butt
 - It type-checks and renders with no console errors.
 - It looks right going light to dark, dark to light, and in both themes.
 - It stays smooth on a phone and respects reduced motion.
-- Tell me anything you had to do differently, and why.
+- The button I picked burns to the right page, in my colors, and nothing else on the site looks or behaves differently.
+- Finish with a short report: the files you added or changed, what you changed from the default because of my answers, and anything you had to do differently, and why.
 `;
