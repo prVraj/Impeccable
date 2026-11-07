@@ -25,7 +25,7 @@ The burn is the design. Keep the ragged edge shape and how it grows in surges, t
 
 ## Fastest path
 
-If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add @impeccable/burning-screen\`.
+If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccable-rust.vercel.app/r/burning-screen.json\`.
 If the command succeeds, only fix import paths to match this project and skip to **Check**. If it fails or there is no \`components.json\`, build it by hand as below.
 
 ## Build it
@@ -115,7 +115,7 @@ The burn is the design. Keep the ragged edge shape and how it grows in surges, t
 
 ## Fastest path
 
-If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add @impeccable/burning-screen\`.
+If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccable-rust.vercel.app/r/burning-screen.json\`.
 If the command succeeds, only fix import paths to match this project and skip to **Fit it to the brand**. If it fails or there is no \`components.json\`, build it by hand as below.
 
 ## Build it
