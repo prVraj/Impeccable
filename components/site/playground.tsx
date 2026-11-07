@@ -23,7 +23,7 @@ export function Playground() {
   const options = { duration, embers, emberDuration, colors };
 
   return (
-    <div className="rounded-2xl border border-[var(--line)] bg-[var(--panel)] p-5 sm:p-6">
+    <div className="card rounded-xl p-5 sm:p-6">
       <div className="flex flex-wrap items-center gap-3">
         <button
           type="button"

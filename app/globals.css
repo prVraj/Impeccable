@@ -8,19 +8,48 @@
 }
 
 :root {
-  --bg: #ffffff;
+  --bg: #fbfbfb;
   --fg: #0a0a0a;
-  --muted: #737373;
-  --line: #e5e5e5;
-  --panel: #fafafa;
+  --muted: #6b6b6b;
+  --faint: #a3a3a3;
+  --line: #e8e8e8;
+  --panel: #ffffff;
+  --panel-2: #f4f4f4;
+  --dot: rgba(10, 10, 10, 0.09);
+  /* Brand: #481DE8 is 500. */
+  --brand-50: #f3f0fe;
+  --brand-100: #e7e1fd;
+  --brand-200: #cfc3fb;
+  --brand-300: #ad98f7;
+  --brand-400: #7f5ef0;
+  --brand-500: #481de8;
+  --brand-600: #3b15c7;
+  --brand-700: #2f11a0;
+  --brand-800: #250e7c;
+  --brand-900: #1b0a5a;
+  --accent: var(--brand-500);
+  /* Layered hairline + soft drop, like a sheet of paper on a desk. */
+  --shadow-card: 0 0 0 1px rgba(10, 10, 10, 0.06), 0 1px 2px -1px rgba(10, 10, 10, 0.06),
+    0 4px 12px -4px rgba(10, 10, 10, 0.06);
+  --shadow-button: 0 0 0 1px rgba(10, 10, 10, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 1px 2px rgba(10, 10, 10, 0.24), 0 6px 14px -6px rgba(10, 10, 10, 0.4);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   color-scheme: light;
 }
 .dark {
-  --bg: #0a0a0a;
-  --fg: #fafafa;
-  --muted: #a3a3a3;
-  --line: #262626;
-  --panel: #111111;
+  --bg: #08080a;
+  --fg: #f5f5f5;
+  --muted: #9a9a9e;
+  --faint: #5c5c62;
+  --line: #1f1f23;
+  --panel: #0f0f12;
+  --panel-2: #151519;
+  --dot: rgba(255, 255, 255, 0.07);
+  --accent: var(--brand-300);
+  --shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 8px 24px -12px rgba(0, 0, 0, 0.8);
+  --shadow-button: 0 0 0 1px rgba(255, 255, 255, 0.9), inset 0 -1px 0 rgba(10, 10, 10, 0.12),
+    0 6px 16px -6px rgba(255, 255, 255, 0.18);
   color-scheme: dark;
 }
 
@@ -32,6 +61,60 @@ body {
 
 body {
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+/* A card that sits on the page: hairline ring plus a soft shadow. */
+.card {
+  background: var(--panel);
+  box-shadow: var(--shadow-card);
+}
+
+/* Dotted canvas for previews, fading out at the edges. */
+.dots {
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+.fade-edges {
+  mask-image: radial-gradient(ellipse at center, #000 40%, transparent 80%);
+}
+
+/* The brand button: 500 at the top easing to 700 at the bottom, with a
+   soft top highlight so it reads as a pressable surface, not a flat fill. */
+.btn-brand {
+  color: #fff;
+  background: linear-gradient(180deg, var(--brand-500), var(--brand-700));
+  box-shadow:
+    0 0 0 1px var(--brand-700),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 1px 2px rgba(27, 10, 90, 0.3),
+    0 8px 18px -8px rgba(72, 29, 232, 0.6);
+  transition:
+    transform 160ms var(--ease-out),
+    filter 200ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn-brand:hover {
+    filter: brightness(1.1);
+  }
+}
+.dark .btn-brand {
+  box-shadow:
+    0 0 0 1px var(--brand-600),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 8px 22px -8px rgba(127, 94, 240, 0.55);
+}
+
+/* Pressable things answer the press. */
+.press {
+  transition: transform 160ms var(--ease-out);
+}
+.press:active {
+  transform: scale(0.97);
 }
 
 /* Shiki dual theme */
@@ -42,4 +125,66 @@ body {
 .dark .shiki,
 .dark .shiki span {
   color: var(--shiki-dark) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .press:active {
+    transform: none;
+  }
+}
+
+/* iMac screen: switching on, and static between channels. */
+.imac-power-on {
+  animation: imac-on 420ms var(--ease-out) both;
+}
+/* clip-path, not transform: the screen's contents keep their real size,
+   so Agent-Draw measures the layout correctly while the tube warms up. */
+@keyframes imac-on {
+  0% {
+    clip-path: inset(49.6% 20% 49.6% 20%);
+    filter: brightness(3);
+  }
+  45% {
+    clip-path: inset(49.6% 0 49.6% 0);
+    filter: brightness(2.5);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    filter: none;
+  }
+}
+/* The glow on top of the screen while it warms up. Without it a dark
+   screen has nothing bright to squeeze into the line. */
+.imac-power-flash {
+  opacity: 0;
+  animation: imac-flash 520ms ease-out both;
+}
+@keyframes imac-flash {
+  0%,
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.imac-static {
+  transition: opacity 120ms ease;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .8 0 0 0 0 .8 0 0 0 0 .8 0 0 0 1.4 -.2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-color: #2a2f31;
+  animation: imac-noise 0.2s steps(4) infinite;
+}
+@keyframes imac-noise {
+  0% { background-position: 0 0; }
+  25% { background-position: -40px 20px; }
+  50% { background-position: 30px -50px; }
+  75% { background-position: -60px -10px; }
+  100% { background-position: 0 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .imac-power-on,
+  .imac-power-flash,
+  .imac-static {
+    animation: none;
+  }
 }

@@ -1,5 +1,7 @@
 "use client";
 
+import { Moon, Sun } from "./icons";
+
 export function setTheme(next: "light" | "dark") {
   document.documentElement.classList.toggle("dark", next === "dark");
   try {
@@ -16,11 +18,11 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={() => setTheme(currentTheme() === "dark" ? "light" : "dark")}
-      className="inline-flex h-8 items-center gap-2 rounded-full border border-[var(--line)] px-3 text-xs font-medium text-[var(--muted)] transition-colors hover:text-[var(--fg)]"
-      aria-label="Toggle light and dark mode"
+      className="press grid size-8 place-items-center rounded-full text-[var(--muted)] transition-colors hover:bg-[var(--panel-2)] hover:text-[var(--fg)]"
+      aria-label="Switch between light and dark"
     >
-      <span className="size-2.5 rounded-full bg-[var(--fg)]" />
-      Theme
+      <Sun className="hidden dark:block" />
+      <Moon className="dark:hidden" />
     </button>
   );
 }

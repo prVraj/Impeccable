@@ -6,14 +6,14 @@ import { CopyButton } from "./copy-button";
 
 export type Tab = { id: string; label: string; copy: string; body: ReactNode };
 
-/** Tabbed panel with a copy button for the active tab. */
+/** Tabbed code panel with a copy button for the active tab. */
 export function Tabs({ tabs, maxHeight = "28rem" }: { tabs: Tab[]; maxHeight?: string }) {
   const [active, setActive] = useState(tabs[0].id);
   const tab = tabs.find((t) => t.id === active) ?? tabs[0];
   return (
-    <div className="overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--panel)]">
-      <div className="flex items-center justify-between gap-2 border-b border-[var(--line)] px-3 py-2">
-        <div className="flex gap-1" role="tablist">
+    <div className="card overflow-hidden rounded-xl">
+      <div className="flex items-center justify-between gap-2 border-b border-[var(--line)] bg-[var(--panel-2)]/60 px-2 py-1.5">
+        <div className="flex min-w-0 gap-0.5 overflow-x-auto" role="tablist">
           {tabs.map((t) => (
             <button
               key={t.id}
@@ -22,9 +22,9 @@ export function Tabs({ tabs, maxHeight = "28rem" }: { tabs: Tab[]; maxHeight?: s
               aria-selected={t.id === active}
               onClick={() => setActive(t.id)}
               className={cx(
-                "h-7 rounded-full px-3 text-xs font-medium transition-colors",
+                "h-7 shrink-0 rounded-md px-2.5 text-xs font-medium transition-colors",
                 t.id === active
-                  ? "bg-[var(--fg)] text-[var(--bg)]"
+                  ? "bg-[var(--panel)] text-[var(--fg)] shadow-[0_0_0_1px_var(--line)]"
                   : "text-[var(--muted)] hover:text-[var(--fg)]",
               )}
             >

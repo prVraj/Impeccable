@@ -9,6 +9,7 @@ Animation-first React components. Each one ships in TypeScript and JavaScript, w
 | Component | What it does |
 | --- | --- |
 | [Burning-Screen](https://impeccable-rust.vercel.app/components/burning-screen) | A page transition. One click burns the current screen away from the click point and reveals the next page through the hole. |
+| [Agent-Draw](https://impeccable-rust.vercel.app/components/agent-draw) | A loader. Named cursors draw the page's skeleton live, top to bottom, while the data loads; then the real content fades in. |
 
 ## Add a component to your project
 
@@ -32,7 +33,7 @@ npx shadcn@latest add https://impeccable-rust.vercel.app/r/burning-screen.json
 - Light and dark themes.
 - Phones as well as desktops.
 - Reduced motion: people who turn it on get a short fade instead.
-- No extra packages beyond React. Burning-Screen uses the browser's View Transitions API and WebGL; browsers without them get a short fade.
+- No extra packages beyond React. Burning-Screen uses the browser's View Transitions API and WebGL; browsers without them get a short fade. Agent-Draw needs nothing beyond the DOM.
 
 ## Run the site locally
 
