@@ -20,7 +20,7 @@ export default function Home() {
         </h1>
         <p className="mt-5 max-w-xl text-base leading-relaxed text-[var(--muted)]">
           Animation-first React components. Every one ships in TypeScript and JavaScript, with an
-          install prompt and a recreate prompt for your own AI tool.
+          install prompt and a blend prompt for your own AI tool.
         </p>
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2">

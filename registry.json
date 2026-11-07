@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "impeccable",
-  "homepage": "https://impeccable.dev",
+  "homepage": "https://impeccable-rust.vercel.app",
   "items": [
     {
       "name": "burning-screen",

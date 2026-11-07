@@ -6,14 +6,14 @@ import { Header } from "@/components/site/header";
 import { Playground } from "@/components/site/playground";
 import { Tabs } from "@/components/site/tabs";
 import { CopyButton } from "@/components/site/copy-button";
-import { burningScreenInstallPrompt, burningScreenRecreatePrompt } from "@/lib/prompts";
+import { burningScreenBlendPrompt, burningScreenInstallPrompt } from "@/lib/prompts";
 
 export const metadata: Metadata = {
   title: "Burning-Screen · Impeccable",
   description: "One click burns the screen away from the click and reveals the next page.",
 };
 
-const INSTALL = "npx shadcn@latest add @impeccable/burning-screen";
+const INSTALL = "npx shadcn@latest add https://impeccable-rust.vercel.app/r/burning-screen.json";
 
 const USAGE_LAYOUT = `// app/layout.tsx
 import { BurningScreen } from "@/components/ui/burning-screen";
@@ -71,6 +71,7 @@ export default async function BurningScreenPage() {
   );
   const js = await readFile(join(root, "generated/js/burning-screen/burning-screen.jsx"), "utf8");
   const installPrompt = burningScreenInstallPrompt(ts);
+  const blendPrompt = burningScreenBlendPrompt(ts);
 
   const [tsHtml, jsHtml, layoutHtml, buttonHtml] = await Promise.all([
     highlight(ts, "tsx"),
@@ -166,18 +167,14 @@ export default async function BurningScreenPage() {
         <Section title="Prompts">
           <p className="mb-3 text-sm text-[var(--muted)]">
             <strong className="font-medium text-[var(--fg)]">Install</strong> has an AI agent add
-            this exact component. <strong className="font-medium text-[var(--fg)]">Recreate</strong>{" "}
-            describes the motion in words, so it can build its own from your reference.
+            this exact component and asks only where it should burn.{" "}
+            <strong className="font-medium text-[var(--fg)]">Blend</strong> asks four short questions
+            (where, colors, speed, ash), then fits it to your brand without changing the burn.
           </p>
           <Tabs
             tabs={[
               { id: "install", label: "Install prompt", copy: installPrompt, body: promptBody(installPrompt) },
-              {
-                id: "recreate",
-                label: "Recreate prompt",
-                copy: burningScreenRecreatePrompt,
-                body: promptBody(burningScreenRecreatePrompt),
-              },
+              { id: "blend", label: "Blend prompt", copy: blendPrompt, body: promptBody(blendPrompt) },
             ]}
           />
         </Section>

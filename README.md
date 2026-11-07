@@ -1,42 +1,58 @@
 # Impeccable
 
-Animation-first React components. Each one ships in TypeScript and JavaScript, with an Install prompt and a Recreate prompt.
+Animation-first React components. Each one ships in TypeScript and JavaScript, with two prompts you can paste into any AI coding tool to add it to your project.
 
-## Run it on your Mac
+**[impeccable-rust.vercel.app](https://impeccable-rust.vercel.app)**
 
-You need Node.js 20 or newer and pnpm. In Terminal:
+## Components
 
-1. Type `node -v`. If it says "command not found", install the LTS version from [nodejs.org](https://nodejs.org).
-2. Type `pnpm -v`. If it says "command not found", run `npm install -g pnpm` once.
+| Component | What it does |
+| --- | --- |
+| [Burning-Screen](https://impeccable-rust.vercel.app/components/burning-screen) | A page transition. One click burns the current screen away from the click point and reveals the next page through the hole. |
 
-Then:
+## Add a component to your project
+
+Every component page gives you three ways in. Pick the one that suits you.
+
+**1. Install command.** In a project set up with [shadcn](https://ui.shadcn.com):
 
 ```bash
-cd ~/Desktop/Impeccable
+npx shadcn@latest add https://impeccable-rust.vercel.app/r/burning-screen.json
+```
+
+**2. Copy the code.** Copy the TypeScript or JavaScript file from the component page into your components folder.
+
+**3. Use a prompt.** Paste one into your AI coding tool (Claude Code, Cursor and others):
+
+- **Install prompt:** adds the exact component as shown on the site. It asks only where it should go.
+- **Blend prompt:** asks a few short questions, then fits the component to your brand through the options it already has. The animation itself stays as designed.
+
+## Every component works
+
+- Light and dark themes.
+- Phones as well as desktops.
+- Reduced motion: people who turn it on get a short fade instead.
+- No extra packages beyond React. Burning-Screen uses the browser's View Transitions API and WebGL; browsers without them get a short fade.
+
+## Run the site locally
+
+You need Node.js 20 or newer and [pnpm](https://pnpm.io).
+
+```bash
+git clone https://github.com/prVraj/Impeccable.git
+cd Impeccable
 pnpm install
 pnpm dev
 ```
 
-Open http://localhost:3000. Stop the server with `Ctrl + C`.
-
-- Docs page: http://localhost:3000/components/burning-screen
-- Sign-up demo: http://localhost:3000/demo/signup
-
-Use Chrome, Edge, Arc or Safari 18+ for the full burn. Older browsers get a short fade.
-
-## Where things live
-
 | Path | What it is |
 | --- | --- |
-| `registry/impeccable/burning-screen/burning-screen.tsx` | The component (TypeScript). The source of truth. |
-| `generated/js/burning-screen/burning-screen.jsx` | JavaScript copy, generated automatically on `pnpm dev` / `pnpm build`. Don't edit by hand. |
-| `lib/prompts.ts` | The Install and Recreate prompts. |
-| `app/components/burning-screen/page.tsx` | The docs page. |
-| `app/demo/` | The sign-up to welcome demo flow. |
-| `registry.json`, `public/r/` | The install registry (`pnpm registry:build` regenerates `public/r/`). |
+| `registry/impeccable/<name>/<name>.tsx` | The component source (TypeScript). |
+| `generated/js/<name>/<name>.jsx` | The JavaScript version, generated on `pnpm dev` and `pnpm build`. Don't edit it by hand. |
+| `lib/prompts.ts` | The Install and Blend prompts. |
+| `app/components/<name>/page.tsx` | The component's page on the site. |
+| `registry.json`, `public/r/` | The shadcn registry. `pnpm registry:build` regenerates `public/r/`. |
 
-## Adding a component
+## License
 
-1. Put the TypeScript file in `registry/impeccable/<name>/<name>.tsx`.
-2. Add it to `registry.json`.
-3. Add a docs page in `app/components/<name>/page.tsx` and its prompts in `lib/prompts.ts`.
+[MIT](LICENSE)
