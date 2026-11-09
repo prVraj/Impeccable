@@ -1,39 +1,64 @@
 # Impeccable
 
-Animation-first React components. Each one ships in TypeScript and JavaScript, with two prompts you can paste into any AI coding tool to add it to your project.
+Animations and skills that fit your product like the missing piece of a puzzle. Before your AI tool builds anything, it asks you a few questions, so what you get feels made for you.
 
-**[impeccable-rust.vercel.app](https://impeccable-rust.vercel.app)**
+**[impeccable-rust.vercel.app](https://impeccable-rust.vercel.app)** · Docs start at [/docs](https://impeccable-rust.vercel.app/docs)
 
-## Components
+## What's inside
 
-| Component | What it does |
+The library has three parts.
+
+### Animations
+
+| Animation | What it does |
 | --- | --- |
-| [Burning-Screen](https://impeccable-rust.vercel.app/components/burning-screen) | A page transition. One click burns the current screen away from the click point and reveals the next page through the hole. |
-| [Agent-Draw](https://impeccable-rust.vercel.app/components/agent-draw) | A loader. Named cursors draw the page's skeleton live, top to bottom, while the data loads; then the real content fades in. |
+| [Agent-Draw](https://impeccable-rust.vercel.app/docs/agent-draw) | A loader. Named cursors draw the page's skeleton live, top to bottom, while the data loads; then the real content fades in. |
+| [Burning-Screen](https://impeccable-rust.vercel.app/docs/burning-screen) | A page transition. One click burns the current screen away from the click point and reveals the next page through the hole. |
 
-## Add a component to your project
+### Skills
 
-Every component page gives you three ways in. Pick the one that suits you.
+| Skill | What it does |
+| --- | --- |
+| [UI-tongue](https://impeccable-rust.vercel.app/docs/ui-tongue) | Learns your UI taste in about 15 minutes and writes you your own UI skill, so a one-line prompt comes out in your style. |
+
+### Components
+
+Coming soon.
+
+## Add an animation to your project
+
+Every animation page gives you three ways in.
 
 **1. Install command.** In a project set up with [shadcn](https://ui.shadcn.com):
 
 ```bash
-npx shadcn@latest add https://impeccable-rust.vercel.app/r/burning-screen.json
+npx shadcn@latest add https://impeccable-rust.vercel.app/r/agent-draw.json
 ```
 
-**2. Copy the code.** Copy the TypeScript or JavaScript file from the component page into your components folder.
+**2. Copy the code.** Copy the TypeScript or JavaScript file from the page into your components folder.
 
-**3. Use a prompt.** Paste one into your AI coding tool (Claude Code, Cursor and others):
+**3. Use a prompt.** Paste one into your AI coding tool (Claude Code, Cursor, v0 and others):
 
-- **Install prompt:** adds the exact component as shown on the site. It asks only where it should go.
-- **Blend prompt:** asks a few short questions, then fits the component to your brand through the options it already has. The animation itself stays as designed.
+- **Install prompt:** adds the exact animation as shown on the site. It only asks where it should go.
+- **Blend prompt:** your agent asks you a few short questions first, then fits it to your brand with your colors, names and words. The motion stays as designed.
 
-## Every component works
+## Add a skill
 
-- Light and dark themes.
-- Phones as well as desktops.
-- Reduced motion: people who turn it on get a short fade instead.
-- No extra packages beyond React. Burning-Screen uses the browser's View Transitions API and WebGL; browsers without them get a short fade. Agent-Draw needs nothing beyond the DOM.
+Download the zip from the skill's page.
+
+- **Claude on the web or desktop:** Settings, Skills, upload the zip as it is.
+- **Claude Code:** `unzip ~/Downloads/ui-tongue.zip -d ~/.claude/skills`
+
+Then say `make my UI skill`.
+
+## Promises
+
+- Everything is original.
+- Works in light and dark, and on phones.
+- Respects reduced motion: people who turn it on get less movement.
+- No extra packages beyond React.
+- The Blend prompt changes how an animation looks, never how it moves.
+- Free and MIT licensed.
 
 ## Run the site locally
 
@@ -48,11 +73,19 @@ pnpm dev
 
 | Path | What it is |
 | --- | --- |
-| `registry/impeccable/<name>/<name>.tsx` | The component source (TypeScript). |
+| `registry/impeccable/<name>/<name>.tsx` | An animation's source (TypeScript). |
 | `generated/js/<name>/<name>.jsx` | The JavaScript version, generated on `pnpm dev` and `pnpm build`. Don't edit it by hand. |
 | `lib/prompts.ts` | The Install and Blend prompts. |
-| `app/components/<name>/page.tsx` | The component's page on the site. |
+| `lib/site.ts` | The list of everything in the library and which part it belongs to. |
+| `app/docs/<name>/page.tsx` | Each item's docs page. `app/docs/page.tsx` is the Introduction. |
+| `skills/<name>/` | A skill's source files. The download lives in `public/downloads/`. |
 | `registry.json`, `public/r/` | The shadcn registry. `pnpm registry:build` regenerates `public/r/`. |
+
+Old `/components/...` links redirect to `/docs/...`.
+
+## Who makes it
+
+[Vraj Sensei](https://x.com/vrajsensei), a product designer from Vadodara.
 
 ## License
 

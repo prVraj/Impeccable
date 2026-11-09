@@ -5,6 +5,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AgentDraw } from "@/registry/impeccable/agent-draw/agent-draw";
 import { useBurningScreen } from "@/registry/impeccable/burning-screen/burning-screen";
 import { COMPONENTS } from "@/lib/site";
+
+/** Only things with a live demo get a channel (skills have none). */
+const CHANNELS = COMPONENTS.filter((c) => c.group !== "skills");
 import { currentTheme, setTheme } from "./theme-toggle";
 
 /**
@@ -26,7 +29,7 @@ export function IMac() {
 
   // Pick a random channel once we're in the browser (keeps SSR stable).
   useEffect(() => {
-    setChannel(Math.floor(Math.random() * COMPONENTS.length));
+    setChannel(Math.floor(Math.random() * CHANNELS.length));
     flashOsd();
     const t = timers.current;
     return () => t.forEach(clearTimeout);
@@ -42,7 +45,7 @@ export function IMac() {
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const go = () => {
       setChannel(
-        (c) => ((c ?? 0) + dir + COMPONENTS.length) % COMPONENTS.length,
+        (c) => ((c ?? 0) + dir + CHANNELS.length) % CHANNELS.length,
       );
       setRun((r) => r + 1);
       setStaticOn(false);
@@ -54,7 +57,7 @@ export function IMac() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const current = channel === null ? null : COMPONENTS[channel];
+  const current = channel === null ? null : CHANNELS[channel];
 
   return (
     <div
@@ -166,7 +169,7 @@ export function IMac() {
         {/* CD slot: I want this */}
         {current ? (
           <Link
-            href={`/components/${current.slug}`}
+            href={`/docs/${current.slug}`}
             className="group absolute flex items-center justify-center rounded-full outline-offset-2 focus-visible:outline-2 focus-visible:outline-[var(--brand-500)]"
             style={{
               left: "35%",

@@ -12,7 +12,7 @@ export function Footer() {
             Impeccable
           </Link>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-[var(--muted)]">
-            Animation-first React components, with code and prompts for your AI tool.
+            Animations and skills that fit your product like the missing piece of a puzzle.
           </p>
           <p className="mt-6 text-xs text-[var(--faint)]">
             Built by{" "}
@@ -22,9 +22,9 @@ export function Footer() {
             . MIT licensed.
           </p>
         </div>
-        <FooterCol title="Components">
+        <FooterCol title="Library">
           {COMPONENTS.map((c) => (
-            <Link key={c.slug} href={`/components/${c.slug}`} className="hover:text-[var(--fg)]">
+            <Link key={c.slug} href={`/docs/${c.slug}`} className="hover:text-[var(--fg)]">
               {c.name}
             </Link>
           ))}

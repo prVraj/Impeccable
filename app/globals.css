@@ -188,3 +188,133 @@ body {
     animation: none;
   }
 }
+
+/* Theme switch: a circle grows out of the bulb. The new theme sits on top
+   and its clip-path is animated from JS; turn off the default crossfade. */
+html.theme-reveal::view-transition-old(root),
+html.theme-reveal::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+/* Going to dark, the old (light) page sits on top and shrinks into the bulb. */
+html.theme-squeeze::view-transition-old(root) {
+  z-index: 1;
+}
+
+/* The bulb (components/site/bulb.tsx): thin lines in the icon colour, the
+   glass filled with the page colour so it reads as a solid. The wire is
+   always connected. Light mode: broken glass, off. Dark mode: whole, lit. */
+.bulb {
+  overflow: visible;
+  transform-origin: 50% 0;
+}
+.group:hover .bulb {
+  animation: bulb-swing 1.4s cubic-bezier(0.45, 0, 0.55, 1);
+}
+@keyframes bulb-swing {
+  25% { transform: rotate(5deg); }
+  60% { transform: rotate(-3deg); }
+  85% { transform: rotate(1deg); }
+}
+.bulb :where(path, ellipse) {
+  fill: var(--bg);
+  stroke: currentColor;
+  stroke-width: 1.2;
+  vector-effect: non-scaling-stroke;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  transition: fill 500ms ease, stroke 500ms ease, stroke-opacity 500ms ease;
+}
+.bulb .nf {
+  fill: none;
+}
+.bulb .lo {
+  stroke-opacity: 0.5;
+}
+.bulb .g-hang {
+  transition: filter 500ms ease;
+}
+.dark .bulb .g-hang {
+  filter: drop-shadow(0 0 5px rgba(246, 196, 83, 0.5));
+}
+.dark .bulb .bulb-glass {
+  fill: color-mix(in srgb, #f6c453 16%, var(--bg));
+}
+.dark .bulb .filament {
+  stroke: #f6c453;
+  stroke-opacity: 1;
+}
+
+/* Light mode: broken glass. Dark mode: whole glass. */
+.bulb .glass-whole,
+.dark .bulb .glass-broken {
+  opacity: 0;
+}
+.bulb .glass-broken,
+.dark .bulb .glass-whole {
+  opacity: 1;
+}
+.bulb .shard {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* Dark to light: the light goes out and the lower glass bursts outward.
+   Light to dark: the bulb stays broken and off (is-broken) until the light
+   page has squeezed into it, then mends. */
+.is-breaking .bulb .g-hang,
+.is-broken .bulb .g-hang {
+  filter: none;
+}
+.is-breaking .bulb .bulb-glass,
+.is-broken .bulb .bulb-glass {
+  fill: var(--bg);
+}
+.is-breaking .bulb .filament,
+.is-broken .bulb .filament {
+  stroke: currentColor;
+  stroke-opacity: 0.5;
+}
+.is-breaking .bulb .glass-whole,
+.is-broken .bulb .glass-whole {
+  opacity: 0;
+}
+.is-breaking .bulb .glass-broken,
+.is-broken .bulb .glass-broken {
+  opacity: 1;
+}
+.is-breaking .bulb .shard {
+  animation: bulb-shard-out 320ms cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+@keyframes bulb-shard-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translate(var(--sx), var(--sy)) rotate(var(--sr));
+  }
+}
+
+/* Light to dark, after the squeeze: the shards fly back in. When they land
+   the classes come off and the dark-mode bulb (whole, lit) shows. */
+.is-mending .bulb .shard {
+  animation: bulb-shard-in 320ms cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+@keyframes bulb-shard-in {
+  from {
+    opacity: 0;
+    transform: translate(var(--sx), var(--sy)) rotate(var(--sr));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .group:hover .bulb {
+    animation: none;
+  }
+}

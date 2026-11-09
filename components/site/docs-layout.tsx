@@ -1,53 +1,71 @@
 import Link from "next/link";
-import { COMPONENTS, neighbours } from "@/lib/site";
+import { COMPONENTS, GROUPS, neighbours } from "@/lib/site";
 import { cx } from "@/lib/utils";
 import { ArrowLeft, Arrow } from "./icons";
 import { Breadcrumbs } from "./breadcrumbs";
 import { Toc } from "./toc";
+import { SideDropdown } from "./side-dropdown";
 
 export type DocSection = { id: string; title: string };
 
-/** Sidebar on the left, the page in the middle, "On this page" on the right. */
+/**
+ * Sidebar on the left, the page in the middle, "On this page" on the right.
+ * Leave out `slug` for the Introduction page.
+ */
 export function DocsLayout({
   slug,
   sections,
   children,
 }: {
-  slug: string;
+  slug?: string;
   sections: DocSection[];
   children: React.ReactNode;
 }) {
-  const current = COMPONENTS.find((c) => c.slug === slug)!;
+  const current = slug ? COMPONENTS.find((c) => c.slug === slug) : undefined;
   const { prev, next } = neighbours(slug);
   return (
     <div className="mx-auto flex max-w-6xl gap-10 px-4 sm:px-6">
       <aside className="sticky top-14 hidden h-[calc(100dvh-3.5rem)] w-52 shrink-0 overflow-y-auto py-10 lg:block">
         <SideGroup title="Getting started">
-          <SideLink href="/">Introduction</SideLink>
-          <SideLink href="/components">All components</SideLink>
+          <SideLink href="/docs" active={!slug}>
+            Introduction
+          </SideLink>
         </SideGroup>
-        <SideGroup title="Components">
-          {COMPONENTS.map((c) => (
-            <SideLink key={c.slug} href={`/components/${c.slug}`} active={c.slug === slug} badge={c.isNew ? "New" : undefined}>
-              {c.name}
-            </SideLink>
-          ))}
-        </SideGroup>
+        {GROUPS.map((g) => {
+          const items = COMPONENTS.filter((c) => c.group === g.id);
+          return (
+            <SideDropdown key={g.id} title={g.label} count={items.length}>
+              {items.length ? (
+                items.map((c) => (
+                  <SideLink key={c.slug} href={`/docs/${c.slug}`} active={c.slug === slug} badge={c.isNew ? "New" : undefined}>
+                    {c.name}
+                  </SideLink>
+                ))
+              ) : (
+                <p className="px-2.5 py-1.5 text-sm text-[var(--faint)]">Coming soon</p>
+              )}
+            </SideDropdown>
+          );
+        })}
       </aside>
 
       <main className="min-w-0 flex-1 pt-10 pb-24">
         <Breadcrumbs
-          items={[
-            { label: "Home", href: "/" },
-            { label: "Components", href: "/components" },
-            { label: current.category },
-          ]}
+          items={
+            current
+              ? [
+                  { label: "Docs", href: "/docs" },
+                  { label: GROUPS.find((g) => g.id === current.group)!.label },
+                  { label: current.name },
+                ]
+              : [{ label: "Docs", href: "/docs" }, { label: "Introduction" }]
+          }
         />
         {children}
 
-        <nav className="mt-20 grid gap-3 sm:grid-cols-2" aria-label="More components">
-          {prev ? <PagerCard dir="prev" slug={prev.slug} name={prev.name} /> : <span className="hidden sm:block" />}
-          {next && <PagerCard dir="next" slug={next.slug} name={next.name} />}
+        <nav className="mt-20 grid gap-3 sm:grid-cols-2" aria-label="More pages">
+          {prev ? <PagerCard dir="prev" href={prev.href} name={prev.name} /> : <span className="hidden sm:block" />}
+          {next && <PagerCard dir="next" href={next.href} name={next.name} />}
         </nav>
       </main>
 
@@ -87,10 +105,10 @@ function SideLink({ href, active, badge, children }: { href: string; active?: bo
   );
 }
 
-function PagerCard({ dir, slug, name }: { dir: "prev" | "next"; slug: string; name: string }) {
+function PagerCard({ dir, href, name }: { dir: "prev" | "next"; href: string; name: string }) {
   return (
     <Link
-      href={`/components/${slug}`}
+      href={href}
       className={cx("card press group flex flex-col gap-1 rounded-xl px-4 py-3.5", dir === "next" && "items-end text-right sm:col-start-2")}
     >
       <span className="flex items-center gap-1 text-xs text-[var(--muted)]">

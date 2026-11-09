@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export type Crumb = { label: string; href?: string };
 
-/** Home › Components › Category. The last crumb is the current page. */
+/** Docs › Category › Component. The last crumb is the current page. */
 export function Breadcrumbs({ items }: { items: Crumb[] }) {
   return (
     <nav aria-label="Breadcrumb">

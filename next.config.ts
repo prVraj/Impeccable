@@ -3,7 +3,14 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Lets the docs pages read component source files at build time.
   outputFileTracingIncludes: {
-    "/components/burning-screen": ["./registry/**/*", "./generated/**/*"],
+    "/docs/*": ["./registry/**/*", "./generated/**/*"],
+  },
+  // Component pages used to live under /components. Old links keep working.
+  async redirects() {
+    return [
+      { source: "/components", destination: "/docs", permanent: true },
+      { source: "/components/:slug", destination: "/docs/:slug", permanent: true },
+    ];
   },
 };
 

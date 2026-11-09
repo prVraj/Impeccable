@@ -45,7 +45,7 @@ export default function SignupDemo() {
           </button>
         </div>
         <p className="mt-6 text-center text-xs text-neutral-500">
-          <Link href="/components/burning-screen" className="underline underline-offset-4">
+          <Link href="/docs/burning-screen" className="underline underline-offset-4">
             Back to docs
           </Link>
         </p>

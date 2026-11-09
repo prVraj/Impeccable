@@ -1,0 +1,50 @@
+/* {{Person}}'s taste as CSS variables. Light by default; dark under .dark or [data-theme="dark"]. */
+:root {
+  --brand: {{brand hex}}; /* each project's DESIGN.md may set its own */
+  --bg: {{light bg}};
+  --surface: {{light surface}};
+  --fg: {{light fg}};
+  --muted: {{light muted}};
+  --line: {{light border}};
+  --accent: var(--brand);
+
+  --font-display: {{display font stack}};
+  --font-body: {{body font stack}};
+  --tracking-display: {{e.g. -0.03em}};
+
+  --radius-card: {{e.g. 8px}};
+  --radius-button: {{e.g. 999px}};
+  --shadow-1: {{e.g. 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 12px rgb(0 0 0 / 0.04) or none}};
+
+  --space-1: {{first step of the density scale, e.g. 8px}};
+  --space-2: {{e.g. 16px}};
+  --space-3: {{e.g. 24px}};
+  --space-4: {{e.g. 40px}};
+  --space-5: {{e.g. 64px}};
+  --space-6: {{e.g. 96px}};
+  --space-7: {{e.g. 144px}};
+
+  --ease-out: {{signature easing, always a cubic-bezier}};
+  --dur-small: {{e.g. 120ms}};
+  --dur-medium: {{e.g. 200ms}};
+  --dur-large: {{e.g. 300ms}};
+  --rise: {{entrance travel, e.g. 8px}};
+}
+
+.dark,
+[data-theme="dark"] {
+  --bg: {{dark bg}};
+  --surface: {{dark surface}};
+  --fg: {{dark fg}};
+  --muted: {{dark muted}};
+  --line: {{dark border}};
+  --accent: {{brand, lifted for contrast on dark}};
+  --shadow-1: {{dark shadow or none}};
+}
+
+/* Reduced motion: no travel, fades stay. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --rise: 0px;
+  }
+}

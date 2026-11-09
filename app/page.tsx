@@ -18,7 +18,7 @@ export default function Home() {
         <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 px-4 py-12 sm:px-6 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
             <Link
-              href={`/components/${latest.slug}`}
+              href={`/docs/${latest.slug}`}
               className="card press group inline-flex items-center gap-2 rounded-full py-1 pr-3 pl-1 text-[13px]"
             >
               <span className="btn-brand rounded-full px-2 py-0.5 text-[11px] font-medium">
@@ -42,7 +42,7 @@ export default function Home() {
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
               <Link
-                href="/components"
+                href="/docs"
                 className="press inline-flex h-11 items-center gap-2 rounded-full btn-brand px-5 text-sm font-medium"
               >
                 Browse components

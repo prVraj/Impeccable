@@ -12,7 +12,7 @@ export function Header() {
             Impeccable
           </Link>
           <nav className="flex items-center gap-5 text-sm text-[var(--muted)]">
-            <Link href="/components" className="transition-colors hover:text-[var(--fg)]">
+            <Link href="/docs" className="transition-colors hover:text-[var(--fg)]">
               Components
             </Link>
           </nav>
