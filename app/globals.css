@@ -189,18 +189,6 @@ body {
   }
 }
 
-/* Theme switch: a circle grows out of the bulb. The new theme sits on top
-   and its clip-path is animated from JS; turn off the default crossfade. */
-html.theme-reveal::view-transition-old(root),
-html.theme-reveal::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
-}
-/* Going to dark, the old (light) page sits on top and shrinks into the bulb. */
-html.theme-squeeze::view-transition-old(root) {
-  z-index: 1;
-}
-
 /* The bulb (components/site/bulb.tsx): thin lines in the icon colour, the
    glass filled with the page colour so it reads as a solid. The wire is
    always connected. Light mode: broken glass, off. Dark mode: whole, lit. */
