@@ -30,15 +30,15 @@
       ]
     },
     {
-      "name": "brain-map",
+      "name": "brain-txt",
       "type": "registry:component",
-      "title": "Brain-Map",
+      "title": "brain.txt",
       "description": "A brain in the middle of a web of dots that each hold a thought. Hover, click and drag to play with it.",
       "files": [
         {
-          "path": "registry/impeccable/brain-map/brain-map.tsx",
+          "path": "registry/impeccable/brain-txt/brain-txt.tsx",
           "type": "registry:component",
-          "target": "components/ui/brain-map.tsx"
+          "target": "components/ui/brain-txt.tsx"
         }
       ]
     },
@@ -52,6 +52,19 @@
           "path": "registry/impeccable/scratch-me/scratch-me.tsx",
           "type": "registry:component",
           "target": "components/ui/scratch-me.tsx"
+        }
+      ]
+    },
+    {
+      "name": "password-strength",
+      "type": "registry:component",
+      "title": "Password-Strength",
+      "description": "A password field with show/hide that rates the password as AI, AI agent or Human, from three checkpoints.",
+      "files": [
+        {
+          "path": "registry/impeccable/password-strength/password-strength.tsx",
+          "type": "registry:component",
+          "target": "components/ui/password-strength.tsx"
         }
       ]
     }

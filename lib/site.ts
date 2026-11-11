@@ -22,8 +22,8 @@ export type SiteComponent = {
 
 export const COMPONENTS: SiteComponent[] = [
   {
-    slug: "brain-map",
-    name: "Brain-Map",
+    slug: "brain-txt",
+    name: "brain.txt",
     group: "components",
     category: "Interactive",
     blurb: "A brain in a web of dots; each dot holds one of your thoughts.",
@@ -35,6 +35,14 @@ export const COMPONENTS: SiteComponent[] = [
     group: "components",
     category: "Interactive",
     blurb: "Scratch off the foil to reveal a promo code; it copies itself.",
+    preview: "",
+  },
+  {
+    slug: "password-strength",
+    name: "Password-Strength",
+    group: "components",
+    category: "Form",
+    blurb: "A password field that rates you as AI, AI agent or Human.",
     preview: "",
   },
   {

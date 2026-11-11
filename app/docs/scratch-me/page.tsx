@@ -2,9 +2,9 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { Metadata } from "next";
 import { DocsLayout } from "@/components/site/docs-layout";
-import { Code, DocSection, Lede, PageTitle, PropsTable } from "@/components/site/doc-parts";
+import { DocSection, Lede, PageTitle, PropsTable } from "@/components/site/doc-parts";
 import { ScratchMeDemo } from "@/components/site/scratch-me-demo";
-import { InstallCommand } from "@/components/site/install-command";
+import { Showcase } from "@/components/site/showcase";
 import { Tabs } from "@/components/site/tabs";
 import { Html, PromptBody } from "@/components/site/html";
 import { highlight } from "@/lib/highlight";
@@ -63,7 +63,6 @@ export default async function ScratchMePage() {
     { id: "installation", title: "Installation" },
     { id: "usage", title: "Usage" },
     { id: "props", title: "Props" },
-    { id: "code", title: "Code" },
     { id: "prompts", title: "Prompts" },
   ];
 
@@ -75,21 +74,21 @@ export default async function ScratchMePage() {
         tags={["Interactive", "No extra packages", "Light + dark", "Mobile"]}
       />
 
-      <DocSection id="preview" title="Preview">
-        <ScratchMeDemo />
-        <p className="mt-3 text-[13px] leading-relaxed text-pretty text-[var(--muted)]">
-          Scratch past half and let go. Keyboard: Tab to the card and press Enter. With reduced motion
-          on, there are no shavings and the foil simply fades.
-        </p>
-      </DocSection>
-
-      <DocSection id="installation" title="Installation">
-        <Lede>Run the command in a project set up with shadcn. No other packages needed.</Lede>
-        <InstallCommand url={REGISTRY_URL} />
-        <p className="mt-3 text-sm text-[var(--muted)]">
-          Or copy the code below into <Code>components/ui/scratch-me.tsx</Code>.
-        </p>
-      </DocSection>
+      <Showcase
+        installUrl={REGISTRY_URL}
+        filePath="components/ui/scratch-me.tsx"
+        preview={<ScratchMeDemo />}
+        hint={
+          <>
+            Scratch past half and let go. Keyboard: Tab to the card and press Enter. With reduced motion
+            on, there are no shavings and the foil simply fades.
+          </>
+        }
+        files={[
+          { id: "ts", label: "scratch-me.tsx", copy: ts, body: <Html html={tsHtml} /> },
+          { id: "js", label: "scratch-me.jsx", copy: js, body: <Html html={jsHtml} /> },
+        ]}
+      />
 
       <DocSection id="usage" title="Usage">
         <Lede>Give it the code. Everything else has a default.</Lede>
@@ -102,15 +101,6 @@ export default async function ScratchMePage() {
 
       <DocSection id="props" title="Props">
         <PropsTable rows={PROPS} />
-      </DocSection>
-
-      <DocSection id="code" title="Code">
-        <Tabs
-          tabs={[
-            { id: "ts", label: "scratch-me.tsx", copy: ts, body: <Html html={tsHtml} /> },
-            { id: "js", label: "scratch-me.jsx", copy: js, body: <Html html={jsHtml} /> },
-          ]}
-        />
       </DocSection>
 
       <DocSection id="prompts" title="Prompts">

@@ -8,6 +8,14 @@ Animations and skills that fit your product like the missing piece of a puzzle. 
 
 The library has three parts.
 
+### Components
+
+| Component | What it does |
+| --- | --- |
+| [brain.txt](https://impeccable-rust.vercel.app/docs/brain-txt) | A brain in a web of dots; each dot holds one of your thoughts. |
+| [Scratch-me](https://impeccable-rust.vercel.app/docs/scratch-me) | Scratch off the foil to reveal a promo code; it copies itself. |
+| [Password-Strength](https://impeccable-rust.vercel.app/docs/password-strength) | A password field that rates you as AI, AI agent or Human. |
+
 ### Animations
 
 | Animation | What it does |
@@ -21,13 +29,9 @@ The library has three parts.
 | --- | --- |
 | [UI-tongue](https://impeccable-rust.vercel.app/docs/ui-tongue) | Learns your UI taste in about 15 minutes and writes you your own UI skill, so a one-line prompt comes out in your style. |
 
-### Components
+## Add a component or animation to your project
 
-Coming soon.
-
-## Add an animation to your project
-
-Every animation page gives you three ways in.
+Every component and animation page gives you three ways in.
 
 **1. Install command.** In a project set up with [shadcn](https://ui.shadcn.com):
 
@@ -39,8 +43,8 @@ npx shadcn@latest add https://impeccable-rust.vercel.app/r/agent-draw.json
 
 **3. Use a prompt.** Paste one into your AI coding tool (Claude Code, Cursor, v0 and others):
 
-- **Install prompt:** adds the exact animation as shown on the site. It only asks where it should go.
-- **Blend prompt:** your agent asks you a few short questions first, then fits it to your brand with your colors, names and words. The motion stays as designed.
+- **Install prompt:** adds it exactly as shown on the site. It only asks where it should go.
+- **Blend prompt:** your agent asks you a few short questions first, then fits it to your brand with your colors, names and words. The design and motion stay as made.
 
 ## Add a skill
 
@@ -73,7 +77,7 @@ pnpm dev
 
 | Path | What it is |
 | --- | --- |
-| `registry/impeccable/<name>/<name>.tsx` | An animation's source (TypeScript). |
+| `registry/impeccable/<name>/<name>.tsx` | A component's or animation's source (TypeScript). |
 | `generated/js/<name>/<name>.jsx` | The JavaScript version, generated on `pnpm dev` and `pnpm build`. Don't edit it by hand. |
 | `lib/prompts.ts` | The Install and Blend prompts. |
 | `lib/site.ts` | The list of everything in the library and which part it belongs to. |
@@ -81,7 +85,9 @@ pnpm dev
 | `skills/<name>/` | A skill's source files. The download lives in `public/downloads/`. |
 | `registry.json`, `public/r/` | The shadcn registry. `pnpm registry:build` regenerates `public/r/`. |
 
-Old `/components/...` links redirect to `/docs/...`.
+Old `/components/...` links redirect to `/docs/...`, and `/docs/brain-map` redirects to `/docs/brain-txt`.
+
+Notes for AI agents working in this repo live in `CLAUDE.md` and `.agents/skills/`.
 
 ## Who makes it
 

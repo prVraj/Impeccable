@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { DocsLayout } from "@/components/site/docs-layout";
 import { Code, DocSection, Lede, PageTitle } from "@/components/site/doc-parts";
 import { CopyButton } from "@/components/site/copy-button";
+import { Tabs } from "@/components/site/tabs";
+import { PromptBody } from "@/components/site/html";
+import { uiTongueBlendPrompt, uiTongueInstallPrompt } from "@/lib/prompts";
 
 export const metadata: Metadata = {
   title: "UI-tongue · Impeccable",
@@ -56,9 +59,12 @@ const SECTIONS = [
   { id: "how-it-works", title: "How it works" },
   { id: "questions", title: "The questions" },
   { id: "what-you-get", title: "What you get" },
+  { id: "prompts", title: "Prompts" },
 ];
 
 export default function UiTonguePage() {
+  const installPrompt = uiTongueInstallPrompt();
+  const blendPrompt = uiTongueBlendPrompt();
   return (
     <>
       <DocsLayout slug="ui-tongue" sections={SECTIONS}>
@@ -159,6 +165,22 @@ export default function UiTonguePage() {
           <div className="card overflow-x-auto rounded-xl px-4 py-3.5">
             <pre className="font-mono text-[12.5px] leading-relaxed text-[var(--muted)]">{TREE}</pre>
           </div>
+        </DocSection>
+
+        <DocSection id="prompts" title="Prompts">
+          <Lede>
+            Rather let your AI tool set it up? Paste one into Claude Code, Cursor or any AI coding tool.{" "}
+            <strong className="font-medium text-[var(--fg)]">Install</strong> puts the skill in place exactly as it
+            ships and asks only where.{" "}
+            <strong className="font-medium text-[var(--fg)]">Blend</strong> asks up to three short questions
+            (where, which tools, what to read first), so your first interview starts from your own design files.
+          </Lede>
+          <Tabs
+            tabs={[
+              { id: "install", label: "Install prompt", copy: installPrompt, body: <PromptBody text={installPrompt} /> },
+              { id: "blend", label: "Blend prompt", copy: blendPrompt, body: <PromptBody text={blendPrompt} /> },
+            ]}
+          />
         </DocSection>
       </DocsLayout>
     </>

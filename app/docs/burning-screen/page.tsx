@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { DocsLayout } from "@/components/site/docs-layout";
 import { Code, DocSection, Lede, PageTitle, PropsTable } from "@/components/site/doc-parts";
 import { Playground } from "@/components/site/playground";
-import { InstallCommand } from "@/components/site/install-command";
+import { Showcase } from "@/components/site/showcase";
 import { Tabs } from "@/components/site/tabs";
 import { Html, PromptBody } from "@/components/site/html";
 import { highlight } from "@/lib/highlight";
@@ -75,7 +75,6 @@ export default async function BurningScreenPage() {
     { id: "installation", title: "Installation" },
     { id: "usage", title: "Usage" },
     { id: "props", title: "Props" },
-    { id: "code", title: "Code" },
     { id: "prompts", title: "Prompts" },
   ];
 
@@ -88,21 +87,21 @@ export default async function BurningScreenPage() {
           tags={["Page transition", "WebGL", "View Transitions", "Light + dark"]}
         />
 
-        <DocSection id="preview" title="Preview">
-          <Playground />
-          <p className="mt-3 text-xs text-[var(--muted)]">
-            Uses View Transitions and WebGL. Older browsers and reduced-motion settings get a short
-            fade instead.
-          </p>
-        </DocSection>
-
-        <DocSection id="installation" title="Installation">
-          <Lede>Run the command in a project set up with shadcn. No other packages needed.</Lede>
-          <InstallCommand url={REGISTRY_URL} />
-          <p className="mt-3 text-sm text-[var(--muted)]">
-            Or copy the code below into <Code>components/ui/burning-screen.tsx</Code>.
-          </p>
-        </DocSection>
+        <Showcase
+          installUrl={REGISTRY_URL}
+          filePath="components/ui/burning-screen.tsx"
+          preview={<Playground />}
+          hint={
+            <>
+              Uses View Transitions and WebGL. Older browsers and reduced-motion settings get a short
+              fade instead.
+            </>
+          }
+          files={[
+            { id: "ts", label: "burning-screen.tsx", copy: ts, body: <Html html={tsHtml} /> },
+            { id: "js", label: "burning-screen.jsx", copy: js, body: <Html html={jsHtml} /> },
+          ]}
+        />
 
         <DocSection id="usage" title="Usage">
           <Lede>1. Wrap your app once, in the root layout, so it survives page changes.</Lede>
@@ -120,15 +119,6 @@ export default async function BurningScreenPage() {
             Set them on <Code>&lt;BurningScreen&gt;</Code> as defaults, or per call in{" "}
             <Code>burn(update, options)</Code>.
           </p>
-        </DocSection>
-
-        <DocSection id="code" title="Code">
-          <Tabs
-            tabs={[
-              { id: "ts", label: "burning-screen.tsx", copy: ts, body: <Html html={tsHtml} /> },
-              { id: "js", label: "burning-screen.jsx", copy: js, body: <Html html={jsHtml} /> },
-            ]}
-          />
         </DocSection>
 
         <DocSection id="prompts" title="Prompts">

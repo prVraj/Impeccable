@@ -47,7 +47,15 @@ export function SideDropdown({
         )}
       >
         <div className="overflow-hidden" inert={!open}>
-          <div className={cx("mt-px flex flex-col gap-px pb-1", !!icon && "pl-6")}>{children}</div>
+          {/* A thin line from under the icon down to the last item, so the group's end is clear. */}
+          <div
+            className={cx(
+              "mt-px flex flex-col gap-px pb-1",
+              icon ? "ml-[17px] border-l border-[var(--line)] pl-1.5" : "",
+            )}
+          >
+            {children}
+          </div>
         </div>
       </div>
     </div>

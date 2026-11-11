@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Brain-Map, from Impeccable.
+ * brain.txt, from Impeccable.
  *
  * A brain sits in the middle of a small web of dots. Each dot holds one thought.
  * Hover a dot to light up its links, click it to read the thought, and drag the
@@ -12,7 +12,39 @@
  * when everything is still.
  */
 
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from "react";
+
+export type Thought = {
+  /** What the dot says when it is opened. */
+  text: string;
+  /** Optional small label under the text, like "learning". */
+  tag?: string;
+  /** Draws the dot in the accent color so it stands out. */
+  featured?: boolean;
+  /** Link this dot straight to the brain (true) or never (false). Leave out to let the map decide. */
+  brain?: boolean;
+};
+
+export type BrainTxtProps = {
+  thoughts: Thought[];
+  /** Turn every direct line between the brain and the dots on or off. */
+  brainLinks?: boolean;
+  /** Most links a dot has to other dots. 1 to 3; never more than 3. */
+  maxLinks?: 1 | 2 | 3;
+  /** What sits in the middle. An emoji or any small element. */
+  center?: ReactNode;
+  /** Color for highlighted lines, featured dots and tags. Any CSS color, including var(--name). */
+  accent?: string;
+  /** Small help text under the map. Pass null to hide it. */
+  hint?: ReactNode;
+  /** Changes the dot layout. Same seed, same map. */
+  seed?: number;
+  /** Height of the map, hint included. A number is px. */
+  height?: number | string;
+  /** Layout classes for the outer box. */
+  className?: string;
+  style?: CSSProperties;
+};
 
 /* ---------- tuning (the design: keep as written) ---------- */
 
@@ -25,9 +57,13 @@ const CLICK_SLOP = 5; // px a pointer may move and still count as a click
 const ENTER_MS = 900; // dots grow out of the brain on first view
 const FADE = 0.14; // opacity of everything not lit while a dot is active
 
+type V = { x: number; y: number };
+type Node = { hx: number; hy: number; x: number; y: number; vx: number; vy: number; r: number; shade: number };
+type Edge = [number, number]; // node indexes; 0 is the brain
+
 /* ---------- layout ---------- */
 
-function rng(seed) {
+function rng(seed: number) {
   let s = seed >>> 0 || 1;
   return () => {
     s = (s + 0x6d2b79f5) >>> 0;
@@ -40,10 +76,10 @@ function rng(seed) {
 
 /** Home spots on a sunflower spiral, with a little jitter so it never looks like a pattern.
  * Unit space: the brain is at 0,0 and the outer dots near radius 1. */
-function homes(count, seed) {
+function homes(count: number, seed: number) {
   const rand = rng(seed);
   const golden = Math.PI * (3 - Math.sqrt(5));
-  const pts = [];
+  const pts: (V & { r: number; shade: number })[] = [];
   for (let i = 0; i < count; i++) {
     const t = (i + 0.9) / (count + 0.4);
     const radius = 0.28 + 0.72 * Math.sqrt(t) + (rand() - 0.5) * 0.12;
@@ -58,31 +94,24 @@ function homes(count, seed) {
   return pts;
 }
 
-function crosses(a, b, c, d) {
-  const o = (p, q, r) => (q.x - p.x) * (r.y - p.y) - (q.y - p.y) * (r.x - p.x);
+function crosses(a: V, b: V, c: V, d: V) {
+  const o = (p: V, q: V, r: V) => (q.x - p.x) * (r.y - p.y) - (q.y - p.y) * (r.x - p.x);
   return o(a, b, c) * o(a, b, d) < 0 && o(c, d, a) * o(c, d, b) < 0;
 }
 
 /** Shortest links first; a link is added only if both dots still have room (max 3)
  * and it doesn't cross a link already drawn. */
-function linkDots(pts, max) {
-  const pairs = [];
+function linkDots(pts: V[], max: number): Edge[] {
+  const pairs: [number, number, number][] = [];
   for (let i = 0; i < pts.length; i++)
-    for (let j = i + 1; j < pts.length; j++)
-      pairs.push([Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y), i, j]);
+    for (let j = i + 1; j < pts.length; j++) pairs.push([Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y), i, j]);
   pairs.sort((a, b) => a[0] - b[0]);
   const degree = new Array(pts.length).fill(0);
-  const edges = [];
+  const edges: Edge[] = [];
   for (const [dist, i, j] of pairs) {
     if (dist > 1.25) break; // far dots stay apart
     if (degree[i] >= max || degree[j] >= max) continue;
-    if (
-      edges.some(
-        ([a, b]) =>
-          a !== i && a !== j && b !== i && b !== j && crosses(pts[i], pts[j], pts[a], pts[b]),
-      )
-    )
-      continue;
+    if (edges.some(([a, b]) => a !== i && a !== j && b !== i && b !== j && crosses(pts[i], pts[j], pts[a], pts[b]))) continue;
     edges.push([i, j]);
     degree[i]++;
     degree[j]++;
@@ -93,7 +122,7 @@ function linkDots(pts, max) {
 /* ---------- theme ---------- */
 
 /** Dark or light, read from the text color the map inherits, so it follows any theme setup. */
-function useIsDark(ref) {
+function useIsDark(ref: React.RefObject<HTMLElement | null>) {
   const [dark, setDark] = useState(false);
   useEffect(() => {
     const read = () => {
@@ -106,10 +135,7 @@ function useIsDark(ref) {
     };
     read();
     const mo = new MutationObserver(read);
-    mo.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class", "data-theme", "style"],
-    });
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ["class", "data-theme", "style"] });
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
     mq.addEventListener("change", read);
     return () => {
@@ -122,7 +148,7 @@ function useIsDark(ref) {
 
 /* ---------- component ---------- */
 
-export function BrainMap({
+export function BrainTxt({
   thoughts,
   brainLinks = true,
   maxLinks = 3,
@@ -139,16 +165,16 @@ export function BrainMap({
   height = 420,
   className,
   style,
-}) {
-  const boxRef = useRef(null);
-  const svgRef = useRef(null);
-  const brainRef = useRef(null);
-  const cardRef = useRef(null);
+}: BrainTxtProps) {
+  const boxRef = useRef<HTMLDivElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
+  const brainRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const dark = useIsDark(boxRef);
 
   const [size, setSize] = useState({ w: 0, h: 0 });
-  const [hover, setHover] = useState(null); // node index, 0 = brain
-  const [open, setOpen] = useState(null); // dot index that shows its card
+  const [hover, setHover] = useState<number | null>(null); // node index, 0 = brain
+  const [open, setOpen] = useState<number | null>(null); // dot index that shows its card
   const [grabbing, setGrabbing] = useState(false);
 
   // Layout in unit space, rebuilt only when the thoughts change.
@@ -159,21 +185,20 @@ export function BrainMap({
     if (!brainLinks) return dotLinks;
     // Left to itself, the brain links to its nearest dots: about 45% of them, 3 to 8.
     const nearest = unit
-      .map((p, i) => [Math.hypot(p.x, p.y), i])
+      .map((p, i) => [Math.hypot(p.x, p.y), i] as const)
       .sort((a, b) => a[0] - b[0])
       .slice(0, Math.max(3, Math.min(8, Math.round(unit.length * 0.45))))
       .map(([, i]) => i);
-    const toBrain = [];
+    const toBrain: Edge[] = [];
     unit.forEach((_, i) => {
       const chosen = thoughts[i]?.brain;
-      if (chosen === true || (chosen === undefined && nearest.includes(i)))
-        toBrain.push([0, i + 1]);
+      if (chosen === true || (chosen === undefined && nearest.includes(i))) toBrain.push([0, i + 1]);
     });
     return [...toBrain, ...dotLinks];
   }, [unit, thoughts, brainLinks, maxLinks]);
 
   const neighbours = useMemo(() => {
-    const n = Array.from({ length: thoughts.length + 1 }, () => new Set());
+    const n: Set<number>[] = Array.from({ length: thoughts.length + 1 }, () => new Set());
     for (const [a, b] of edges) {
       n[a].add(b);
       n[b].add(a);
@@ -183,9 +208,9 @@ export function BrainMap({
 
   // Live simulation state (kept out of React so frames are cheap).
   const sim = useRef({
-    nodes: [],
+    nodes: [] as Node[],
     pan: { x: 0, y: 0 },
-    drag: null,
+    drag: null as null | { kind: "node" | "pan"; index: number; start: V; last: V; moved: boolean; id: number; offset: V },
     raf: 0,
     born: 0,
     still: true,
@@ -196,9 +221,7 @@ export function BrainMap({
   useEffect(() => {
     const el = boxRef.current;
     if (!el) return;
-    const ro = new ResizeObserver(([e]) =>
-      setSize({ w: e.contentRect.width, h: e.contentRect.height }),
-    );
+    const ro = new ResizeObserver(([e]) => setSize({ w: e.contentRect.width, h: e.contentRect.height }));
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
@@ -211,8 +234,8 @@ export function BrainMap({
     const grow = s.reduced ? 1 : Math.min(1, (performance.now() - s.born) / ENTER_MS);
     const ease = 1 - Math.pow(1 - grow, 3);
     const c = s.nodes[0];
-    const at = (n) => n;
-    const lines = svg.querySelectorAll("line[data-e]");
+    const at = (n: Node) => n;
+    const lines = svg.querySelectorAll<SVGLineElement>("line[data-e]");
     lines.forEach((line, k) => {
       const [a, b] = edges[k] ?? [0, 0];
       const p = a === 0 ? c : at(s.nodes[a]);
@@ -222,15 +245,11 @@ export function BrainMap({
       line.setAttribute("x2", q.x.toFixed(1));
       line.setAttribute("y2", q.y.toFixed(1));
     });
-    svg.querySelectorAll("g[data-n]").forEach((g, k) => {
+    svg.querySelectorAll<SVGGElement>("g[data-n]").forEach((g, k) => {
       const p = at(s.nodes[k + 1]);
-      g.setAttribute(
-        "transform",
-        `translate(${p.x.toFixed(1)} ${p.y.toFixed(1)}) scale(${(0.3 + 0.7 * ease).toFixed(3)})`,
-      );
+      g.setAttribute("transform", `translate(${p.x.toFixed(1)} ${p.y.toFixed(1)}) scale(${(0.3 + 0.7 * ease).toFixed(3)})`);
     });
-    if (brainRef.current)
-      brainRef.current.style.transform = `translate(${c.x - BRAIN_SIZE / 2}px, ${c.y - BRAIN_SIZE / 2}px)`;
+    if (brainRef.current) brainRef.current.style.transform = `translate(${c.x - BRAIN_SIZE / 2}px, ${c.y - BRAIN_SIZE / 2}px)`;
     const card = cardRef.current;
     const i = Number(card?.dataset.for);
     if (card && i) {
@@ -278,11 +297,7 @@ export function BrainMap({
       n.vy = (n.vy + (n.hy + s.pan.y - n.y) * k) * DAMP;
       n.x += n.vx;
       n.y += n.vy;
-      energy +=
-        Math.abs(n.vx) +
-        Math.abs(n.vy) +
-        Math.abs(n.hx + s.pan.x - n.x) * 0.02 +
-        Math.abs(n.hy + s.pan.y - n.y) * 0.02;
+      energy += Math.abs(n.vx) + Math.abs(n.vy) + Math.abs(n.hx + s.pan.x - n.x) * 0.02 + Math.abs(n.hy + s.pan.y - n.y) * 0.02;
     });
     return energy;
   }, [edges]);
@@ -330,22 +345,12 @@ export function BrainMap({
       const hx = cx + p.x * Rx;
       const hy = cy + p.y * Ry;
       const old = prev[i];
-      return {
-        hx,
-        hy,
-        x: old ? old.x - old.hx + hx : hx,
-        y: old ? old.y - old.hy + hy : hy,
-        vx: 0,
-        vy: 0,
-        r: p.r,
-        shade: p.shade,
-      };
+      return { hx, hy, x: old ? old.x - old.hx + hx : hx, y: old ? old.y - old.hy + hy : hy, vx: 0, vy: 0, r: p.r, shade: p.shade };
     });
     if (first) {
       s.born = performance.now();
       // Start inside the brain and spring out.
-      if (!s.reduced)
-        s.nodes.forEach((n) => ((n.x = cx + (n.hx - cx) * 0.2), (n.y = cy + (n.hy - cy) * 0.2)));
+      if (!s.reduced) s.nodes.forEach((n) => ((n.x = cx + (n.hx - cx) * 0.2), (n.y = cy + (n.hy - cy) * 0.2)));
     }
     wake();
   }, [size, unit, hint, wake]);
@@ -359,12 +364,12 @@ export function BrainMap({
 
   /* ---------- pointer ---------- */
 
-  const local = (e) => {
-    const r = svgRef.current.getBoundingClientRect();
+  const local = (e: { clientX: number; clientY: number }) => {
+    const r = svgRef.current!.getBoundingClientRect();
     return { x: e.clientX - r.left, y: e.clientY - r.top };
   };
 
-  const onDown = (e, index) => {
+  const onDown = (e: React.PointerEvent, index: number | null) => {
     if (e.button !== 0) return;
     e.stopPropagation();
     const s = sim.current;
@@ -379,12 +384,12 @@ export function BrainMap({
       id: e.pointerId,
       offset: n ? { x: n.x - p.x, y: n.y - p.y } : { x: 0, y: 0 },
     };
-    e.currentTarget.setPointerCapture(e.pointerId);
+    (e.currentTarget as Element).setPointerCapture(e.pointerId);
     setGrabbing(true);
     wake();
   };
 
-  const onMove = (e) => {
+  const onMove = (e: React.PointerEvent) => {
     const s = sim.current;
     const d = s.drag;
     if (!d || d.id !== e.pointerId) return;
@@ -392,8 +397,8 @@ export function BrainMap({
     if (Math.hypot(p.x - d.start.x, p.y - d.start.y) > CLICK_SLOP) d.moved = true;
     if (d.kind === "pan") {
       // Move the whole web; dots lag a touch behind and wobble into place.
-      const W = svgRef.current.clientWidth;
-      const H = svgRef.current.clientHeight;
+      const W = svgRef.current!.clientWidth;
+      const H = svgRef.current!.clientHeight;
       s.pan.x = Math.max(-W / 2 + 40, Math.min(W / 2 - 40, s.pan.x + p.x - d.last.x));
       s.pan.y = Math.max(-H / 2 + 40, Math.min(H / 2 - 40, s.pan.y + p.y - d.last.y));
     } else {
@@ -405,7 +410,7 @@ export function BrainMap({
     wake();
   };
 
-  const onUp = (e) => {
+  const onUp = (e: React.PointerEvent) => {
     const s = sim.current;
     const d = s.drag;
     if (!d || d.id !== e.pointerId) return;
@@ -420,7 +425,7 @@ export function BrainMap({
 
   useEffect(() => {
     if (open === null) return;
-    const onKey = (e) => e.key === "Escape" && setOpen(null);
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(null);
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
@@ -428,8 +433,8 @@ export function BrainMap({
   /* ---------- what is lit ---------- */
 
   const active = hover ?? open; // hover wins; an open card keeps its dot lit
-  const lit = (i) => active === null || i === active || neighbours[active]?.has(i);
-  const edgeLit = (a, b) => {
+  const lit = (i: number) => active === null || i === active || neighbours[active]?.has(i);
+  const edgeLit = (a: number, b: number) => {
     if (active === null) return false;
     if (a === active || b === active) return true;
     // When the brain is active, also light the links between its dots.
@@ -450,12 +455,7 @@ export function BrainMap({
         ref={svgRef}
         width="100%"
         height="100%"
-        style={{
-          display: "block",
-          touchAction: "none",
-          cursor: grabbing ? "grabbing" : "grab",
-          overflow: "visible",
-        }}
+        style={{ display: "block", touchAction: "none", cursor: grabbing ? "grabbing" : "grab", overflow: "visible" }}
         onPointerDown={(e) => onDown(e, null)}
         onPointerMove={onMove}
         onPointerUp={onUp}
@@ -472,10 +472,7 @@ export function BrainMap({
               stroke={on ? accent : line}
               strokeWidth={on ? 1.1 : 1}
               strokeLinecap="round"
-              style={{
-                opacity: active === null || on ? 1 : FADE,
-                transition: "opacity .25s, stroke .25s",
-              }}
+              style={{ opacity: active === null || on ? 1 : FADE, transition: "opacity .25s, stroke .25s" }}
             />
           );
         })}
@@ -492,12 +489,7 @@ export function BrainMap({
               tabIndex={0}
               aria-label={`Thought ${idx}${t.tag ? `, ${t.tag}` : ""}`}
               aria-expanded={open === idx}
-              style={{
-                cursor: grabbing ? "grabbing" : "pointer",
-                outline: "none",
-                opacity: lit(idx) ? 1 : FADE,
-                transition: "opacity .25s",
-              }}
+              style={{ cursor: grabbing ? "grabbing" : "pointer", outline: "none", opacity: lit(idx) ? 1 : FADE, transition: "opacity .25s" }}
               onPointerDown={(e) => onDown(e, idx)}
               onPointerEnter={(e) => e.pointerType === "mouse" && setHover(idx)}
               onPointerLeave={() => setHover(null)}
@@ -573,12 +565,12 @@ export function BrainMap({
             boxShadow: dark
               ? "0 0 0 1px rgba(255,255,255,0.08), 0 12px 32px -8px rgba(0,0,0,0.6)"
               : "0 0 0 1px rgba(0,0,0,0.05), 0 12px 32px -10px rgba(0,0,0,0.18)",
-            animation: "brain-map-card .18s cubic-bezier(.23,1,.32,1)",
+            animation: "brain-txt-card .18s cubic-bezier(.23,1,.32,1)",
             userSelect: "text",
             cursor: "auto",
           }}
         >
-          <style>{`@keyframes brain-map-card{from{opacity:0;scale:.96}}@media (prefers-reduced-motion: reduce){[role=dialog][data-for]{animation:none!important}}`}</style>
+          <style>{`@keyframes brain-txt-card{from{opacity:0;scale:.96}}@media (prefers-reduced-motion: reduce){[role=dialog][data-for]{animation:none!important}}`}</style>
           <p style={{ margin: 0, textWrap: "pretty" }}>{thought.text}</p>
           {thought.tag && (
             <span
@@ -618,12 +610,7 @@ export function BrainMap({
             }}
           >
             <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden>
-              <path
-                d="M1 1l8 8M9 1L1 9"
-                stroke="currentColor"
-                strokeWidth="1.3"
-                strokeLinecap="round"
-              />
+              <path d="M1 1l8 8M9 1L1 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
             </svg>
           </button>
         </div>

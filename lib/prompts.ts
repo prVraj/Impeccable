@@ -8,11 +8,14 @@ export function burningScreenInstallPrompt(tsSource: string) {
 
 A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
 
+When I click a button that changes the page (for example "Create account" going to a welcome page), the current screen burns away from the click point and the next page shows through the burned hole.
+
 ## Before you build: one question
 
 Look through this project first: its router, its pages, and the buttons that move the user to another page. Then ask me this in one message and wait for my answer:
 
 - **Where should it burn?** Suggest the 1–3 buttons in my code that fit best (for example a sign-up or "Get started" button) and the page each one goes to. I can pick one of them or name another.
+  *Why: the burn is the one moment people remember, so it belongs on the step that matters most, like sign-up.*
 
 Ask nothing else. If I say *skip*, wire it to the best suggestion.
 
@@ -98,18 +101,33 @@ When I click a button that changes the page (for example "Create account" going 
 ## First: look, ask once, then build
 
 1. Look through this project first: its router, the buttons that move to another page, and its theme (CSS variables, Tailwind theme, shadcn theme, light and dark mode).
-2. Tell me in two or three lines what you found, then ask these questions in **one message**. Give each one options and mark your suggestion. Ask nothing else:
+2. Tell me in two or three lines what you found, then ask these questions in **one message**. Give each one options, mark your suggestion and keep its one-line why, so I know what each answer changes. Ask nothing else:
    1. **Where should it burn?** Suggest the 1–3 buttons that fit best and the page each goes to.
+      *Why: the burn is the one moment people remember, so it belongs on the step that matters most, like sign-up.*
    2. **Colors?** Keep the black, white and gray default, or match my brand. If you suggest brand colors, name which of my existing color variables you'd use for the char, the glow, the smoke and the ash. If you found no theme, offer the default or let me paste 1–3 colors.
+      *Why: the burning edge is the only color on screen, so it decides whether the burn feels like part of my brand.*
    3. **Speed?** 2 seconds (default), quicker (1.5s) or slower (2.5s).
+      *Why: it sets how long people wait for the next page. Quicker suits busy flows; slower suits a big moment.*
    4. **Rising ash after the burn?** Keep it (default) or turn it off.
+      *Why: the ash keeps rising over the new page for about 1.5 seconds. Turn it off if that page needs attention right away.*
    If I say *skip*, use your suggestions.
 3. After I answer, show a brief of about 5 lines: where it's wired, the colors (by my variable names), the speed, ash on or off, and "everything else is kept as designed". Ask whether to save the brief to \`impeccable.md\` in the project (add a section if the file exists) or keep it in this chat only. Default: chat only.
 4. Build only after I say go.
 
 ## What you may change, and what you may not
 
-The burn is the design. Keep the ragged edge shape and how it grows in surges, the charred band and inner shadow, the flames, and the ash rising upward exactly as in the source. Only my answers above may change it: the button and page, the four colors, the duration and the rising ash. All of them are props or options the component already has, so the component file itself stays as written. If something doesn't fit my product, tell me instead of changing it.
+Only my answers above may change it, and only through props and options the component already has, so the component file itself stays as written.
+
+**You may change**
+
+- Where it burns: the button I picked and the page it goes to.
+- The colors: \`char\`, \`glow\`, \`smoke\` and \`ember\` in the \`colors\` option, read from my theme variables.
+- The speed: \`duration\` on \`<BurningScreen>\`.
+- The rising ash: \`embers\` on \`<BurningScreen>\`.
+
+**Locked**
+
+- The burn is the design. The ragged edge shape and how it grows in surges, the charred band and inner shadow, the flames, and the ash rising upward stay exactly as in the source. If something doesn't fit my product, tell me instead of changing it.
 
 - No new packages, no changes to files other than the component, the root layout wrapper and the button I picked, and no demo controls (sliders, color pickers or theme toggles) on my site.
 
@@ -264,6 +282,7 @@ Instead of a spinner or a skeleton, a few named cursors draw the screen's skelet
 Look through this project first: its pages, and where data is fetched and a loading state is shown. Then ask me this in one message and wait for my answer:
 
 - **Which screen should load with it?** Suggest the 1–3 screens or sections that fit best (ones that fetch data and currently show a spinner, a skeleton or nothing) and name the loading state you'd pass in. I can pick one of them or name another.
+  *Why: it only makes sense where data really loads. On a screen that is already instant, it just delays the content.*
 
 Ask nothing else. If I say *skip*, use the best suggestion.
 
@@ -335,18 +354,33 @@ Instead of a spinner or a skeleton, a few named cursors draw the screen's skelet
 ## First: look, ask once, then build
 
 1. Look through this project first: its pages, where data is fetched and a loading state is shown, and its theme (CSS variables, Tailwind theme, shadcn theme, light and dark mode).
-2. Tell me in two or three lines what you found, then ask these questions in **one message**. Give each one options and mark your suggestion. Ask nothing else:
+2. Tell me in two or three lines what you found, then ask these questions in **one message**. Give each one options, mark your suggestion and keep its one-line why, so I know what each answer changes. Ask nothing else:
    1. **Which screen should load with it?** Suggest the 1–3 screens or sections that fit best and the loading state you'd pass in.
+      *Why: it only makes sense where data really loads. On a screen that is already instant, it just delays the content.*
    2. **Cursor names?** Keep the default (Vraj, Sensei, Impeccable, then Agent 4, Agent 5…), or suggest names that fit my product (for example my product's name, or my team's first names).
+      *Why: the name tags are the most visible words while it loads, so they can carry my product's personality.*
    3. **Cursor colors?** Keep the 10 default light colors, or use light tints of my brand colors. If you suggest brand colors, name which of my color variables you'd use. They must stay light, because the name tags use dark text.
+      *Why: the cursors are the only color while it draws, so they decide whether it feels like my brand.*
    4. **Speed?** 3.5 seconds (default), quicker (2.5s) or slower (4.5s).
+      *Why: it is the shortest time before the content shows, even when the data is already there.*
    If I say *skip*, use your suggestions.
 3. After I answer, show a brief of about 5 lines: the screen and loading state, the names, the colors (by my variable names), the speed, and "everything else is kept as designed". Ask whether to save the brief to \`impeccable.md\` in the project (add a section if the file exists) or keep it in this chat only. Default: chat only.
 4. Build only after I say go.
 
 ## What you may change, and what you may not
 
-The drawing is the design. Keep the shapes (only rectangles and circles), the order (top to bottom, one cursor per shape), the cursor count (8 on desktop, 4 on phones, never 10 or more), the size tags, the drag motion and the shimmer exactly as in the source. Only my answers above may change it: the screen, the names, the colors and the duration. All of them are props the component already has, so the component file itself stays as written. If something doesn't fit my product, tell me instead of changing it.
+Only my answers above may change it, and only through props and options the component already has, so the component file itself stays as written.
+
+**You may change**
+
+- The screen: which part of it is wrapped, and the \`loading\` state passed in.
+- The cursor names: \`names\`.
+- The cursor colors: \`colors\`, as light tints from my theme variables.
+- The speed: \`duration\`.
+
+**Locked**
+
+- The drawing is the design. The shapes (only rectangles and circles), the order (top to bottom, one cursor per shape), the cursor count (8 on desktop, 4 on phones, never 10 or more), the size tags, the drag motion and the shimmer stay exactly as in the source. If something doesn't fit my product, tell me instead of changing it.
 
 - No new packages, no changes to files other than the component and the screen I picked (where you may remove an old spinner or skeleton for the same loading state), and no demo controls (Replay buttons, sliders or toggles) on my site.
 
@@ -405,27 +439,27 @@ ${tsSource.trimEnd()}
 `;
 }
 
-/** Prompts for Brain-Map. Same shape as the others.
+/** Prompts for brain.txt. Same shape as the others.
  * Install: adds the exact component; asks only where it goes.
  * Blend: asks four short questions, then fits it through the component's own props. */
 
-const BRAIN_MAP_SHARED_BUILD = `## Fastest path
+const BRAIN_TXT_SHARED_BUILD = `## Fastest path
 
-If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccable-rust.vercel.app/r/brain-map.json\`.
+If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccable-rust.vercel.app/r/brain-txt.json\`.
 If the command succeeds, only fix import paths to match this project and skip ahead. If it fails or there is no \`components.json\`, build it by hand as below.
 
 ## Build it
 
 - Stack: React 18 or 19 with TypeScript. No other packages: it only uses SVG, pointer events and \`requestAnimationFrame\`.
-- JavaScript project? Name the file \`brain-map.jsx\` and remove the type annotations; nothing else changes.
+- JavaScript project? Name the file \`brain-txt.jsx\` and remove the type annotations; nothing else changes.
 - Create this file, in this project's usual place for components:
-  - \`components/ui/brain-map.tsx\`
-- Keep these exports and their names: \`BrainMap\`, \`BrainMapProps\`, \`Thought\`.
+  - \`components/ui/brain-txt.tsx\`
+- Keep these exports and their names: \`BrainTxt\`, \`BrainTxtProps\`, \`Thought\`.
 - Keep \`"use client"\` at the top in Next.js App Router projects. In other setups it is harmless.
 - Keep the tuning values at the top (\`MAX_LINKS\`, \`SPRING\`, \`ANCHOR\`, \`DAMP\`, \`ENTER_MS\`, \`FADE\`), the layout (\`homes\`) and the linking rule (\`linkDots\`) exactly as written. They are the design.
 - Keep the fallbacks: with \`prefers-reduced-motion: reduce\` nothing wobbles or grows in, and the loop stops whenever the web is still.`;
 
-const BRAIN_MAP_HOW = `## How the map works
+const BRAIN_TXT_HOW = `## How the map works
 
 Read this before you touch anything, so you know what the code does and why it must stay as it is.
 
@@ -438,8 +472,8 @@ Read this before you touch anything, so you know what the code does and why it m
 
 Lines and dots take their color from the text color around the map, so they follow light and dark mode on their own. The card is white in light mode and near-black in dark mode.`;
 
-export function brainMapInstallPrompt(tsSource: string) {
-  return `# Brain-Map
+export function brainTxtInstallPrompt(tsSource: string) {
+  return `# brain.txt
 
 A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
 
@@ -450,6 +484,7 @@ A brain sits in the middle of a web of dots, and each dot holds one thought. Hov
 Look through this project first: its pages and sections. Then ask me this in one message and wait for my answer:
 
 - **Where should it go?** Suggest the 1–3 places that fit best (for example an about page, a "thoughts" or notes page, or a section of the home page). I can pick one of them or name another.
+  *Why: it needs room (about 420px tall) and a reason to explore, so it fits a page people visit to get to know me.*
 
 Ask nothing else. If I say *skip*, use the best suggestion. Use the thoughts from the example below as placeholders and tell me where to write my own.
 
@@ -460,13 +495,13 @@ The motion is the design. Keep the brain in the middle, the 3-link limit, the sp
 - Add only the component file and the one place I picked. Don't add packages, change other files, or restyle anything.
 - Don't add demo controls (sliders, toggles or "shuffle" buttons) from the Impeccable website.
 
-${BRAIN_MAP_SHARED_BUILD}
+${BRAIN_TXT_SHARED_BUILD}
 
 ## Use it
 
 \`\`\`tsx
 "use client";
-import { BrainMap, type Thought } from "@/components/ui/brain-map";
+import { BrainTxt, type Thought } from "@/components/ui/brain-txt";
 
 const THOUGHTS: Thought[] = [
   { text: "Boredom is the waiting room for ideas." },
@@ -476,14 +511,14 @@ const THOUGHTS: Thought[] = [
 ];
 
 export function Thoughts() {
-  return <BrainMap thoughts={THOUGHTS} />;
+  return <BrainTxt thoughts={THOUGHTS} />;
 }
 \`\`\`
 
 - Put the thoughts in a plain array next to where it's used (or wherever this project keeps content). Each is \`{ text, tag?, featured?, brain? }\`.
 - Give it room: it's 420px tall by default (\`height\` prop) and fills the width of its parent.
 
-${BRAIN_MAP_HOW}
+${BRAIN_TXT_HOW}
 
 ## Check
 
@@ -500,7 +535,7 @@ ${BRAIN_MAP_HOW}
 
 The reference implementation. Copy it as-is, then apply only the changes listed above.
 
-### \`components/ui/brain-map.tsx\`
+### \`components/ui/brain-txt.tsx\`
 
 \`\`\`tsx
 ${tsSource.trimEnd()}
@@ -508,8 +543,8 @@ ${tsSource.trimEnd()}
 `;
 }
 
-export function brainMapBlendPrompt(tsSource: string) {
-  return `# Brain-Map, fitted to your brand
+export function brainTxtBlendPrompt(tsSource: string) {
+  return `# brain.txt, fitted to your brand
 
 A 1-file React component from Impeccable. Add it to this project and fit it to the brand like a missing puzzle piece: it should look like it was always part of the product. It goes in the one place I choose, and nothing else changes.
 
@@ -518,22 +553,38 @@ A brain sits in the middle of a web of dots, and each dot holds one thought. Hov
 ## First: look, ask once, then build
 
 1. Look through this project first: its pages and sections, any existing notes or quotes content, and its theme (CSS variables, Tailwind theme, shadcn theme, light and dark mode).
-2. Tell me in two or three lines what you found, then ask these questions in **one message**. Give each one options and mark your suggestion. Ask nothing else:
+2. Tell me in two or three lines what you found, then ask these questions in **one message**. Give each one options, mark your suggestion and keep its one-line why, so I know what each answer changes. Ask nothing else:
    1. **Where should it go?** Suggest the 1–3 places that fit best (an about page, a thoughts page, a home section).
+      *Why: it needs room (about 420px tall) and a reason to explore, so it fits a page people visit to get to know me.*
    2. **Which thoughts?** Use content you found in the project (name it), or I paste my own, or start with placeholders I'll replace.
+      *Why: the thoughts are the content. Real ones make it worth exploring; placeholders make it a toy.*
    3. **What sits in the middle?** The 🧠 emoji (default), another emoji, or my logo or avatar (name the file you'd use).
+      *Why: the center is the first thing people see, and it stands for me or my product.*
    4. **Accent color?** The default blue, or one of my color variables (name it). It colors lit lines, featured dots and tags, so it must be readable in light and dark mode.
+      *Why: it is the only color in the map, so it decides whether the map feels like my brand.*
    If I say *skip*, use your suggestions.
 3. After I answer, show a brief of about 5 lines: the place, the thoughts, the center, the accent (by my variable name), and "everything else is kept as designed". Ask whether to save the brief to \`impeccable.md\` in the project (add a section if the file exists) or keep it in this chat only. Default: chat only.
 4. Build only after I say go.
 
 ## What you may change, and what you may not
 
-The motion is the design. Keep the layout, the 3-link limit, the spring feel, the hover highlight, the fade and the card shape exactly as in the source. Only my answers above may change it: the place, the thoughts, the center and the accent. All of them are props the component already has (\`thoughts\`, \`center\`, \`accent\`), so the component file itself stays as written. If something doesn't fit my product, tell me instead of changing it.
+Only my answers above may change it, and only through props and options the component already has, so the component file itself stays as written.
+
+**You may change**
+
+- Where it goes: the page or section I picked.
+- The thoughts: \`thoughts\`.
+- The center: \`center\`.
+- The accent color: \`accent\`, as one of my theme variables.
+- The help text: \`hint\`, only to match my voice.
+
+**Locked**
+
+- The motion is the design. The layout, the 3-link limit, the spring feel, the hover highlight, the fade and the card shape stay exactly as in the source. If something doesn't fit my product, tell me instead of changing it.
 
 - No new packages, no changes to files other than the component and the place I picked, and no demo controls on my site.
 
-${BRAIN_MAP_SHARED_BUILD}
+${BRAIN_TXT_SHARED_BUILD}
 
 ## Fit it to the brand
 
@@ -541,7 +592,7 @@ Apply my answers through the component's own props:
 
 \`\`\`tsx
 "use client";
-import { BrainMap, type Thought } from "@/components/ui/brain-map";
+import { BrainTxt, type Thought } from "@/components/ui/brain-txt";
 
 // From my brief. Leave out any prop that stays at its default.
 const THOUGHTS: Thought[] = [
@@ -550,7 +601,7 @@ const THOUGHTS: Thought[] = [
 
 export function Thoughts() {
   return (
-    <BrainMap
+    <BrainTxt
       thoughts={THOUGHTS}
       accent="var(--primary)"
       center={<img src="/logo.svg" alt="" width={26} height={26} />}
@@ -562,7 +613,7 @@ export function Thoughts() {
 - Pass the accent as my CSS variable (\`var(--name)\`) or Tailwind color variable, not a hex code, so it follows my theme. If a variable holds bare channels (for example \`222 47% 11%\`), wrap it as \`hsl(...)\`.
 - The map takes its text color from its parent, so place it where my normal text color applies. Use \`hint\` to reword the help text in my voice, or \`null\` to hide it.
 
-${BRAIN_MAP_HOW}
+${BRAIN_TXT_HOW}
 
 ## Check
 
@@ -578,7 +629,7 @@ ${BRAIN_MAP_HOW}
 
 The reference implementation. Copy it as-is, then apply only the changes listed above.
 
-### \`components/ui/brain-map.tsx\`
+### \`components/ui/brain-txt.tsx\`
 
 \`\`\`tsx
 ${tsSource.trimEnd()}
@@ -632,6 +683,7 @@ A promo code hidden under a scratch-off foil. Scratch at least half, let go, and
 Look through this project first: its pages, upgrade or pricing screens, and any promo or discount codes it already uses. Then ask me this in one message and wait for my answer:
 
 - **Where should it go, and which code should it show?** Suggest the 1–3 places that fit best (for example the upgrade screen, the pricing page or an onboarding step) and the code you found, if any. I can pick one of them or name another, and give the code.
+  *Why: a reward works best at the moment someone is deciding, like upgrading or checking out, and the code is copied straight to their clipboard, so it must be real.*
 
 Ask nothing else. If I say *skip*, use the best suggestion and a placeholder code I can find easily.
 
@@ -693,18 +745,33 @@ A promo code hidden under a scratch-off foil. Scratch at least half, let go, and
 ## First: look, ask once, then build
 
 1. Look through this project first: its pages, upgrade or pricing screens, any promo codes it already uses, the way it writes short UI text, and its theme (light and dark mode).
-2. Tell me in two or three lines what you found, then ask these questions in **one message**. Give each one options and mark your suggestion. Ask nothing else:
+2. Tell me in two or three lines what you found, then ask these questions in **one message**. Give each one options, mark your suggestion and keep its one-line why, so I know what each answer changes. Ask nothing else:
    1. **Where should it go?** Suggest the 1–3 places that fit best (upgrade screen, pricing page, onboarding step, a thank-you page).
+      *Why: a reward works best at the moment someone is deciding, like upgrading or checking out.*
    2. **Which code?** The code you found (name where), or I give one.
-   3. **The words?** Suggest an optional label above the code (default none), the hint below it (default "Scratch to reveal your code.") and the copied message (default "Copied. Paste it at checkout."), and the pop text (default "Code copied"), written in my product's voice.
+      *Why: the code is copied straight to the clipboard, so it must be a real, working code.*
+   3. **The words?** Suggest an optional label above the code (default none), the hint below it (default "Scratch to reveal your code."), the copied message (default "Copied. Paste it at checkout.") and the pop text (default "Code copied"), written in my product's voice.
+      *Why: these are the only words on the card, so they should sound like my product, not like Impeccable.*
    4. **How much to scratch?** 40% (easy), 50% (default) or 60% (more play).
+      *Why: it sets how much play it takes before the code shows. Too much starts to feel like work.*
    If I say *skip*, use your suggestions.
 3. After I answer, show a brief of about 5 lines: the place, the code, the three lines of text, the amount, and "everything else is kept as designed". Ask whether to save the brief to \`impeccable.md\` in the project (add a section if the file exists) or keep it in this chat only. Default: chat only.
 4. Build only after I say go.
 
 ## What you may change, and what you may not
 
-The scratch is the design. Keep the code pill with its copy icon, the foil, the brush ring, the shavings and the reveal exactly as in the source. Only my answers above may change it: the place, the code, the text and the threshold. All of them are props the component already has (\`code\`, \`label\`, \`hint\`, \`copiedText\`, \`toast\`, \`threshold\`), so the component file itself stays as written. If something doesn't fit my product, tell me instead of changing it.
+Only my answers above may change it, and only through props and options the component already has, so the component file itself stays as written.
+
+**You may change**
+
+- Where it goes: the place I picked.
+- The code: \`code\`.
+- The words: \`label\`, \`hint\`, \`copiedText\` and \`toast\`.
+- How much to scratch: \`threshold\`.
+
+**Locked**
+
+- The scratch is the design. The code pill with its copy icon, the foil, the brush ring, the shavings, the reveal and the copy on reveal stay exactly as in the source. If something doesn't fit my product, tell me instead of changing it.
 
 - No new packages, no changes to files other than the component and the place I picked, and no demo controls on my site.
 
@@ -753,6 +820,339 @@ ${SCRATCH_ME_HOW}
 The reference implementation. Copy it as-is, then apply only the changes listed above.
 
 ### \`components/ui/scratch-me.tsx\`
+
+\`\`\`tsx
+${tsSource.trimEnd()}
+\`\`\`
+`;
+}
+
+/** Prompts for UI-tongue (a skill, so no props or code to wire).
+ * Install: puts the folder in the AI tool exactly as shipped; asks only where.
+ * Blend: asks up to three short questions about the person's setup, then installs
+ * it so the first interview starts from their own design files. The files stay as shipped. */
+
+const UI_TONGUE_ZIP = "https://impeccable-rust.vercel.app/downloads/ui-tongue.zip";
+
+const UI_TONGUE_WHAT = `UI-tongue interviews me about my UI taste for about 15 minutes, builds one sample in my taste, then writes me my own UI skill. After that, a one-line request like "make me a hero section" comes out looking like I made it, not like everyone else's AI UI.`;
+
+const UI_TONGUE_INSTALL = `## Install it
+
+1. Download \`${UI_TONGUE_ZIP}\` (for example \`curl -L -o /tmp/ui-tongue.zip ${UI_TONGUE_ZIP}\`).
+2. Unzip it into the skills folder I picked. The zip already holds a \`ui-tongue/\` folder, so the result must be \`<skills folder>/ui-tongue/SKILL.md\`, not \`ui-tongue/ui-tongue/SKILL.md\`.
+   - Claude Code, every project: \`unzip /tmp/ui-tongue.zip -d ~/.claude/skills\`
+   - Claude Code, this project only: \`unzip /tmp/ui-tongue.zip -d .claude/skills\`
+   - The Claude app (web or desktop) can't be installed from here. Tell me to open Settings, find Skills, and upload the zip as it is.
+   - Another tool that reads SKILL.md skill folders: unzip it into that tool's skills folder. If my tool has no skills, tell me instead of turning it into a rules file.
+3. If the download fails, the same files are at \`https://github.com/prVraj/Impeccable/tree/main/skills/ui-tongue\`. Copy them one by one, unchanged.`;
+
+const UI_TONGUE_SOURCE = `## Source
+
+Download: \`${UI_TONGUE_ZIP}\` (free, MIT). The zip holds:
+
+\`\`\`
+ui-tongue/
+  SKILL.md        the interview and the five rules
+  LICENSE
+  references/     floor.md, interview.md, reading-references.md, sample-check.md, writing-the-skill.md
+  templates/      DESIGN.md, SKILL.template.md, feedback-log.md, motion.md, never.md, references.md, taste.md, tokens.css
+\`\`\``;
+
+export function uiTongueInstallPrompt() {
+  return `# UI-tongue
+
+An agent skill from Impeccable (a folder of instructions your AI tool reads). Install it in my AI tool exactly as it ships, in the one place I choose, and change nothing else.
+
+${UI_TONGUE_WHAT}
+
+## Before you install: one question
+
+Look first: which AI tools this machine uses (a \`~/.claude\` folder, a \`.claude\` folder in this project, other tools' skill folders) and whether \`ui-tongue\` is already installed. Then ask me this in one message and wait for my answer:
+
+- **Every project, or this project only?** Suggest one. Every project puts it in my personal skills folder (\`~/.claude/skills/\` for Claude Code). This project only puts it in \`.claude/skills/\` here, so anyone who works on this repo gets it too.
+  *Why: my taste is mine, not one project's, so it usually belongs everywhere. A shared team repo may want it in the project instead.*
+
+Ask nothing else. If I say *skip*, install it for every project. If it's already installed, tell me and ask before replacing it.
+
+## Keep it as it is
+
+The interview is the design: the five rules, the question bank with a reason for every question, the quality floor it never asks about, and the sample it builds before it writes my skill. Copy every file exactly as shipped. If something doesn't fit my setup, tell me instead of changing it.
+
+- Add only the \`ui-tongue\` folder. Don't merge it into other skills, \`CLAUDE.md\`, \`AGENTS.md\` or rules files, don't rewrite or shorten its files, and don't change anything in this project.
+- Don't start the interview. I'll start it when I'm ready.
+
+${UI_TONGUE_INSTALL}
+
+## Use it
+
+In a new chat or session I say **"make my UI skill"**. It asks Quick (14 questions, about 15 minutes) or Deep (16), studies the sites I love, builds a sample hero in light and dark, then writes my own skill (for example \`yourname-ui/\`) next to it. From then on, every UI request I make runs through my skill.
+
+## Check
+
+- \`<skills folder>/ui-tongue/\` holds \`SKILL.md\`, \`LICENSE\`, \`references/\` (5 files) and \`templates/\` (8 files), matching the list below and unchanged from the zip.
+- \`SKILL.md\` starts with \`name: ui-tongue\` in its front matter.
+- My tool lists \`ui-tongue\` among its skills in a new session (it may need a restart).
+- Nothing else on this machine or in this project changed.
+- Finish with a short report: where you installed it, how I start it, and anything you had to do differently from these steps, and why.
+
+${UI_TONGUE_SOURCE}
+`;
+}
+
+export function uiTongueBlendPrompt() {
+  return `# UI-tongue, fitted to your setup
+
+An agent skill from Impeccable (a folder of instructions your AI tool reads). Install it and fit it to how I work, so its first interview starts from what my projects already say about my taste. The skill's own files stay exactly as shipped.
+
+${UI_TONGUE_WHAT}
+
+## First: look, ask once, then install
+
+1. Look first: which AI tools I use (\`~/.claude\`, a \`.claude\` folder here, other tools' skill folders), whether \`ui-tongue\` is already installed, and the design files in this project: \`DESIGN.md\`, a Tailwind or CSS theme with color, font and radius variables, design rules in \`CLAUDE.md\`, \`AGENTS.md\` or a rules file, or another UI skill.
+2. Tell me in two or three lines what you found, then ask these questions in **one message**. Give each one options, mark your suggestion and keep its one-line why, so I know what each answer changes. Ask nothing else:
+   1. **Every project, or this project only?** Every project puts it in my personal skills folder (\`~/.claude/skills/\` for Claude Code). This project only puts it in \`.claude/skills/\` here, so anyone on this repo gets it too.
+      *Why: my taste is mine, not one project's, so it usually belongs everywhere. A shared team repo may want it in the project instead.*
+   2. **Which tools should have it?** Ask this only if you found more than one AI tool; otherwise say which one you'll use. Options: each tool you found, or all of them.
+      *Why: each tool reads skills from its own folder, so each one needs its own copy.*
+   3. **What should it read first?** List the design files you found and suggest which ones it should study before the interview, or none (start fresh).
+      *Why: anything already written down about my taste becomes a suggested answer instead of a question, so the interview is shorter and starts from my real work.*
+   If I say *skip*, use your suggestions.
+3. After I answer, show a brief of about 5 lines: where it's installed, for which tools, the files it reads first, the exact sentence I'll use to start it, and "the skill itself is kept as shipped". Ask whether to save the brief to \`impeccable.md\` in the project (add a section if the file exists) or keep it in this chat only. Default: chat only.
+4. Install only after I say go.
+
+## What you may change, and what you may not
+
+Only my answers above may change how it's set up. The skill's own files stay exactly as shipped.
+
+**You may change**
+
+- Where it lives: my personal skills folder, or this project's \`.claude/skills/\`.
+- Which tools get a copy.
+- The sentence I start it with, so it names the design files to read first.
+
+**Locked**
+
+- The interview is the design: the five rules, the question bank with a reason for every question, the quality floor it never asks about, and the sample it builds before it writes my skill. Every file stays exactly as shipped. If something doesn't fit my setup, tell me instead of changing it.
+- Add only the \`ui-tongue\` folder (one copy per tool I picked). Don't merge it into other skills, \`CLAUDE.md\`, \`AGENTS.md\` or rules files, don't edit my design files, and don't start the interview.
+
+${UI_TONGUE_INSTALL}
+
+## Start it from my files
+
+Don't change the skill to make it read my files. Give me the sentence from the brief instead, and I'll paste it into a new session when I'm ready, for example:
+
+> make my UI skill. Before the questions, study DESIGN.md and app/globals.css in this project as my references.
+
+UI-tongue treats those files like the sites I love: what they already answer, it shows me as a suggestion instead of asking.
+
+## How it works
+
+Read this before you touch anything, so you know what the skill does and why it must stay as it is.
+
+1. **Setup.** It asks Quick (14 questions, about 15 minutes) or Deep (16) and reads my stack by itself. It never asks what it can look up.
+2. **References first.** I share 3 to 5 sites I love, plus any files I named. It studies each one before asking what exactly grabbed me: the type, the spacing, the easing, the shadows.
+3. **Questions in rounds.** Every question has a written reason and a suggested answer from my references. Anything my references already answer is shown, not asked. A skipped question or a bare "yes" is never written down silently: it asks if I really want it in my skill.
+4. **A sample before it's final.** It builds one hero in my taste, in light and dark, and asks what's off.
+5. **My skill.** It writes a skill named after me with my taste, tokens, motion, the things I never want to see, a quality floor and a feedback log. Each project then gets its own \`DESIGN.md\`, so my projects feel related without looking the same.
+
+The quality floor (contrast, reduced motion, phones, performance) is never asked. It is always on.
+
+## Check
+
+- Each tool I picked has \`<skills folder>/ui-tongue/\` with \`SKILL.md\`, \`LICENSE\`, \`references/\` (5 files) and \`templates/\` (8 files), matching the list below and unchanged from the zip.
+- \`SKILL.md\` starts with \`name: ui-tongue\` in its front matter.
+- Each tool lists \`ui-tongue\` among its skills in a new session (it may need a restart).
+- The start sentence in the brief names the design files I picked, and those files exist at those paths.
+- Nothing else on this machine or in this project changed.
+- Finish with a short report: where you installed it, for which tools, the sentence I start it with, and anything you had to do differently from these steps, and why.
+
+${UI_TONGUE_SOURCE}
+`;
+}
+
+/* ---------- Password-Strength ----------
+ * Install: adds the exact component; asks only where it goes.
+ * Blend: asks four short questions, then fits it through the component's own props. */
+
+const PASSWORD_STRENGTH_SHARED_BUILD = `## Fastest path
+
+If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccable-rust.vercel.app/r/password-strength.json\`.
+If the command succeeds, only fix import paths to match this project and skip ahead. If it fails or there is no \`components.json\`, build it by hand as below.
+
+## Build it
+
+- Stack: React 18 or 19 with TypeScript. No other packages: the eye icons are inline SVG and every animation is CSS.
+- JavaScript project? Name the file \`password-strength.jsx\` and remove the type annotations; nothing else changes.
+- Create this file, in this project's usual place for components:
+  - \`components/ui/password-strength.tsx\`
+- Keep these exports and their names: \`PasswordStrength\`, \`PasswordStrengthProps\`, \`PasswordLevel\`, \`checkPassword\`, \`passwordLevel\`.
+- Keep \`"use client"\` at the top in Next.js App Router projects. In other setups it is harmless.
+- Keep the checks (\`checkPassword\`, \`passwordLevel\`), the CSS block and the tuning values at the top (\`EASE\`, \`BAR_MS\`, \`BAR_STAGGER\`) exactly as written. They are the design.
+- Keep the fallbacks: with \`prefers-reduced-motion: reduce\` the bars, eye and boxes only fade; the eye keeps focus and the cursor in the field; screen readers hear the level and which checkpoints are done.`;
+
+const PASSWORD_STRENGTH_HOW = `## How it works
+
+Read this before you touch anything, so you know what the code does and why it must stay as it is.
+
+1. **Field.** "Password" above a 52px rounded field with a hairline border. While hidden, the dots are soft gray and slightly spaced. The eye on the right is closed with lashes (hidden) or open (shown).
+2. **Eye.** Clicking it swaps the icons: the one leaving squashes flat and blurs out, the one coming in opens up from a thin line, in about a quarter second. Focus, the cursor position and the phone keyboard stay in the field.
+3. **Checkpoints.** Three lines under the meter: at least 12 characters; at least 2 upper and 2 lower case letters; at least one number and one special character. When one is met its box fills, pops from 82% to full size with a tiny overshoot and the check mark draws itself.
+4. **Levels.** Empty: no bars, no name. 0 checkpoints: no bars, "No". 1: one red bar, "AI". 2: two amber bars, "AI agent". 3: three green bars, "Human". Bars fill left to right and empty right to left, 45ms apart, each in 380ms with a fast start and soft landing. The name slides up 4px out of a light blur.
+5. **Human.** When the password turns Human, a soft white shine runs once across the three bars.
+
+Borders, tracks and gray text are mixed from the text color around the field, so it follows light and dark mode on its own.`;
+
+export function passwordStrengthInstallPrompt(tsSource: string) {
+  return `# Password-Strength
+
+A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
+
+A password field with a show/hide eye that rates the password as No, AI, AI agent or Human, from three checkpoints.
+
+## Before you build: one question
+
+Look through this project first: its sign-up, reset-password and account settings screens, and the password fields it already has. Then ask me this in one message and wait for my answer:
+
+- **Where should it go?** Suggest the 1–3 password fields that fit best (for example the sign-up form or the change-password screen). I can pick one of them or name another.
+  *Why: it replaces one password input, so it must sit where people make a new password, not where they log in.*
+
+Ask nothing else. If I say *skip*, use the best suggestion.
+
+## Keep it as it is
+
+The look and the motion are the design. Keep the field, the eye swap, the three-bar meter with AI / AI agent / Human, the three checkpoints and their animations exactly as in the source. If something doesn't fit my project, tell me instead of changing it.
+
+- Add only the component file and the one place I picked. If it replaces an existing password input, keep that input's \`name\`, form wiring and validation. Don't add packages, change other files, or restyle anything.
+- Don't add the demo parts from the Impeccable website: the prefilled example password and the "Are you human?" screen title.
+
+${PASSWORD_STRENGTH_SHARED_BUILD}
+
+## Use it
+
+\`\`\`tsx
+"use client";
+import { PasswordStrength } from "@/components/ui/password-strength";
+
+export function SignUpPassword() {
+  return <PasswordStrength name="password" />;
+}
+\`\`\`
+
+- If the form already holds the password in state, pass \`value\` and \`onChange\`.
+- Wire \`onLevelChange\` only if the form already blocks weak passwords, to keep that rule working.
+- It takes its text color from its parent, so place it where my normal text color applies. It is full width up to 480px and needs about 230px of height.
+
+${PASSWORD_STRENGTH_HOW}
+
+## Check
+
+- It type-checks and the page renders with no console errors.
+- Typing fills the bars: "No" with no bars (0 checkpoints), one red "AI" (1), two amber "AI agent" (2), three green "Human" (3) with one shine across the bars. Each checkpoint box ticks the moment it is met. The eye shows and hides the password without losing the cursor position, and the form still submits the password as before.
+- It looks right in light and dark mode (check both).
+- It works with a finger on a phone: the eye keeps the keyboard open and nothing scrolls sideways.
+- With \`prefers-reduced-motion: reduce\`, the bars, eye and boxes only fade.
+- Nothing else on the site looks or behaves differently.
+- Finish with a short report: the files you added or changed, where it's placed, and every place where you had to do something differently from the source, and why.
+
+## Source
+
+The reference implementation. Copy it as-is, then apply only the changes listed above.
+
+### \`components/ui/password-strength.tsx\`
+
+\`\`\`tsx
+${tsSource.trimEnd()}
+\`\`\`
+`;
+}
+
+export function passwordStrengthBlendPrompt(tsSource: string) {
+  return `# Password-Strength, fitted to your brand
+
+A 1-file React component from Impeccable. Add it to this project and fit it to the brand like a missing puzzle piece: it should look like it was always part of the product. It goes in the one place I choose, and nothing else changes.
+
+A password field with a show/hide eye that rates the password as No, AI, AI agent or Human, from three checkpoints. The full source is at the end of this prompt.
+
+## First: look, ask once, then build
+
+1. Look through this project first: its sign-up and password screens, the password rules it already has, the way it writes short UI text, its theme colors and its light and dark mode.
+2. Tell me in two or three lines what you found, then ask these questions in **one message**. Give each one options, mark your suggestion and keep its one-line why, so I know what each answer changes. Ask nothing else:
+   1. **Where should it go?** Suggest the 1–3 password fields that fit best (sign-up form, change-password screen, invite acceptance).
+      *Why: it replaces one password input, so it belongs where people make a new password, not where they log in.*
+   2. **The words?** Keep "No", "AI", "AI agent", "Human" (suggested), or level names in my product's voice. Same for the label above the field and the three checkpoint lines; the checks themselves stay.
+      *Why: the level name is the one line people read, so it should sound like the rest of my product.*
+   3. **The colors?** Keep red, amber, green (suggested if my theme has no status colors), or name which of my existing color variables you'd use for the three levels (for example my danger, warning and success colors).
+      *Why: the bars are the only color in the field, so they decide whether it looks like part of my brand.*
+   4. **What does each level allow?** Just show it (suggested), or keep the submit button disabled until Human.
+      *Why: a meter alone guides people; blocking the button enforces it, which some products want and some don't.*
+   If I say *skip*, use your suggestions.
+3. After I answer, show a brief of about 5 lines: the place, the words, the colors, the rule, and "everything else is kept as designed". Ask whether to save the brief to \`impeccable.md\` in the project (add a section if the file exists) or keep it in this chat only. Default: chat only.
+4. Build only after I say go.
+
+## What you may change, and what you may not
+
+**You may change** (only through my answers):
+
+- The place: where the component is rendered.
+- The words: \`label\`, \`levels\` and \`rules\`.
+- The colors: \`colors\`, as my theme's CSS variables.
+- The submit rule: \`onLevelChange\`, wired to my submit button only if I asked for it.
+
+All of these are props the component already has, so the component file itself stays as written.
+
+**Locked**
+
+- The look and the motion are the design. The field, the eye swap, the three-bar meter and the three checkpoints, with their checks, sizes and animations, stay exactly as in the source. If something doesn't fit my product, tell me instead of changing it.
+
+- No new packages, no changes to files other than the component and the place I picked (plus the submit button, only if I asked for the rule), no restyling, and none of the website's demo parts (the prefilled example password and the "Are you human?" screen title).
+
+${PASSWORD_STRENGTH_SHARED_BUILD}
+
+## Fit it to the brand
+
+Apply my answers through the component's own props:
+
+\`\`\`tsx
+"use client";
+import { useState } from "react";
+import { PasswordStrength, type PasswordLevel } from "@/components/ui/password-strength";
+
+// From my brief. Leave out any prop that stays at its default.
+export function SignUpPassword() {
+  const [level, setLevel] = useState<PasswordLevel>(0);
+  return (
+    <>
+      <PasswordStrength
+        name="password"
+        colors={["var(--danger)", "var(--warning)", "var(--success)"]} // my theme's variables, not hex
+        onLevelChange={setLevel}
+      />
+      <button type="submit" disabled={level < 3}>Create account</button>
+    </>
+  );
+}
+\`\`\`
+
+- Read colors from my theme's CSS variables or Tailwind tokens; never copy hex values.
+- The field takes its text color from its parent, so place it where my normal text color applies. It is full width up to 480px; place it with \`className\` or \`style\`.
+
+${PASSWORD_STRENGTH_HOW}
+
+## Check
+
+- It type-checks and the page renders with no console errors.
+- My words and colors show. Typing fills the bars level by level (no bars at 0 checkpoints, then 1, 2, 3), each checkpoint box ticks the moment it is met, and the last level gets one shine. The eye shows and hides the password without losing the cursor position, the form still submits the password as before, and my submit rule works if I asked for one.
+- It looks right in light and dark mode (check both), with my colors readable in each.
+- It works with a finger on a phone: the eye keeps the keyboard open and nothing scrolls sideways.
+- With \`prefers-reduced-motion: reduce\`, the bars, eye and boxes only fade.
+- Nothing else on the site looks or behaves differently.
+- Finish with a short report: the files you added or changed, what you set from my answers, and every place where you had to do something differently from the source, and why.
+
+## Source
+
+The reference implementation. Copy it as-is, then apply only the changes listed above.
+
+### \`components/ui/password-strength.tsx\`
 
 \`\`\`tsx
 ${tsSource.trimEnd()}

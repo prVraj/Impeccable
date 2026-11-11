@@ -13,7 +13,7 @@ export function Tabs({ tabs, maxHeight = "28rem" }: { tabs: Tab[]; maxHeight?: s
   return (
     <div className="card overflow-hidden rounded-xl">
       <div className="flex items-center justify-between gap-2 border-b border-[var(--line)] bg-[var(--panel-2)]/60 px-2 py-1.5">
-        <div className="flex min-w-0 gap-0.5 overflow-x-auto" role="tablist">
+        <div className="-m-px flex min-w-0 gap-0.5 overflow-x-auto p-px" role="tablist">
           {tabs.map((t) => (
             <button
               key={t.id}

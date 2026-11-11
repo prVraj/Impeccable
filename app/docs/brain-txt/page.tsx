@@ -2,23 +2,23 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { Metadata } from "next";
 import { DocsLayout } from "@/components/site/docs-layout";
-import { Code, DocSection, Lede, PageTitle, PropsTable } from "@/components/site/doc-parts";
-import { BrainMapDemo } from "@/components/site/brain-map-demo";
-import { InstallCommand } from "@/components/site/install-command";
+import { DocSection, Lede, PageTitle, PropsTable } from "@/components/site/doc-parts";
+import { BrainTxtDemo } from "@/components/site/brain-txt-demo";
+import { Showcase } from "@/components/site/showcase";
 import { Tabs } from "@/components/site/tabs";
 import { Html, PromptBody } from "@/components/site/html";
 import { highlight } from "@/lib/highlight";
-import { brainMapBlendPrompt, brainMapInstallPrompt } from "@/lib/prompts";
+import { brainTxtBlendPrompt, brainTxtInstallPrompt } from "@/lib/prompts";
 
 export const metadata: Metadata = {
-  title: "Brain-Map · Impeccable",
+  title: "brain.txt · Impeccable",
   description: "A brain in the middle of a web of dots. Each dot holds a thought; drag the web to play with it.",
 };
 
-const REGISTRY_URL = "https://impeccable-rust.vercel.app/r/brain-map.json";
+const REGISTRY_URL = "https://impeccable-rust.vercel.app/r/brain-txt.json";
 
 const USAGE = `"use client";
-import { BrainMap, type Thought } from "@/components/ui/brain-map";
+import { BrainTxt, type Thought } from "@/components/ui/brain-txt";
 
 const THOUGHTS: Thought[] = [
   { text: "Boredom is the waiting room for ideas." },
@@ -29,7 +29,7 @@ const THOUGHTS: Thought[] = [
 ];
 
 export function Thoughts() {
-  return <BrainMap thoughts={THOUGHTS} />;
+  return <BrainTxt thoughts={THOUGHTS} />;
 }`;
 
 const PROPS: [string, string, string][] = [
@@ -45,12 +45,12 @@ const PROPS: [string, string, string][] = [
   ["className / style", "—", "Layout for the outer box."],
 ];
 
-export default async function BrainMapPage() {
+export default async function BrainTxtPage() {
   const root = process.cwd();
-  const ts = await readFile(join(root, "registry/impeccable/brain-map/brain-map.tsx"), "utf8");
-  const js = await readFile(join(root, "generated/js/brain-map/brain-map.jsx"), "utf8");
-  const installPrompt = brainMapInstallPrompt(ts);
-  const blendPrompt = brainMapBlendPrompt(ts);
+  const ts = await readFile(join(root, "registry/impeccable/brain-txt/brain-txt.tsx"), "utf8");
+  const js = await readFile(join(root, "generated/js/brain-txt/brain-txt.jsx"), "utf8");
+  const installPrompt = brainTxtInstallPrompt(ts);
+  const blendPrompt = brainTxtBlendPrompt(ts);
 
   const [tsHtml, jsHtml, usageHtml] = await Promise.all([
     highlight(ts, "tsx"),
@@ -63,33 +63,32 @@ export default async function BrainMapPage() {
     { id: "installation", title: "Installation" },
     { id: "usage", title: "Usage" },
     { id: "props", title: "Props" },
-    { id: "code", title: "Code" },
     { id: "prompts", title: "Prompts" },
   ];
 
   return (
-    <DocsLayout slug="brain-map" sections={SECTIONS}>
+    <DocsLayout slug="brain-txt" sections={SECTIONS}>
       <PageTitle
-        name="Brain-Map"
+        name="brain.txt"
         description="A brain sits in the middle of a web of dots, and each dot holds one of your thoughts. Hover a dot to light up its links, click it to read it, and drag anything to play with the web. Every dot links to at most 3 nearby dots, so it never gets crowded."
         tags={["Interactive", "No extra packages", "Light + dark", "Mobile"]}
       />
 
-      <DocSection id="preview" title="Preview">
-        <BrainMapDemo />
-        <p className="mt-3 text-[13px] leading-relaxed text-pretty text-[var(--muted)]">
-          Drag the empty space to move the whole web, or drag a dot or the brain to pull it around.
-          Everything springs back. With reduced motion on, nothing wobbles.
-        </p>
-      </DocSection>
-
-      <DocSection id="installation" title="Installation">
-        <Lede>Run the command in a project set up with shadcn. No other packages needed.</Lede>
-        <InstallCommand url={REGISTRY_URL} />
-        <p className="mt-3 text-sm text-[var(--muted)]">
-          Or copy the code below into <Code>components/ui/brain-map.tsx</Code>.
-        </p>
-      </DocSection>
+      <Showcase
+        installUrl={REGISTRY_URL}
+        filePath="components/ui/brain-txt.tsx"
+        preview={<BrainTxtDemo />}
+        hint={
+          <>
+            Drag the empty space to move the whole web, or drag a dot or the brain to pull it around.
+            Everything springs back. With reduced motion on, nothing wobbles.
+          </>
+        }
+        files={[
+          { id: "ts", label: "brain-txt.tsx", copy: ts, body: <Html html={tsHtml} /> },
+          { id: "js", label: "brain-txt.jsx", copy: js, body: <Html html={jsHtml} /> },
+        ]}
+      />
 
       <DocSection id="usage" title="Usage">
         <Lede>
@@ -101,15 +100,6 @@ export default async function BrainMapPage() {
 
       <DocSection id="props" title="Props">
         <PropsTable rows={PROPS} />
-      </DocSection>
-
-      <DocSection id="code" title="Code">
-        <Tabs
-          tabs={[
-            { id: "ts", label: "brain-map.tsx", copy: ts, body: <Html html={tsHtml} /> },
-            { id: "js", label: "brain-map.jsx", copy: js, body: <Html html={jsHtml} /> },
-          ]}
-        />
       </DocSection>
 
       <DocSection id="prompts" title="Prompts">

@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { DocsLayout } from "@/components/site/docs-layout";
 import { Code, DocSection, Lede, PageTitle, PropsTable } from "@/components/site/doc-parts";
 import { AgentDrawDemo } from "@/components/site/agent-draw-demo";
-import { InstallCommand } from "@/components/site/install-command";
+import { Showcase } from "@/components/site/showcase";
 import { Tabs } from "@/components/site/tabs";
 import { Html, PromptBody } from "@/components/site/html";
 import { highlight } from "@/lib/highlight";
@@ -70,7 +70,6 @@ export default async function AgentDrawPage() {
     { id: "installation", title: "Installation" },
     { id: "usage", title: "Usage" },
     { id: "props", title: "Props" },
-    { id: "code", title: "Code" },
     { id: "prompts", title: "Prompts" },
   ];
 
@@ -83,22 +82,22 @@ export default async function AgentDrawPage() {
           tags={["Loader", "No extra packages", "Light + dark", "Mobile"]}
         />
 
-        <DocSection id="preview" title="Preview">
-          <AgentDrawDemo />
-          <p className="mt-3 text-[13px] leading-relaxed text-pretty text-[var(--muted)]">
-            Everything in the window opens the matching part of Vraj&apos;s portfolio. Turn on{" "}
-            <span className="text-[var(--fg)]">Slow data</span> to see the skeleton shimmer while data
-            takes longer than the drawing. With reduced motion on, the content simply fades in.
-          </p>
-        </DocSection>
-
-        <DocSection id="installation" title="Installation">
-          <Lede>Run the command in a project set up with shadcn. No other packages needed.</Lede>
-          <InstallCommand url={REGISTRY_URL} />
-          <p className="mt-3 text-sm text-[var(--muted)]">
-            Or copy the code below into <Code>components/ui/agent-draw.tsx</Code>.
-          </p>
-        </DocSection>
+        <Showcase
+          installUrl={REGISTRY_URL}
+          filePath="components/ui/agent-draw.tsx"
+          preview={<AgentDrawDemo />}
+          hint={
+            <>
+              Everything in the window opens the matching part of Vraj&apos;s portfolio. Turn on{" "}
+              <span className="text-[var(--fg)]">Slow data</span> to see the skeleton shimmer while data
+              takes longer than the drawing. With reduced motion on, the content simply fades in.
+            </>
+          }
+          files={[
+            { id: "ts", label: "agent-draw.tsx", copy: ts, body: <Html html={tsHtml} /> },
+            { id: "js", label: "agent-draw.jsx", copy: js, body: <Html html={jsHtml} /> },
+          ]}
+        />
 
         <DocSection id="usage" title="Usage">
           <Lede>
@@ -115,15 +114,6 @@ export default async function AgentDrawPage() {
 
         <DocSection id="props" title="Props">
           <PropsTable rows={PROPS} />
-        </DocSection>
-
-        <DocSection id="code" title="Code">
-          <Tabs
-            tabs={[
-              { id: "ts", label: "agent-draw.tsx", copy: ts, body: <Html html={tsHtml} /> },
-              { id: "js", label: "agent-draw.jsx", copy: js, body: <Html html={jsHtml} /> },
-            ]}
-          />
         </DocSection>
 
         <DocSection id="prompts" title="Prompts">

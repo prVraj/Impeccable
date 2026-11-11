@@ -1,6 +1,6 @@
 "use client";
 
-import { BrainMap, type Thought } from "@/registry/impeccable/brain-map/brain-map";
+import { BrainTxt, type Thought } from "@/registry/impeccable/brain-txt/brain-txt";
 
 /** Thoughts for the docs preview. The first four are from Vraj's brain page; the rest are placeholders. */
 export const DEMO_THOUGHTS: Thought[] = [
@@ -20,10 +20,10 @@ export const DEMO_THOUGHTS: Thought[] = [
   { text: "Rest is part of the work." },
 ];
 
-export function BrainMapDemo() {
+export function BrainTxtDemo() {
   return (
     <div className="card overflow-hidden rounded-2xl px-2 pt-6 pb-5 text-[var(--fg)]">
-      <BrainMap thoughts={DEMO_THOUGHTS} accent="var(--accent)" height={460} />
+      <BrainTxt thoughts={DEMO_THOUGHTS} accent="var(--accent)" height={460} />
     </div>
   );
 }
