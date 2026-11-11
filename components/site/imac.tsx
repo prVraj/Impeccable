@@ -4,6 +4,9 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AgentDraw } from "@/registry/impeccable/agent-draw/agent-draw";
 import { useBurningScreen } from "@/registry/impeccable/burning-screen/burning-screen";
+import { BrainMap } from "@/registry/impeccable/brain-map/brain-map";
+import { ScratchMe } from "@/registry/impeccable/scratch-me/scratch-me";
+import { DEMO_THOUGHTS } from "./brain-map-demo";
 import { COMPONENTS } from "@/lib/site";
 
 /** Only things with a live demo get a channel (skills have none). */
@@ -312,7 +315,46 @@ function Speaker({
 function Channel({ slug, onReplay }: { slug: string; onReplay: () => void }) {
   if (slug === "burning-screen") return <BurnChannel />;
   if (slug === "agent-draw") return <AgentDrawChannel onReplay={onReplay} />;
+  if (slug === "brain-map") return <BrainMapChannel />;
+  if (slug === "scratch-me") return <ScratchMeChannel onReplay={onReplay} />;
   return null;
+}
+
+/** Brain-Map fills the tube. Fewer thoughts so the dots have room on a small screen. */
+function BrainMapChannel() {
+  return (
+    <Screen>
+      <BrainMap
+        thoughts={DEMO_THOUGHTS.slice(0, 9)}
+        accent="var(--accent)"
+        height="100%"
+        hint="Click a dot to read it. Drag to play."
+      />
+    </Screen>
+  );
+}
+
+/** A tiny checkout screen with a scratch card on it. Scratch it right on the tube. */
+function ScratchMeChannel({ onReplay }: { onReplay: () => void }) {
+  const [done, setDone] = useState(false);
+  return (
+    <Screen>
+      <div className="flex h-full flex-col items-center justify-center px-[4cqw] text-center">
+        <p className="text-[2.6cqw] text-[var(--muted)]">Impeccable demo</p>
+        <p className="mt-[1cqw] mb-[4cqw] text-[5.4cqw] leading-tight font-semibold tracking-tight">
+          A gift for your first order
+        </p>
+        <ScratchMe code="IMPECCABLE20" onReveal={() => setDone(true)} />
+        <button
+          type="button"
+          onClick={onReplay}
+          className={`press mt-[1cqw] text-[2.6cqw] font-medium text-[var(--muted)] transition-opacity hover:text-[var(--fg)] ${done ? "opacity-100" : "pointer-events-none opacity-0"}`}
+        >
+          Scratch again
+        </button>
+      </div>
+    </Screen>
+  );
 }
 
 function Screen({ children }: { children: React.ReactNode }) {

@@ -1,7 +1,5 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Header } from "@/components/site/header";
-import { Footer } from "@/components/site/footer";
 import { DocsLayout } from "@/components/site/docs-layout";
 import { DocSection, Lede } from "@/components/site/doc-parts";
 import { Arrow } from "@/components/site/icons";
@@ -48,7 +46,6 @@ const PROMISES = [
 export default function DocsIntroduction() {
   return (
     <>
-      <Header />
       <DocsLayout sections={SECTIONS}>
         <div className="mt-4">
           <h1 className="text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">Introduction</h1>
@@ -197,7 +194,6 @@ export default function DocsIntroduction() {
           </p>
         </DocSection>
       </DocsLayout>
-      <Footer />
     </>
   );
 }

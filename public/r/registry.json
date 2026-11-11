@@ -28,6 +28,32 @@
           "target": "components/ui/agent-draw.tsx"
         }
       ]
+    },
+    {
+      "name": "brain-map",
+      "type": "registry:component",
+      "title": "Brain-Map",
+      "description": "A brain in the middle of a web of dots that each hold a thought. Hover, click and drag to play with it.",
+      "files": [
+        {
+          "path": "registry/impeccable/brain-map/brain-map.tsx",
+          "type": "registry:component",
+          "target": "components/ui/brain-map.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scratch-me",
+      "type": "registry:component",
+      "title": "Scratch-me",
+      "description": "A promo code under a scratch-off foil. Scratch half and it reveals itself and copies to the clipboard.",
+      "files": [
+        {
+          "path": "registry/impeccable/scratch-me/scratch-me.tsx",
+          "type": "registry:component",
+          "target": "components/ui/scratch-me.tsx"
+        }
+      ]
     }
   ]
 }

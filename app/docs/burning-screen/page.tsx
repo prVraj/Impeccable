@@ -1,8 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { Metadata } from "next";
-import { Header } from "@/components/site/header";
-import { Footer } from "@/components/site/footer";
 import { DocsLayout } from "@/components/site/docs-layout";
 import { Code, DocSection, Lede, PageTitle, PropsTable } from "@/components/site/doc-parts";
 import { Playground } from "@/components/site/playground";
@@ -83,7 +81,6 @@ export default async function BurningScreenPage() {
 
   return (
     <>
-      <Header />
       <DocsLayout slug="burning-screen" sections={SECTIONS}>
         <PageTitle
           name="Burning-Screen"
@@ -149,7 +146,6 @@ export default async function BurningScreenPage() {
           />
         </DocSection>
       </DocsLayout>
-      <Footer />
     </>
   );
 }

@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { Header } from "@/components/site/header";
-import { Footer } from "@/components/site/footer";
 import { DocsLayout } from "@/components/site/docs-layout";
 import { Code, DocSection, Lede, PageTitle } from "@/components/site/doc-parts";
 import { CopyButton } from "@/components/site/copy-button";
@@ -63,7 +61,6 @@ const SECTIONS = [
 export default function UiTonguePage() {
   return (
     <>
-      <Header />
       <DocsLayout slug="ui-tongue" sections={SECTIONS}>
         <PageTitle
           name="UI-tongue"
@@ -164,7 +161,6 @@ export default function UiTonguePage() {
           </div>
         </DocSection>
       </DocsLayout>
-      <Footer />
     </>
   );
 }

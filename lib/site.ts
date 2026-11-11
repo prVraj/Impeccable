@@ -1,9 +1,11 @@
 /** The site's list of components. Order here is the order in the sidebar and on the home page. */
-export type Group = "components" | "skills" | "animations";
+export type Group = "components" | "sections" | "skills" | "animations";
 
-/** The three parts of the library, in sidebar order. */
+/** The parts of the library, in sidebar order. */
 export const GROUPS: { id: Group; label: string }[] = [
   { id: "components", label: "Components" },
+  // Website sections: header, top navbar, hero, footer and the like.
+  { id: "sections", label: "Sections" },
   { id: "skills", label: "Skills" },
   { id: "animations", label: "Animations" },
 ];
@@ -19,6 +21,22 @@ export type SiteComponent = {
 };
 
 export const COMPONENTS: SiteComponent[] = [
+  {
+    slug: "brain-map",
+    name: "Brain-Map",
+    group: "components",
+    category: "Interactive",
+    blurb: "A brain in a web of dots; each dot holds one of your thoughts.",
+    preview: "",
+  },
+  {
+    slug: "scratch-me",
+    name: "Scratch-me",
+    group: "components",
+    category: "Interactive",
+    blurb: "Scratch off the foil to reveal a promo code; it copies itself.",
+    preview: "",
+  },
   {
     slug: "agent-draw",
     name: "Agent-Draw",

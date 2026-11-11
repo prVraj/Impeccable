@@ -1,8 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { Metadata } from "next";
-import { Header } from "@/components/site/header";
-import { Footer } from "@/components/site/footer";
 import { DocsLayout } from "@/components/site/docs-layout";
 import { Code, DocSection, Lede, PageTitle, PropsTable } from "@/components/site/doc-parts";
 import { AgentDrawDemo } from "@/components/site/agent-draw-demo";
@@ -78,7 +76,6 @@ export default async function AgentDrawPage() {
 
   return (
     <>
-      <Header />
       <DocsLayout slug="agent-draw" sections={SECTIONS}>
         <PageTitle
           name="Agent-Draw"
@@ -144,7 +141,6 @@ export default async function AgentDrawPage() {
           />
         </DocSection>
       </DocsLayout>
-      <Footer />
     </>
   );
 }

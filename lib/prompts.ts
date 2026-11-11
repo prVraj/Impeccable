@@ -404,3 +404,358 @@ ${tsSource.trimEnd()}
 \`\`\`
 `;
 }
+
+/** Prompts for Brain-Map. Same shape as the others.
+ * Install: adds the exact component; asks only where it goes.
+ * Blend: asks four short questions, then fits it through the component's own props. */
+
+const BRAIN_MAP_SHARED_BUILD = `## Fastest path
+
+If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccable-rust.vercel.app/r/brain-map.json\`.
+If the command succeeds, only fix import paths to match this project and skip ahead. If it fails or there is no \`components.json\`, build it by hand as below.
+
+## Build it
+
+- Stack: React 18 or 19 with TypeScript. No other packages: it only uses SVG, pointer events and \`requestAnimationFrame\`.
+- JavaScript project? Name the file \`brain-map.jsx\` and remove the type annotations; nothing else changes.
+- Create this file, in this project's usual place for components:
+  - \`components/ui/brain-map.tsx\`
+- Keep these exports and their names: \`BrainMap\`, \`BrainMapProps\`, \`Thought\`.
+- Keep \`"use client"\` at the top in Next.js App Router projects. In other setups it is harmless.
+- Keep the tuning values at the top (\`MAX_LINKS\`, \`SPRING\`, \`ANCHOR\`, \`DAMP\`, \`ENTER_MS\`, \`FADE\`), the layout (\`homes\`) and the linking rule (\`linkDots\`) exactly as written. They are the design.
+- Keep the fallbacks: with \`prefers-reduced-motion: reduce\` nothing wobbles or grows in, and the loop stops whenever the web is still.`;
+
+const BRAIN_MAP_HOW = `## How the map works
+
+Read this before you touch anything, so you know what the code does and why it must stay as it is.
+
+1. **Place the dots.** The dots sit on a loose sunflower spiral around the brain, with a little seeded jitter so it never looks like a pattern. Same \`seed\`, same map. Dots differ slightly in size and gray.
+2. **Link them.** All dot pairs are sorted by distance, shortest first. A link is added only if both dots have fewer than 3 links and it doesn't cross a link already drawn. So each dot links to at most 3 nearby dots (never more), and lines don't cross.
+3. **Link the brain.** The dots closest to the brain get a direct line to it, unless \`brainLinks\` is false. Each thought can force it on or off with \`brain: true\` or \`brain: false\`.
+4. **Enter.** On first view the dots burst out of the brain and grow to size in under a second.
+5. **Hover and click.** Hovering a dot draws it a little bigger and lights it, its links and its neighbours in the accent color; everything else fades to about 14%. Hovering the brain lights all of its links. Clicking a dot opens a small card beside it with the thought, an optional tag and a close button. Escape, the close button or a click on empty space closes it.
+6. **Drag.** Dragging empty space moves the whole web; the dots lag a touch and wobble into place. Dragging a dot or the brain pulls it, and its links pull the neighbours along like springs. On release, everything springs back home. Keyboard: Tab to a dot, Enter opens it.
+
+Lines and dots take their color from the text color around the map, so they follow light and dark mode on their own. The card is white in light mode and near-black in dark mode.`;
+
+export function brainMapInstallPrompt(tsSource: string) {
+  return `# Brain-Map
+
+A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
+
+A brain sits in the middle of a web of dots, and each dot holds one thought. Hover a dot to light up its links, click it to read it, and drag anything to play with the web. Every dot links to at most 3 nearby dots.
+
+## Before you build: one question
+
+Look through this project first: its pages and sections. Then ask me this in one message and wait for my answer:
+
+- **Where should it go?** Suggest the 1–3 places that fit best (for example an about page, a "thoughts" or notes page, or a section of the home page). I can pick one of them or name another.
+
+Ask nothing else. If I say *skip*, use the best suggestion. Use the thoughts from the example below as placeholders and tell me where to write my own.
+
+## Keep it as it is
+
+The motion is the design. Keep the brain in the middle, the 3-link limit, the spring feel, the hover highlight, the card and the colors exactly as in the source. If something doesn't fit my project, tell me instead of changing it.
+
+- Add only the component file and the one place I picked. Don't add packages, change other files, or restyle anything.
+- Don't add demo controls (sliders, toggles or "shuffle" buttons) from the Impeccable website.
+
+${BRAIN_MAP_SHARED_BUILD}
+
+## Use it
+
+\`\`\`tsx
+"use client";
+import { BrainMap, type Thought } from "@/components/ui/brain-map";
+
+const THOUGHTS: Thought[] = [
+  { text: "Boredom is the waiting room for ideas." },
+  { text: "If it's worth thinking twice, it's worth writing once.", tag: "writing" },
+  { text: "Copy first, then make it yours.", featured: true },
+  // 8 to 20 thoughts look best.
+];
+
+export function Thoughts() {
+  return <BrainMap thoughts={THOUGHTS} />;
+}
+\`\`\`
+
+- Put the thoughts in a plain array next to where it's used (or wherever this project keeps content). Each is \`{ text, tag?, featured?, brain? }\`.
+- Give it room: it's 420px tall by default (\`height\` prop) and fills the width of its parent.
+
+${BRAIN_MAP_HOW}
+
+## Check
+
+- It type-checks and the page renders with no console errors.
+- The dots burst out of the brain. No dot has more than 3 lines to other dots, and lines don't cross.
+- Hovering a dot lights it and its neighbours; clicking opens its card next to it, inside the box. Escape closes it.
+- Dragging empty space moves the web; dragging a dot or the brain pulls its neighbours; everything springs back.
+- It looks right in light and dark mode, and works with a finger on a phone.
+- With \`prefers-reduced-motion: reduce\`, nothing wobbles.
+- Nothing else on the site looks or behaves differently.
+- Finish with a short report: the files you added or changed, where it's placed, and every place where you had to do something differently from the source, and why.
+
+## Source
+
+The reference implementation. Copy it as-is, then apply only the changes listed above.
+
+### \`components/ui/brain-map.tsx\`
+
+\`\`\`tsx
+${tsSource.trimEnd()}
+\`\`\`
+`;
+}
+
+export function brainMapBlendPrompt(tsSource: string) {
+  return `# Brain-Map, fitted to your brand
+
+A 1-file React component from Impeccable. Add it to this project and fit it to the brand like a missing puzzle piece: it should look like it was always part of the product. It goes in the one place I choose, and nothing else changes.
+
+A brain sits in the middle of a web of dots, and each dot holds one thought. Hover a dot to light up its links, click it to read it, and drag anything to play with the web. Every dot links to at most 3 nearby dots. The full source is at the end of this prompt.
+
+## First: look, ask once, then build
+
+1. Look through this project first: its pages and sections, any existing notes or quotes content, and its theme (CSS variables, Tailwind theme, shadcn theme, light and dark mode).
+2. Tell me in two or three lines what you found, then ask these questions in **one message**. Give each one options and mark your suggestion. Ask nothing else:
+   1. **Where should it go?** Suggest the 1–3 places that fit best (an about page, a thoughts page, a home section).
+   2. **Which thoughts?** Use content you found in the project (name it), or I paste my own, or start with placeholders I'll replace.
+   3. **What sits in the middle?** The 🧠 emoji (default), another emoji, or my logo or avatar (name the file you'd use).
+   4. **Accent color?** The default blue, or one of my color variables (name it). It colors lit lines, featured dots and tags, so it must be readable in light and dark mode.
+   If I say *skip*, use your suggestions.
+3. After I answer, show a brief of about 5 lines: the place, the thoughts, the center, the accent (by my variable name), and "everything else is kept as designed". Ask whether to save the brief to \`impeccable.md\` in the project (add a section if the file exists) or keep it in this chat only. Default: chat only.
+4. Build only after I say go.
+
+## What you may change, and what you may not
+
+The motion is the design. Keep the layout, the 3-link limit, the spring feel, the hover highlight, the fade and the card shape exactly as in the source. Only my answers above may change it: the place, the thoughts, the center and the accent. All of them are props the component already has (\`thoughts\`, \`center\`, \`accent\`), so the component file itself stays as written. If something doesn't fit my product, tell me instead of changing it.
+
+- No new packages, no changes to files other than the component and the place I picked, and no demo controls on my site.
+
+${BRAIN_MAP_SHARED_BUILD}
+
+## Fit it to the brand
+
+Apply my answers through the component's own props:
+
+\`\`\`tsx
+"use client";
+import { BrainMap, type Thought } from "@/components/ui/brain-map";
+
+// From my brief. Leave out any prop that stays at its default.
+const THOUGHTS: Thought[] = [
+  { text: "…", tag: "…" },
+];
+
+export function Thoughts() {
+  return (
+    <BrainMap
+      thoughts={THOUGHTS}
+      accent="var(--primary)"
+      center={<img src="/logo.svg" alt="" width={26} height={26} />}
+    />
+  );
+}
+\`\`\`
+
+- Pass the accent as my CSS variable (\`var(--name)\`) or Tailwind color variable, not a hex code, so it follows my theme. If a variable holds bare channels (for example \`222 47% 11%\`), wrap it as \`hsl(...)\`.
+- The map takes its text color from its parent, so place it where my normal text color applies. Use \`hint\` to reword the help text in my voice, or \`null\` to hide it.
+
+${BRAIN_MAP_HOW}
+
+## Check
+
+- It type-checks and the page renders with no console errors.
+- My thoughts, center and accent show. No dot has more than 3 lines to other dots, and lines don't cross.
+- Hovering lights a dot and its neighbours in my accent; clicking opens its card inside the box; dragging pulls the web and it springs back.
+- It looks right in light and dark mode, and works with a finger on a phone.
+- With \`prefers-reduced-motion: reduce\`, nothing wobbles.
+- Nothing else on the site looks or behaves differently.
+- Finish with a short report: the files you added or changed, what you set from my answers, and every place where you had to do something differently from the source, and why.
+
+## Source
+
+The reference implementation. Copy it as-is, then apply only the changes listed above.
+
+### \`components/ui/brain-map.tsx\`
+
+\`\`\`tsx
+${tsSource.trimEnd()}
+\`\`\`
+`;
+}
+
+/** Prompts for Scratch-me. Same shape as the others.
+ * Install: adds the exact component; asks only where it goes and which code it shows.
+ * Blend: asks four short questions, then fits it through the component's own props. */
+
+const SCRATCH_ME_SHARED_BUILD = `## Fastest path
+
+If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccable-rust.vercel.app/r/scratch-me.json\`.
+If the command succeeds, only fix import paths to match this project and skip ahead. If it fails or there is no \`components.json\`, build it by hand as below.
+
+## Build it
+
+- Stack: React 18 or 19 with TypeScript. No other packages: it only uses two canvases, pointer events and \`requestAnimationFrame\`.
+- JavaScript project? Name the file \`scratch-me.jsx\` and remove the type annotations; nothing else changes.
+- Create this file, in this project's usual place for components:
+  - \`components/ui/scratch-me.tsx\`
+- Keep these exports and their names: \`ScratchMe\`, \`ScratchMeProps\`. The \`react-dom\` import (for the "Code copied" pop) comes with React.
+- Keep \`"use client"\` at the top in Next.js App Router projects. In other setups it is harmless.
+- Keep the foil painting (\`paintFoil\`), the brush, the shavings, the progress check and the tuning values at the top (\`SAMPLE_STEP\`, \`CLEAR_MS\`, \`GRAVITY\`, \`MAX_SHAVINGS\`) exactly as written. They are the design.
+- Keep the fallbacks: with \`prefers-reduced-motion: reduce\` there are no shavings and the foil just fades; Enter or Space on the focused card reveals it; if the Clipboard API is blocked, it falls back to a hidden textarea copy.`;
+
+const SCRATCH_ME_HOW = `## How the scratch works
+
+Read this before you touch anything, so you know what the code does and why it must stay as it is.
+
+1. **Pill and foil.** The code sits in a soft gray rounded pill with a copy icon on the right, like a code field. A canvas over the pill is painted like a scratch-off: flat metallic gray with fine grain, a soft diagonal sheen, a dashed guide and "SCRATCH HERE". Darker foil in dark mode.
+2. **Brush.** On a mouse, a thin ring follows the pointer instead of the cursor. Pressing and moving erases the foil along the path with a round brush (26px), with a few tiny bites at the edge so it looks ragged, not like a clean stroke.
+3. **Shavings.** Moving fast throws more of them. Each is a tiny gray flake that spins, falls with gravity and lands just below the hint line, a little unevenly, so they pile up. After the reveal the pile fades away.
+4. **Progress.** While scratching, the foil is checked every 120ms on a grid (one pixel every 6px). The line under the card shows the percentage toward the goal.
+5. **Reveal.** When you let go with at least half the foil gone (\`threshold\`, 0.5), the rest of the foil fades and blurs away in about half a second, the code settles to full size and it is copied to the clipboard. Let go before half and nothing happens: keep scratching.
+6. **Copied.** On every copy the copy icon blurs and shrinks away while a check draws itself in its place, the line under the code says "Copied", and a small dark pill saying "Code copied" pops up from the bottom center of the screen, stays about 1.5 seconds and drops away. After 2 seconds the check animates back into the copy icon, so it's clear the code can be copied again.
+7. **Copy again.** Clicking (or Enter on) the revealed code copies it again. That is the only way to copy it: nothing in the component can be selected as text, and copy shortcuts on it do nothing.
+
+The pill, foil, text and shavings read the text color around the component, so they follow light and dark mode on their own. The code is in the page, so it is not a secret.`;
+
+export function scratchMeInstallPrompt(tsSource: string) {
+  return `# Scratch-me
+
+A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
+
+A promo code hidden under a scratch-off foil. Scratch at least half, let go, and the rest flakes away, the code is copied to the clipboard and the card says so.
+
+## Before you build: one question
+
+Look through this project first: its pages, upgrade or pricing screens, and any promo or discount codes it already uses. Then ask me this in one message and wait for my answer:
+
+- **Where should it go, and which code should it show?** Suggest the 1–3 places that fit best (for example the upgrade screen, the pricing page or an onboarding step) and the code you found, if any. I can pick one of them or name another, and give the code.
+
+Ask nothing else. If I say *skip*, use the best suggestion and a placeholder code I can find easily.
+
+## Keep it as it is
+
+The scratch is the design. Keep the code pill with its copy icon, the foil look, the brush ring, the falling shavings, the 50% rule and the copy on reveal exactly as in the source. If something doesn't fit my project, tell me instead of changing it.
+
+- Add only the component file and the one place I picked. Don't add packages, change other files, or restyle anything.
+- Don't add demo controls ("Scratch again" buttons or sliders) from the Impeccable website.
+
+${SCRATCH_ME_SHARED_BUILD}
+
+## Use it
+
+\`\`\`tsx
+"use client";
+import { ScratchMe } from "@/components/ui/scratch-me";
+
+export function UpgradeOffer() {
+  return <ScratchMe code="SAVE20" />;
+}
+\`\`\`
+
+- Put the code where this project keeps its other promo codes or settings, if it has such a place. Otherwise write it inline.
+- Wire \`onReveal\` only if the project already tracks events, to record the reveal the same way.
+
+${SCRATCH_ME_HOW}
+
+## Check
+
+- It type-checks and the page renders with no console errors.
+- Scratching erases the foil under the ring and shavings fall and pile at the bottom.
+- Letting go under half does nothing; over half, the rest of the foil flakes away and the code is in the clipboard (paste it to check). "Code copied" pops up at the bottom center, and after 2 seconds the check turns back into the copy icon.
+- Scratching never selects the code or any text, and the code can't be copied by selecting it.
+- It works with a finger on a phone without scrolling the page while scratching, and looks right in light and dark mode.
+- With \`prefers-reduced-motion: reduce\`, there are no shavings.
+- Nothing else on the site looks or behaves differently.
+- Finish with a short report: the files you added or changed, where it's placed, and every place where you had to do something differently from the source, and why.
+
+## Source
+
+The reference implementation. Copy it as-is, then apply only the changes listed above.
+
+### \`components/ui/scratch-me.tsx\`
+
+\`\`\`tsx
+${tsSource.trimEnd()}
+\`\`\`
+`;
+}
+
+export function scratchMeBlendPrompt(tsSource: string) {
+  return `# Scratch-me, fitted to your product
+
+A 1-file React component from Impeccable. Add it to this project and fit it to the product like a missing puzzle piece: it should look like it was always part of it. It goes in the one place I choose, and nothing else changes.
+
+A promo code hidden under a scratch-off foil. Scratch at least half, let go, and the rest flakes away, the code is copied to the clipboard and the card says so. The full source is at the end of this prompt.
+
+## First: look, ask once, then build
+
+1. Look through this project first: its pages, upgrade or pricing screens, any promo codes it already uses, the way it writes short UI text, and its theme (light and dark mode).
+2. Tell me in two or three lines what you found, then ask these questions in **one message**. Give each one options and mark your suggestion. Ask nothing else:
+   1. **Where should it go?** Suggest the 1–3 places that fit best (upgrade screen, pricing page, onboarding step, a thank-you page).
+   2. **Which code?** The code you found (name where), or I give one.
+   3. **The words?** Suggest an optional label above the code (default none), the hint below it (default "Scratch to reveal your code.") and the copied message (default "Copied. Paste it at checkout."), and the pop text (default "Code copied"), written in my product's voice.
+   4. **How much to scratch?** 40% (easy), 50% (default) or 60% (more play).
+   If I say *skip*, use your suggestions.
+3. After I answer, show a brief of about 5 lines: the place, the code, the three lines of text, the amount, and "everything else is kept as designed". Ask whether to save the brief to \`impeccable.md\` in the project (add a section if the file exists) or keep it in this chat only. Default: chat only.
+4. Build only after I say go.
+
+## What you may change, and what you may not
+
+The scratch is the design. Keep the code pill with its copy icon, the foil, the brush ring, the shavings and the reveal exactly as in the source. Only my answers above may change it: the place, the code, the text and the threshold. All of them are props the component already has (\`code\`, \`label\`, \`hint\`, \`copiedText\`, \`toast\`, \`threshold\`), so the component file itself stays as written. If something doesn't fit my product, tell me instead of changing it.
+
+- No new packages, no changes to files other than the component and the place I picked, and no demo controls on my site.
+
+${SCRATCH_ME_SHARED_BUILD}
+
+## Fit it to the product
+
+Apply my answers through the component's own props:
+
+\`\`\`tsx
+"use client";
+import { ScratchMe } from "@/components/ui/scratch-me";
+
+// From my brief. Leave out any prop that stays at its default.
+export function UpgradeOffer() {
+  return (
+    <ScratchMe
+      code="SAVE20"
+      label="A little thank-you: 20% off Pro" // optional
+      hint="Scratch to see your code."
+      copiedText="Copied. Paste it when you upgrade."
+      threshold={0.5}
+    />
+  );
+}
+\`\`\`
+
+- The card takes its text color from its parent, so place it where my normal text color applies. The pill is at least 260px wide and grows with the code; place it with \`className\` or \`style\`.
+- Wire \`onReveal\` only if the project already tracks events.
+
+${SCRATCH_ME_HOW}
+
+## Check
+
+- It type-checks and the page renders with no console errors.
+- My code and text show. Scratching erases the foil and shavings fall and pile at the bottom.
+- Letting go before my threshold does nothing; after it, the foil flakes away and the code is in the clipboard (paste it to check). "Code copied" pops up at the bottom center, and after 2 seconds the check turns back into the copy icon.
+- Scratching never selects the code or any text, and the code can't be copied by selecting it.
+- It works with a finger on a phone without scrolling the page while scratching, and looks right in light and dark mode.
+- With \`prefers-reduced-motion: reduce\`, there are no shavings.
+- Nothing else on the site looks or behaves differently.
+- Finish with a short report: the files you added or changed, what you set from my answers, and every place where you had to do something differently from the source, and why.
+
+## Source
+
+The reference implementation. Copy it as-is, then apply only the changes listed above.
+
+### \`components/ui/scratch-me.tsx\`
+
+\`\`\`tsx
+${tsSource.trimEnd()}
+\`\`\`
+`;
+}

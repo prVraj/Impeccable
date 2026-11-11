@@ -4,7 +4,17 @@ import { useId, useState } from "react";
 import { cx } from "@/lib/utils";
 
 /** A sidebar group that opens and closes. Starts open so nothing is hidden. */
-export function SideDropdown({ title, count, children }: { title: string; count: number; children: React.ReactNode }) {
+export function SideDropdown({
+  title,
+  count,
+  icon,
+  children,
+}: {
+  title: string;
+  count: number;
+  icon?: React.ReactNode;
+  children: React.ReactNode;
+}) {
   const [open, setOpen] = useState(true);
   const id = useId();
   return (
@@ -17,6 +27,7 @@ export function SideDropdown({ title, count, children }: { title: string; count:
         className="press flex w-full items-center justify-between rounded-md px-2.5 py-1.5 text-xs font-medium text-[var(--fg)] transition-colors hover:bg-[var(--panel-2)]"
       >
         <span className="flex items-center gap-1.5">
+          {icon && <span className="mr-0.5 flex text-[var(--muted)]">{icon}</span>}
           {title}
           <span className="font-mono text-[10px] text-[var(--faint)]">{count}</span>
         </span>
@@ -36,7 +47,7 @@ export function SideDropdown({ title, count, children }: { title: string; count:
         )}
       >
         <div className="overflow-hidden" inert={!open}>
-          <div className="mt-px flex flex-col gap-px pb-1">{children}</div>
+          <div className={cx("mt-px flex flex-col gap-px pb-1", !!icon && "pl-6")}>{children}</div>
         </div>
       </div>
     </div>
