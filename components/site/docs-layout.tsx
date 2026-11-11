@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { AUTHOR, COMPONENTS, GITHUB, GROUPS, neighbours, type Group } from "@/lib/site";
+import { AUTHOR, COMPONENTS, GITHUB, GROUPS, neighbours } from "@/lib/site";
 import { cx } from "@/lib/utils";
-import { ArrowUpRight01Icon, Book02Icon, DashboardSquare01Icon, EaseCurveControlPointsIcon, Layout01Icon } from "./hugeicons";
+import { ArrowUpRight01Icon } from "./hugeicons";
+import { GroupIcon } from "./group-icon";
+import { SearchTrigger } from "./search";
 import { ArrowLeft, Arrow, GitHub, Mark } from "./icons";
 import { Header } from "./header";
 import { Footer } from "./footer";
@@ -121,7 +123,8 @@ export function DocsLayout({
 
 /**
  * The tab in the sheet's top right corner, on the frame colour, like a
- * folder tab cut out of the page: GitHub, the bulb theme switch, the author.
+ * folder tab cut out of the page: Search (with the bulb theme switch
+ * hanging under it), GitHub, the author.
  * It stays at the top while the page scrolls.
  */
 function SheetTab() {
@@ -140,29 +143,35 @@ function SheetTab() {
           <path d="M0 .5C9 .5 12 2 15 8L25 36.5C27.5 42 31 43.5 40 43.5V0H0Z" fill="var(--frame)" />
           <path d="M0 .5C9 .5 12 2 15 8L25 36.5C27.5 42 31 43.5 40 43.5" fill="none" stroke="var(--line)" />
         </svg>
-        <div className="flex items-center border-b border-[var(--line)] bg-[var(--frame)] pr-3 text-[13px] text-[var(--muted)]">
+        <div className="flex items-center border-b border-[var(--line)] bg-[var(--frame)] pr-1 text-[13px] text-[var(--muted)]">
+          {/* Search first, then GitHub, then the author, split by thin
+              dividers. The bulb takes no room in the tab: it hangs below it,
+              centred under Search. The bulb's frame sits behind the Search
+              button so clicks reach it. */}
+          <div className="flex items-center self-stretch pr-4">
+            <div className="relative flex items-center self-stretch">
+              <div className="absolute inset-y-0 left-1/2 z-0 flex -translate-x-1/2">
+                <ThemeToggle />
+              </div>
+              <SearchTrigger className="relative z-10" />
+            </div>
+          </div>
+          <TabDivider />
           <a
             href={GITHUB}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-3 transition-colors hover:text-[var(--fg)]"
+            className="flex items-center gap-1.5 px-4 transition-colors hover:text-[var(--fg)]"
           >
             <GitHub className="size-4" />
             GitHub
           </a>
-          {/* One divider. The bulb takes no room in the tab: it hangs below
-              it, centred under the divider. */}
-          <div className="relative flex w-px items-center self-stretch">
-            <span className="h-4 w-px bg-[var(--line)]" aria-hidden="true" />
-            <div className="absolute inset-y-0 left-1/2 flex -translate-x-1/2">
-              <ThemeToggle />
-            </div>
-          </div>
+          <TabDivider />
           <a
             href={AUTHOR.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3 transition-colors hover:text-[var(--fg)]"
+            className="px-4 transition-colors hover:text-[var(--fg)]"
           >
             Built by <span className="text-[var(--fg)]">Vraj</span>
           </a>
@@ -177,20 +186,9 @@ function SheetTab() {
   );
 }
 
-/**
- * One Hugeicons icon (components/site/hugeicons.tsx) per part of the library, shown on its heading in the
- * side panel. Items inside a part have no icon, so adding one needs nothing new.
- */
-const GROUP_ICONS: Record<Group, typeof Book02Icon> = {
-  components: DashboardSquare01Icon,
-  sections: Layout01Icon,
-  skills: Book02Icon,
-  animations: EaseCurveControlPointsIcon,
-};
-
-function GroupIcon({ group }: { group: Group }) {
-  const Icon = GROUP_ICONS[group];
-  return <Icon size={16} className="shrink-0" />;
+/** The thin line between the items in the tab. */
+function TabDivider() {
+  return <span className="h-4 w-px shrink-0 bg-[var(--line)]" aria-hidden="true" />;
 }
 
 function SideGroup({ title, children }: { title: string; children: React.ReactNode }) {

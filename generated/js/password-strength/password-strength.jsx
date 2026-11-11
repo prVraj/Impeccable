@@ -211,6 +211,7 @@ export function PasswordStrength({
           fontWeight: 500,
           lineHeight: "26px",
           marginBottom: 8,
+          paddingLeft: 2,
         }}
       >
         {label}

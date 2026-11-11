@@ -12,7 +12,7 @@ import { agentDrawBlendPrompt, agentDrawInstallPrompt } from "@/lib/prompts";
 
 export const metadata: Metadata = {
   title: "Agent-Draw · Impeccable",
-  description: "A loader where named cursors draw your page's skeleton live, then the real content fades in.",
+  description: "Named cursors draw your page's skeleton while its data loads, then the real content fades in. Use it on slow screens, like a dashboard or profile.",
 };
 
 const REGISTRY_URL = "https://impeccable-rust.vercel.app/r/agent-draw.json";
@@ -68,9 +68,9 @@ export default async function AgentDrawPage() {
   const SECTIONS = [
     { id: "preview", title: "Preview" },
     { id: "installation", title: "Installation" },
+    { id: "prompts", title: "Prompts" },
     { id: "usage", title: "Usage" },
     { id: "props", title: "Props" },
-    { id: "prompts", title: "Prompts" },
   ];
 
   return (
@@ -78,7 +78,7 @@ export default async function AgentDrawPage() {
       <DocsLayout slug="agent-draw" sections={SECTIONS}>
         <PageTitle
           name="Agent-Draw"
-          description="Instead of a spinner, a few named cursors draw your page's skeleton live, top to bottom, one cursor per shape. While they draw, your data loads; then the real content fades in."
+          description="Named cursors draw your page's skeleton while its data loads, then the real content fades in. Use it on slow screens, like a dashboard or profile."
           tags={["Loader", "No extra packages", "Light + dark", "Mobile"]}
         />
 
@@ -99,6 +99,21 @@ export default async function AgentDrawPage() {
           ]}
         />
 
+        <DocSection id="prompts" title="Prompts">
+          <Lede>
+            Paste one into Claude Code, Cursor or any AI coding tool. <strong className="font-medium text-[var(--fg)]">Install</strong>{" "}
+            adds this exact component and asks only which screen should load with it.{" "}
+            <strong className="font-medium text-[var(--fg)]">Blend</strong> asks four short questions
+            (where, names, colors, speed), then fits it to your brand without changing how it draws.
+          </Lede>
+          <Tabs
+            tabs={[
+              { id: "install", label: "Install prompt", copy: installPrompt, body: <PromptBody text={installPrompt} /> },
+              { id: "blend", label: "Blend prompt", copy: blendPrompt, body: <PromptBody text={blendPrompt} /> },
+            ]}
+          />
+        </DocSection>
+
         <DocSection id="usage" title="Usage">
           <Lede>
             Wrap the part of the page that loads, and pass your loading state. It reads the layout
@@ -114,21 +129,6 @@ export default async function AgentDrawPage() {
 
         <DocSection id="props" title="Props">
           <PropsTable rows={PROPS} />
-        </DocSection>
-
-        <DocSection id="prompts" title="Prompts">
-          <Lede>
-            Paste one into Claude Code, Cursor or any AI coding tool. <strong className="font-medium text-[var(--fg)]">Install</strong>{" "}
-            adds this exact component and asks only which screen should load with it.{" "}
-            <strong className="font-medium text-[var(--fg)]">Blend</strong> asks four short questions
-            (where, names, colors, speed), then fits it to your brand without changing how it draws.
-          </Lede>
-          <Tabs
-            tabs={[
-              { id: "install", label: "Install prompt", copy: installPrompt, body: <PromptBody text={installPrompt} /> },
-              { id: "blend", label: "Blend prompt", copy: blendPrompt, body: <PromptBody text={blendPrompt} /> },
-            ]}
-          />
         </DocSection>
       </DocsLayout>
     </>

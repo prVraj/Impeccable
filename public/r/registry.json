@@ -67,6 +67,19 @@
           "target": "components/ui/password-strength.tsx"
         }
       ]
+    },
+    {
+      "name": "framed-upload",
+      "type": "registry:component",
+      "title": "Framed-Upload",
+      "description": "An image upload that hangs the picture in a frame with a soft shadow, like a print on a wall.",
+      "files": [
+        {
+          "path": "registry/impeccable/framed-upload/framed-upload.tsx",
+          "type": "registry:component",
+          "target": "components/ui/framed-upload.tsx"
+        }
+      ]
     }
   ]
 }

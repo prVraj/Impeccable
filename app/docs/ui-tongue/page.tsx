@@ -1,14 +1,16 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import type { Metadata } from "next";
 import { DocsLayout } from "@/components/site/docs-layout";
 import { Code, DocSection, Lede, PageTitle } from "@/components/site/doc-parts";
 import { CopyButton } from "@/components/site/copy-button";
-import { Tabs } from "@/components/site/tabs";
-import { PromptBody } from "@/components/site/html";
-import { uiTongueBlendPrompt, uiTongueInstallPrompt } from "@/lib/prompts";
+import { FileView } from "@/components/site/file-view";
+import { Html } from "@/components/site/html";
+import { highlight } from "@/lib/highlight";
 
 export const metadata: Metadata = {
   title: "UI-tongue · Impeccable",
-  description: "A skill that learns your UI taste and writes you your own UI skill, so one-line prompts come out in your style.",
+  description: "A skill that learns your UI taste in about 15 minutes and writes you your own UI skill. Run it once, and every UI prompt comes out in your style.",
 };
 
 const ZIP = "/downloads/ui-tongue.zip";
@@ -59,18 +61,18 @@ const SECTIONS = [
   { id: "how-it-works", title: "How it works" },
   { id: "questions", title: "The questions" },
   { id: "what-you-get", title: "What you get" },
-  { id: "prompts", title: "Prompts" },
 ];
 
-export default function UiTonguePage() {
-  const installPrompt = uiTongueInstallPrompt();
-  const blendPrompt = uiTongueBlendPrompt();
+export default async function UiTonguePage() {
+  // The skill's main file, shown under the download button so people can read it first.
+  const skillMd = await readFile(join(process.cwd(), "skills/ui-tongue/SKILL.md"), "utf8");
+  const skillHtml = await highlight(skillMd, "md");
   return (
     <>
       <DocsLayout slug="ui-tongue" sections={SECTIONS}>
         <PageTitle
           name="UI-tongue"
-          description="Ask any AI for a hero section and you get the same hero as everyone else. UI-tongue learns your taste in about 15 minutes and writes you your own UI skill, so a one-line prompt comes out looking like you made it."
+          description="A skill that learns your UI taste in about 15 minutes and writes you your own UI skill. Run it once, and every UI prompt comes out in your style."
           tags={["Skill", "Claude", "Free + MIT", "Web UI"]}
         />
 
@@ -93,6 +95,12 @@ export default function UiTonguePage() {
             </svg>
             Download UI-tongue
           </a>
+          <p className="mt-8 mb-3 text-[15px] leading-relaxed text-[var(--muted)]">
+            Read it before you install. This is <Code>SKILL.md</Code>, the file your AI tool reads first.
+          </p>
+          <FileView name="SKILL.md">
+            <Html html={skillHtml} />
+          </FileView>
         </DocSection>
 
         <DocSection id="install" title="Install">
@@ -115,6 +123,7 @@ export default function UiTonguePage() {
             Then just say <Code>make my UI skill</Code>. It takes it from there.
           </p>
         </DocSection>
+
 
         <DocSection id="how-it-works" title="How it works">
           <Lede>
@@ -165,22 +174,6 @@ export default function UiTonguePage() {
           <div className="card overflow-x-auto rounded-xl px-4 py-3.5">
             <pre className="font-mono text-[12.5px] leading-relaxed text-[var(--muted)]">{TREE}</pre>
           </div>
-        </DocSection>
-
-        <DocSection id="prompts" title="Prompts">
-          <Lede>
-            Rather let your AI tool set it up? Paste one into Claude Code, Cursor or any AI coding tool.{" "}
-            <strong className="font-medium text-[var(--fg)]">Install</strong> puts the skill in place exactly as it
-            ships and asks only where.{" "}
-            <strong className="font-medium text-[var(--fg)]">Blend</strong> asks up to three short questions
-            (where, which tools, what to read first), so your first interview starts from your own design files.
-          </Lede>
-          <Tabs
-            tabs={[
-              { id: "install", label: "Install prompt", copy: installPrompt, body: <PromptBody text={installPrompt} /> },
-              { id: "blend", label: "Blend prompt", copy: blendPrompt, body: <PromptBody text={blendPrompt} /> },
-            ]}
-          />
         </DocSection>
       </DocsLayout>
     </>

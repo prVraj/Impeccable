@@ -12,7 +12,7 @@ import { brainTxtBlendPrompt, brainTxtInstallPrompt } from "@/lib/prompts";
 
 export const metadata: Metadata = {
   title: "brain.txt · Impeccable",
-  description: "A brain in the middle of a web of dots. Each dot holds a thought; drag the web to play with it.",
+  description: "A web of dots around a brain, each dot a thought to hover, open and drag. Use it on an about or portfolio page with 8 to 20 short thoughts.",
 };
 
 const REGISTRY_URL = "https://impeccable-rust.vercel.app/r/brain-txt.json";
@@ -61,16 +61,16 @@ export default async function BrainTxtPage() {
   const SECTIONS = [
     { id: "preview", title: "Preview" },
     { id: "installation", title: "Installation" },
+    { id: "prompts", title: "Prompts" },
     { id: "usage", title: "Usage" },
     { id: "props", title: "Props" },
-    { id: "prompts", title: "Prompts" },
   ];
 
   return (
     <DocsLayout slug="brain-txt" sections={SECTIONS}>
       <PageTitle
         name="brain.txt"
-        description="A brain sits in the middle of a web of dots, and each dot holds one of your thoughts. Hover a dot to light up its links, click it to read it, and drag anything to play with the web. Every dot links to at most 3 nearby dots, so it never gets crowded."
+        description="A web of dots around a brain, each dot a thought to hover, open and drag. Use it on an about or portfolio page with 8 to 20 short thoughts."
         tags={["Interactive", "No extra packages", "Light + dark", "Mobile"]}
       />
 
@@ -90,18 +90,6 @@ export default async function BrainTxtPage() {
         ]}
       />
 
-      <DocSection id="usage" title="Usage">
-        <Lede>
-          Give it a list of thoughts. The map places the dots, links each one to its nearest neighbours
-          (never more than 3) and links the inner dots to the brain.
-        </Lede>
-        <Tabs tabs={[{ id: "usage", label: "thoughts.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-      </DocSection>
-
-      <DocSection id="props" title="Props">
-        <PropsTable rows={PROPS} />
-      </DocSection>
-
       <DocSection id="prompts" title="Prompts">
         <Lede>
           Paste one into Claude Code, Cursor or any AI coding tool. <strong className="font-medium text-[var(--fg)]">Install</strong>{" "}
@@ -115,6 +103,18 @@ export default async function BrainTxtPage() {
             { id: "blend", label: "Blend prompt", copy: blendPrompt, body: <PromptBody text={blendPrompt} /> },
           ]}
         />
+      </DocSection>
+
+      <DocSection id="usage" title="Usage">
+        <Lede>
+          Give it a list of thoughts. The map places the dots, links each one to its nearest neighbours
+          (never more than 3) and links the inner dots to the brain.
+        </Lede>
+        <Tabs tabs={[{ id: "usage", label: "thoughts.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
+      </DocSection>
+
+      <DocSection id="props" title="Props">
+        <PropsTable rows={PROPS} />
       </DocSection>
     </DocsLayout>
   );

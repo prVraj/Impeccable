@@ -28,6 +28,11 @@
   --brand-800: #250e7c;
   --brand-900: #1b0a5a;
   --accent: var(--brand-500);
+  /* Radius and stroke tokens. radius-lg is 8px: Tailwind's rounded-lg, and the Figma design
+     system's radius-md. Strokes match Tailwind's border and border-2. */
+  --radius-lg: 0.5rem;
+  --stroke-1: 1px;
+  --stroke-2: 2px;
   /* Docs on desktop: the frame behind everything, and the raised page sheet. */
   --frame: #f3f3f4;
   --sheet: #ffffff;

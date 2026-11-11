@@ -13,6 +13,7 @@ import { COMPONENTS } from "@/lib/site";
 const CHANNELS = COMPONENTS.filter((c) => c.group !== "skills");
 import { currentTheme, setTheme } from "./theme-toggle";
 import { PasswordStrength } from "@/registry/impeccable/password-strength/password-strength";
+import { FramedUpload } from "@/registry/impeccable/framed-upload/framed-upload";
 
 /**
  * A 1998-style translucent iMac (graphite gray), drawn in CSS. Its screen plays one component
@@ -319,6 +320,7 @@ function Channel({ slug, onReplay }: { slug: string; onReplay: () => void }) {
   if (slug === "brain-txt") return <BrainTxtChannel />;
   if (slug === "scratch-me") return <ScratchMeChannel onReplay={onReplay} />;
   if (slug === "password-strength") return <PasswordStrengthChannel />;
+  if (slug === "framed-upload") return <FramedUploadChannel />;
   return null;
 }
 
@@ -393,6 +395,25 @@ function PasswordStrengthChannel() {
           <p className="mt-1 mb-5 text-[26px] leading-tight font-semibold tracking-tight">Are you human?</p>
           <PasswordStrength defaultValue="sunflower" />
         </div>
+      </div>
+    </Screen>
+  );
+}
+
+/** A tiny gallery wall: one framed print. Drop a picture on the tube to swap it. */
+function FramedUploadChannel() {
+  return (
+    <Screen>
+      <div className="flex h-full flex-col items-center justify-center px-[4cqw] text-center">
+        <p className="text-[2.6cqw] text-[var(--muted)]">Impeccable demo</p>
+        <p className="mt-[1cqw] mb-[4cqw] text-[5.4cqw] leading-tight font-semibold tracking-tight">
+          Hang your first picture
+        </p>
+        <FramedUpload
+          defaultSrc="/previews/framed-upload-sample.svg"
+          alt="A violet poster with a setting sun"
+          style={{ maxWidth: "26cqw" }}
+        />
       </div>
     </Screen>
   );

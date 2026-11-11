@@ -46,6 +46,14 @@ export const COMPONENTS: SiteComponent[] = [
     preview: "",
   },
   {
+    slug: "framed-upload",
+    name: "Framed-Upload",
+    group: "components",
+    category: "Upload",
+    blurb: "Drop in a picture and it hangs in a frame, like a print on a wall.",
+    preview: "",
+  },
+  {
     slug: "agent-draw",
     name: "Agent-Draw",
     group: "animations",

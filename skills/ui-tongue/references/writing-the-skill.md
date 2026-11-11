@@ -32,6 +32,12 @@ Fill every `{{placeholder}}`. Delete template lines that don't apply rather than
 
 `{{vague-request-behaviour}}` in SKILL.template.md comes from Q16: either "Ask {{Person}} one question first, then write the brief." or "Decide, show the brief, then build. {{Person}} will redirect if needed." Write rules in plain, specific words; each line must be buildable ("Headlines: tight grotesk, -0.03em, sentence case"), never a mood alone ("clean and modern").
 
+How every rule is written:
+
+- **Strict.** A value, a name, or always / never. Never "reasonably", "where appropriate", "try to", "tasteful", "nice". Why: soft words give the agent nothing to act on, so it falls back on its own generic defaults.
+- **With its why.** Every rule in taste.md carries the person's reason, or the reference it came from ("like Linear's headlines"). Why: a rule with its reason stretches to cases the file never names; a bare rule gets applied in places it doesn't fit.
+- **Only what changes the output.** Never explain what a coding agent already knows (what a hero or a shadow is). Why: every extra line thins the attention the person's real rules get.
+
 ## Translating answers into values
 
 Use these as starting points, then adjust to what you saw in their references.
@@ -84,6 +90,7 @@ Every "no" and "why not" from the interview goes in feedback-log.md, with the da
 - SKILL.md under 200 lines. No `{{` placeholder left anywhere. `[[` slots remain only in references/DESIGN.md.
 - tokens.css is valid CSS: easing is a cubic-bezier, durations in ms, no words like "spring".
 - No two rules contradict each other.
-- Every rule in taste.md traces to an answer, a pick, or a confirmed inference.
+- Every rule in taste.md traces to an answer, a pick, or a confirmed inference, and has its why filled in.
+- No soft words left in any rule (search for: reasonably, appropriate, try to, tasteful, nice, clean, modern).
 
 Then tell them in three lines: where it is installed (or the zip), how to use it ("just ask for UI as usual"), and how to tune it ("say 'update my taste' or just tell it what you don't like").

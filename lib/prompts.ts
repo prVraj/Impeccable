@@ -827,149 +827,6 @@ ${tsSource.trimEnd()}
 `;
 }
 
-/** Prompts for UI-tongue (a skill, so no props or code to wire).
- * Install: puts the folder in the AI tool exactly as shipped; asks only where.
- * Blend: asks up to three short questions about the person's setup, then installs
- * it so the first interview starts from their own design files. The files stay as shipped. */
-
-const UI_TONGUE_ZIP = "https://impeccable-rust.vercel.app/downloads/ui-tongue.zip";
-
-const UI_TONGUE_WHAT = `UI-tongue interviews me about my UI taste for about 15 minutes, builds one sample in my taste, then writes me my own UI skill. After that, a one-line request like "make me a hero section" comes out looking like I made it, not like everyone else's AI UI.`;
-
-const UI_TONGUE_INSTALL = `## Install it
-
-1. Download \`${UI_TONGUE_ZIP}\` (for example \`curl -L -o /tmp/ui-tongue.zip ${UI_TONGUE_ZIP}\`).
-2. Unzip it into the skills folder I picked. The zip already holds a \`ui-tongue/\` folder, so the result must be \`<skills folder>/ui-tongue/SKILL.md\`, not \`ui-tongue/ui-tongue/SKILL.md\`.
-   - Claude Code, every project: \`unzip /tmp/ui-tongue.zip -d ~/.claude/skills\`
-   - Claude Code, this project only: \`unzip /tmp/ui-tongue.zip -d .claude/skills\`
-   - The Claude app (web or desktop) can't be installed from here. Tell me to open Settings, find Skills, and upload the zip as it is.
-   - Another tool that reads SKILL.md skill folders: unzip it into that tool's skills folder. If my tool has no skills, tell me instead of turning it into a rules file.
-3. If the download fails, the same files are at \`https://github.com/prVraj/Impeccable/tree/main/skills/ui-tongue\`. Copy them one by one, unchanged.`;
-
-const UI_TONGUE_SOURCE = `## Source
-
-Download: \`${UI_TONGUE_ZIP}\` (free, MIT). The zip holds:
-
-\`\`\`
-ui-tongue/
-  SKILL.md        the interview and the five rules
-  LICENSE
-  references/     floor.md, interview.md, reading-references.md, sample-check.md, writing-the-skill.md
-  templates/      DESIGN.md, SKILL.template.md, feedback-log.md, motion.md, never.md, references.md, taste.md, tokens.css
-\`\`\``;
-
-export function uiTongueInstallPrompt() {
-  return `# UI-tongue
-
-An agent skill from Impeccable (a folder of instructions your AI tool reads). Install it in my AI tool exactly as it ships, in the one place I choose, and change nothing else.
-
-${UI_TONGUE_WHAT}
-
-## Before you install: one question
-
-Look first: which AI tools this machine uses (a \`~/.claude\` folder, a \`.claude\` folder in this project, other tools' skill folders) and whether \`ui-tongue\` is already installed. Then ask me this in one message and wait for my answer:
-
-- **Every project, or this project only?** Suggest one. Every project puts it in my personal skills folder (\`~/.claude/skills/\` for Claude Code). This project only puts it in \`.claude/skills/\` here, so anyone who works on this repo gets it too.
-  *Why: my taste is mine, not one project's, so it usually belongs everywhere. A shared team repo may want it in the project instead.*
-
-Ask nothing else. If I say *skip*, install it for every project. If it's already installed, tell me and ask before replacing it.
-
-## Keep it as it is
-
-The interview is the design: the five rules, the question bank with a reason for every question, the quality floor it never asks about, and the sample it builds before it writes my skill. Copy every file exactly as shipped. If something doesn't fit my setup, tell me instead of changing it.
-
-- Add only the \`ui-tongue\` folder. Don't merge it into other skills, \`CLAUDE.md\`, \`AGENTS.md\` or rules files, don't rewrite or shorten its files, and don't change anything in this project.
-- Don't start the interview. I'll start it when I'm ready.
-
-${UI_TONGUE_INSTALL}
-
-## Use it
-
-In a new chat or session I say **"make my UI skill"**. It asks Quick (14 questions, about 15 minutes) or Deep (16), studies the sites I love, builds a sample hero in light and dark, then writes my own skill (for example \`yourname-ui/\`) next to it. From then on, every UI request I make runs through my skill.
-
-## Check
-
-- \`<skills folder>/ui-tongue/\` holds \`SKILL.md\`, \`LICENSE\`, \`references/\` (5 files) and \`templates/\` (8 files), matching the list below and unchanged from the zip.
-- \`SKILL.md\` starts with \`name: ui-tongue\` in its front matter.
-- My tool lists \`ui-tongue\` among its skills in a new session (it may need a restart).
-- Nothing else on this machine or in this project changed.
-- Finish with a short report: where you installed it, how I start it, and anything you had to do differently from these steps, and why.
-
-${UI_TONGUE_SOURCE}
-`;
-}
-
-export function uiTongueBlendPrompt() {
-  return `# UI-tongue, fitted to your setup
-
-An agent skill from Impeccable (a folder of instructions your AI tool reads). Install it and fit it to how I work, so its first interview starts from what my projects already say about my taste. The skill's own files stay exactly as shipped.
-
-${UI_TONGUE_WHAT}
-
-## First: look, ask once, then install
-
-1. Look first: which AI tools I use (\`~/.claude\`, a \`.claude\` folder here, other tools' skill folders), whether \`ui-tongue\` is already installed, and the design files in this project: \`DESIGN.md\`, a Tailwind or CSS theme with color, font and radius variables, design rules in \`CLAUDE.md\`, \`AGENTS.md\` or a rules file, or another UI skill.
-2. Tell me in two or three lines what you found, then ask these questions in **one message**. Give each one options, mark your suggestion and keep its one-line why, so I know what each answer changes. Ask nothing else:
-   1. **Every project, or this project only?** Every project puts it in my personal skills folder (\`~/.claude/skills/\` for Claude Code). This project only puts it in \`.claude/skills/\` here, so anyone on this repo gets it too.
-      *Why: my taste is mine, not one project's, so it usually belongs everywhere. A shared team repo may want it in the project instead.*
-   2. **Which tools should have it?** Ask this only if you found more than one AI tool; otherwise say which one you'll use. Options: each tool you found, or all of them.
-      *Why: each tool reads skills from its own folder, so each one needs its own copy.*
-   3. **What should it read first?** List the design files you found and suggest which ones it should study before the interview, or none (start fresh).
-      *Why: anything already written down about my taste becomes a suggested answer instead of a question, so the interview is shorter and starts from my real work.*
-   If I say *skip*, use your suggestions.
-3. After I answer, show a brief of about 5 lines: where it's installed, for which tools, the files it reads first, the exact sentence I'll use to start it, and "the skill itself is kept as shipped". Ask whether to save the brief to \`impeccable.md\` in the project (add a section if the file exists) or keep it in this chat only. Default: chat only.
-4. Install only after I say go.
-
-## What you may change, and what you may not
-
-Only my answers above may change how it's set up. The skill's own files stay exactly as shipped.
-
-**You may change**
-
-- Where it lives: my personal skills folder, or this project's \`.claude/skills/\`.
-- Which tools get a copy.
-- The sentence I start it with, so it names the design files to read first.
-
-**Locked**
-
-- The interview is the design: the five rules, the question bank with a reason for every question, the quality floor it never asks about, and the sample it builds before it writes my skill. Every file stays exactly as shipped. If something doesn't fit my setup, tell me instead of changing it.
-- Add only the \`ui-tongue\` folder (one copy per tool I picked). Don't merge it into other skills, \`CLAUDE.md\`, \`AGENTS.md\` or rules files, don't edit my design files, and don't start the interview.
-
-${UI_TONGUE_INSTALL}
-
-## Start it from my files
-
-Don't change the skill to make it read my files. Give me the sentence from the brief instead, and I'll paste it into a new session when I'm ready, for example:
-
-> make my UI skill. Before the questions, study DESIGN.md and app/globals.css in this project as my references.
-
-UI-tongue treats those files like the sites I love: what they already answer, it shows me as a suggestion instead of asking.
-
-## How it works
-
-Read this before you touch anything, so you know what the skill does and why it must stay as it is.
-
-1. **Setup.** It asks Quick (14 questions, about 15 minutes) or Deep (16) and reads my stack by itself. It never asks what it can look up.
-2. **References first.** I share 3 to 5 sites I love, plus any files I named. It studies each one before asking what exactly grabbed me: the type, the spacing, the easing, the shadows.
-3. **Questions in rounds.** Every question has a written reason and a suggested answer from my references. Anything my references already answer is shown, not asked. A skipped question or a bare "yes" is never written down silently: it asks if I really want it in my skill.
-4. **A sample before it's final.** It builds one hero in my taste, in light and dark, and asks what's off.
-5. **My skill.** It writes a skill named after me with my taste, tokens, motion, the things I never want to see, a quality floor and a feedback log. Each project then gets its own \`DESIGN.md\`, so my projects feel related without looking the same.
-
-The quality floor (contrast, reduced motion, phones, performance) is never asked. It is always on.
-
-## Check
-
-- Each tool I picked has \`<skills folder>/ui-tongue/\` with \`SKILL.md\`, \`LICENSE\`, \`references/\` (5 files) and \`templates/\` (8 files), matching the list below and unchanged from the zip.
-- \`SKILL.md\` starts with \`name: ui-tongue\` in its front matter.
-- Each tool lists \`ui-tongue\` among its skills in a new session (it may need a restart).
-- The start sentence in the brief names the design files I picked, and those files exist at those paths.
-- Nothing else on this machine or in this project changed.
-- Finish with a short report: where you installed it, for which tools, the sentence I start it with, and anything you had to do differently from these steps, and why.
-
-${UI_TONGUE_SOURCE}
-`;
-}
-
 /* ---------- Password-Strength ----------
  * Install: adds the exact component; asks only where it goes.
  * Blend: asks four short questions, then fits it through the component's own props. */
@@ -1153,6 +1010,203 @@ ${PASSWORD_STRENGTH_HOW}
 The reference implementation. Copy it as-is, then apply only the changes listed above.
 
 ### \`components/ui/password-strength.tsx\`
+
+\`\`\`tsx
+${tsSource.trimEnd()}
+\`\`\`
+`;
+}
+
+/* ---------- Framed-Upload ----------
+ * Install: adds the exact component; asks only where it goes.
+ * Blend: asks four short questions, then fits it through the component's own props. */
+
+const FRAMED_UPLOAD_SHARED_BUILD = `## Fastest path
+
+If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccable-rust.vercel.app/r/framed-upload.json\`.
+If the command succeeds, only fix import paths to match this project and skip ahead. If it fails or there is no \`components.json\`, build it by hand as below.
+
+## Build it
+
+- Stack: React 18 or 19 with TypeScript. No other packages: the icons are inline SVG and every animation is CSS or the browser's own \`element.animate\`.
+- JavaScript project? Name the file \`framed-upload.jsx\` and remove the type annotations; nothing else changes.
+- Create this file, in this project's usual place for components:
+  - \`components/ui/framed-upload.tsx\`
+- Keep these exports and their names: \`FramedUpload\`, \`FramedUploadProps\`, \`FramedUploadLabels\`.
+- Keep \`"use client"\` at the top in Next.js App Router projects. In other setups it is harmless.
+- Keep the CSS block, the \`SHADOW\` and \`WOOD\` values and the tuning values at the top (\`EASE\`, \`SETTLE_MS\`, \`HANG_MS\`, \`LIFT_PX\`, \`NOTE_MS\`, \`MOULDING\`, \`MAT\`, \`RESHAPE_MS\`, \`MIN_RATIO\`, \`MAX_RATIO\`) exactly as written. They are the design.
+- Keep the corner rule: every inner corner is the corner outside it minus the padding between them (mat = frame radius - moulding; picture = mat radius - lip - mat), never below 0. Don't set inner radii by hand.
+- Keep \`DEFAULT_RADIUS\` and \`DEFAULT_STROKE\` as token references (\`var(--radius-lg, 0.5rem)\` and \`var(--stroke-2, 2px)\`). Never swap them for fixed pixel values: the frame must follow the design tokens.
+- Keep the fallbacks: with \`prefers-reduced-motion: reduce\` the image only fades in and the frame doesn't lift or swing; the empty frame is a real button (Tab, Enter, Space); Replace and Remove show on hover, on keyboard focus, and always on touch screens; the picked file stays in the browser (an object URL, freed when replaced or removed).`;
+
+const FRAMED_UPLOAD_HOW = `## How the frame works
+
+Read this before you touch anything, so you know what the code does and why it must stay as it is.
+
+1. **Frame.** Three layers, like a real picture frame: a moulding (5.5% of the width, white on a light page, graphite on a dark one, with a light top edge and a darker bottom edge so it looks bevelled), then a thin lip and a slim mat (4% of the width, a shade off the moulding, shaded along its top where the moulding overhangs it), then the picture window. Empty, the window is portrait (4 / 5). With a picture, it takes the picture's own shape (width / height, kept between 1:3 and 3:1), so a wide photo gets a wide frame and nothing is cropped; the frame eases into the new shape in 420ms. The frame's corners come from the \`--radius-lg\` token and the lip from \`--stroke-2\`; 8px and 2px are only fallbacks for a project without them. Inner corners follow one rule: inner radius = outer radius - the padding between them, never below 0, so at normal sizes the mat and picture corners are square, like a real frame.
+2. **Shadow.** Four layered shadows: a tight contact shadow at the edge plus a wide, soft one that falls downward, like a frame hanging on a wall. In dark mode the same shadows are deeper so they still read on a dark page. The picture window has its own inner shadow, darkest along the top, so the picture sits recessed behind the mat.
+3. **Empty.** A faint tint, an upload icon, "Drop an image here" and a small line with the size limit. The whole frame is one button that opens the file picker.
+4. **Drag over.** The frame lifts 3px, its shadow grows, the icon rises and the text says "Let go to frame it".
+5. **Landing.** The picture comes in from a 6% zoom and a light blur to sharp in 560ms, and the frame gives one small swing (a few pixels and half a degree) in 620ms, like it was just hung.
+6. **Filled.** Replace and Remove sit in a dark glass pill in the bottom right corner. A wrong file type or a file over the limit shows a short note at the bottom of the frame for 3 seconds and changes nothing else.
+
+Light or dark is read from the text color around the frame, so it switches with the theme with no setup.`;
+
+export function framedUploadInstallPrompt(tsSource: string) {
+  return `# Framed-Upload
+
+A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
+
+Drop in a picture and it hangs in a frame with a soft shadow, like a print on a wall.
+
+## Before you build: one question
+
+Look through this project first: its forms and settings screens that take an image (cover, avatar, product photo, portfolio), and any file inputs it already has. Then ask me this in one message and wait for my answer:
+
+- **Where should it go?** Suggest the 1–3 image fields that fit best (for example a cover image on a profile form, or a project photo in a portfolio editor). I can pick one of them or name another.
+  *Why: it replaces one image field, and the frame reads best where a picture is the main thing, not a tiny icon.*
+
+Ask nothing else. If I say *skip*, use the best suggestion.
+
+## Keep it as it is
+
+The frame is the design: a bevelled moulding, a mat with a thin lip, a recessed picture window with an inner shadow, corners and lip from the design tokens, the layered wall shadow, and the way a picture settles into the frame with one small swing. Keep them exactly as in the source. If something doesn't fit my project, tell me instead of changing it.
+
+- Add only the component file and the one place I picked. If it replaces an existing file input, keep that input's \`name\` and form wiring. Don't add packages, change other files, or restyle anything.
+- Don't add the demo parts from the Impeccable website: the sample violet poster and the second, empty frame next to it.
+
+${FRAMED_UPLOAD_SHARED_BUILD}
+
+## Use it
+
+\`\`\`tsx
+"use client";
+import { useState } from "react";
+import { FramedUpload } from "@/components/ui/framed-upload";
+
+export function CoverField() {
+  const [cover, setCover] = useState<File | null>(null); // the picked file, or null
+  return <FramedUpload name="cover" onChange={setCover} />;
+}
+\`\`\`
+
+- If the form already uploads the file somewhere, keep that code and feed it from \`onChange\` (a \`File\`, or \`null\` after Remove), or let the form send it through \`name\`.
+- If there is a current image (an existing cover), pass its URL as \`defaultSrc\`.
+- It reads light or dark mode from its parent's text color, so place it where my normal text color applies. It is full width up to 320px; size it with \`className\` or \`style\`.
+
+${FRAMED_UPLOAD_HOW}
+
+## Check
+
+- It type-checks and the page renders with no console errors.
+- Clicking the empty frame opens the file picker; dropping or picking an image fills the frame, the frame takes the picture's shape (a landscape photo gets a landscape frame, nothing cropped), the picture comes in from a light blur in about half a second and the frame swings once. Replace and Remove work. A file that isn't an image, or is over 10 MB, shows a note for 3 seconds and nothing else changes. The form still gets the file.
+- It looks right in light and dark mode (check both): the frame is white with a light mat on a light page and graphite on a dark page, and the wall shadow and the window's inner shadow show on both.
+- It works with a finger on a phone: tapping opens the photo picker and Replace and Remove are always visible.
+- With \`prefers-reduced-motion: reduce\`, the picture only fades in and the frame doesn't lift or swing.
+- Nothing else on the site looks or behaves differently.
+- Finish with a short report: the files you added or changed, where it's placed, and every place where you had to do something differently from the source, and why.
+
+## Source
+
+The reference implementation. Copy it as-is, then apply only the changes listed above.
+
+### \`components/ui/framed-upload.tsx\`
+
+\`\`\`tsx
+${tsSource.trimEnd()}
+\`\`\`
+`;
+}
+
+export function framedUploadBlendPrompt(tsSource: string) {
+  return `# Framed-Upload, fitted to your brand
+
+A 1-file React component from Impeccable. Add it to this project and fit it to the brand like a missing puzzle piece: it should look like it was always part of the product. It goes in the one place I choose, and nothing else changes.
+
+Drop in a picture and it hangs in a frame with a soft shadow, like a print on a wall. The full source is at the end of this prompt.
+
+## First: look, ask once, then build
+
+1. Look through this project first: the forms and screens that take an image, the shape of the images it already shows (covers, avatars, product photos), the way it writes short UI text, and its design tokens: radius and border-width tokens, color variables, Tailwind or shadcn theme, light and dark mode.
+2. Tell me in two or three lines what you found, then ask these questions in **one message**. Give each one options, mark your suggestion and keep its one-line why, so I know what each answer changes. Ask nothing else:
+   1. **Where should it go?** Suggest the 1–3 image fields that fit best (cover image, portfolio photo, product shot).
+      *Why: it replaces one image field, and the frame reads best where a picture is the main thing.*
+   2. **The frame shape?** Let the frame take each picture's own shape (suggested), or keep one fixed shape and crop to it (portrait 4 / 5, square 1 / 1 or landscape 3 / 2; suggest the one this field's images already use, for example square for avatars). Also the empty frame's shape.
+      *Why: fitting the picture crops nothing; a fixed shape keeps a grid of frames even, which some layouts need.*
+   3. **The frame look?** Keep \`--radius-lg\` and \`--stroke-2\` with a white frame and mat (graphite in dark mode) (suggested if my project has those tokens or none), or name which of my existing radius, border-width and color tokens you'd use for the corners, the lip, the frame and the mat. Also: with the mat (suggested) or without it.
+      *Why: the frame is the whole look, so its corners, lip and colors should come from the same tokens as the rest of my product, never from fixed numbers.*
+   4. **The words?** Keep "Drop an image here" and the size line (suggested), or text in my product's voice for the empty frame and the error notes. Also the size limit: keep 10 MB, or match my upload limit.
+      *Why: the empty frame is the only text people read before they pick, so it should sound like my product.*
+   If I say *skip*, use your suggestions.
+3. After I answer, show a brief of about 5 lines: the place, the shape, the tokens, the words and limit, and "everything else is kept as designed". Ask whether to save the brief to \`impeccable.md\` in the project (add a section if the file exists) or keep it in this chat only. Default: chat only.
+4. Build only after I say go.
+
+## What you may change, and what you may not
+
+**You may change** (only through my answers):
+
+- The place: where the component is rendered, and \`name\`, \`onChange\` and \`defaultSrc\` to wire it to my form.
+- The shape: \`fitToImage\` and \`aspectRatio\`.
+- The frame look: \`radius\`, \`stroke\`, \`frameColor\`, \`matColor\` as my design tokens, and \`mat\`.
+- The words and limit: \`title\`, \`hint\`, \`labels\` and \`maxSize\`.
+
+All of these are props the component already has, so the component file itself stays as written.
+
+**Locked**
+
+- The frame is the design: a bevelled moulding, a mat with a thin lip, a recessed picture window with an inner shadow, the layered wall shadow, and a picture that settles in from a light blur while the frame swings once. Keep them exactly as in the source. If something doesn't fit my product, tell me instead of changing it.
+
+- No new packages, no changes to files other than the component and the place I picked, no restyling, and none of the website's demo parts (the sample violet poster and the second, empty frame next to it).
+
+${FRAMED_UPLOAD_SHARED_BUILD}
+
+## Fit it to the brand
+
+Apply my answers through the component's own props:
+
+\`\`\`tsx
+"use client";
+import { FramedUpload } from "@/components/ui/framed-upload";
+
+// From my brief. Leave out any prop that stays at its default.
+export function CoverField() {
+  return (
+    <FramedUpload
+      name="cover"
+      fitToImage={false} // a fixed shape, from my brief
+      aspectRatio="1 / 1"
+      radius="var(--radius-md)" // my tokens, not pixel values
+      stroke="var(--border-width-2)"
+      frameColor="var(--card)"
+      matColor="var(--muted)"
+      title="Add a cover"
+      maxSize={5 * 1024 * 1024}
+    />
+  );
+}
+\`\`\`
+
+- Read the corners, stroke and color from my design tokens (CSS variables, or the variables behind my Tailwind or shadcn theme). Never write a pixel value or hex code for them. If my project has no radius or stroke token, leave \`radius\` and \`stroke\` out: the defaults read \`--radius-lg\` and \`--stroke-2\` and only fall back to 8px and 2px.
+- If a color variable holds bare channels (like \`222 47% 11%\`), wrap it as \`hsl(var(--name))\`.
+- Without \`frameColor\` and \`matColor\` the frame is white on a light page and graphite on a dark one, read from its parent's text color. It is full width up to 320px; size it with \`className\` or \`style\`.
+
+${FRAMED_UPLOAD_HOW}
+
+## Check
+
+- It type-checks and the page renders with no console errors.
+- My shape, tokens and words show. Clicking the empty frame opens the file picker; dropping or picking an image fills the frame (taking the picture's shape, unless I chose a fixed one), the picture comes in from a light blur in about half a second and the frame swings once. Replace and Remove work. A wrong file, or one over my limit, shows my note for 3 seconds and nothing else changes. The form still gets the file.
+- It looks right in light and dark mode (check both): my frame and mat colors, the wall shadow and the window's inner shadow read on both.
+- It works with a finger on a phone: tapping opens the photo picker and Replace and Remove are always visible.
+- With \`prefers-reduced-motion: reduce\`, the picture only fades in and the frame doesn't lift or swing.
+- Nothing else on the site looks or behaves differently.
+- Finish with a short report: the files you added or changed, what you set from my answers, and every place where you had to do something differently from the source, and why.
+
+## Source
+
+The reference implementation. Copy it as-is, then apply only the changes listed above.
+
+### \`components/ui/framed-upload.tsx\`
 
 \`\`\`tsx
 ${tsSource.trimEnd()}

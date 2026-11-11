@@ -1,6 +1,6 @@
 # {{Person}}'s taste
 
-Made with UI-tongue on {{date}} ({{mode}} mode). Every line below came from {{Person}}'s answers, picks, or inferences they confirmed. Source tags: **said** (their words), **picked** (chose from options), **confirmed** (inferred from references, then approved).
+Made with UI-tongue on {{date}} ({{mode}} mode). Every line below came from {{Person}}'s answers, picks, or inferences they confirmed. Source tags: **said** (their words), **picked** (chose from options), **confirmed** (inferred from references, then approved). Each rule carries its why, so it can be stretched to cases this file doesn't name.
 
 ## What I build
 
@@ -8,24 +8,24 @@ Made with UI-tongue on {{date}} ({{mode}} mode). Every line below came from {{Pe
 
 ## Locked decisions (do not re-ask)
 
-| Decision | Choice | Source |
-| --- | --- | --- |
-| Brand colour | {{#hex}} for my own products; client work uses the client's | said |
-| Colour posture | {{where the brand shows: main action only / accents / whole sections}} | picked |
-| Headlines | {{font class, example font, size feel, tracking, case}} | picked |
-| Body text | {{font, size}} | confirmed |
-| Neutrals | {{warm / cool / pure grey}}, light background {{hex}} | confirmed |
-| Dark mode | {{near-black / soft grey / tinted}} | picked |
-| Edges and depth | {{hairline / soft shadows / glass on floating only / flat}} | picked |
-| Corners | {{e.g. 8px cards, pill buttons}} | confirmed |
-| Gradients and texture | {{none / shade-to-shade / grain}} | confirmed |
-| Density | {{airy / rich}} | picked |
-| Imagery | {{screenshots / photos / illustration style / type only}} | {{source}} |
-| Motion amount | {{none / subtle / polished / cinematic}} | picked |
-| Motion feel | {{snappy / elegant / bouncy / heavy}}, see motion.md | picked |
-| Entrance and hover | {{e.g. blur-in, lift on hover}} | picked |
-| Scroll | {{nothing / simple reveals / scrubbed / pinned}} | {{source}} |
-| Copy voice | {{e.g. plain and confident, short sentences}} | picked |
+| Decision | Choice | Why (their reason or the reference) | Source |
+| --- | --- | --- | --- |
+| Brand colour | {{#hex}} for my own products; client work uses the client's | {{why}} | said |
+| Colour posture | {{where the brand shows: main action only / accents / whole sections}} | {{why}} | picked |
+| Headlines | {{font class, example font, size feel, tracking, case}} | {{why}} | picked |
+| Body text | {{font, size}} | {{why}} | confirmed |
+| Neutrals | {{warm / cool / pure grey}}, light background {{hex}} | {{why}} | confirmed |
+| Dark mode | {{near-black / soft grey / tinted}} | {{why}} | picked |
+| Edges and depth | {{hairline / soft shadows / glass on floating only / flat}} | {{why}} | picked |
+| Corners | {{e.g. 8px cards, pill buttons}} | {{why}} | confirmed |
+| Gradients and texture | {{none / shade-to-shade / grain}} | {{why}} | confirmed |
+| Density | {{airy / rich}} | {{why}} | picked |
+| Imagery | {{screenshots / photos / illustration style / type only}} | {{why}} | {{source}} |
+| Motion amount | {{none / subtle / polished / cinematic}} | {{why}} | picked |
+| Motion feel | {{snappy / elegant / bouncy / heavy}}, see motion.md | {{why}} | picked |
+| Entrance and hover | {{e.g. blur-in, lift on hover}} | {{why}} | picked |
+| Scroll | {{nothing / simple reveals / scrubbed / pinned}} | {{why}} | {{source}} |
+| Copy voice | {{e.g. plain and confident, short sentences}} | {{why}} | picked |
 
 ## What I love, in detail
 

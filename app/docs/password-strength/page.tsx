@@ -12,7 +12,7 @@ import { passwordStrengthBlendPrompt, passwordStrengthInstallPrompt } from "@/li
 
 export const metadata: Metadata = {
   title: "Password-Strength · Impeccable",
-  description: "A password field with show/hide that rates the password as AI, AI agent or Human, from three checkpoints.",
+  description: "A password field that rates what you type as No, AI, AI agent or Human. Use it on sign-up and reset forms in place of a plain strength bar.",
 };
 
 const REGISTRY_URL = "https://impeccable-rust.vercel.app/r/password-strength.json";
@@ -59,16 +59,16 @@ export default async function PasswordStrengthPage() {
   const SECTIONS = [
     { id: "preview", title: "Preview" },
     { id: "installation", title: "Installation" },
+    { id: "prompts", title: "Prompts" },
     { id: "usage", title: "Usage" },
     { id: "props", title: "Props" },
-    { id: "prompts", title: "Prompts" },
   ];
 
   return (
     <DocsLayout slug="password-strength" sections={SECTIONS}>
       <PageTitle
         name="Password-Strength"
-        description="A password field with a show/hide eye and three checkpoints. Meet none and it says No, one reads as AI, two as AI agent, all three as Human: a password only a person would make. The meter fills bar by bar, each checkpoint ticks itself, and a soft shine runs over the bars when it turns Human."
+        description="A password field that rates what you type as No, AI, AI agent or Human. Use it on sign-up and reset forms in place of a plain strength bar."
         tags={["Form", "No extra packages", "Light + dark", "Mobile"]}
       />
 
@@ -92,19 +92,6 @@ export default async function PasswordStrengthPage() {
         without moving the cursor or closing the phone keyboard.
       </p>
 
-      <DocSection id="usage" title="Usage">
-        <Lede>Drop it in your sign-up form. Everything has a default.</Lede>
-        <Tabs tabs={[{ id: "usage", label: "sign-up-password.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
-          The three checkpoints: at least 12 characters, at least 2 upper and 2 lower case letters, and at
-          least one number and one special character. None met is No, 1 is AI, 2 is AI agent, 3 is Human.
-        </p>
-      </DocSection>
-
-      <DocSection id="props" title="Props">
-        <PropsTable rows={PROPS} />
-      </DocSection>
-
       <DocSection id="prompts" title="Prompts">
         <Lede>
           Paste one into Claude Code, Cursor or any AI coding tool. <strong className="font-medium text-[var(--fg)]">Install</strong>{" "}
@@ -118,6 +105,19 @@ export default async function PasswordStrengthPage() {
             { id: "blend", label: "Blend prompt", copy: blendPrompt, body: <PromptBody text={blendPrompt} /> },
           ]}
         />
+      </DocSection>
+
+      <DocSection id="usage" title="Usage">
+        <Lede>Drop it in your sign-up form. Everything has a default.</Lede>
+        <Tabs tabs={[{ id: "usage", label: "sign-up-password.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
+        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+          The three checkpoints: at least 12 characters, at least 2 upper and 2 lower case letters, and at
+          least one number and one special character. None met is No, 1 is AI, 2 is AI agent, 3 is Human.
+        </p>
+      </DocSection>
+
+      <DocSection id="props" title="Props">
+        <PropsTable rows={PROPS} />
       </DocSection>
     </DocsLayout>
   );

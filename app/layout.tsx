@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { BurningScreen } from "@/registry/impeccable/burning-screen/burning-screen";
 import { themeScript } from "@/components/site/theme-toggle";
+import { SiteSearch } from "@/components/site/search";
 import "./globals.css";
 
 const sans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-dvh font-sans">
         <BurningScreen>{children}</BurningScreen>
+        <SiteSearch />
       </body>
     </html>
   );

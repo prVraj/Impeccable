@@ -12,7 +12,7 @@ import { burningScreenBlendPrompt, burningScreenInstallPrompt } from "@/lib/prom
 
 export const metadata: Metadata = {
   title: "Burning-Screen · Impeccable",
-  description: "One click burns the screen away from the click and reveals the next page.",
+  description: "One click burns the screen away from where you clicked and shows the next page through the hole. Save it for one big moment, like finishing sign-up.",
 };
 
 const REGISTRY_URL = "https://impeccable-rust.vercel.app/r/burning-screen.json";
@@ -73,9 +73,9 @@ export default async function BurningScreenPage() {
   const SECTIONS = [
     { id: "preview", title: "Preview" },
     { id: "installation", title: "Installation" },
+    { id: "prompts", title: "Prompts" },
     { id: "usage", title: "Usage" },
     { id: "props", title: "Props" },
-    { id: "prompts", title: "Prompts" },
   ];
 
   return (
@@ -83,7 +83,7 @@ export default async function BurningScreenPage() {
       <DocsLayout slug="burning-screen" sections={SECTIONS}>
         <PageTitle
           name="Burning-Screen"
-          description="One click burns the current screen away from where you clicked, and the next page shows through the hole. The edge chars black on light pages and glows white on dark ones."
+          description="One click burns the screen away from where you clicked and shows the next page through the hole. Save it for one big moment, like finishing sign-up."
           tags={["Page transition", "WebGL", "View Transitions", "Light + dark"]}
         />
 
@@ -103,6 +103,21 @@ export default async function BurningScreenPage() {
           ]}
         />
 
+        <DocSection id="prompts" title="Prompts">
+          <Lede>
+            Paste one into Claude Code, Cursor or any AI coding tool. <strong className="font-medium text-[var(--fg)]">Install</strong>{" "}
+            adds this exact component and asks only where it should burn.{" "}
+            <strong className="font-medium text-[var(--fg)]">Blend</strong> asks four short questions
+            (where, colors, speed, ash), then fits it to your brand without changing the burn.
+          </Lede>
+          <Tabs
+            tabs={[
+              { id: "install", label: "Install prompt", copy: installPrompt, body: <PromptBody text={installPrompt} /> },
+              { id: "blend", label: "Blend prompt", copy: blendPrompt, body: <PromptBody text={blendPrompt} /> },
+            ]}
+          />
+        </DocSection>
+
         <DocSection id="usage" title="Usage">
           <Lede>1. Wrap your app once, in the root layout, so it survives page changes.</Lede>
           <Tabs tabs={[{ id: "layout", label: "layout.tsx", copy: USAGE_LAYOUT, body: <Html html={layoutHtml} /> }]} />
@@ -119,21 +134,6 @@ export default async function BurningScreenPage() {
             Set them on <Code>&lt;BurningScreen&gt;</Code> as defaults, or per call in{" "}
             <Code>burn(update, options)</Code>.
           </p>
-        </DocSection>
-
-        <DocSection id="prompts" title="Prompts">
-          <Lede>
-            Paste one into Claude Code, Cursor or any AI coding tool. <strong className="font-medium text-[var(--fg)]">Install</strong>{" "}
-            adds this exact component and asks only where it should burn.{" "}
-            <strong className="font-medium text-[var(--fg)]">Blend</strong> asks four short questions
-            (where, colors, speed, ash), then fits it to your brand without changing the burn.
-          </Lede>
-          <Tabs
-            tabs={[
-              { id: "install", label: "Install prompt", copy: installPrompt, body: <PromptBody text={installPrompt} /> },
-              { id: "blend", label: "Blend prompt", copy: blendPrompt, body: <PromptBody text={blendPrompt} /> },
-            ]}
-          />
         </DocSection>
       </DocsLayout>
     </>

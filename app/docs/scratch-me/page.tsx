@@ -12,7 +12,7 @@ import { scratchMeBlendPrompt, scratchMeInstallPrompt } from "@/lib/prompts";
 
 export const metadata: Metadata = {
   title: "Scratch-me · Impeccable",
-  description: "A promo code under a scratch-off foil. Scratch half and it reveals itself and copies to the clipboard.",
+  description: "A scratch-off foil hides a promo code that copies itself once revealed. Use it on a pricing, upgrade or thank-you page for one special offer.",
 };
 
 const REGISTRY_URL = "https://impeccable-rust.vercel.app/r/scratch-me.json";
@@ -61,16 +61,16 @@ export default async function ScratchMePage() {
   const SECTIONS = [
     { id: "preview", title: "Preview" },
     { id: "installation", title: "Installation" },
+    { id: "prompts", title: "Prompts" },
     { id: "usage", title: "Usage" },
     { id: "props", title: "Props" },
-    { id: "prompts", title: "Prompts" },
   ];
 
   return (
     <DocsLayout slug="scratch-me" sections={SECTIONS}>
       <PageTitle
         name="Scratch-me"
-        description="A promo code hidden under a scratch-off foil. Rub it with the mouse or a finger and the shavings fall below it. Scratch at least half, let go, and the rest flakes away, the code is copied to the clipboard and a little “Code copied” pops up at the bottom of the screen."
+        description="A scratch-off foil hides a promo code that copies itself once revealed. Use it on a pricing, upgrade or thank-you page for one special offer."
         tags={["Interactive", "No extra packages", "Light + dark", "Mobile"]}
       />
 
@@ -90,19 +90,6 @@ export default async function ScratchMePage() {
         ]}
       />
 
-      <DocSection id="usage" title="Usage">
-        <Lede>Give it the code. Everything else has a default.</Lede>
-        <Tabs tabs={[{ id: "usage", label: "upgrade-offer.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
-          The code sits in the page, so anyone can read it in the page source. Use it for friendly
-          offers, not secrets.
-        </p>
-      </DocSection>
-
-      <DocSection id="props" title="Props">
-        <PropsTable rows={PROPS} />
-      </DocSection>
-
       <DocSection id="prompts" title="Prompts">
         <Lede>
           Paste one into Claude Code, Cursor or any AI coding tool. <strong className="font-medium text-[var(--fg)]">Install</strong>{" "}
@@ -116,6 +103,19 @@ export default async function ScratchMePage() {
             { id: "blend", label: "Blend prompt", copy: blendPrompt, body: <PromptBody text={blendPrompt} /> },
           ]}
         />
+      </DocSection>
+
+      <DocSection id="usage" title="Usage">
+        <Lede>Give it the code. Everything else has a default.</Lede>
+        <Tabs tabs={[{ id: "usage", label: "upgrade-offer.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
+        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+          The code sits in the page, so anyone can read it in the page source. Use it for friendly
+          offers, not secrets.
+        </p>
+      </DocSection>
+
+      <DocSection id="props" title="Props">
+        <PropsTable rows={PROPS} />
       </DocSection>
     </DocsLayout>
   );

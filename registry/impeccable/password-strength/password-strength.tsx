@@ -203,7 +203,7 @@ export function PasswordStrength({
     <div ref={rootRef} className={`ipw${className ? ` ${className}` : ""}`} style={{ width: "100%", maxWidth: 480, ...style }}>
       <style>{CSS}</style>
 
-      <label htmlFor={inputId} style={{ display: "block", fontSize: 18, fontWeight: 500, lineHeight: "26px", marginBottom: 8 }}>
+      <label htmlFor={inputId} style={{ display: "block", fontSize: 18, fontWeight: 500, lineHeight: "26px", marginBottom: 8, paddingLeft: 2 }}>
         {label}
       </label>
 

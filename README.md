@@ -4,6 +4,8 @@ Animations and skills that fit your product like the missing piece of a puzzle. 
 
 **[impeccable-rust.vercel.app](https://impeccable-rust.vercel.app)** · Docs start at [/docs](https://impeccable-rust.vercel.app/docs)
 
+Looking for something? Press `⌘K` on a Mac or `Ctrl+K` on Windows on any page, or click Search at the top, to search the whole library.
+
 ## What's inside
 
 The library has three parts.
@@ -15,6 +17,7 @@ The library has three parts.
 | [brain.txt](https://impeccable-rust.vercel.app/docs/brain-txt) | A brain in a web of dots; each dot holds one of your thoughts. |
 | [Scratch-me](https://impeccable-rust.vercel.app/docs/scratch-me) | Scratch off the foil to reveal a promo code; it copies itself. |
 | [Password-Strength](https://impeccable-rust.vercel.app/docs/password-strength) | A password field that rates you as AI, AI agent or Human. |
+| [Framed-Upload](https://impeccable-rust.vercel.app/docs/framed-upload) | Drop in a picture and it hangs in a frame, like a print on a wall. |
 
 ### Animations
 
@@ -81,6 +84,7 @@ pnpm dev
 | `generated/js/<name>/<name>.jsx` | The JavaScript version, generated on `pnpm dev` and `pnpm build`. Don't edit it by hand. |
 | `lib/prompts.ts` | The Install and Blend prompts. |
 | `lib/site.ts` | The list of everything in the library and which part it belongs to. |
+| `components/site/search.tsx` | The site search (`⌘K` / `Ctrl+K`). With nothing typed it shows your recent picks, or the newest items from its `ADDED_NEWEST_FIRST` list. |
 | `app/docs/<name>/page.tsx` | Each item's docs page. `app/docs/page.tsx` is the Introduction. |
 | `skills/<name>/` | A skill's source files. The download lives in `public/downloads/`. |
 | `registry.json`, `public/r/` | The shadcn registry. `pnpm registry:build` regenerates `public/r/`. |
