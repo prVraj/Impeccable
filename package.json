@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "next": "16.0.11",
+    "next": "16.4.3",
     "react": "19.2.9",
     "react-dom": "19.2.9",
     "shiki": "3.23.0"
@@ -21,7 +21,7 @@
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.7",
     "prettier": "3.9.10",
-    "shadcn": "3.8.5",
+    "shadcn": "4.22.2",
     "tailwindcss": "4.1.18",
     "typescript": "5.9.3"
   },
