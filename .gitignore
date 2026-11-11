@@ -4,3 +4,10 @@ out
 next-env.d.ts
 *.tsbuildinfo
 .DS_Store
+
+# Secrets and scratch files never go to GitHub.
+.env*
+!.env.example
+*.pem
+*.key
+*.tmp

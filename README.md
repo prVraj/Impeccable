@@ -84,6 +84,7 @@ pnpm dev
 | `app/docs/<name>/page.tsx` | Each item's docs page. `app/docs/page.tsx` is the Introduction. |
 | `skills/<name>/` | A skill's source files. The download lives in `public/downloads/`. |
 | `registry.json`, `public/r/` | The shadcn registry. `pnpm registry:build` regenerates `public/r/`. |
+| `next.config.ts` | Redirects and the security headers every page is sent with. |
 
 Old `/components/...` links redirect to `/docs/...`, and `/docs/brain-map` redirects to `/docs/brain-txt`.
 
