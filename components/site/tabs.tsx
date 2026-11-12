@@ -34,7 +34,8 @@ export function Tabs({ tabs, maxHeight = "28rem" }: { tabs: Tab[]; maxHeight?: s
         </div>
         <CopyButton text={tab.copy} />
       </div>
-      <div className="overflow-auto p-4 text-[13px] leading-relaxed" style={{ maxHeight }}>
+      {/* tabIndex: keyboard users can focus the box and scroll it with the arrow keys. */}
+      <div tabIndex={0} className="overflow-auto p-4 text-[13px] leading-relaxed" style={{ maxHeight }}>
         {tab.body}
       </div>
     </div>
