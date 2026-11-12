@@ -11,3 +11,7 @@ next-env.d.ts
 *.pem
 *.key
 *.tmp
+
+# Private: our own working skills and agent notes. Never pushed (2026-11-12).
+.agents/
+CLAUDE.md
