@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node scripts/build-js.mjs && next dev",
-    "build": "node scripts/build-js.mjs && next build",
+    "dev": "node scripts/items.mjs && node scripts/build-js.mjs && next dev",
+    "build": "node scripts/items.mjs && node scripts/build-js.mjs && next build",
     "start": "next start",
-    "registry:build": "node scripts/build-js.mjs && shadcn build",
-    "typecheck": "tsc --noEmit"
+    "registry:build": "node scripts/items.mjs && node scripts/build-js.mjs && shadcn build",
+    "typecheck": "tsc --noEmit",
+    "check": "node scripts/items.mjs"
   },
   "dependencies": {
     "next": "16.4.3",

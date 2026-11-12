@@ -7,10 +7,10 @@
       "name": "burning-screen",
       "type": "registry:component",
       "title": "Burning-Screen",
-      "description": "A page transition that burns the current screen away from the click and reveals the next page.",
+      "description": "One click burns the screen away from where you clicked and shows the next page through the hole. Save it for one big moment, like finishing sign-up.",
       "files": [
         {
-          "path": "registry/impeccable/burning-screen/burning-screen.tsx",
+          "path": "items/burning-screen/burning-screen.tsx",
           "type": "registry:component",
           "target": "components/ui/burning-screen.tsx"
         }
@@ -20,10 +20,10 @@
       "name": "agent-draw",
       "type": "registry:component",
       "title": "Agent-Draw",
-      "description": "A loader where named cursors draw the page's skeleton live, top to bottom, then the real content fades in.",
+      "description": "Named cursors draw your page's skeleton while its data loads, then the real content fades in. Use it on slow screens, like a dashboard or profile.",
       "files": [
         {
-          "path": "registry/impeccable/agent-draw/agent-draw.tsx",
+          "path": "items/agent-draw/agent-draw.tsx",
           "type": "registry:component",
           "target": "components/ui/agent-draw.tsx"
         }
@@ -33,10 +33,10 @@
       "name": "brain-txt",
       "type": "registry:component",
       "title": "brain.txt",
-      "description": "A brain in the middle of a web of dots that each hold a thought. Hover, click and drag to play with it.",
+      "description": "A web of dots around a brain, each dot a thought to hover, open and drag. Use it on an about or portfolio page with 8 to 20 short thoughts.",
       "files": [
         {
-          "path": "registry/impeccable/brain-txt/brain-txt.tsx",
+          "path": "items/brain-txt/brain-txt.tsx",
           "type": "registry:component",
           "target": "components/ui/brain-txt.tsx"
         }
@@ -46,10 +46,10 @@
       "name": "scratch-me",
       "type": "registry:component",
       "title": "Scratch-me",
-      "description": "A promo code under a scratch-off foil. Scratch half and it reveals itself and copies to the clipboard.",
+      "description": "A scratch-off foil hides a promo code that copies itself once revealed. Use it on a pricing, upgrade or thank-you page for one special offer.",
       "files": [
         {
-          "path": "registry/impeccable/scratch-me/scratch-me.tsx",
+          "path": "items/scratch-me/scratch-me.tsx",
           "type": "registry:component",
           "target": "components/ui/scratch-me.tsx"
         }
@@ -59,10 +59,10 @@
       "name": "password-strength",
       "type": "registry:component",
       "title": "Password-Strength",
-      "description": "A password field with show/hide that rates the password as AI, AI agent or Human, from three checkpoints.",
+      "description": "A password field that rates what you type as No, AI, AI agent or Human. Use it on sign-up and reset forms in place of a plain strength bar.",
       "files": [
         {
-          "path": "registry/impeccable/password-strength/password-strength.tsx",
+          "path": "items/password-strength/password-strength.tsx",
           "type": "registry:component",
           "target": "components/ui/password-strength.tsx"
         }
@@ -72,10 +72,10 @@
       "name": "framed-upload",
       "type": "registry:component",
       "title": "Framed-Upload",
-      "description": "An image upload that hangs the picture in a frame with a soft shadow, like a print on a wall.",
+      "description": "Drop in a picture and it hangs in a frame with a soft shadow, like a print on a wall. Use it on cover or portfolio forms, one picture per frame.",
       "files": [
         {
-          "path": "registry/impeccable/framed-upload/framed-upload.tsx",
+          "path": "items/framed-upload/framed-upload.tsx",
           "type": "registry:component",
           "target": "components/ui/framed-upload.tsx"
         }
@@ -85,10 +85,10 @@
       "name": "hex-login",
       "type": "registry:component",
       "title": "Hex-Login",
-      "description": "A calm login page: your logo inside four thin hexagon rings, Sign in with Google, an email field with a built-in check, and Continue.",
+      "description": "A calm login page with your logo inside turning hexagon rings. Use it as your main sign-in page, with your own logo and real sign-in behind it.",
       "files": [
         {
-          "path": "registry/impeccable/hex-login/hex-login.tsx",
+          "path": "items/hex-login/hex-login.tsx",
           "type": "registry:component",
           "target": "components/ui/hex-login.tsx"
         }
@@ -98,10 +98,10 @@
       "name": "burning-toast",
       "type": "registry:component",
       "title": "Burning-toast",
-      "description": "Toasts that stack at the bottom of the screen and burn away when they close: from the X, from the top when time runs out, or where a swipe lets go.",
+      "description": "Toasts that stack at the bottom of the screen and burn away when they close. Use it in apps and dashboards after a save or send, one short line each.",
       "files": [
         {
-          "path": "registry/impeccable/burning-toast/burning-toast.tsx",
+          "path": "items/burning-toast/burning-toast.tsx",
           "type": "registry:component",
           "target": "components/ui/burning-toast.tsx"
         }

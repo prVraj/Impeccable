@@ -87,17 +87,42 @@ pnpm install
 pnpm dev
 ```
 
+### Project map
+
+Everything about one item lives in its own folder under `items/`. Open the folder and you see the whole item.
+
+```
+items/
+  list.ts                  THE list: one line per item, in sidebar order
+  hex-login/
+    hex-login.tsx          the component people install
+    info.ts                name, group, short blurb, description, tags, date added
+    docs.tsx               its docs page: hint, usage, props
+    demo.tsx               the live preview on the docs page
+    tv.tsx                 its channel on the home iMac
+    prompts.ts             its Install and Blend prompts
+  login-pages/             a family page (info.ts + docs.tsx)
+  ui-tongue/               a skill page (info.ts + docs.tsx)
+app/                       the website's pages (home, Introduction, layout)
+components/site/           the site's own parts: header, sidebar, search, iMac, bulb
+lib/                       small helpers; site.ts reads items/ for the sidebar and search
+skills/<name>/             a skill's files; the download lives in public/downloads/
+scripts/items.mjs          checks every item has all its pieces, then writes the files below
+generated/                 written on every dev and build. Don't edit by hand.
+public/r/                  the install files, made by pnpm registry:build
+```
+
 | Path | What it is |
 | --- | --- |
-| `registry/impeccable/<name>/<name>.tsx` | A component's, section's or animation's source (TypeScript). |
-| `generated/js/<name>/<name>.jsx` | The JavaScript version, generated on `pnpm dev` and `pnpm build`. Don't edit it by hand. |
-| `lib/prompts.ts` | The Install and Blend prompts. |
-| `lib/site.ts` | The list of everything in the library, which part it belongs to, and families like Login pages (one sidebar entry that opens a page listing all its variants). |
-| `components/site/search.tsx` | The site search (`⌘K` / `Ctrl+K`). With nothing typed it shows your recent picks, or the newest items from its `ADDED_NEWEST_FIRST` list. |
-| `app/docs/<name>/page.tsx` | Each item's docs page. `app/docs/page.tsx` is the Introduction. |
-| `skills/<name>/` | A skill's source files. The download lives in `public/downloads/`. |
-| `registry.json`, `public/r/` | The shadcn registry. `pnpm registry:build` regenerates `public/r/`. |
+| `items/<name>/` | One item: component, info, docs page, demo, iMac channel, prompts. |
+| `items/list.ts` | Which items exist, in sidebar order. |
+| `docs/ADDING-AN-ITEM.md` | Step by step: how to add a new component, section, animation or skill. |
+| `generated/js/<name>/<name>.jsx` | The JavaScript version of each component, made on `pnpm dev` and `pnpm build`. |
+| `generated/items/`, `app/docs/<name>/page.tsx`, `registry.json` | Made by `scripts/items.mjs` from `items/`. The page files aren't kept in git. |
+| `public/r/` | The shadcn install files. `pnpm registry:build` remakes them. |
 | `next.config.ts` | Redirects and the security headers every page is sent with. |
+
+`pnpm check` runs the item checker on its own. `pnpm dev` and `pnpm build` run it first and stop with a plain message when a piece is missing.
 
 Old `/components/...` links redirect to `/docs/...`, and `/docs/brain-map` redirects to `/docs/brain-txt`.
 

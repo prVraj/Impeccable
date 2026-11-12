@@ -1,15 +1,17 @@
 // Turns each TypeScript component into a JavaScript (.jsx) copy, so the two never drift.
-import { readFileSync, writeFileSync, mkdirSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync, mkdirSync, readdirSync } from "node:fs";
 import { join, basename } from "node:path";
 import ts from "typescript";
 import * as prettier from "prettier";
 
-const SRC = "registry/impeccable";
+const SRC = "items";
 const OUT = "generated/js";
 
+// Each item's component is items/<name>/<name>.tsx (skills and family pages have none).
 for (const name of readdirSync(SRC)) {
   const dir = join(SRC, name);
-  for (const file of readdirSync(dir).filter((f) => f.endsWith(".tsx") || f.endsWith(".ts"))) {
+  if (!existsSync(join(dir, `${name}.tsx`))) continue;
+  for (const file of [`${name}.tsx`]) {
     const source = readFileSync(join(dir, file), "utf8");
     // Keep blank lines through the compiler.
     const marked = source.replace(/\n\s*\n/g, "\n/*__BLANK__*/\n");

@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { COMPONENTS, FAMILIES, GROUPS, type Group } from "@/lib/site";
+import { COMPONENTS, FAMILIES, GROUPS, newestFirst, type Group } from "@/lib/site";
 import { cx } from "@/lib/utils";
 import { ArrowTurnBackwardIcon, Cancel01Icon, Clock01Icon, CommandIcon, Search01Icon } from "./hugeicons";
 import { GroupIcon } from "./group-icon";
@@ -19,24 +19,6 @@ import { Mark } from "./icons";
 const OPEN_EVENT = "impeccable:search";
 const RECENT_KEY = "impeccable-recent-search";
 const RECENT_MAX = 5;
-
-/**
- * Newest first. Anything in lib/site.ts that is missing here counts as the
- * newest of all, so a new item shows up in "Recently added" on its own; add
- * its slug to the front of this list when you get to it.
- */
-const ADDED_NEWEST_FIRST = [
-  "burning-toast",
-  "hex-login",
-  "login-pages",
-  "framed-upload",
-  "password-strength",
-  "scratch-me",
-  "brain-txt",
-  "ui-tongue",
-  "agent-draw",
-  "burning-screen",
-];
 
 // The open: from 90% size and half opacity to full, like it comes up through
 // the screen. Fast to start, calm to settle. The close is quicker and smaller.
@@ -180,14 +162,11 @@ function clearRecent() {
 
 type Section = { label: string; recent?: boolean; items: Item[] };
 
+/** The newest items, by the date in each item's info.ts. */
 function newest(count: number): Item[] {
-  const rank = (i: Item) => {
-    const slug = i.href.replace("/docs/", "");
-    // Not in the list yet = just added = newest.
-    return ADDED_NEWEST_FIRST.indexOf(slug);
-  };
-  return ITEMS.filter((i) => i.group)
-    .sort((a, b) => rank(a) - rank(b))
+  return newestFirst()
+    .map((n) => ITEMS.find((i) => i.href === `/docs/${n.slug}`))
+    .filter((i): i is Item => !!i)
     .slice(0, count);
 }
 

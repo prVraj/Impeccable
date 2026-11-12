@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { useBurningScreen } from "@/registry/impeccable/burning-screen/burning-screen";
+import { useBurningScreen } from "@/items/burning-screen/burning-screen";
 
 export default function SignupDemo() {
   const router = useRouter();

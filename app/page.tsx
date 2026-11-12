@@ -2,11 +2,12 @@ import Link from "next/link";
 import { Header } from "@/components/site/header";
 import { IMac } from "@/components/site/imac";
 import { Arrow, GitHub } from "@/components/site/icons";
-import { AUTHOR, COMPONENTS, GITHUB } from "@/lib/site";
+import { AUTHOR, GITHUB, newestFirst } from "@/lib/site";
 
 /** One screen, nothing to scroll: the promise, two ways in. */
 export default function Home() {
-  const latest = COMPONENTS.find((c) => c.isNew) ?? COMPONENTS[0];
+  // The newest item (by the date in its info.ts), not counting family pages.
+  const latest = newestFirst().find((i) => i.kind !== "family")!;
   return (
     <div className="flex min-h-dvh flex-col">
       <Header />

@@ -1,4 +1,7 @@
-/** The site's list of components. Order here is the order in the sidebar and on the home page. */
+/** The site's list of items. The order lives in items/list.ts; each item's details in items/<slug>/info.ts. */
+import { ORDER } from "@/items/list";
+import { INFO } from "@/generated/items/info";
+
 export type Group = "components" | "sections" | "skills" | "animations";
 
 /** The parts of the library, in sidebar order. */
@@ -10,110 +13,49 @@ export const GROUPS: { id: Group; label: string }[] = [
   { id: "animations", label: "Animations" },
 ];
 
-export type SiteComponent = {
+/** Everything about one item, from items/<slug>/info.ts. */
+export type ItemInfo = {
   slug: string;
+  /** "family" for a page that lists several variants (like Login pages). */
+  kind?: "family";
   name: string;
   group: Group;
-  category: string;
+  category?: string;
+  /** Short line for the docs home, search and family cards. */
   blurb: string;
-  preview: string;
-  isNew?: boolean;
-  /** Slug of the family it belongs to (see FAMILIES), like "login-pages". */
+  /** Two lines at most: under the page title, the meta description and the install description. */
+  description: string;
+  /** Little labels under the page title. */
+  tags: string[];
+  /** Slug of the family it belongs to, like "login-pages". */
   family?: string;
+  /** When it was added, "YYYY-MM-DD HH:MM". Newest shows first in search and on the home page. */
+  added: string;
 };
+
+export type SiteComponent = ItemInfo;
+export type Family = ItemInfo;
+
+const ALL: ItemInfo[] = ORDER.map((slug) => INFO[slug]);
 
 /**
  * Families: one sidebar entry that opens a page listing all its variants, so a
  * group with many login pages (or heroes, or footers) stays one short line.
  */
-export type Family = { slug: string; name: string; group: Group; blurb: string };
+export const FAMILIES = ALL.filter((i) => i.kind === "family");
 
-export const FAMILIES: Family[] = [
-  {
-    slug: "login-pages",
-    name: "Login pages",
-    group: "sections",
-    blurb: "Every login page in the library, side by side.",
-  },
-];
+/** Every item that is not a family page, in sidebar order. */
+export const COMPONENTS = ALL.filter((i) => i.kind !== "family");
 
-export const COMPONENTS: SiteComponent[] = [
-  {
-    slug: "burning-toast",
-    name: "Burning-toast",
-    group: "components",
-    category: "Feedback",
-    blurb: "Toasts that stack at the bottom and burn away when they close.",
-    preview: "",
-  },
-  {
-    slug: "brain-txt",
-    name: "brain.txt",
-    group: "components",
-    category: "Interactive",
-    blurb: "A brain in a web of dots; each dot holds one of your thoughts.",
-    preview: "",
-  },
-  {
-    slug: "scratch-me",
-    name: "Scratch-me",
-    group: "components",
-    category: "Interactive",
-    blurb: "Scratch off the foil to reveal a promo code; it copies itself.",
-    preview: "",
-  },
-  {
-    slug: "password-strength",
-    name: "Password-Strength",
-    group: "components",
-    category: "Form",
-    blurb: "A password field that rates you as AI, AI agent or Human.",
-    preview: "",
-  },
-  {
-    slug: "framed-upload",
-    name: "Framed-Upload",
-    group: "components",
-    category: "Upload",
-    blurb: "Drop in a picture and it hangs in a frame, like a print on a wall.",
-    preview: "",
-  },
-  {
-    slug: "hex-login",
-    name: "Hex-Login",
-    group: "sections",
-    family: "login-pages",
-    category: "Login page",
-    blurb: "A calm login page with your logo inside turning hexagon rings.",
-    preview: "",
-  },
-  {
-    slug: "agent-draw",
-    name: "Agent-Draw",
-    group: "animations",
-    category: "Loader",
-    blurb: "Named cursors draw your page's skeleton live while it loads.",
-    preview: "/previews/agent-draw",
-    isNew: true,
-  },
-  {
-    slug: "burning-screen",
-    name: "Burning-Screen",
-    group: "animations",
-    category: "Page transition",
-    blurb: "One click burns the screen away and reveals the next page.",
-    preview: "/previews/burning-screen",
-  },
-  {
-    slug: "ui-tongue",
-    name: "UI-tongue",
-    group: "skills",
-    category: "Skill",
-    blurb: "Learns your UI taste and writes you your own UI skill.",
-    preview: "",
-    isNew: true,
-  },
-];
+/** Every item and family page, newest first. */
+export function newestFirst() {
+  return [...ALL].sort((a, b) => b.added.localeCompare(a.added));
+}
+
+/** The page title and meta description for an item's docs page. */
+export function itemMetadata(info: ItemInfo) {
+  return { title: `${info.name} · Impeccable`, description: info.description };
+}
 
 export const GITHUB = "https://github.com/prVraj/Impeccable";
 export const AUTHOR = { name: "Vraj Parikh", href: "https://x.com/vrajsensei" };

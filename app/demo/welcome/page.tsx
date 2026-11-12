@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { useBurningScreen } from "@/registry/impeccable/burning-screen/burning-screen";
+import { useBurningScreen } from "@/items/burning-screen/burning-screen";
 
 export default function WelcomeDemo() {
   const router = useRouter();

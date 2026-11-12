@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { BurningScreen } from "@/registry/impeccable/burning-screen/burning-screen";
+import { BurningScreen } from "@/items/burning-screen/burning-screen";
 import { themeScript } from "@/components/site/theme-toggle";
 import { SiteSearch } from "@/components/site/search";
 import "./globals.css";
