@@ -8,16 +8,25 @@ Looking for something? Press `⌘K` on a Mac or `Ctrl+K` on Windows on any page,
 
 ## What's inside
 
-The library has three parts.
+The library has four parts.
 
 ### Components
 
 | Component | What it does |
 | --- | --- |
+| [Burning-toast](https://impeccable-rust.vercel.app/docs/burning-toast) | Toasts that stack at the bottom and burn away when they close. |
 | [brain.txt](https://impeccable-rust.vercel.app/docs/brain-txt) | A brain in a web of dots; each dot holds one of your thoughts. |
 | [Scratch-me](https://impeccable-rust.vercel.app/docs/scratch-me) | Scratch off the foil to reveal a promo code; it copies itself. |
 | [Password-Strength](https://impeccable-rust.vercel.app/docs/password-strength) | A password field that rates you as AI, AI agent or Human. |
 | [Framed-Upload](https://impeccable-rust.vercel.app/docs/framed-upload) | Drop in a picture and it hangs in a frame, like a print on a wall. |
+
+### Sections
+
+Whole page blocks. Sections of one kind share a family page that lists them all, like [Login pages](https://impeccable-rust.vercel.app/docs/login-pages).
+
+| Section | What it does |
+| --- | --- |
+| [Hex-Login](https://impeccable-rust.vercel.app/docs/hex-login) | A calm login page with your logo inside turning hexagon rings. |
 
 ### Animations
 
@@ -32,9 +41,9 @@ The library has three parts.
 | --- | --- |
 | [UI-tongue](https://impeccable-rust.vercel.app/docs/ui-tongue) | Learns your UI taste in about 15 minutes and writes you your own UI skill, so a one-line prompt comes out in your style. |
 
-## Add a component or animation to your project
+## Add a component, section or animation to your project
 
-Every component and animation page gives you three ways in.
+Every component, section and animation page gives you three ways in. Above the preview, switch it to desktop, tablet or phone width, drag its right edge to any width, reset it or open it fullscreen.
 
 **1. Install command.** In a project set up with [shadcn](https://ui.shadcn.com):
 
@@ -80,10 +89,10 @@ pnpm dev
 
 | Path | What it is |
 | --- | --- |
-| `registry/impeccable/<name>/<name>.tsx` | A component's or animation's source (TypeScript). |
+| `registry/impeccable/<name>/<name>.tsx` | A component's, section's or animation's source (TypeScript). |
 | `generated/js/<name>/<name>.jsx` | The JavaScript version, generated on `pnpm dev` and `pnpm build`. Don't edit it by hand. |
 | `lib/prompts.ts` | The Install and Blend prompts. |
-| `lib/site.ts` | The list of everything in the library and which part it belongs to. |
+| `lib/site.ts` | The list of everything in the library, which part it belongs to, and families like Login pages (one sidebar entry that opens a page listing all its variants). |
 | `components/site/search.tsx` | The site search (`⌘K` / `Ctrl+K`). With nothing typed it shows your recent picks, or the newest items from its `ADDED_NEWEST_FIRST` list. |
 | `app/docs/<name>/page.tsx` | Each item's docs page. `app/docs/page.tsx` is the Introduction. |
 | `skills/<name>/` | A skill's source files. The download lives in `public/downloads/`. |
@@ -91,8 +100,6 @@ pnpm dev
 | `next.config.ts` | Redirects and the security headers every page is sent with. |
 
 Old `/components/...` links redirect to `/docs/...`, and `/docs/brain-map` redirects to `/docs/brain-txt`.
-
-Notes for AI agents working in this repo live in `CLAUDE.md` and `.agents/skills/`.
 
 ## Who makes it
 

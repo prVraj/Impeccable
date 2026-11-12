@@ -23,7 +23,7 @@ export function Playground() {
   const options = { duration, embers, emberDuration, colors };
 
   return (
-    <div className="card rounded-xl p-5 sm:p-6">
+    <div className="card rounded-xl p-5 @min-[40rem]:p-6">
       <div className="flex flex-wrap items-center gap-3">
         <button
           type="button"
@@ -42,7 +42,7 @@ export function Playground() {
         </a>
       </div>
 
-      <div className="mt-6 grid gap-5 sm:grid-cols-2">
+      <div className="mt-6 grid gap-5 @min-[40rem]:grid-cols-2">
         <Slider
           label="Duration"
           value={duration}

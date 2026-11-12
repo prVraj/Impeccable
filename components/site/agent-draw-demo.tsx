@@ -119,7 +119,7 @@ function Cover({ art }: { art: "phone" | "desk" }) {
 /** Vraj Parikh's portfolio as a mini page. Everything links to the live site. */
 function Profile() {
   return (
-    <div className="px-5 pt-5 pb-6 sm:px-9 sm:pt-7 sm:pb-9">
+    <div className="px-5 pt-5 pb-6 @min-[40rem]:px-9 @min-[40rem]:pt-7 @min-[40rem]:pb-9">
       {/* Nav */}
       <div className="flex items-center justify-between gap-4">
         <a href={`${SITE}/#home`} {...out} className="flex items-center gap-2.5 transition-opacity hover:opacity-70">
@@ -128,7 +128,7 @@ function Profile() {
           </span>
           <span className="text-[13px] font-semibold tracking-tight">Vraj Parikh</span>
         </a>
-        <nav className="hidden items-center rounded-full bg-[var(--panel-2)] p-0.5 text-[12.5px] shadow-[inset_0_0_0_1px_var(--line)] sm:flex">
+        <nav className="hidden items-center rounded-full bg-[var(--panel-2)] p-0.5 text-[12.5px] shadow-[inset_0_0_0_1px_var(--line)] @min-[40rem]:flex">
           {NAV.map((n) => (
             <a
               key={n.label}
@@ -143,7 +143,7 @@ function Profile() {
       </div>
 
       {/* Hero */}
-      <div className="mt-10 sm:mt-14">
+      <div className="mt-10 @min-[40rem]:mt-14">
         <div className="flex items-center gap-3">
           <a
             href={`${SITE}/#home`}
@@ -160,7 +160,7 @@ function Profile() {
             <span className="text-[var(--faint)]">Vadodara, Gujarat</span>
           </a>
         </div>
-        <h3 className="mt-6 max-w-[30ch] text-[26px] leading-[1.08] font-semibold tracking-[-0.035em] text-balance sm:text-[34px]">
+        <h3 className="mt-6 max-w-[30ch] text-[26px] leading-[1.08] font-semibold tracking-[-0.035em] text-balance @min-[40rem]:text-[34px]">
           <a href={`${SITE}/#about-me`} {...out} className="transition-opacity hover:opacity-80">
             I design flows with clear hierarchy, honest states and{" "}
             <span className="text-[var(--muted)]">build-ready details.</span>
@@ -199,7 +199,7 @@ function Profile() {
             View all →
           </a>
         </div>
-        <div className="mt-5 grid gap-x-5 gap-y-8 sm:grid-cols-2">
+        <div className="mt-5 grid gap-x-5 gap-y-8 @min-[40rem]:grid-cols-2">
           {CASE_STUDIES.map((c) => (
             <a key={c.title} href={c.href} {...out} className="group block">
               <div className="transition-transform duration-300 ease-[var(--ease-out)] group-hover:-translate-y-0.5">
@@ -214,15 +214,15 @@ function Profile() {
             </a>
           ))}
         </div>
-        <div className="mt-8 grid grid-cols-2 overflow-hidden rounded-xl ring-1 ring-[var(--line)] sm:grid-cols-4">
+        <div className="mt-8 grid grid-cols-2 overflow-hidden rounded-xl ring-1 ring-[var(--line)] @min-[40rem]:grid-cols-4">
           {FEATURED.map((f, i) => (
             <a
               key={f.title}
               href={f.href}
               {...out}
               className={`group flex items-center justify-between gap-2 border-[var(--line)] px-3 py-2.5 text-[12.5px] transition-colors hover:bg-[var(--panel-2)] ${
-                i % 2 ? "border-l" : i ? "sm:border-l" : ""
-              } ${i >= 2 ? "border-t sm:border-t-0" : ""}`}
+                i % 2 ? "border-l" : i ? "@min-[40rem]:border-l" : ""
+              } ${i >= 2 ? "border-t @min-[40rem]:border-t-0" : ""}`}
             >
               <span className="truncate">{f.title}</span>
               <span aria-hidden="true" className="text-[var(--faint)] transition-[color,transform] duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--fg)]">
@@ -242,10 +242,10 @@ function Profile() {
               key={e.place}
               href={`${SITE}/#experience`}
               {...out}
-              className="group grid grid-cols-[1fr_auto] items-baseline gap-x-4 border-b border-[var(--line)] py-3 last:border-0 sm:grid-cols-[7.5rem_1fr]"
+              className="group grid grid-cols-[1fr_auto] items-baseline gap-x-4 border-b border-[var(--line)] py-3 last:border-0 @min-[40rem]:grid-cols-[7.5rem_1fr]"
             >
-              <span className="order-2 font-mono text-[11px] text-[var(--faint)] tabular-nums sm:order-1">{e.when}</span>
-              <span className="order-1 text-[13.5px] sm:order-2">
+              <span className="order-2 font-mono text-[11px] text-[var(--faint)] tabular-nums @min-[40rem]:order-1">{e.when}</span>
+              <span className="order-1 text-[13.5px] @min-[40rem]:order-2">
                 <span className="font-medium">{e.place}</span>
                 <span className="text-[var(--muted)]"> · {e.role}</span>
               </span>
@@ -255,11 +255,11 @@ function Profile() {
       </div>
 
       {/* Footer */}
-      <div className="mt-14 rounded-2xl bg-[var(--panel-2)] p-5 shadow-[inset_0_0_0_1px_var(--line)] sm:p-6">
+      <div className="mt-14 rounded-2xl bg-[var(--panel-2)] p-5 shadow-[inset_0_0_0_1px_var(--line)] @min-[40rem]:p-6">
         <Label no="03" href={X}>Say hello</Label>
         <a
           href="mailto:vrajsensei@gmail.com"
-          className="mt-3 block text-[20px] leading-tight font-semibold tracking-[-0.03em] transition-opacity hover:opacity-70 sm:text-[24px]"
+          className="mt-3 block text-[20px] leading-tight font-semibold tracking-[-0.03em] transition-opacity hover:opacity-70 @min-[40rem]:text-[24px]"
         >
           vrajsensei@gmail.com
         </a>
@@ -403,9 +403,9 @@ export function AgentDrawDemo() {
   return (
     <div className="card overflow-hidden rounded-2xl">
       {/* Toolbar */}
-      <div className="grid grid-cols-[1fr_auto] items-center gap-x-3 gap-y-2.5 border-b border-[var(--line)] px-3 py-2.5 sm:flex sm:px-4">
+      <div className="grid grid-cols-[1fr_auto] items-center gap-x-3 gap-y-2.5 border-b border-[var(--line)] px-3 py-2.5 @min-[40rem]:flex @min-[40rem]:px-4">
         <Status phase={phase} />
-        <div className="col-span-2 flex items-center justify-between gap-2 sm:order-2 sm:ml-auto sm:justify-end sm:gap-3">
+        <div className="col-span-2 flex items-center justify-between gap-2 @min-[40rem]:order-2 @min-[40rem]:ml-auto @min-[40rem]:justify-end @min-[40rem]:gap-3">
           <Switch
             checked={slowData}
             label="Slow data"
@@ -425,7 +425,7 @@ export function AgentDrawDemo() {
         <button
           type="button"
           onClick={replay}
-          className="btn-brand press col-start-2 row-start-1 inline-flex h-8 items-center gap-1.5 rounded-full pr-3.5 pl-3 text-[13px] font-medium sm:order-3"
+          className="btn-brand press col-start-2 row-start-1 inline-flex h-8 items-center gap-1.5 rounded-full pr-3.5 pl-3 text-[13px] font-medium @min-[40rem]:order-3"
         >
           <ReplayIcon className="size-3.5" />
           Replay
@@ -433,7 +433,7 @@ export function AgentDrawDemo() {
       </div>
 
       {/* Stage: the portfolio in a little browser window on a dotted canvas */}
-      <div className="relative bg-[var(--panel-2)]/40 p-3 sm:p-6">
+      <div className="relative bg-[var(--panel-2)]/40 p-3 @min-[40rem]:p-6">
         <div className="dots fade-edges pointer-events-none absolute inset-0" aria-hidden="true" />
         <div className="relative overflow-hidden rounded-xl bg-[var(--bg)] shadow-[var(--shadow-card)]">
           <div className="flex items-center gap-3 border-b border-[var(--line)] px-3 py-2">
@@ -442,7 +442,7 @@ export function AgentDrawDemo() {
                 <span key={i} className="size-2.5 rounded-full bg-[var(--line)]" />
               ))}
             </div>
-            <div className="mx-auto flex h-6 max-w-full min-w-0 items-center gap-1.5 rounded-md bg-[var(--panel-2)] px-2.5 text-[11px] text-[var(--muted)] sm:w-72 sm:justify-center">
+            <div className="mx-auto flex h-6 max-w-full min-w-0 items-center gap-1.5 rounded-md bg-[var(--panel-2)] px-2.5 text-[11px] text-[var(--muted)] @min-[40rem]:w-72 @min-[40rem]:justify-center">
               <LockIcon className="size-3 shrink-0" />
               <span className="truncate">parikhvraj.framer.website</span>
             </div>

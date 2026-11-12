@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AUTHOR, COMPONENTS, GITHUB, GROUPS, neighbours } from "@/lib/site";
+import { AUTHOR, COMPONENTS, FAMILIES, GITHUB, GROUPS, isSideActive, neighbours, sideItems } from "@/lib/site";
 import { cx } from "@/lib/utils";
 import { ArrowUpRight01Icon } from "./hugeicons";
 import { GroupIcon } from "./group-icon";
@@ -29,7 +29,8 @@ export function DocsLayout({
   sections: DocSection[];
   children: React.ReactNode;
 }) {
-  const current = slug ? COMPONENTS.find((c) => c.slug === slug) : undefined;
+  const current = slug ? (COMPONENTS.find((c) => c.slug === slug) ?? FAMILIES.find((f) => f.slug === slug)) : undefined;
+  const family = current && "family" in current && current.family ? FAMILIES.find((f) => f.slug === current.family) : undefined;
   const { prev, next } = neighbours(slug);
   return (
     <div className="min-h-dvh lg:flex lg:bg-[var(--frame)]">
@@ -37,7 +38,7 @@ export function DocsLayout({
       <Header className="lg:hidden" />
 
       {/* Desktop: the side panel sits on the frame, next to the page sheet. */}
-      <aside className="sticky top-0 hidden h-dvh w-60 shrink-0 flex-col overflow-y-auto px-3 pt-4 pb-6 lg:flex">
+      <aside aria-label="Sidebar" className="sticky top-0 hidden h-dvh w-60 shrink-0 flex-col overflow-y-auto px-3 pt-4 pb-6 lg:flex">
         <Link href="/" className="flex items-center gap-2 px-2.5 py-1 text-[15px] font-semibold tracking-tight">
           <Mark className="h-6 w-[21px] text-[var(--fg)]" />
           Impeccable
@@ -65,15 +66,16 @@ export function DocsLayout({
           </SideLink>
         </SideGroup>
         {GROUPS.map((g) => {
-          const items = COMPONENTS.filter((c) => c.group === g.id);
+          const items = sideItems(g.id);
+          const count = COMPONENTS.filter((c) => c.group === g.id).length;
           return (
-            <SideDropdown key={g.id} title={g.label} count={items.length} icon={<GroupIcon group={g.id} />}>
+            <SideDropdown key={g.id} title={g.label} count={count} icon={<GroupIcon group={g.id} />}>
               {items.length ? (
                 items.map((c) => (
                   <SideLink
                     key={c.slug}
                     href={`/docs/${c.slug}`}
-                    active={c.slug === slug}
+                    active={isSideActive(c.slug, slug)}
                   >
                     {c.name}
                   </SideLink>
@@ -97,6 +99,7 @@ export function DocsLayout({
                   ? [
                       { label: "Docs", href: "/docs" },
                       { label: GROUPS.find((g) => g.id === current.group)!.label },
+                      ...(family ? [{ label: family.name, href: `/docs/${family.slug}` }] : []),
                       { label: current.name },
                     ]
                   : [{ label: "Docs", href: "/docs" }, { label: "Introduction" }]
@@ -111,7 +114,7 @@ export function DocsLayout({
           </main>
 
           {/* Starts lower than the text, to leave room for the hanging bulb. */}
-          <aside className="sticky top-[9px] hidden w-44 shrink-0 self-start pt-[103px] xl:block">
+          <aside aria-label="On this page" className="sticky top-[9px] hidden w-44 shrink-0 self-start pt-[103px] xl:block">
             <Toc sections={sections} />
           </aside>
         </div>

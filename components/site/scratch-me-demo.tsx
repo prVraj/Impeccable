@@ -7,7 +7,7 @@ export function ScratchMeDemo() {
   const [round, setRound] = useState(0);
   const [done, setDone] = useState(false);
   return (
-    <div className="card relative grid place-items-center overflow-hidden rounded-2xl px-4 py-12 text-[var(--fg)] sm:py-16">
+    <div className="card relative grid place-items-center overflow-hidden rounded-2xl px-4 py-12 text-[var(--fg)] @min-[40rem]:py-16">
       <ScratchMe key={round} code="IMPECCABLE20" onReveal={() => setDone(true)} />
       <button
         type="button"

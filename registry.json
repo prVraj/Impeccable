@@ -80,6 +80,32 @@
           "target": "components/ui/framed-upload.tsx"
         }
       ]
+    },
+    {
+      "name": "hex-login",
+      "type": "registry:component",
+      "title": "Hex-Login",
+      "description": "A calm login page: your logo inside four thin hexagon rings, Sign in with Google, an email field with a built-in check, and Continue.",
+      "files": [
+        {
+          "path": "registry/impeccable/hex-login/hex-login.tsx",
+          "type": "registry:component",
+          "target": "components/ui/hex-login.tsx"
+        }
+      ]
+    },
+    {
+      "name": "burning-toast",
+      "type": "registry:component",
+      "title": "Burning-toast",
+      "description": "Toasts that stack at the bottom of the screen and burn away when they close: from the X, from the top when time runs out, or where a swipe lets go.",
+      "files": [
+        {
+          "path": "registry/impeccable/burning-toast/burning-toast.tsx",
+          "type": "registry:component",
+          "target": "components/ui/burning-toast.tsx"
+        }
+      ]
     }
   ]
 }

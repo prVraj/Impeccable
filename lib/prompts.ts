@@ -1213,3 +1213,404 @@ ${tsSource.trimEnd()}
 \`\`\`
 `;
 }
+
+/* ---------- Hex-Login ----------
+ * A section (a whole login page).
+ * Install: adds the exact page; asks only which route and which logo.
+ * Blend: asks four short questions, then fits it through the section's own props. */
+
+const HEX_LOGIN_SHARED_BUILD = `## Fastest path
+
+If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccable-rust.vercel.app/r/hex-login.json\`.
+If the command succeeds, only fix import paths to match this project and skip ahead. If it fails or there is no \`components.json\`, build it by hand as below.
+
+## Build it
+
+- Stack: React 18 or 19 with TypeScript. No other packages: the rings and icons are inline SVG and every animation is CSS.
+- JavaScript project? Name the file \`hex-login.jsx\` and remove the type annotations; nothing else changes.
+- Create this file, in this project's usual place for components:
+  - \`components/ui/hex-login.tsx\`
+- Keep these exports and their names: \`HexLogin\`, \`HexLoginProps\`, \`HexLoginLabels\`, \`isEmail\`.
+- Keep \`"use client"\` at the top in Next.js App Router projects. In other setups it is harmless. A Next.js page that renders it can stay a server component; only the section itself is client code.
+- Keep the CSS block and the tuning values at the top (\`EASE\`, \`TOAST_MS\`, \`RINGS\`, \`RING_BOX\`) exactly as written. They are the design: four rings of 64, 110, 165 and 232px turned -4, -8, -15 and -20 degrees, a 380px column, a 44px Google button, a 40px field and a 36px Continue button, with 40, 40, 32, 32, 16 and 20px between them.
+- Keep the colors as theme variables: text and fills read \`--foreground\` and \`--background\` (or \`--fg\` and \`--bg\`), the error reads \`--destructive\`, and the field's corners read \`--radius-lg\`. Never swap them for fixed hex or pixel values.
+- Keep the fallbacks: with \`prefers-reduced-motion: reduce\` the rings only fade in and nothing slides or turns; Enter in the field submits; an error moves focus back to the field and is read out; the field has a hidden label for screen readers and \`autocomplete="email"\`; the field text is 16px so phones don't zoom in.`;
+
+const HEX_LOGIN_HOW = `## How the page works
+
+Read this before you touch anything, so you know what the code does and why it must stay as it is.
+
+1. **Layout.** One centred 380px column, centred top to bottom in a page at least as tall as the screen: logo, title, Google button, the OR line, the email field, Continue, then the small print. On a narrow screen the title drops from 30px to 24px and the rings shrink to 90%, measured on the section's own width (a container query), not the window.
+2. **Rings.** Four thin hexagons around the logo, each a little bigger and turned a little further, like a slow spiral. They take 10% of the text color and fade out toward the bottom (a mask from 40% to 77% of their height), so they never cross the buttons. On load they turn into place from 14 degrees off, one after another, 70ms apart, in one second.
+3. **Continue.** Nothing is sent until the email passes a simple check (something@something.something, no spaces, trimmed). Empty: "Enter your email address to continue." Not an email: "That doesn't look like an email. Try name@example.com." The message slides open under the field, the field turns red and gets focus, and the message goes as soon as you type. A good email calls \`onContinue(email)\`. If it returns a promise, Continue shows a spinner and ignores clicks until it settles.
+4. **Sign in with Google.** Calls \`onGoogle\`, with the same spinner while its promise runs. With no \`onGoogle\` (login not connected yet), a small toast at the bottom of the page says "Google sign-in isn't connected yet. Use your email for now." for 3 seconds; clicking again starts the 3 seconds over. \`google={false}\` hides the button and the OR line.
+5. **Theme.** Everything is drawn from the page's text and background colors, so it follows light and dark mode with no setup: Continue and the toast are the text color with background-colored text, the field is a 4.5% tint of the text color.`;
+
+export function hexLoginInstallPrompt(tsSource: string) {
+  return `# Hex-Login
+
+A 1-file React section from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
+
+A calm login page: your logo inside four thin hexagon rings, a welcome line, Sign in with Google, an email field and a Continue button.
+
+## Before you build: one question
+
+Look through this project first: its routes (is there already a \`/login\` or \`/sign-in\` page?), its auth setup (Auth.js, Supabase, Clerk, Firebase or its own), and its logo files or logo component. Then ask me this in one message and wait for my answer:
+
+- **Which page should it be, and which logo should it show?** Suggest the 1–3 best routes (for example replace the current \`/login\` page, or add a new \`/login\`), and name the logo you found that you'd put in the middle.
+  *Why: it is a whole page, so it replaces or adds one route, and the logo is the one thing in it that has to be mine.*
+
+Ask nothing else. If I say *skip*, use the best suggestion.
+
+## Keep it as it is
+
+The page is the design: the four turning hexagon rings that fade out toward the bottom, the single 380px column with its exact sizes and spacing, the pill-shaped Google and Continue buttons, the email check with its message under the field, and the toast when Google isn't connected. Keep them exactly as in the source. If something doesn't fit my project, tell me instead of changing it.
+
+- Add only the section file and the one page I picked. If it replaces an existing login page, keep that page's route and auth wiring. Don't add packages, change other files, or restyle anything.
+- Don't add the demo parts from the Impeccable website: Continue opening the author's X profile, the preview frame and its size buttons.
+
+${HEX_LOGIN_SHARED_BUILD}
+
+## Use it
+
+\`\`\`tsx
+// app/login/page.tsx
+"use client";
+import { HexLogin } from "@/components/ui/hex-login";
+import { Logo } from "@/components/logo"; // my logo
+
+export default function LoginPage() {
+  return (
+    <HexLogin
+      logo={<Logo className="h-20 w-auto" />}
+      brand="Acme"
+      termsHref="/terms"
+      privacyHref="/privacy"
+      onContinue={async (email) => {
+        // my email sign-in, for example a magic link
+      }}
+    />
+  );
+}
+\`\`\`
+
+- If this project already signs people in by email, call that from \`onContinue\`; if it already has Google sign-in, call it from \`onGoogle\`. Return the promise so the button shows its spinner. If there is no auth yet, leave \`onGoogle\` out (the toast says it isn't connected) and tell me \`onContinue\` still needs wiring.
+- The logo sits in an 80px-tall slot in the middle of the rings; size it to about 70 by 80px.
+- It fills the screen (\`min-height: 100dvh\`) and paints its own background, so render it as the whole page, outside any header, footer or padded layout. If the route shares a layout with a header, tell me.
+- Set \`brand\`, \`termsHref\` and \`privacyHref\` from what the project already has.
+
+## Check
+
+- It type-checks and the page renders with no console errors.
+- The page shows my logo inside the rings and the rings turn into place on load in about a second. Continue with an empty field or a bad email shows the message under the field and focuses it; typing clears it. A real email calls my sign-in, with a spinner while it runs. Sign in with Google calls my Google sign-in, or shows the toast for 3 seconds if there is none.
+- It looks right in light and dark mode (check both): dark text and a black Continue on a light page, light text and a white Continue on a dark page, rings faint on both.
+- It works with a finger on a phone at 375px wide: nothing scrolls sideways, the field doesn't zoom in when tapped, the keyboard shows the @ key.
+- With \`prefers-reduced-motion: reduce\`, the rings only fade in and nothing slides or turns.
+- Nothing else on the site looks or behaves differently.
+- Finish with a short report: the files you added or changed, where it's placed, and every place where you had to do something differently from the source, and why.
+
+## Source
+
+The reference implementation. Copy it as-is, then apply only the changes listed above.
+
+### \`components/ui/hex-login.tsx\`
+
+\`\`\`tsx
+${tsSource.trimEnd()}
+\`\`\`
+`;
+}
+
+export function hexLoginBlendPrompt(tsSource: string) {
+  return `# Hex-Login, fitted to your brand
+
+A 1-file React section from Impeccable. Add it to this project and fit it to the brand like a missing puzzle piece: it should look like it was always part of the product. It goes in the one place I choose, and nothing else changes.
+
+A calm login page: your logo inside four thin hexagon rings, a welcome line, Sign in with Google, an email field and a Continue button. The full source is at the end of this prompt.
+
+## First: look, ask once, then build
+
+1. Look through this project first: its routes (is there already a \`/login\` or \`/sign-in\` page?), its auth setup (Auth.js, Supabase, Clerk, Firebase or its own) and which sign-in methods it has, its logo files or logo component, its terms and privacy pages, the way it writes short UI text, and its theme: \`--foreground\`, \`--background\`, \`--destructive\` and \`--radius-lg\` or their equivalents, Tailwind or shadcn theme, light and dark mode.
+2. Tell me in two or three lines what you found, then ask these questions in **one message**. Give each one options, mark your suggestion and keep its one-line why, so I know what each answer changes. Ask nothing else:
+   1. **Which page should it be?** Suggest the 1–3 best routes (replace my current login page, or add a new \`/login\`).
+      *Why: it is a whole page, so it takes over one route.*
+   2. **Which logo?** Name the logo file or component you found and suggest it (suggested), or a simpler mark of it (an icon-only version) if my full logo is a wide wordmark.
+      *Why: the logo is the centre of the rings, so it has to be mine, and a wide wordmark looks lost in a hexagon.*
+   3. **How do people sign in?** Wire Continue to my email sign-in and Google to my Google sign-in (suggested when I have both), keep Google with the "not connected yet" toast until I add it, or hide Google.
+      *Why: the buttons should do what my product really supports, and a Google button that does nothing loses trust.*
+   4. **The words?** Keep "Welcome back, Buddy" and the default texts, or text in my product's voice for the title, the buttons and the error messages (suggest two titles). Also my product name in the small print.
+      *Why: the title is the first thing people read on the page, so it should sound like my product, not like a template.*
+   If I say *skip*, use your suggestions.
+3. After I answer, show a brief of about 5 lines: the route, the logo, the sign-in wiring, the words, and "everything else is kept as designed". Ask whether to save the brief to \`impeccable.md\` in the project (add a section if the file exists) or keep it in this chat only. Default: chat only.
+4. Build only after I say go.
+
+## What you may change, and what you may not
+
+**You may change** (only through my answers):
+
+- The page: which route renders \`<HexLogin />\`.
+- The logo: \`logo\`.
+- The sign-in: \`onContinue\`, \`onGoogle\` and \`google\`.
+- The words: \`title\`, \`brand\`, \`labels\`, plus \`termsHref\` and \`privacyHref\` from my real pages.
+
+All of these are props the section already has, so the section file itself stays as written.
+
+**Locked**
+
+- The page is the design: the four turning hexagon rings that fade out toward the bottom, the single 380px column with its exact sizes and spacing, the pill-shaped Google and Continue buttons, the email check with its message under the field, and the toast when Google isn't connected. Keep them exactly as in the source. If something doesn't fit my product, tell me instead of changing it.
+
+- No new packages, no changes to files other than the section and the page I picked, no restyling, and none of the website's demo parts (Continue opening the author's X profile, the preview frame and its size buttons).
+
+${HEX_LOGIN_SHARED_BUILD}
+
+## Fit it to the brand
+
+Apply my answers through the section's own props:
+
+\`\`\`tsx
+// app/login/page.tsx
+"use client";
+import { HexLogin } from "@/components/ui/hex-login";
+import { LogoMark } from "@/components/logo-mark"; // my logo, from my brief
+
+// From my brief. Leave out any prop that stays at its default.
+export default function LoginPage() {
+  return (
+    <HexLogin
+      logo={<LogoMark className="h-20 w-auto" />}
+      title="Good to see you again"
+      brand="Acme"
+      termsHref="/legal/terms"
+      privacyHref="/legal/privacy"
+      labels={{ continue: "Send me a link", badEmail: "Check that email for a typo." }}
+      onContinue={(email) => signIn("email", { email })} // my email sign-in
+      onGoogle={() => signIn("google")} // my Google sign-in
+    />
+  );
+}
+\`\`\`
+
+- Colors are not props: the section reads my theme on its own (\`--foreground\` and \`--background\`, else \`--fg\` and \`--bg\`, \`--destructive\` for errors, \`--radius-lg\` for the field). If my theme uses other names, map them in my global CSS for this page only (for example \`.ihl { --foreground: var(--text-primary); --background: var(--surface); }\`), never with hex codes. If a variable holds bare channels (like \`222 47% 11%\`), wrap it as \`hsl(var(--name))\`.
+- Return the promise from \`onContinue\` and \`onGoogle\` so the buttons show their spinner while sign-in runs.
+- The logo sits in an 80px-tall slot; size it to about 70 by 80px.
+- It fills the screen (\`min-height: 100dvh\`) and paints its own background, so render it as the whole page, outside any header, footer or padded layout.
+
+${HEX_LOGIN_HOW}
+
+## Check
+
+- It type-checks and the page renders with no console errors.
+- My logo, title, words and small print show. The rings turn into place on load in about a second. Continue with an empty field or a bad email shows my message under the field and focuses it; typing clears it. A real email runs my email sign-in with a spinner. Google runs my Google sign-in, shows the toast for 3 seconds, or is hidden, as I chose.
+- It looks right in light and dark mode (check both): my theme's text and background colors, a solid Continue in the text color, faint rings on both.
+- It works with a finger on a phone at 375px wide: nothing scrolls sideways, the field doesn't zoom in when tapped, the keyboard shows the @ key.
+- With \`prefers-reduced-motion: reduce\`, the rings only fade in and nothing slides or turns.
+- Nothing else on the site looks or behaves differently.
+- Finish with a short report: the files you added or changed, what you set from my answers, and every place where you had to do something differently from the source, and why.
+
+## Source
+
+The reference implementation. Copy it as-is, then apply only the changes listed above.
+
+### \`components/ui/hex-login.tsx\`
+
+\`\`\`tsx
+${tsSource.trimEnd()}
+\`\`\`
+`;
+}
+
+/* ---------- Burning-toast ----------
+ * Install: adds the exact component; asks only which moments pop a toast.
+ * Blend: asks four short questions, then fits it through the component's own props. */
+
+const BURNING_TOAST_SHARED_BUILD = `## Fastest path
+
+If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccable-rust.vercel.app/r/burning-toast.json\`.
+If the command succeeds, only fix import paths to match this project and skip ahead. If it fails or there is no \`components.json\`, build it by hand as below.
+
+## Build it
+
+- Stack: React 18 or 19 with TypeScript. No other packages: the fire is a small WebGL shader, the ash is a 2D canvas, the icons are inline SVG and every other animation is CSS.
+- JavaScript project? Name the file \`burning-toast.jsx\` and remove the type annotations; nothing else changes.
+- Create this file, in this project's usual place for components:
+  - \`components/ui/burning-toast.tsx\`
+- Keep these exports and their names: \`BurningToaster\`, \`toast\` (with \`toast.success\`, \`toast.info\`, \`toast.warning\`, \`toast.error\`, \`toast.dismiss\`), and the types \`BurningToasterProps\`, \`ToastOptions\`, \`ToastType\`, \`ToastPosition\`, \`ToastColors\`, \`BurnColors\`.
+- Keep \`"use client"\` at the top in Next.js App Router projects. In other setups it is harmless.
+- Keep the CSS block, the shader and the tuning values exactly as written: \`WIDTH\` (356), \`PEEK\` (14), \`GAP\` (12), \`PHONE\` (600), \`SIDE\`, \`TOP\`, \`BOTTOM\`, \`WOBBLE\`, \`MAX_PARTICLES\`, the 45px swipe distance and the default burn colors. They are the design.
+- Keep the fallbacks: with \`prefers-reduced-motion: reduce\`, or without WebGL, a toast fades out in 200ms instead of burning. The close button is a real button with a "Close" label, focus spreads the stack and pauses the timers, and screen readers hear each toast (errors right away).`;
+
+const BURNING_TOAST_HOW = `## How the burn works
+
+Read this before you touch anything, so you know what the code does and why it must stay as it is.
+
+1. **One toaster, many toasts.** \`<BurningToaster />\` sits once at the root of the app. \`toast()\` can be called from anywhere, even outside React: it adds the toast to a small shared list and the toaster draws it. When the last toaster unmounts, its toasts go with it.
+2. **The stack.** Toasts sit at the bottom of the screen, on the right or in the center, 356px wide and 24px from the edges. The newest is in front. Up to 3 show: each one behind peeks 14px higher and is 5% smaller, with its text hidden. A new toast slides up from below.
+3. **Spread and pause.** Hovering the stack (or tapping it on a touch screen, or tabbing into it) spreads every toast out in a column with 12px gaps, and pauses all timers. The timers also pause while the tab is hidden or while a toast is being dragged.
+4. **Three ways to burn.** The timer (4 seconds by default) burns the toast from the middle of its top edge. The close button burns it from the X. A swipe sideways or down that passes 45px (or a quick flick) burns it from where the finger let go, right where the toast was dropped. Upward drags barely move.
+5. **The fire.** A ragged hole grows from that point in 1.2 seconds, slow to catch and then in uneven surges, until the whole toast is gone. The hole is a clip-path on the toast. A WebGL shader drawn into a canvas around the toast paints the charred edge, a thin glow, a few small flames and the scorch, all clipped to the toast's rounded box so nothing paints the page. A 2D canvas adds a little ash and a few sparks that float up and fade.
+6. **Colors that always show.** The edge reads the toast's background and the page behind it and picks black or white from the burn colors so it always contrasts: black char on a light toast, a white-hot edge on a dark one. That is how one set of colors works in light and dark mode.
+7. **Close the gap.** When the burn ends, the toast is removed and the ones above slide down to fill its place.
+8. **Phones.** When the toaster is less than 600px wide, toasts are always bottom center and full width, with 16px on each side and room for the home bar.`;
+
+export function burningToastInstallPrompt(tsSource: string) {
+  return `# Burning-toast
+
+A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
+
+Toasts that stack at the bottom of the screen and burn away instead of sliding out: from the X when closed, from the top when time runs out, and from where a swipe lets go.
+
+## Before you build: one question
+
+Look through this project first: its root layout, any toast or notification it already shows, and the actions that would want a short note after them (saving, sending, copying, deleting, undo). Then ask me this in one message and wait for my answer:
+
+- **Which moments should pop a toast?** Suggest the 1–3 moments that fit best, each with the short message and supporting line you'd show. I can pick from them or name others.
+  *Why: the toaster always goes once in the root layout, so the only real choice is which actions call \`toast()\`.*
+
+Ask nothing else. If I say *skip*, use the best suggestion.
+
+## Keep it as it is
+
+The stack and the burn are the design. Keep the bottom stack (3 visible, spread on hover), the 4-second timer that pauses while I read, and the burn from the X, the top or the swipe point, with its charred edge and ash, exactly as in the source. If something doesn't fit my project, tell me instead of changing it.
+
+- Add only the component file, \`<BurningToaster />\` once in the root layout, and the \`toast()\` calls at the moments I picked. If the project already has a toast library, tell me and leave it in place. Don't add packages, change other files, or restyle anything.
+- Don't add the demo parts from the Impeccable website: the "Pop my toast" button, the Default / Success / Info / Warning / Error buttons and the "Pop on the right" / "Pop in the center" buttons.
+
+${BURNING_TOAST_SHARED_BUILD}
+
+## Use it
+
+\`\`\`tsx
+// app/layout.tsx: once, at the end of <body>
+import { BurningToaster } from "@/components/ui/burning-toast";
+
+<BurningToaster />
+
+// Anywhere, at the moment I picked
+"use client";
+import { toast } from "@/components/ui/burning-toast";
+
+toast.success("Changes saved", { description: "Your profile is up to date." });
+\`\`\`
+
+- Use \`toast()\` for plain notes and \`toast.success\`, \`toast.info\`, \`toast.warning\` or \`toast.error\` to match what happened. The type only changes the icon.
+- Keep each toast to a short message and one supporting line.
+- The toaster is fixed to the bottom of the screen, so it needs no room in the layout. Put it inside the theme provider if the project has one.
+
+${BURNING_TOAST_HOW}
+
+## Check
+
+- It type-checks and the page renders with no console errors.
+- Each moment I picked pops a toast from below. Three in a row stack with the older two peeking 14px above. Hovering spreads them out and stops the clock. Left alone, a toast burns from the top after 4 seconds; the X burns it from the X; a swipe of 45px or more burns it where my finger let go. Each burn takes about 1.2 seconds and the toasts above slide down after it.
+- It looks right in light and dark mode (check both): a black charred edge on a light toast, a white-hot edge on a dark one.
+- It works with a finger on a phone: toasts sit bottom center and full width, a tap spreads the stack, a swipe burns one, and the burn stays smooth.
+- With \`prefers-reduced-motion: reduce\`, a toast fades out in 200ms instead of burning.
+- Nothing else on the site looks or behaves differently.
+- Finish with a short report: the files you added or changed, where it's placed, and every place where you had to do something differently from the source, and why.
+
+## Source
+
+The reference implementation. Copy it as-is, then apply only the changes listed above.
+
+### \`components/ui/burning-toast.tsx\`
+
+\`\`\`tsx
+${tsSource.trimEnd()}
+\`\`\`
+`;
+}
+
+export function burningToastBlendPrompt(tsSource: string) {
+  return `# Burning-toast, fitted to your brand
+
+A 1-file React component from Impeccable. Add it to this project and fit it to the brand like a missing puzzle piece: it should look like it was always part of the product. It goes in the one place I choose, and nothing else changes.
+
+Toasts that stack at the bottom of the screen and burn away instead of sliding out: from the X when closed, from the top when time runs out, and from where a swipe lets go. The full source is at the end of this prompt.
+
+## First: look, ask once, then build
+
+1. Look through this project first: its root layout, any toast or notification it already shows, the actions that would want a short note after them, the way it writes short UI text, its theme (CSS variables, Tailwind theme, shadcn theme, radius tokens) and its light and dark mode.
+2. Tell me in two or three lines what you found, then ask these questions in **one message**. Give each one options, mark your suggestion and keep its one-line why, so I know what each answer changes. Ask nothing else:
+   1. **Which moments should pop a toast?** Suggest the 1–3 that fit best, each with its type and the message and supporting line you'd write in my product's voice.
+      *Why: the toaster goes once in the root layout, so this decides where people actually see it, and what it says.*
+   2. **Which side?** Bottom right (suggested for apps with a sidebar or dashboard) or bottom center (suggested for simple, centered pages). Phones are always bottom center.
+      *Why: toasts should appear where people's eyes already are, without covering my main buttons.*
+   3. **The colors?** Name which of my existing variables you'd use for the toast background, text, muted text and hairline, which radius token for the corners, and whether the icons stay in the text color (suggested) or take my success, warning and danger colors. The burn stays black, white and gray (suggested) unless I ask for brand-tinted fire.
+      *Why: the toast should look like my other popovers and cards, while the fire keeps its look.*
+   4. **The timing?** Burn after 4 seconds (suggested), or after 6 seconds for longer messages. The burn itself takes 1.2 seconds (suggested) or 1.6 seconds for a slower, calmer burn.
+      *Why: people need time to read, but a toast that stays too long gets in the way.*
+   If I say *skip*, use your suggestions.
+3. After I answer, show a brief of about 5 lines: the moments, the side, the colors, the timing, and "everything else is kept as designed". Ask whether to save the brief to \`impeccable.md\` in the project (add a section if the file exists) or keep it in this chat only. Default: chat only.
+4. Build only after I say go.
+
+## What you may change, and what you may not
+
+**You may change** (only through my answers):
+
+- The moments: where \`toast()\` is called, with which type, message and \`description\`.
+- The side: \`position\`.
+- The colors: \`colors\` (\`surface\`, \`text\`, \`muted\`, \`border\`), \`radius\`, \`iconColors\` and \`burnColors\`, as my theme's CSS variables.
+- The timing: \`duration\` and \`burnDuration\`.
+
+All of these are props or options the component already has, so the component file itself stays as written.
+
+**Locked**
+
+- The stack and the burn are the design. The bottom stack (3 visible, 14px peek, spread on hover), the pause while I read, the burn from the X, the top or the swipe point with its charred edge, glow and ash, and the phone layout stay exactly as in the source. If something doesn't fit my product, tell me instead of changing it.
+
+- No new packages, no changes to files other than the component, the root layout and the places that call \`toast()\`, no restyling, and none of the website's demo parts (the "Pop my toast" button, the Default / Success / Info / Warning / Error buttons and the "Pop on the right" / "Pop in the center" buttons).
+
+${BURNING_TOAST_SHARED_BUILD}
+
+## Fit it to the brand
+
+Apply my answers through the component's own props:
+
+\`\`\`tsx
+// app/layout.tsx: once, at the end of <body>. From my brief; leave out any prop that stays at its default.
+import { BurningToaster } from "@/components/ui/burning-toast";
+
+<BurningToaster
+  position="bottom-center"
+  duration={6000}
+  colors={{
+    surface: "var(--popover)", // my theme's variables, not hex
+    text: "var(--popover-foreground)",
+    muted: "var(--muted-foreground)",
+    border: "var(--border)",
+  }}
+  radius="var(--radius-lg)"
+  iconColors={{ success: "var(--success)", error: "var(--destructive)" }}
+/>
+
+// At each moment from my brief
+toast.success("Changes saved", { description: "Your profile is up to date." });
+\`\`\`
+
+- Read colors from my theme's CSS variables or Tailwind tokens; never copy hex values. If a variable holds bare channels (for example \`222 47% 11%\`), wrap it as \`hsl(var(--popover))\`.
+- Keep \`burnColors\` at its default unless I asked for brand-tinted fire. If I did, set \`char\` to a dark brand color and \`glow\` to a light one, so the edge still shows on both themes.
+- Put the toaster inside the theme provider if the project has one, so it follows light and dark mode.
+
+${BURNING_TOAST_HOW}
+
+## Check
+
+- It type-checks and the page renders with no console errors.
+- Each moment from my brief pops my words, on my side, in my colors and corners. Three in a row stack with the older two peeking 14px above. Hovering spreads them and stops the clock. Left alone, a toast burns from the top after the time I chose; the X burns it from the X; a swipe of 45px or more burns it where my finger let go. The toasts above slide down after each burn.
+- It looks right in light and dark mode (check both), with my colors readable and the burn edge showing in each.
+- It works with a finger on a phone: toasts sit bottom center and full width, a tap spreads the stack, a swipe burns one, and the burn stays smooth.
+- With \`prefers-reduced-motion: reduce\`, a toast fades out in 200ms instead of burning.
+- Nothing else on the site looks or behaves differently.
+- Finish with a short report: the files you added or changed, what you set from my answers, and every place where you had to do something differently from the source, and why.
+
+## Source
+
+The reference implementation. Copy it as-is, then apply only the changes listed above.
+
+### \`components/ui/burning-toast.tsx\`
+
+\`\`\`tsx
+${tsSource.trimEnd()}
+\`\`\`
+`;
+}

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { COMPONENTS, GROUPS } from "@/lib/site";
+import { COMPONENTS, GROUPS, isSideActive, sideItems } from "@/lib/site";
 import { cx } from "@/lib/utils";
 import { Mark } from "./icons";
 
@@ -94,19 +94,20 @@ export function MobileMenu() {
               </div>
 
               {GROUPS.map((g) => {
-                const items = COMPONENTS.filter((c) => c.group === g.id);
+                const items = sideItems(g.id);
+                const count = COMPONENTS.filter((c) => c.group === g.id).length;
                 return (
                   <section key={g.id} className="mt-7">
                     <p {...row()} className="mobile-menu-row mb-1 flex items-center gap-1.5 text-xs font-medium text-[var(--faint)]">
                       {g.label}
-                      <span className="font-mono text-[10px]">{items.length}</span>
+                      <span className="font-mono text-[10px]">{count}</span>
                     </p>
                     {items.length ? (
                       items.map((c) => (
                         <div key={c.slug} {...row()} className="mobile-menu-row">
                           <MenuLink
                             href={`/docs/${c.slug}`}
-                            active={pathname === `/docs/${c.slug}`}
+                            active={isSideActive(c.slug, pathname?.replace(/^\/docs\//, ""))}
                             onPick={() => setOpen(false)}
                           >
                             {c.name}

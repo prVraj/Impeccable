@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { COMPONENTS, GROUPS, type Group } from "@/lib/site";
+import { COMPONENTS, FAMILIES, GROUPS, type Group } from "@/lib/site";
 import { cx } from "@/lib/utils";
 import { ArrowTurnBackwardIcon, Cancel01Icon, Clock01Icon, CommandIcon, Search01Icon } from "./hugeicons";
 import { GroupIcon } from "./group-icon";
@@ -26,6 +26,9 @@ const RECENT_MAX = 5;
  * its slug to the front of this list when you get to it.
  */
 const ADDED_NEWEST_FIRST = [
+  "burning-toast",
+  "hex-login",
+  "login-pages",
   "framed-upload",
   "password-strength",
   "scratch-me",
@@ -66,7 +69,18 @@ const ITEMS: Item[] = [
       blurb: c.blurb,
       section,
       group: c.group,
-      haystack: [c.name, c.slug, c.category, c.blurb, section].join(" ").toLowerCase(),
+      haystack: [c.name, c.slug, c.category, c.blurb, section, c.family ?? ""].join(" ").toLowerCase(),
+    };
+  }),
+  ...FAMILIES.map((f) => {
+    const section = GROUPS.find((g) => g.id === f.group)?.label ?? "";
+    return {
+      href: `/docs/${f.slug}`,
+      name: f.name,
+      blurb: f.blurb,
+      section,
+      group: f.group,
+      haystack: [f.name, f.slug, f.blurb, section, "sign in signin log in"].join(" ").toLowerCase(),
     };
   }),
 ];

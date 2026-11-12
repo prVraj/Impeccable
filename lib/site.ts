@@ -18,9 +18,34 @@ export type SiteComponent = {
   blurb: string;
   preview: string;
   isNew?: boolean;
+  /** Slug of the family it belongs to (see FAMILIES), like "login-pages". */
+  family?: string;
 };
 
+/**
+ * Families: one sidebar entry that opens a page listing all its variants, so a
+ * group with many login pages (or heroes, or footers) stays one short line.
+ */
+export type Family = { slug: string; name: string; group: Group; blurb: string };
+
+export const FAMILIES: Family[] = [
+  {
+    slug: "login-pages",
+    name: "Login pages",
+    group: "sections",
+    blurb: "Every login page in the library, side by side.",
+  },
+];
+
 export const COMPONENTS: SiteComponent[] = [
+  {
+    slug: "burning-toast",
+    name: "Burning-toast",
+    group: "components",
+    category: "Feedback",
+    blurb: "Toasts that stack at the bottom and burn away when they close.",
+    preview: "",
+  },
   {
     slug: "brain-txt",
     name: "brain.txt",
@@ -54,6 +79,15 @@ export const COMPONENTS: SiteComponent[] = [
     preview: "",
   },
   {
+    slug: "hex-login",
+    name: "Hex-Login",
+    group: "sections",
+    family: "login-pages",
+    category: "Login page",
+    blurb: "A calm login page with your logo inside turning hexagon rings.",
+    preview: "",
+  },
+  {
     slug: "agent-draw",
     name: "Agent-Draw",
     group: "animations",
@@ -84,11 +118,35 @@ export const COMPONENTS: SiteComponent[] = [
 export const GITHUB = "https://github.com/prVraj/Impeccable";
 export const AUTHOR = { name: "Vraj Parikh", href: "https://x.com/vrajsensei" };
 
-/** The docs in reading order: Introduction first, then each group in sidebar order. */
+/** What the sidebar lists for a group: its items, with each family shown once in place of its members. */
+export function sideItems(group: Group): { slug: string; name: string }[] {
+  const out: { slug: string; name: string }[] = [];
+  for (const c of COMPONENTS.filter((c) => c.group === group)) {
+    const fam = c.family && FAMILIES.find((f) => f.slug === c.family);
+    if (!fam) out.push(c);
+    else if (!out.some((i) => i.slug === fam.slug)) out.push(fam);
+  }
+  return out;
+}
+
+/** The members of a family, in COMPONENTS order. */
+export function familyMembers(slug: string) {
+  return COMPONENTS.filter((c) => c.family === slug);
+}
+
+/** True when the sidebar entry `item` should look active on page `slug`. */
+export function isSideActive(item: string, slug?: string) {
+  return item === slug || (!!slug && COMPONENTS.find((c) => c.slug === slug)?.family === item);
+}
+
+/** The docs in reading order: Introduction first, then each group in sidebar order (a family page, then its members). */
 export const DOC_PAGES = [
   { href: "/docs", name: "Introduction" },
   ...GROUPS.flatMap((g) =>
-    COMPONENTS.filter((c) => c.group === g.id).map((c) => ({ href: `/docs/${c.slug}`, name: c.name })),
+    sideItems(g.id).flatMap((i) => [
+      { href: `/docs/${i.slug}`, name: i.name },
+      ...familyMembers(i.slug).map((c) => ({ href: `/docs/${c.slug}`, name: c.name })),
+    ]),
   ),
 ];
 

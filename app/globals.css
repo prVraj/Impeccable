@@ -354,3 +354,10 @@ body {
     --bg: var(--sheet);
   }
 }
+
+/* While the preview's handle is dragged: one cursor everywhere, no text selection. */
+html.is-resizing,
+html.is-resizing * {
+  cursor: col-resize !important;
+  user-select: none !important;
+}
