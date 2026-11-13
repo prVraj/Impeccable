@@ -3,15 +3,13 @@
 /**
  * Framed-Upload, from Impeccable.
  *
- * An image upload that hangs whatever you pick inside a real picture frame: a
- * bevelled moulding, a mat (passe-partout) with a thin lip, a picture window with
- * an inner shadow, and a soft, layered shadow on the wall. Click or drop an image
- * in; it settles into the frame. Replace and Remove sit in the corner once it's filled.
+ * An image upload that hangs whatever you pick inside a picture frame: a bevelled
+ * moulding, the picture window right inside it with an inner shadow, and a soft,
+ * layered shadow on the wall. Click or drop an image in; it settles into the frame. Replace and Remove sit in the corner once it's filled.
  *
- * The frame's corners and the lip's stroke come from your design tokens
- * (`--radius-lg` and `--stroke-2`, with 8px and 2px as fallbacks), or from the
- * `radius` and `stroke` props. The moulding and the mat are white on a light page
- * and graphite on a dark one, read from the text color around the frame.
+ * The frame's corners come from your `--radius-lg` design token (8px only as a
+ * fallback), or from the `radius` prop. The moulding is white on a light page and
+ * graphite on a dark one, read from the text color around the frame.
  *
  * No packages. Icons are from Hugeicons (free set, MIT, hugeicons.com), copied in as SVG.
  */
@@ -29,33 +27,28 @@ const RESHAPE_MS = 420; // the frame easing into a new picture's shape
 const MIN_RATIO = 1 / 3; // the tallest frame (width / height)
 const MAX_RATIO = 3; // the widest frame; pictures beyond these are cropped a little
 
-/** Frame corners and lip stroke: your design tokens first, these sizes only if the token is missing. */
+/** Frame corners: your design token first, this size only if the token is missing. */
 const DEFAULT_RADIUS = "var(--radius-lg, 0.5rem)";
-const DEFAULT_STROKE = "var(--stroke-2, 2px)";
 
 /** The frame's proportions, as a share of its width (cqi), so it looks the same at any size. */
 const MOULDING = "5.5cqi"; // the frame itself
-const MAT = "4cqi"; // the mat around the picture
 
-/* Corners follow one rule all the way in: inner radius = outer radius - the padding between them.
+/* Corners follow one rule: inner radius = outer radius - the padding between them.
    frame: --ifu-radius
-   mat:   frame - moulding
-   photo: mat - lip - mat
+   photo: frame - moulding
    Never below 0, so at normal sizes the inner corners come out square, like a real frame. */
 
-/** Moulding and mat colors, light page and dark page. */
+/** Moulding color and the empty window behind the picture, light page and dark page. */
 const WOOD = {
   light: {
     frame: "#ffffff",
-    mat: "#f2f2f0",
-    lip: "rgba(0,0,0,.09)",
+    back: "#f2f2f0",
     bevel:
       "inset 0 0 0 1px rgba(0,0,0,.07), inset 0 1.5px 0 rgba(255,255,255,.95), inset 0 -1.5px 0 rgba(0,0,0,.07)",
   },
   dark: {
     frame: "#2a2a2f",
-    mat: "#1d1d21",
-    lip: "rgba(0,0,0,.45)",
+    back: "#1d1d21",
     bevel:
       "inset 0 0 0 1px rgba(255,255,255,.07), inset 0 1px 0 rgba(255,255,255,.12), inset 0 -1px 0 rgba(0,0,0,.5)",
   },
@@ -74,12 +67,10 @@ const SHADOW = {
 };
 
 const CSS = `
-.ifu { container-type: inline-size; --ifu-soft: color-mix(in oklab, currentColor 55%, transparent); --ifu-matpad: ${MAT}; }
-.ifu[data-mat="false"] { --ifu-matpad: 0px; }
+.ifu { container-type: inline-size; --ifu-soft: color-mix(in oklab, currentColor 55%, transparent); }
 .ifu-frame { position: relative; box-sizing: border-box; padding: ${MOULDING}; border-radius: var(--ifu-radius); background: var(--ifu-color) linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,.04)); box-shadow: var(--ifu-bevel), var(--ifu-shadow); transition: transform .26s ${EASE}, box-shadow .26s ${EASE}; }
 .ifu-frame[data-drag="true"] { transform: translateY(-${LIFT_PX}px); box-shadow: var(--ifu-bevel), var(--ifu-shadow-lift); }
-.ifu-mat { box-sizing: border-box; padding: var(--ifu-matpad); background: var(--ifu-mat); border: var(--ifu-stroke) solid var(--ifu-lip); border-radius: max(0px, calc(var(--ifu-radius) - ${MOULDING})); box-shadow: inset 0 3px 6px -2px rgba(0,0,0,.16), inset 0 1px 1px rgba(0,0,0,.06); }
-.ifu-pic { position: relative; overflow: hidden; container-type: inline-size; transition: aspect-ratio ${RESHAPE_MS}ms ${EASE}; border-radius: max(0px, calc(var(--ifu-radius) - ${MOULDING} - var(--ifu-stroke) - var(--ifu-matpad))); background: color-mix(in oklab, currentColor 3%, var(--ifu-mat)); }
+.ifu-pic { position: relative; overflow: hidden; container-type: inline-size; transition: aspect-ratio ${RESHAPE_MS}ms ${EASE}; border-radius: max(0px, calc(var(--ifu-radius) - ${MOULDING})); background: color-mix(in oklab, currentColor 3%, var(--ifu-back)); }
 .ifu-pic::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; border-radius: inherit; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12), inset 0 3px 7px -1px rgba(0,0,0,.32), inset 0 -1px 2px rgba(255,255,255,.18); }
 .ifu-empty { all: unset; box-sizing: border-box; border-radius: inherit; position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 12px; text-align: center; cursor: pointer; background: transparent; transition: background-color .2s ${EASE}; -webkit-tap-highlight-color: transparent; }
 .ifu-empty:hover, .ifu-frame[data-drag="true"] .ifu-empty { background: color-mix(in oklab, currentColor 4%, transparent); }
@@ -237,10 +228,7 @@ export function FramedUpload({
   aspectRatio = "4 / 5",
   fitToImage = true,
   radius = DEFAULT_RADIUS,
-  stroke = DEFAULT_STROKE,
   frameColor,
-  matColor,
-  mat = true,
   title = "Drop an image here",
   hint,
   labels,
@@ -356,15 +344,12 @@ export function FramedUpload({
     <div
       ref={rootRef}
       className={`ifu${className ? ` ${className}` : ""}`}
-      data-mat={mat}
       style={{
         width: "100%",
         maxWidth: 320,
         "--ifu-radius": radius,
-        "--ifu-stroke": stroke,
         "--ifu-color": frameColor ?? wood.frame,
-        "--ifu-mat": matColor ?? wood.mat,
-        "--ifu-lip": wood.lip,
+        "--ifu-back": wood.back,
         "--ifu-bevel": wood.bevel,
         "--ifu-shadow": shadow.rest,
         "--ifu-shadow-lift": shadow.lift,
@@ -392,72 +377,70 @@ export function FramedUpload({
         onChange={(e) => take(e.target.files?.[0])}
       />
       <div ref={frameRef} className="ifu-frame" data-drag={drag} data-filled={!!src} {...dragProps}>
-        <div className="ifu-mat">
-          <div
-            className="ifu-pic"
-            style={{ aspectRatio: fitToImage && src && ratio ? String(ratio) : aspectRatio }}
-          >
-            {src ? (
-              <>
-                {/* eslint-disable-next-line @next/next/no-img-element -- a picked file is a blob: URL */}
-                <img
-                  key={src}
-                  className="ifu-img"
-                  src={src}
-                  alt={alt}
-                  draggable={false}
-                  onLoad={(e) => {
-                    const { naturalWidth: w, naturalHeight: h } = e.currentTarget;
-                    if (w && h) setRatio(Math.min(MAX_RATIO, Math.max(MIN_RATIO, w / h)));
-                    if (swingNext.current) {
-                      swingNext.current = false;
-                      hang();
-                    }
-                  }}
-                />
-                <div className="ifu-tools">
-                  <button
-                    type="button"
-                    className="ifu-tool"
-                    aria-label={l.replace}
-                    title={l.replace}
-                    onClick={pick}
-                  >
-                    <ReplaceIcon />
-                  </button>
-                  <button
-                    type="button"
-                    className="ifu-tool"
-                    aria-label={l.remove}
-                    title={l.remove}
-                    onClick={remove}
-                  >
-                    <RemoveIcon />
-                  </button>
-                </div>
-              </>
-            ) : (
-              <button
-                type="button"
-                className="ifu-empty"
-                onClick={pick}
-                aria-describedby={`${inputId}-hint`}
-              >
-                <UploadIcon />
-                <span className="ifu-title">{drag ? l.drop : title}</span>
-                <span id={`${inputId}-hint`} className="ifu-hint">
-                  {hint ?? `or click to choose. Up to ${formatSize(maxSize)}.`}
-                </span>
-              </button>
+        <div
+          className="ifu-pic"
+          style={{ aspectRatio: fitToImage && src && ratio ? String(ratio) : aspectRatio }}
+        >
+          {src ? (
+            <>
+              {/* eslint-disable-next-line @next/next/no-img-element -- a picked file is a blob: URL */}
+              <img
+                key={src}
+                className="ifu-img"
+                src={src}
+                alt={alt}
+                draggable={false}
+                onLoad={(e) => {
+                  const { naturalWidth: w, naturalHeight: h } = e.currentTarget;
+                  if (w && h) setRatio(Math.min(MAX_RATIO, Math.max(MIN_RATIO, w / h)));
+                  if (swingNext.current) {
+                    swingNext.current = false;
+                    hang();
+                  }
+                }}
+              />
+              <div className="ifu-tools">
+                <button
+                  type="button"
+                  className="ifu-tool"
+                  aria-label={l.replace}
+                  title={l.replace}
+                  onClick={pick}
+                >
+                  <ReplaceIcon />
+                </button>
+                <button
+                  type="button"
+                  className="ifu-tool"
+                  aria-label={l.remove}
+                  title={l.remove}
+                  onClick={remove}
+                >
+                  <RemoveIcon />
+                </button>
+              </div>
+            </>
+          ) : (
+            <button
+              type="button"
+              className="ifu-empty"
+              onClick={pick}
+              aria-describedby={`${inputId}-hint`}
+            >
+              <UploadIcon />
+              <span className="ifu-title">{drag ? l.drop : title}</span>
+              <span id={`${inputId}-hint`} className="ifu-hint">
+                {hint ?? `or click to choose. Up to ${formatSize(maxSize)}.`}
+              </span>
+            </button>
+          )}
+          <span aria-live="polite">
+            {note && (
+              <span key={note.id} className="ifu-note">
+                {note.text}
+              </span>
             )}
-            <span aria-live="polite">
-              {note && (
-                <span key={note.id} className="ifu-note">
-                  {note.text}
-                </span>
-              )}
-            </span>
-          </div>
+          </span>
         </div>
       </div>
     </div>

@@ -24,10 +24,9 @@ export function CoverField() {
   );
 }`;
 
-const TOKENS = `/* Your design tokens. The frame reads these two. */
+const TOKENS = `/* Your design token. The frame reads this one. */
 :root {
   --radius-lg: 0.5rem; /* frame corners, 8px */
-  --stroke-2: 2px;     /* the lip between frame and mat */
 }`;
 
 const PROPS: [string, string, string][] = [
@@ -40,10 +39,7 @@ const PROPS: [string, string, string][] = [
   ["aspectRatio", '"4 / 5"', "Shape of the empty frame. Portrait, like a poster."],
   ["fitToImage", "true", "The frame takes each picture's own shape, so nothing is cropped. Off, every picture is cropped to aspectRatio."],
   ["radius", "var(--radius-lg, 0.5rem)", "Frame corners. Any CSS length or token. Inner corners follow it: inner radius = outer radius minus the padding between them."],
-  ["stroke", "var(--stroke-2, 2px)", "The thin lip between the frame and the mat. Any CSS length or token."],
   ["frameColor", "white / graphite", "Frame color. White on a light page, graphite on a dark one. Any CSS color or token."],
-  ["matColor", "a shade off the frame", "Mat color, the border around the picture. Any CSS color or token."],
-  ["mat", "true", "Show the mat. Off, the picture fills the frame right up to the lip."],
   ["title / hint", '"Drop an image here"', "The two lines in the empty frame. The hint names the size limit."],
   ["labels", "—", "The other short texts: drop, replace, remove, typeError, sizeError."],
   ["className / style", "—", "Layout for the outer box. Full width up to 320px by default."],
@@ -110,11 +106,10 @@ export default async function Docs({ info }: { info: ItemInfo }) {
         <Lede>Drop it in a form. Everything else has a default.</Lede>
         <Tabs tabs={[{ id: "usage", label: "cover-field.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
         <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
-          The frame&apos;s corners and its lip come from your design tokens, not fixed numbers. It reads{" "}
-          <code className="font-mono text-[13px] text-[var(--fg)]">--radius-lg</code> and{" "}
-          <code className="font-mono text-[13px] text-[var(--fg)]">--stroke-2</code>, and only falls back to 8px
-          and 2px when your project has neither. Pass <code className="font-mono text-[13px] text-[var(--fg)]">radius</code> or{" "}
-          <code className="font-mono text-[13px] text-[var(--fg)]">stroke</code> to point it at other tokens.
+          The frame&apos;s corners come from your design token, not a fixed number. It reads{" "}
+          <code className="font-mono text-[13px] text-[var(--fg)]">--radius-lg</code>, and only falls back to 8px
+          when your project doesn&apos;t have it. Pass <code className="font-mono text-[13px] text-[var(--fg)]">radius</code> to
+          point it at another token.
         </p>
         <div className="mt-4">
           <Tabs tabs={[{ id: "tokens", label: "globals.css", copy: TOKENS, body: <Html html={tokensHtml} /> }]} />
