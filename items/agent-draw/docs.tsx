@@ -10,7 +10,7 @@ import { highlight } from "@/lib/highlight";
 import { blendPrompt as buildBlendPrompt, installPrompt as buildInstallPrompt } from "./prompts";
 import type { ItemInfo } from "@/lib/site";
 
-const REGISTRY_URL = "https://impeccable-rust.vercel.app/r/agent-draw.json";
+const REGISTRY_URL = "https://impeccableui.vercel.app/r/agent-draw.json";
 
 const USAGE = `"use client";
 import { AgentDraw } from "@/components/ui/agent-draw";
@@ -79,9 +79,8 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           preview={<AgentDrawDemo />}
           hint={
             <>
-              Everything in the window opens the matching part of Vraj&apos;s portfolio. Turn on{" "}
-              <span className="text-[var(--fg)]">Slow data</span> to see the skeleton shimmer while data
-              takes longer than the drawing. With reduced motion on, the content simply fades in.
+              The button reloads this whole page, and the agents draw every part of it back,
+              section by section as you scroll. With reduced motion on, the content simply fades in.
             </>
           }
           files={[

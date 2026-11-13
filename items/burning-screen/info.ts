@@ -13,4 +13,6 @@ export const info: ItemInfo = {
   tags: ["Page transition", "WebGL", "View Transitions", "Light + dark"],
   // When it was added (newest shows first in search and on the home page).
   added: "2026-11-04 14:50",
+  // Search words for Google and AI tools (see the seo field in lib/site.ts). The visible name stays as it is.
+  seo: { keyword: "page transition animation react", title: "Fire Page Transition for React" },
 };

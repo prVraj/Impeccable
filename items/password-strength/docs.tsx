@@ -10,7 +10,7 @@ import { highlight } from "@/lib/highlight";
 import { blendPrompt as buildBlendPrompt, installPrompt as buildInstallPrompt } from "./prompts";
 import type { ItemInfo } from "@/lib/site";
 
-const REGISTRY_URL = "https://impeccable-rust.vercel.app/r/password-strength.json";
+const REGISTRY_URL = "https://impeccableui.vercel.app/r/password-strength.json";
 
 const USAGE = `"use client";
 import { PasswordStrength } from "@/components/ui/password-strength";

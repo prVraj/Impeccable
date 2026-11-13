@@ -2,53 +2,64 @@
 
 Animations and skills that fit your product like the missing piece of a puzzle. Before your AI tool builds anything, it asks you a few questions, so what you get feels made for you.
 
-**[impeccable-rust.vercel.app](https://impeccable-rust.vercel.app)** · Docs start at [/docs](https://impeccable-rust.vercel.app/docs)
+**[impeccableui.vercel.app](https://impeccableui.vercel.app)** · Docs start at [/docs](https://impeccableui.vercel.app/docs)
 
 Looking for something? Press `⌘K` on a Mac or `Ctrl+K` on Windows on any page, or click Search at the top, to search the whole library.
 
 ## What's inside
 
-The library has four parts.
+The library has five parts.
 
 ### Components
 
 | Component | What it does |
 | --- | --- |
-| [Burning-toast](https://impeccable-rust.vercel.app/docs/burning-toast) | Toasts that stack at the bottom and burn away when they close. |
-| [brain.txt](https://impeccable-rust.vercel.app/docs/brain-txt) | A brain in a web of dots; each dot holds one of your thoughts. |
-| [Scratch-me](https://impeccable-rust.vercel.app/docs/scratch-me) | Scratch off the foil to reveal a promo code; it copies itself. |
-| [Password-Strength](https://impeccable-rust.vercel.app/docs/password-strength) | A password field that rates you as AI, AI agent or Human. |
-| [Framed-Upload](https://impeccable-rust.vercel.app/docs/framed-upload) | Drop in a picture and it hangs in a frame, like a print on a wall. |
+| [Text-mirroring](https://impeccableui.vercel.app/docs/text-mirroring) | Bold header text that echoes into an infinite glass mirror on hover. |
+| [Burning-toast](https://impeccableui.vercel.app/docs/burning-toast) | Toasts that stack at the bottom and burn away when they close. |
+| [brain.txt](https://impeccableui.vercel.app/docs/brain-txt) | A brain in a web of dots; each dot holds one of your thoughts. |
+| [Scratch-me](https://impeccableui.vercel.app/docs/scratch-me) | Scratch off the foil to reveal a promo code; it copies itself. |
+| [Password-Strength](https://impeccableui.vercel.app/docs/password-strength) | A password field that rates you as AI, AI agent or Human. |
+| [Framed-Upload](https://impeccableui.vercel.app/docs/framed-upload) | Drop in a picture and it hangs in a frame, like a print on a wall. |
+
+### Buttons
+
+Every kind of button has its own place in the library: in the docs, Buttons is a menu of its own.
+
+| Button | What it does |
+| --- | --- |
+| [Peter-Tingle-button](https://impeccableui.vercel.app/docs/peter-tingle-button) | A button that feels your pointer coming and tingles toward it. |
+| [Venom-button](https://impeccableui.vercel.app/docs/venom-button) | A glossy ink button whose tentacles grab your pointer and pull on it. |
 
 ### Sections
 
-Whole page blocks. Sections of one kind share a family page that lists them all, like [Login pages](https://impeccable-rust.vercel.app/docs/login-pages).
+Whole page blocks. Sections of one kind share a family page that lists them all, like [Login pages](https://impeccableui.vercel.app/docs/login-pages).
 
 | Section | What it does |
 | --- | --- |
-| [Hex-Login](https://impeccable-rust.vercel.app/docs/hex-login) | A calm login page with your logo inside turning hexagon rings. |
+| [Hex-Login](https://impeccableui.vercel.app/docs/hex-login) | A calm login page with your logo inside turning hexagon rings. |
 
 ### Animations
 
 | Animation | What it does |
 | --- | --- |
-| [Agent-Draw](https://impeccable-rust.vercel.app/docs/agent-draw) | A loader. Named cursors draw the page's skeleton live, top to bottom, while the data loads; then the real content fades in. |
-| [Burning-Screen](https://impeccable-rust.vercel.app/docs/burning-screen) | A page transition. One click burns the current screen away from the click point and reveals the next page through the hole. |
+| [Black-Hole-Refresh](https://impeccableui.vercel.app/docs/black-hole-refresh) | A page refresh. A black hole pulls your page into long thin threads, swallows them and blasts the page back fresh. |
+| [Agent-Draw](https://impeccableui.vercel.app/docs/agent-draw) | A loader. Named cursors draw the page's skeleton live, top to bottom, while the data loads; then the real content fades in. |
+| [Burning-Screen](https://impeccableui.vercel.app/docs/burning-screen) | A page transition. One click burns the current screen away from the click point and reveals the next page through the hole. |
 
 ### Skills
 
 | Skill | What it does |
 | --- | --- |
-| [UI-tongue](https://impeccable-rust.vercel.app/docs/ui-tongue) | Learns your UI taste in about 15 minutes and writes you your own UI skill, so a one-line prompt comes out in your style. |
+| [UI-tongue](https://impeccableui.vercel.app/docs/ui-tongue) | Learns your UI taste in about 15 minutes and writes you your own UI skill, so a one-line prompt comes out in your style. |
 
-## Add a component, section or animation to your project
+## Add a component, button, section or animation to your project
 
-Every component, section and animation page gives you three ways in. Above the preview, switch it to desktop, tablet or phone width, drag its right edge to any width, reset it or open it fullscreen.
+Every component, button, section and animation page gives you three ways in. Above the preview, switch it to desktop, tablet or phone width, drag its right edge to any width, reset it or open it fullscreen.
 
 **1. Install command.** In a project set up with [shadcn](https://ui.shadcn.com):
 
 ```bash
-npx shadcn@latest add https://impeccable-rust.vercel.app/r/agent-draw.json
+npx shadcn@latest add https://impeccableui.vercel.app/r/agent-draw.json
 ```
 
 **2. Copy the code.** Copy the TypeScript or JavaScript file from the page into your components folder.
@@ -116,7 +127,7 @@ public/r/                  the install files, made by pnpm registry:build
 | --- | --- |
 | `items/<name>/` | One item: component, info, docs page, demo, iMac channel, prompts. |
 | `items/list.ts` | Which items exist, in sidebar order. |
-| `docs/ADDING-AN-ITEM.md` | Step by step: how to add a new component, section, animation or skill. |
+| `docs/ADDING-AN-ITEM.md` | Step by step: how to add a new component, button, section, animation or skill. |
 | `generated/js/<name>/<name>.jsx` | The JavaScript version of each component, made on `pnpm dev` and `pnpm build`. |
 | `generated/items/`, `app/docs/<name>/page.tsx`, `registry.json` | Made by `scripts/items.mjs` from `items/`. The page files aren't kept in git. |
 | `public/r/` | The shadcn install files. `pnpm registry:build` remakes them. |

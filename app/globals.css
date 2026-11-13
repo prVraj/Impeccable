@@ -361,3 +361,9 @@ html.is-resizing * {
   cursor: col-resize !important;
   user-select: none !important;
 }
+
+/* "Redraw this page" (Agent-Draw docs): hidden for a moment after the reload,
+   until the cursors take over. components/site/page-redraw.tsx */
+html.page-redraw body {
+  visibility: hidden;
+}

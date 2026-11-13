@@ -11,7 +11,7 @@ import { Mark } from "./icons";
 /**
  * Phones and tablets only (the sidebar shows from `lg` up).
  * Three lines in the header open a full-screen menu: logo and a close X on
- * top, then Introduction and the Components, Skills and Animations lists.
+ * top, then Introduction and the list for each part of the library (Components, Buttons, Sections, Skills, Animations).
  */
 export function MobileMenu() {
   const [open, setOpen] = useState(false);

@@ -10,7 +10,7 @@ import { highlight } from "@/lib/highlight";
 import { blendPrompt as buildBlendPrompt, installPrompt as buildInstallPrompt } from "./prompts";
 import type { ItemInfo } from "@/lib/site";
 
-const REGISTRY_URL = "https://impeccable-rust.vercel.app/r/brain-txt.json";
+const REGISTRY_URL = "https://impeccableui.vercel.app/r/brain-txt.json";
 
 const USAGE = `"use client";
 import { BrainTxt, type Thought } from "@/components/ui/brain-txt";

@@ -3,12 +3,15 @@ import type { Metadata } from "next";
 import { DocsLayout } from "@/components/site/docs-layout";
 import { DocSection, Lede } from "@/components/site/doc-parts";
 import { Arrow } from "@/components/site/icons";
-import { AUTHOR, COMPONENTS, GITHUB, GROUPS } from "@/lib/site";
+import { AUTHOR, COMPONENTS, GITHUB, GROUPS, pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Introduction · Impeccable",
+export const metadata: Metadata = pageMetadata({
+  title: "Docs: Animated React Components and AI Skills | Impeccable UI",
   description: "Why Impeccable exists, what every component comes with, and how the Install and Blend prompts fit it to your product.",
-};
+  path: "/docs",
+  image: "docs",
+  imageAlt: "Impeccable UI docs",
+});
 
 const SECTIONS = [
   { id: "why", title: "Why it exists" },

@@ -1,3 +1,4 @@
+import { Children } from "react";
 import Link from "next/link";
 import { AUTHOR, COMPONENTS, FAMILIES, GITHUB, GROUPS, isSideActive, neighbours, sideItems } from "@/lib/site";
 import { cx } from "@/lib/utils";
@@ -11,6 +12,7 @@ import { ThemeToggle } from "./theme-toggle";
 import { Breadcrumbs } from "./breadcrumbs";
 import { Toc } from "./toc";
 import { SideDropdown } from "./side-dropdown";
+import { Redraw } from "./page-redraw";
 
 export type DocSection = { id: string; title: string };
 
@@ -39,53 +41,56 @@ export function DocsLayout({
 
       {/* Desktop: the side panel sits on the frame, next to the page sheet. */}
       <aside aria-label="Sidebar" className="sticky top-0 hidden h-dvh w-60 shrink-0 flex-col overflow-y-auto px-3 pt-4 pb-6 lg:flex">
-        <Link href="/" className="flex items-center gap-2 px-2.5 py-1 text-[15px] font-semibold tracking-tight">
-          <Mark className="h-6 w-[21px] text-[var(--fg)]" />
-          Impeccable
-        </Link>
+        {/* Each part is drawn back by "Redraw this page" on the Agent-Draw docs. */}
+        <Redraw>
+          <Link href="/" className="flex items-center gap-2 px-2.5 py-1 text-[15px] font-semibold tracking-tight">
+            <Mark className="h-6 w-[21px] text-[var(--fg)]" />
+            Impeccable
+          </Link>
 
-        <a
-          href={GITHUB}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="press group mt-4 mb-6 flex items-center gap-3 rounded-xl border border-[var(--line)] bg-[var(--sheet)] p-2.5 transition-colors hover:border-[color-mix(in_srgb,var(--accent)_35%,var(--line))]"
-        >
-          <span className="btn-brand grid size-8 shrink-0 place-items-center rounded-lg">
-            <Mark className="h-4 w-[14px] text-white" />
-          </span>
-          <span className="min-w-0 flex-1">
-            <span className="block text-sm leading-tight font-medium">Animation-first UI</span>
-            <span className="block truncate text-[11px] text-[var(--muted)]">Open source · MIT</span>
-          </span>
-          <ArrowUpRight01Icon size={14} className="text-[var(--faint)] transition-colors group-hover:text-[var(--accent)]" />
-        </a>
+          <a
+            href={GITHUB}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="press group mt-4 mb-6 flex items-center gap-3 rounded-xl border border-[var(--line)] bg-[var(--sheet)] p-2.5 transition-colors hover:border-[color-mix(in_srgb,var(--accent)_35%,var(--line))]"
+          >
+            <span className="btn-brand grid size-8 shrink-0 place-items-center rounded-lg">
+              <Mark className="h-4 w-[14px] text-white" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block text-sm leading-tight font-medium">Animation-first UI</span>
+              <span className="block truncate text-[11px] text-[var(--muted)]">Open source · MIT</span>
+            </span>
+            <ArrowUpRight01Icon size={14} className="text-[var(--faint)] transition-colors group-hover:text-[var(--accent)]" />
+          </a>
 
-        <SideGroup title="Getting started">
-          <SideLink href="/docs" active={!slug}>
-            Introduction
-          </SideLink>
-        </SideGroup>
-        {GROUPS.map((g) => {
-          const items = sideItems(g.id);
-          const count = COMPONENTS.filter((c) => c.group === g.id).length;
-          return (
-            <SideDropdown key={g.id} title={g.label} count={count} icon={<GroupIcon group={g.id} />}>
-              {items.length ? (
-                items.map((c) => (
-                  <SideLink
-                    key={c.slug}
-                    href={`/docs/${c.slug}`}
-                    active={isSideActive(c.slug, slug)}
-                  >
-                    {c.name}
-                  </SideLink>
-                ))
-              ) : (
-                <p className="px-2.5 py-1.5 text-sm text-[var(--faint)]">Coming soon</p>
-              )}
-            </SideDropdown>
-          );
-        })}
+          <SideGroup title="Getting started">
+            <SideLink href="/docs" active={!slug}>
+              Introduction
+            </SideLink>
+          </SideGroup>
+          {GROUPS.map((g) => {
+            const items = sideItems(g.id);
+            const count = COMPONENTS.filter((c) => c.group === g.id).length;
+            return (
+              <SideDropdown key={g.id} title={g.label} count={count} icon={<GroupIcon group={g.id} />}>
+                {items.length ? (
+                  items.map((c) => (
+                    <SideLink
+                      key={c.slug}
+                      href={`/docs/${c.slug}`}
+                      active={isSideActive(c.slug, slug)}
+                    >
+                      {c.name}
+                    </SideLink>
+                  ))
+                ) : (
+                  <p className="px-2.5 py-1.5 text-sm text-[var(--faint)]">Coming soon</p>
+                )}
+              </SideDropdown>
+            );
+          })}
+        </Redraw>
       </aside>
 
       {/* The page itself: a raised sheet with the tab cut into its top right corner. */}
@@ -93,32 +98,40 @@ export function DocsLayout({
         <SheetTab />
         <div className="mx-auto flex max-w-6xl justify-center gap-12 px-4 sm:px-6 lg:px-10">
           <main className="min-w-0 max-w-3xl flex-1 pt-10 pb-24 lg:pt-14">
-            <Breadcrumbs
-              items={
-                current
-                  ? [
-                      { label: "Docs", href: "/docs" },
-                      { label: GROUPS.find((g) => g.id === current.group)!.label },
-                      ...(family ? [{ label: family.name, href: `/docs/${family.slug}` }] : []),
-                      { label: current.name },
-                    ]
-                  : [{ label: "Docs", href: "/docs" }, { label: "Introduction" }]
-              }
-            />
-            {children}
+            <Redraw>
+              <Breadcrumbs
+                items={
+                  current
+                    ? [
+                        { label: "Docs", href: "/docs" },
+                        { label: GROUPS.find((g) => g.id === current.group)!.label },
+                        ...(family ? [{ label: family.name, href: `/docs/${family.slug}` }] : []),
+                        { label: current.name },
+                      ]
+                    : [{ label: "Docs", href: "/docs" }, { label: "Introduction" }]
+                }
+              />
+            </Redraw>
+            {Children.map(children, (child) => (child ? <Redraw>{child}</Redraw> : child))}
 
-            <nav className="mt-20 grid gap-3 sm:grid-cols-2" aria-label="More pages">
-              {prev ? <PagerCard dir="prev" href={prev.href} name={prev.name} /> : <span className="hidden sm:block" />}
-              {next && <PagerCard dir="next" href={next.href} name={next.name} />}
-            </nav>
+            <Redraw>
+              <nav className="mt-20 grid gap-3 sm:grid-cols-2" aria-label="More pages">
+                {prev ? <PagerCard dir="prev" href={prev.href} name={prev.name} /> : <span className="hidden sm:block" />}
+                {next && <PagerCard dir="next" href={next.href} name={next.name} />}
+              </nav>
+            </Redraw>
           </main>
 
           {/* Starts lower than the text, to leave room for the hanging bulb. */}
           <aside aria-label="On this page" className="sticky top-[9px] hidden w-44 shrink-0 self-start pt-[103px] xl:block">
-            <Toc sections={sections} />
+            <Redraw>
+              <Toc sections={sections} />
+            </Redraw>
           </aside>
         </div>
-        <Footer />
+        <Redraw>
+          <Footer />
+        </Redraw>
       </div>
     </div>
   );

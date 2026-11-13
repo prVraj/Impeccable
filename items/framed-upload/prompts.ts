@@ -4,7 +4,7 @@
 
 const FRAMED_UPLOAD_SHARED_BUILD = `## Fastest path
 
-If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccable-rust.vercel.app/r/framed-upload.json\`.
+If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccableui.vercel.app/r/framed-upload.json\`.
 If the command succeeds, only fix import paths to match this project and skip ahead. If it fails or there is no \`components.json\`, build it by hand as below.
 
 ## Build it

@@ -14,4 +14,6 @@ export const info: ItemInfo = {
   tags: ["Login page", "No extra packages", "Light + dark", "Mobile"],
   // When it was added (newest shows first in search and on the home page).
   added: "2026-11-12 14:20",
+  // Search words for Google and AI tools (see the seo field in lib/site.ts). The visible name stays as it is.
+  seo: { keyword: "login page ui", title: "Animated Login Page for React" },
 };

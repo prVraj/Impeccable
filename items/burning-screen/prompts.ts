@@ -24,11 +24,11 @@ Ask nothing else. If I say *skip*, wire it to the best suggestion.
 The burn is the design. Keep the ragged edge shape and how it grows in surges, the charred band and inner shadow, the flames, the rising ash, the timings and the colors exactly as in the source. If something doesn't fit my project, tell me instead of changing it.
 
 - Add only the component file, the wrapper in the root layout and the wiring for the button I picked. Don't add packages, change other files, or restyle anything.
-- Don't add demo controls (sliders, color pickers, theme toggles or "Try it" buttons) from the Impeccable website. My users only ever see the burn.
+- Don't add demo controls (the "Burn this page" button, sliders, color pickers, theme toggles or "Try it" buttons) from the Impeccable website. My users only ever see the burn.
 
 ## Fastest path
 
-If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccable-rust.vercel.app/r/burning-screen.json\`.
+If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccableui.vercel.app/r/burning-screen.json\`.
 If the command succeeds, only fix import paths to match this project and skip to **Check**. If it fails or there is no \`components.json\`, build it by hand as below.
 
 ## Build it
@@ -129,11 +129,11 @@ Only my answers above may change it, and only through props and options the comp
 
 - The burn is the design. The ragged edge shape and how it grows in surges, the charred band and inner shadow, the flames, and the ash rising upward stay exactly as in the source. If something doesn't fit my product, tell me instead of changing it.
 
-- No new packages, no changes to files other than the component, the root layout wrapper and the button I picked, and no demo controls (sliders, color pickers or theme toggles) on my site.
+- No new packages, no changes to files other than the component, the root layout wrapper and the button I picked, and no demo controls (the "Burn this page" button, sliders, color pickers or theme toggles) on my site.
 
 ## Fastest path
 
-If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccable-rust.vercel.app/r/burning-screen.json\`.
+If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccableui.vercel.app/r/burning-screen.json\`.
 If the command succeeds, only fix import paths to match this project and skip to **Fit it to the brand**. If it fails or there is no \`components.json\`, build it by hand as below.
 
 ## Build it

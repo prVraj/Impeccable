@@ -4,7 +4,7 @@
 
 const AGENT_DRAW_SHARED_BUILD = `## Fastest path
 
-If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccable-rust.vercel.app/r/agent-draw.json\`.
+If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccableui.vercel.app/r/agent-draw.json\`.
 If the command succeeds, only fix import paths to match this project and skip ahead. If it fails or there is no \`components.json\`, build it by hand as below.
 
 ## Build it
@@ -51,7 +51,7 @@ Ask nothing else. If I say *skip*, use the best suggestion.
 The drawing is the design. Keep the shapes (only rectangles and circles), the order (top to bottom, one cursor per shape), the cursor names, colors and count, the size tags, the 3.5 second timing and the shimmer exactly as in the source. If something doesn't fit my project, tell me instead of changing it.
 
 - Add only the component file and the wrapper on the screen I picked. If that screen already has a spinner or skeleton for the same loading state, remove it so the two don't show together. Don't add packages, change other files, or restyle anything.
-- Don't add demo controls (Replay buttons, sliders or "Slow data" toggles) from the Impeccable website. My users only ever see the drawing.
+- Don't add demo pieces from the Impeccable website (the "Redraw this page" button, Replay buttons, sliders or "Slow data" toggles). My users only ever see the drawing.
 
 ${AGENT_DRAW_SHARED_BUILD}
 
@@ -142,7 +142,7 @@ Only my answers above may change it, and only through props and options the comp
 
 - The drawing is the design. The shapes (only rectangles and circles), the order (top to bottom, one cursor per shape), the cursor count (8 on desktop, 4 on phones, never 10 or more), the size tags, the drag motion and the shimmer stay exactly as in the source. If something doesn't fit my product, tell me instead of changing it.
 
-- No new packages, no changes to files other than the component and the screen I picked (where you may remove an old spinner or skeleton for the same loading state), and no demo controls (Replay buttons, sliders or toggles) on my site.
+- No new packages, no changes to files other than the component and the screen I picked (where you may remove an old spinner or skeleton for the same loading state), and no demo pieces (the "Redraw this page" button, Replay buttons, sliders or toggles) on my site.
 
 ${AGENT_DRAW_SHARED_BUILD}
 

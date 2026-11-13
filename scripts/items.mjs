@@ -9,7 +9,8 @@ import { existsSync, readFileSync, readdirSync, writeFileSync, mkdirSync, rmSync
 import { join } from "node:path";
 
 const ITEMS = "items";
-const SITE = "https://impeccable-rust.vercel.app";
+// The live address. Keep it the same as SITE.url in lib/seo.ts.
+const SITE = "https://impeccableui.vercel.app";
 const errors = [];
 const warnings = [];
 const read = (p) => readFileSync(p, "utf8");
@@ -49,8 +50,8 @@ for (const slug of order.filter((s) => folders.includes(s))) {
   const where = `items/${slug}/info.ts`;
   if (it.infoSlug !== slug) errors.push(`${where}: slug is "${it.infoSlug}", but the folder is "${slug}". They must match.`);
   for (const k of ["name", "group", "blurb", "description", "added"]) if (!it[k]) errors.push(`${where}: "${k}" is missing.`);
-  if (it.group && !["components", "sections", "skills", "animations"].includes(it.group))
-    errors.push(`${where}: group must be components, sections, skills or animations (it is "${it.group}").`);
+  if (it.group && !["components", "buttons", "sections", "skills", "animations"].includes(it.group))
+    errors.push(`${where}: group must be components, buttons, sections, skills or animations (it is "${it.group}").`);
   if (it.added && !/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(it.added))
     errors.push(`${where}: added must look like "2026-11-12 14:30" (it is "${it.added}").`);
   if (it.description && it.description.length > 150)
@@ -133,9 +134,10 @@ for (const i of items) {
     `${ROUTE_MARK} for /docs/${i.slug}. Don't edit: the page is items/${i.slug}/docs.tsx.\n` +
     `import Docs from "@/items/${i.slug}/docs";\n` +
     `import { info } from "@/items/${i.slug}/info";\n` +
-    `import { itemMetadata } from "@/lib/site";\n\n` +
+    `import { itemMetadata } from "@/lib/site";\n` +
+    `import { ItemJsonLd } from "@/components/site/json-ld";\n\n` +
     `export const metadata = itemMetadata(info);\n\n` +
-    `export default function Page() {\n  return <Docs info={info} />;\n}\n`;
+    `export default function Page() {\n  return (\n    <>\n      <ItemJsonLd info={info} />\n      <Docs info={info} />\n    </>\n  );\n}\n`;
   if (!existsSync(file) || read(file) !== text) writeFileSync(file, text);
 }
 // Remove pages of items that left the list.

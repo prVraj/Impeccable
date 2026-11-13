@@ -1,12 +1,16 @@
 /** The site's list of items. The order lives in items/list.ts; each item's details in items/<slug>/info.ts. */
+import type { Metadata } from "next";
 import { ORDER } from "@/items/list";
+import { SITE, absolute, ogImage } from "@/lib/seo";
 import { INFO } from "@/generated/items/info";
 
-export type Group = "components" | "sections" | "skills" | "animations";
+export type Group = "components" | "buttons" | "sections" | "skills" | "animations";
 
 /** The parts of the library, in sidebar order. */
 export const GROUPS: { id: Group; label: string }[] = [
   { id: "components", label: "Components" },
+  // Buttons of every kind. Its own dropdown, because there will be many.
+  { id: "buttons", label: "Buttons" },
   // Website sections: header, top navbar, hero, footer and the like.
   { id: "sections", label: "Sections" },
   { id: "skills", label: "Skills" },
@@ -31,6 +35,12 @@ export type ItemInfo = {
   family?: string;
   /** When it was added, "YYYY-MM-DD HH:MM". Newest shows first in search and on the home page. */
   added: string;
+  /**
+   * Search words for Google and AI tools. The visible name stays as it is; these only go in the
+   * browser-tab title and the page's hidden data. `keyword`: the main phrase people search.
+   * `title`: what it is in searched words, like "Fire Page Transition for React".
+   */
+  seo?: { keyword: string; title: string };
 };
 
 export type SiteComponent = ItemInfo;
@@ -52,9 +62,38 @@ export function newestFirst() {
   return [...ALL].sort((a, b) => b.added.localeCompare(a.added));
 }
 
-/** The page title and meta description for an item's docs page. */
-export function itemMetadata(info: ItemInfo) {
-  return { title: `${info.name} · Impeccable`, description: info.description };
+/** Everything search engines and link previews read for an item's docs page: title, description, canonical link, social card. */
+export function itemMetadata(info: ItemInfo): Metadata {
+  const what = info.seo?.title ?? info.category ?? GROUPS.find((g) => g.id === info.group)!.label;
+  const title = `${info.name}: ${what} | ${SITE.name}`;
+  const path = `/docs/${info.slug}`;
+  return pageMetadata({ title, description: info.description, path, image: info.slug, imageAlt: `${info.name}: ${info.blurb}` });
+}
+
+/** Title, description, canonical link and social card for any page. Pages never set openGraph themselves. */
+export function pageMetadata(p: { title: string; description: string; path: string; image: string; imageAlt: string }): Metadata {
+  const image = ogImage(p.image, p.imageAlt);
+  return {
+    title: { absolute: p.title },
+    description: p.description,
+    alternates: { canonical: absolute(p.path) },
+    openGraph: {
+      type: "website",
+      siteName: SITE.name,
+      locale: SITE.locale,
+      url: absolute(p.path),
+      title: p.title,
+      description: p.description,
+      images: [image],
+    },
+    twitter: {
+      card: "summary_large_image",
+      creator: SITE.x,
+      title: p.title,
+      description: p.description,
+      images: [image],
+    },
+  };
 }
 
 export const GITHUB = "https://github.com/prVraj/Impeccable";

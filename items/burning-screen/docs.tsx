@@ -10,7 +10,7 @@ import { highlight } from "@/lib/highlight";
 import { blendPrompt as buildBlendPrompt, installPrompt as buildInstallPrompt } from "./prompts";
 import type { ItemInfo } from "@/lib/site";
 
-const REGISTRY_URL = "https://impeccable-rust.vercel.app/r/burning-screen.json";
+const REGISTRY_URL = "https://impeccableui.vercel.app/r/burning-screen.json";
 
 const USAGE_LAYOUT = `// app/layout.tsx
 import { BurningScreen } from "@/components/ui/burning-screen";
@@ -84,8 +84,9 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           preview={<Playground />}
           hint={
             <>
-              Uses View Transitions and WebGL. Older browsers and reduced-motion settings get a short
-              fade instead.
+              The button burns this whole page away from where you click, into the other theme. Uses
+              View Transitions and WebGL. Older browsers and reduced-motion settings get a short fade
+              instead.
             </>
           }
           files={[

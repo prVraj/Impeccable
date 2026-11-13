@@ -2,7 +2,11 @@ import Link from "next/link";
 import { Header } from "@/components/site/header";
 import { IMac } from "@/components/site/imac";
 import { Arrow, GitHub } from "@/components/site/icons";
-import { AUTHOR, GITHUB, newestFirst } from "@/lib/site";
+import { AUTHOR, GITHUB, newestFirst, pageMetadata } from "@/lib/site";
+import { SITE } from "@/lib/seo";
+import { SiteJsonLd } from "@/components/site/json-ld";
+
+export const metadata = pageMetadata({ title: SITE.title, description: SITE.description, path: "/", image: "home", imageAlt: SITE.title });
 
 /** One screen, nothing to scroll: the promise, two ways in. */
 export default function Home() {
@@ -10,6 +14,7 @@ export default function Home() {
   const latest = newestFirst().find((i) => i.kind !== "family")!;
   return (
     <div className="flex min-h-dvh flex-col">
+      <SiteJsonLd />
       <Header />
       <main className="relative flex flex-1 items-center overflow-hidden">
         <div

@@ -10,7 +10,7 @@ import { highlight } from "@/lib/highlight";
 import { blendPrompt as buildBlendPrompt, installPrompt as buildInstallPrompt } from "./prompts";
 import type { ItemInfo } from "@/lib/site";
 
-const REGISTRY_URL = "https://impeccable-rust.vercel.app/r/framed-upload.json";
+const REGISTRY_URL = "https://impeccableui.vercel.app/r/framed-upload.json";
 
 const USAGE = `"use client";
 import { FramedUpload } from "@/components/ui/framed-upload";

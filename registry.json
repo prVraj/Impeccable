@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "impeccable",
-  "homepage": "https://impeccable-rust.vercel.app",
+  "homepage": "https://impeccableui.vercel.app",
   "items": [
     {
       "name": "burning-screen",
@@ -104,6 +104,58 @@
           "path": "items/burning-toast/burning-toast.tsx",
           "type": "registry:component",
           "target": "components/ui/burning-toast.tsx"
+        }
+      ]
+    },
+    {
+      "name": "text-mirroring",
+      "type": "registry:component",
+      "title": "Text-mirroring",
+      "description": "Bold header text that echoes into an infinite glass mirror on hover. Use it on one hero or section title of two to four short words.",
+      "files": [
+        {
+          "path": "items/text-mirroring/text-mirroring.tsx",
+          "type": "registry:component",
+          "target": "components/ui/text-mirroring.tsx"
+        }
+      ]
+    },
+    {
+      "name": "black-hole-refresh",
+      "type": "registry:component",
+      "title": "Black-Hole-Refresh",
+      "description": "A black hole pulls your page into long thin threads, swallows them and blasts the page back fresh. Use it on refresh for a playful site or portfolio.",
+      "files": [
+        {
+          "path": "items/black-hole-refresh/black-hole-refresh.tsx",
+          "type": "registry:component",
+          "target": "components/ui/black-hole-refresh.tsx"
+        }
+      ]
+    },
+    {
+      "name": "venom-button",
+      "type": "registry:component",
+      "title": "Venom-button",
+      "description": "A glossy ink button whose tentacles grab your pointer and pull on it until they snap. Use it for one main action, like the call to action in a hero.",
+      "files": [
+        {
+          "path": "items/venom-button/venom-button.tsx",
+          "type": "registry:component",
+          "target": "components/ui/venom-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "peter-tingle-button",
+      "type": "registry:component",
+      "title": "Peter-Tingle-button",
+      "description": "A button that feels your pointer coming and tingles, with wavy lines pulsing toward it. Use it for one main action, like a hero call to action.",
+      "files": [
+        {
+          "path": "items/peter-tingle-button/peter-tingle-button.tsx",
+          "type": "registry:component",
+          "target": "components/ui/peter-tingle-button.tsx"
         }
       ]
     }
