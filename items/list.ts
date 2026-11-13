@@ -18,6 +18,8 @@ export const ORDER = [
   // Buttons
   "peter-tingle-button",
   "venom-button",
+  "pixel-tremor-button",
+  "ascii-tide-button",
   // Sections
   "login-pages",
   "hex-login",

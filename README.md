@@ -29,6 +29,8 @@ Every kind of button has its own place in the library: in the docs, Buttons is a
 | --- | --- |
 | [Peter-Tingle-button](https://impeccableui.vercel.app/docs/peter-tingle-button) | A button that feels your pointer coming and tingles toward it. |
 | [Venom-button](https://impeccableui.vercel.app/docs/venom-button) | A glossy ink button whose tentacles grab your pointer and pull on it. |
+| [Pixel-Tremor-button](https://impeccableui.vercel.app/docs/pixel-tremor-button) | A white button that turns to pixels under your pointer and on click. |
+| [ASCII-Tide-button](https://impeccableui.vercel.app/docs/ascii-tide-button) | A dark button with drifting ASCII behind its label and a calm tide on tap. |
 
 ### Sections
 

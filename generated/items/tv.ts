@@ -8,6 +8,8 @@ import passwordStrength from "@/items/password-strength/tv";
 import framedUpload from "@/items/framed-upload/tv";
 import peterTingleButton from "@/items/peter-tingle-button/tv";
 import venomButton from "@/items/venom-button/tv";
+import pixelTremorButton from "@/items/pixel-tremor-button/tv";
+import asciiTideButton from "@/items/ascii-tide-button/tv";
 import hexLogin from "@/items/hex-login/tv";
 import blackHoleRefresh from "@/items/black-hole-refresh/tv";
 import agentDraw from "@/items/agent-draw/tv";
@@ -22,6 +24,8 @@ export const TV: Record<string, ComponentType<{ onReplay: () => void }>> = {
   "framed-upload": framedUpload,
   "peter-tingle-button": peterTingleButton,
   "venom-button": venomButton,
+  "pixel-tremor-button": pixelTremorButton,
+  "ascii-tide-button": asciiTideButton,
   "hex-login": hexLogin,
   "black-hole-refresh": blackHoleRefresh,
   "agent-draw": agentDraw,

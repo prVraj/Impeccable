@@ -158,6 +158,32 @@
           "target": "components/ui/peter-tingle-button.tsx"
         }
       ]
+    },
+    {
+      "name": "pixel-tremor-button",
+      "type": "registry:component",
+      "title": "Pixel-Tremor-button",
+      "description": "A plain white button that turns to pixel blocks under your pointer and ripples into pixels on click. Use it for one main action, like a hero.",
+      "files": [
+        {
+          "path": "items/pixel-tremor-button/pixel-tremor-button.tsx",
+          "type": "registry:component",
+          "target": "components/ui/pixel-tremor-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "ascii-tide-button",
+      "type": "registry:component",
+      "title": "ASCII-Tide-button",
+      "description": "A dark button that shows drifting ASCII characters behind its label and sends a calm violet tide on tap. Use it for one main action, like a hero.",
+      "files": [
+        {
+          "path": "items/ascii-tide-button/ascii-tide-button.tsx",
+          "type": "registry:component",
+          "target": "components/ui/ascii-tide-button.tsx"
+        }
+      ]
     }
   ]
 }

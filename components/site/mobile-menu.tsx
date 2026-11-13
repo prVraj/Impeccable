@@ -4,23 +4,44 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { COMPONENTS, GROUPS, isSideActive, sideItems } from "@/lib/site";
+import { COMPONENTS, GROUPS, isSideActive, sideItems, type Group } from "@/lib/site";
 import { cx } from "@/lib/utils";
+import { GroupIcon } from "./group-icon";
 import { Mark } from "./icons";
+
+/** The part of the library the page belongs to, so its dropdown can start open. */
+function groupOf(pathname: string | null): Group | undefined {
+  const slug = pathname?.replace(/^\/docs\//, "");
+  return GROUPS.find((g) => sideItems(g.id).some((i) => isSideActive(i.slug, slug)))?.id;
+}
 
 /**
  * Phones and tablets only (the sidebar shows from `lg` up).
  * Three lines in the header open a full-screen menu: logo and a close X on
- * top, then Introduction and the list for each part of the library (Components, Buttons, Sections, Skills, Animations).
+ * top, then Introduction and one dropdown for each part of the library
+ * (Components, Buttons, Sections, Skills, Animations). Only the dropdown
+ * holding the current page starts open, so every part is one tap away
+ * instead of at the end of a long scroll.
  */
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+  const [openGroups, setOpenGroups] = useState<Group[]>(() => {
+    const g = groupOf(pathname);
+    return g ? [g] : [];
+  });
 
   useEffect(() => setMounted(true), []);
-  // Close when the page changes.
-  useEffect(() => setOpen(false), [pathname]);
+  // Close when the page changes, and open only the new page's dropdown.
+  useEffect(() => {
+    setOpen(false);
+    const g = groupOf(pathname);
+    setOpenGroups(g ? [g] : []);
+  }, [pathname]);
+
+  const toggleGroup = (id: Group) =>
+    setOpenGroups((o) => (o.includes(id) ? o.filter((x) => x !== id) : [...o, id]));
 
   useEffect(() => {
     if (!open) return;
@@ -93,35 +114,71 @@ export function MobileMenu() {
                 </MenuLink>
               </div>
 
-              {GROUPS.map((g) => {
-                const items = sideItems(g.id);
-                const count = COMPONENTS.filter((c) => c.group === g.id).length;
-                return (
-                  <section key={g.id} className="mt-7">
-                    <p {...row()} className="mobile-menu-row mb-1 flex items-center gap-1.5 text-xs font-medium text-[var(--faint)]">
-                      {g.label}
-                      <span className="font-mono text-[10px]">{count}</span>
-                    </p>
-                    {items.length ? (
-                      items.map((c) => (
-                        <div key={c.slug} {...row()} className="mobile-menu-row">
-                          <MenuLink
-                            href={`/docs/${c.slug}`}
-                            active={isSideActive(c.slug, pathname?.replace(/^\/docs\//, ""))}
-                            onPick={() => setOpen(false)}
-                          >
-                            {c.name}
-                          </MenuLink>
+              <div className="mt-4 flex flex-col">
+                {GROUPS.map((g) => {
+                  const items = sideItems(g.id);
+                  const count = COMPONENTS.filter((c) => c.group === g.id).length;
+                  const isOpen = openGroups.includes(g.id);
+                  const listId = `mobile-menu-${g.id}`;
+                  return (
+                    <section key={g.id}>
+                      <button
+                        type="button"
+                        {...row()}
+                        onClick={() => toggleGroup(g.id)}
+                        aria-expanded={isOpen}
+                        aria-controls={listId}
+                        className="mobile-menu-row flex min-h-12 w-full items-center justify-between gap-3 text-left text-lg font-medium tracking-tight text-[var(--fg)]"
+                      >
+                        <span className="flex items-center gap-2.5">
+                          <GroupIcon group={g.id} size={18} className="shrink-0 text-[var(--muted)]" />
+                          {g.label}
+                          <span className="font-mono text-[11px] font-normal text-[var(--faint)]">{count}</span>
+                        </span>
+                        <svg
+                          viewBox="0 0 16 16"
+                          aria-hidden="true"
+                          className={cx(
+                            "size-4 shrink-0 text-[var(--muted)] transition-transform duration-200 ease-[var(--ease-out)] motion-reduce:transition-none",
+                            isOpen && "rotate-90",
+                          )}
+                        >
+                          <path d="M6 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </button>
+                      <div
+                        id={listId}
+                        className={cx(
+                          "grid transition-[grid-template-rows,opacity] duration-200 ease-[var(--ease-out)] motion-reduce:transition-none",
+                          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+                        )}
+                      >
+                        <div className="overflow-hidden" inert={!isOpen}>
+                          {/* Thin guide line under the icon, down to the last item, like the desktop sidebar. */}
+                          <div className="mb-2 ml-[8.5px] border-l border-[var(--line)] pl-[18.5px]">
+                            {items.length ? (
+                              items.map((c) => (
+                                <div key={c.slug} {...(isOpen ? row() : {})} className="mobile-menu-row">
+                                  <MenuLink
+                                    href={`/docs/${c.slug}`}
+                                    active={isSideActive(c.slug, pathname?.replace(/^\/docs\//, ""))}
+                                    onPick={() => setOpen(false)}
+                                    small
+                                  >
+                                    {c.name}
+                                  </MenuLink>
+                                </div>
+                              ))
+                            ) : (
+                              <p className="py-2.5 text-base text-[var(--faint)]">Coming soon</p>
+                            )}
+                          </div>
                         </div>
-                      ))
-                    ) : (
-                      <p {...row()} className="mobile-menu-row py-2 text-lg text-[var(--faint)]">
-                        Coming soon
-                      </p>
-                    )}
-                  </section>
-                );
-              })}
+                      </div>
+                    </section>
+                  );
+                })}
+              </div>
             </nav>
           </div>,
           document.body,
@@ -134,12 +191,14 @@ function MenuLink({
   href,
   active,
   badge,
+  small,
   onPick,
   children,
 }: {
   href: string;
   active?: boolean;
   badge?: string;
+  small?: boolean;
   onPick: () => void;
   children: React.ReactNode;
 }) {
@@ -149,7 +208,8 @@ function MenuLink({
       onClick={onPick}
       aria-current={active ? "page" : undefined}
       className={cx(
-        "flex items-center gap-2 py-2 text-lg tracking-tight transition-colors",
+        "flex items-center gap-2 tracking-tight transition-colors",
+        small ? "min-h-11 text-base" : "py-2 text-lg",
         active ? "font-medium text-[var(--fg)]" : "text-[var(--muted)] hover:text-[var(--fg)]",
       )}
     >
