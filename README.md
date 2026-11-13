@@ -1,95 +1,111 @@
-# Impeccable
+<p align="center">
+  <a href="https://impeccableui.vercel.app">
+    <img src="app/icon.svg" width="64" height="64" alt="Impeccable UI logo" />
+  </a>
+</p>
 
-Animations and skills that fit your product like the missing piece of a puzzle. Before your AI tool builds anything, it asks you a few questions, so what you get feels made for you.
+<h1 align="center">Impeccable UI</h1>
 
-**[impeccableui.vercel.app](https://impeccableui.vercel.app)** · Docs start at [/docs](https://impeccableui.vercel.app/docs)
+<p align="center">
+  Animated React components, buttons, page sections and AI skills,<br />
+  made to fit your product like the missing piece of a puzzle.
+</p>
 
-Looking for something? Press `⌘K` on a Mac or `Ctrl+K` on Windows on any page, or click Search at the top, to search the whole library.
+<p align="center">
+  <a href="https://impeccableui.vercel.app"><strong>Website</strong></a> ·
+  <a href="https://impeccableui.vercel.app/docs">Docs</a> ·
+  <a href="https://x.com/vrajsensei">Follow on X</a> ·
+  <a href="LICENSE">MIT License</a>
+</p>
 
-## What's inside
+---
 
-The library has five parts.
+## Let's make something for Humans once again
 
-### Components
+Screens are easy to make now. Feeling is not.
 
-| Component | What it does |
-| --- | --- |
-| [Text-mirroring](https://impeccableui.vercel.app/docs/text-mirroring) | Bold header text that echoes into an infinite glass mirror on hover. |
-| [Burning-toast](https://impeccableui.vercel.app/docs/burning-toast) | Toasts that stack at the bottom and burn away when they close. |
-| [brain.txt](https://impeccableui.vercel.app/docs/brain-txt) | A brain in a web of dots; each dot holds one of your thoughts. |
-| [Scratch-me](https://impeccableui.vercel.app/docs/scratch-me) | Scratch off the foil to reveal a promo code; it copies itself. |
-| [Password-Strength](https://impeccableui.vercel.app/docs/password-strength) | A password field that rates you as AI, AI agent or Human. |
-| [Framed-Upload](https://impeccableui.vercel.app/docs/framed-upload) | Drop in a picture and it hangs in a frame, like a print on a wall. |
+AI tools can build a working page in seconds, and most of those pages look the same. What they rarely get right is the part people remember: how a button answers your pointer, how a page leaves, how a loader keeps you company while you wait.
 
-### Buttons
+Impeccable UI is a free, open-source library of those moments. Every piece is designed and tuned by hand, then shipped with the code and two prompts, so you, or your AI tool, can add it to your product and have it feel exactly as it was meant to.
 
-Every kind of button has its own place in the library: in the docs, Buttons is a menu of its own.
+## What's in the library
 
-| Button | What it does |
-| --- | --- |
-| [Peter-Tingle-button](https://impeccableui.vercel.app/docs/peter-tingle-button) | A button that feels your pointer coming and tingles toward it. |
-| [Venom-button](https://impeccableui.vercel.app/docs/venom-button) | A glossy ink button whose tentacles grab your pointer and pull on it. |
-| [Pixel-Tremor-button](https://impeccableui.vercel.app/docs/pixel-tremor-button) | A white button that turns to pixels under your pointer and on click. |
-| [ASCII-Tide-button](https://impeccableui.vercel.app/docs/ascii-tide-button) | A dark button with drifting ASCII behind its label and a calm tide on tap. |
+The library has five parts. Browse all of them, with live previews, at **[impeccableui.vercel.app](https://impeccableui.vercel.app)**.
 
-### Sections
+- **Components:** building blocks with motion built in, like toasts, upload fields and password meters.
+- **Buttons:** buttons that react to the person using them.
+- **Sections:** whole page blocks, like login pages, grouped into families.
+- **Animations:** moments that play across a page: loaders, transitions, refreshes.
+- **Skills:** files you give your AI tool so it works your way.
 
-Whole page blocks. Sections of one kind share a family page that lists them all, like [Login pages](https://impeccableui.vercel.app/docs/login-pages).
+New pieces are added often. The website is always the up-to-date list.
 
-| Section | What it does |
-| --- | --- |
-| [Hex-Login](https://impeccableui.vercel.app/docs/hex-login) | A calm login page with your logo inside turning hexagon rings. |
+## Why it exists
 
-### Animations
+Most component libraries hand you a component and stop there. Then you spend your time bending it to match your product, and even when your AI agent knows your project well, the result often looks like a piece taken from somewhere else.
 
-| Animation | What it does |
-| --- | --- |
-| [Black-Hole-Refresh](https://impeccableui.vercel.app/docs/black-hole-refresh) | A page refresh. A black hole pulls your page into long thin threads, swallows them and blasts the page back fresh. |
-| [Agent-Draw](https://impeccableui.vercel.app/docs/agent-draw) | A loader. Named cursors draw the page's skeleton live, top to bottom, while the data loads; then the real content fades in. |
-| [Burning-Screen](https://impeccableui.vercel.app/docs/burning-screen) | A page transition. One click burns the current screen away from the click point and reveals the next page through the hole. |
+Impeccable UI works the other way round. Before your AI tool writes any code, the prompt has it ask you a few short questions about your brand and where the piece should live. Your answers shape it, so it fits into your product like it was always meant to be there.
 
-### Skills
+The skills take the same idea one step further. They teach your AI tool your taste once, so even a one-line request comes out looking like you made it.
 
-| Skill | What it does |
-| --- | --- |
-| [UI-tongue](https://impeccableui.vercel.app/docs/ui-tongue) | Learns your UI taste in about 15 minutes and writes you your own UI skill, so a one-line prompt comes out in your style. |
+## What you get
 
-## Add a component, button, section or animation to your project
+Every component, button, section and animation page gives you the same things:
 
-Every component, button, section and animation page gives you three ways in. Above the preview, switch it to desktop, tablet or phone width, drag its right edge to any width, reset it or open it fullscreen.
+- **A live preview.** Play with it first, and check it at desktop, tablet and phone width. If it doesn't make you feel something there, it won't in your app either.
+- **The code, in TypeScript and JavaScript.** One file you own. Read it, copy it, change it. Nothing is hidden inside a package.
+- **One install command** for projects set up with [shadcn](https://ui.shadcn.com).
+- **Two prompts** for Claude Code, Cursor, v0 or any AI coding tool:
+  - **Install** adds it exactly as you see it on the site. It only asks where it should go.
+  - **Blend** asks you a few short questions first, then builds it with your colors, names and words. The motion stays as designed.
 
-**1. Install command.** In a project set up with [shadcn](https://ui.shadcn.com):
+## The value for you
+
+- **Stand out.** Your product feels made with care, not assembled from the same kit as everyone else's.
+- **Save the tuning time.** Timing, easing, edge cases, light and dark, small screens and reduced motion are already worked out.
+- **Keep your brand.** Blend fits each piece to your colors and your words, not ours.
+- **Stay light.** No extra packages beyond React. You get plain code you can read and keep.
+- **Use it anywhere.** Free and MIT licensed, for client work, products and anything else.
+
+## Quick start
+
+Open any page on the [website](https://impeccableui.vercel.app/docs) and pick one of three ways in.
+
+**1. Install command.** In a project set up with shadcn, run the command shown on the page. It looks like this:
 
 ```bash
-npx shadcn@latest add https://impeccableui.vercel.app/r/agent-draw.json
+npx shadcn@latest add https://impeccableui.vercel.app/r/<name>.json
 ```
 
-**2. Copy the code.** Copy the TypeScript or JavaScript file from the page into your components folder.
+**2. Copy the code.** Copy the TypeScript or JavaScript file into your components folder.
 
-**3. Use a prompt.** Paste one into your AI coding tool (Claude Code, Cursor, v0 and others):
+**3. Paste a prompt.** Copy the Install or Blend prompt into your AI coding tool and answer its questions.
 
-- **Install prompt:** adds it exactly as shown on the site. It only asks where it should go.
-- **Blend prompt:** your agent asks you a few short questions first, then fits it to your brand with your colors, names and words. The design and motion stay as made.
-
-## Add a skill
-
-Download the zip from the skill's page.
-
-- **Claude on the web or desktop:** Settings, Skills, upload the zip as it is.
-- **Claude Code:** `unzip ~/Downloads/ui-tongue.zip -d ~/.claude/skills`
-
-Then say `make my UI skill`.
+Skills are a download: get the zip from the skill's page and add it to Claude (Settings, then Skills) or unzip it into `~/.claude/skills`.
 
 ## Promises
 
-- Everything is original.
-- Works in light and dark, and on phones.
-- Respects reduced motion: people who turn it on get less movement.
+- Everything is original. Nothing here is a copy of someone else's work.
+- Works in light and dark mode, and on phones. Both themes and small screens are tested before anything ships.
+- Respects reduced motion. People who ask for less movement get less movement.
 - No extra packages beyond React.
-- The Blend prompt changes how an animation looks, never how it moves.
-- Free and MIT licensed.
+- The Blend prompt changes how a piece looks, never how it moves.
 
-## Run the site locally
+## Who makes it
+
+Hi, I'm **Vraj Parikh**, known online as **Vraj Sensei**: a product designer from Vadodara, India. I design and build every piece of Impeccable UI myself.
+
+I started it because I wanted the things people make with AI to feel personal again. Impeccable is where I put the details I care about most: the timing of a motion, the weight of a shadow, the way a button answers when you come close.
+
+Say hi or follow along as new pieces land:
+
+[X](https://x.com/vrajsensei) · [LinkedIn](https://www.linkedin.com/in/vraj-parikh-b64b61257/) · [YouTube](https://www.youtube.com/@SenseiVraj) · [Peerlist](https://peerlist.io/vrajsensei) · [GitHub](https://github.com/prVraj)
+
+## Feedback and ideas
+
+Found something broken, or have an idea for a new piece? [Open an issue](https://github.com/prVraj/Impeccable/issues) or message me on [X](https://x.com/vrajsensei).
+
+## Run the website locally
 
 You need Node.js 20 or newer and [pnpm](https://pnpm.io).
 
@@ -100,49 +116,10 @@ pnpm install
 pnpm dev
 ```
 
-### Project map
+Then open http://localhost:3000. Each piece lives in its own folder under `items/`, and [docs/ADDING-AN-ITEM.md](docs/ADDING-AN-ITEM.md) explains how to add a new one.
 
-Everything about one item lives in its own folder under `items/`. Open the folder and you see the whole item.
-
-```
-items/
-  list.ts                  THE list: one line per item, in sidebar order
-  hex-login/
-    hex-login.tsx          the component people install
-    info.ts                name, group, short blurb, description, tags, date added
-    docs.tsx               its docs page: hint, usage, props
-    demo.tsx               the live preview on the docs page
-    tv.tsx                 its channel on the home iMac
-    prompts.ts             its Install and Blend prompts
-  login-pages/             a family page (info.ts + docs.tsx)
-  ui-tongue/               a skill page (info.ts + docs.tsx)
-app/                       the website's pages (home, Introduction, layout)
-components/site/           the site's own parts: header, sidebar, search, iMac, bulb
-lib/                       small helpers; site.ts reads items/ for the sidebar and search
-skills/<name>/             a skill's files; the download lives in public/downloads/
-scripts/items.mjs          checks every item has all its pieces, then writes the files below
-generated/                 written on every dev and build. Don't edit by hand.
-public/r/                  the install files, made by pnpm registry:build
-```
-
-| Path | What it is |
-| --- | --- |
-| `items/<name>/` | One item: component, info, docs page, demo, iMac channel, prompts. |
-| `items/list.ts` | Which items exist, in sidebar order. |
-| `docs/ADDING-AN-ITEM.md` | Step by step: how to add a new component, button, section, animation or skill. |
-| `generated/js/<name>/<name>.jsx` | The JavaScript version of each component, made on `pnpm dev` and `pnpm build`. |
-| `generated/items/`, `app/docs/<name>/page.tsx`, `registry.json` | Made by `scripts/items.mjs` from `items/`. The page files aren't kept in git. |
-| `public/r/` | The shadcn install files. `pnpm registry:build` remakes them. |
-| `next.config.ts` | Redirects and the security headers every page is sent with. |
-
-`pnpm check` runs the item checker on its own. `pnpm dev` and `pnpm build` run it first and stop with a plain message when a piece is missing.
-
-Old `/components/...` links redirect to `/docs/...`, and `/docs/brain-map` redirects to `/docs/brain-txt`.
-
-## Who makes it
-
-[Vraj Sensei](https://x.com/vrajsensei), a product designer from Vadodara.
+Built with React, TypeScript, Tailwind CSS v4 and Next.js.
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE). Free to use in personal and commercial projects.

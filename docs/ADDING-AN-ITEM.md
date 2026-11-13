@@ -24,7 +24,7 @@ Use lowercase words joined by dashes for the name, like `price-slider`. It becom
 7. **Write `prompts.ts`**: `installPrompt` and `blendPrompt`, following the prompts skill. Skills have no prompts, so skip this for a skill.
 8. **Add one line** to `items/list.ts`, where it should sit in the sidebar.
 9. **Run `pnpm dev`.** The checker runs first. If a piece is missing it stops and says which, for example `price-slider: tv.tsx is missing (its channel on the home iMac; without it the TV goes blank)`.
-10. **Run `pnpm registry:build`** so the install command works, and add the item to the README table for its group.
+10. **Run `pnpm registry:build`** so the install command works. Leave `README.md` alone: it describes the project, not each item, and the website is the list.
 11. **Before you push**, run the edge-case check, then the pre-push check.
 
 ## A skill
