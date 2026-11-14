@@ -38,11 +38,12 @@ export const SITE = {
 /** A full address on this site, from a path like "/docs/burning-screen". */
 export const absolute = (path = "/") => SITE.url + (path === "/" ? "" : path);
 
-/** The social card image for a page: "home", "docs" or an item's slug. Made by app/og/[slug]/route.tsx. */
-export const ogImage = (slug: string, alt: string) => ({
-  url: `/og/${slug}`,
-  width: 1200,
-  height: 630,
-  alt,
-  type: "image/png",
-});
+/**
+ * The social card image for a page: "home", "docs" or an item's slug.
+ * Home and docs use a hand-made card that shows real pieces (public/social/impeccable-ui.jpg,
+ * light on purpose: vrajsensei, 2026-11-13). Item pages use the card made by app/og/[slug]/route.tsx.
+ */
+export const ogImage = (slug: string, alt: string) =>
+  slug === "home" || slug === "docs"
+    ? { url: "/social/impeccable-ui.jpg", width: 2400, height: 1260, alt, type: "image/jpeg" }
+    : { url: `/og/${slug}`, width: 1200, height: 630, alt, type: "image/png" };
