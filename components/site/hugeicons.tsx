@@ -59,6 +59,12 @@ export const MousePointerClickIcon = (p: P) => (
   </Huge>
 );
 
+export const Loading03Icon = (p: P) => (
+  <Huge {...p}>
+    <path d="M12 3V6M12 18V21M21 12L18 12M6 12L3 12M18.3635 5.63672L16.2422 7.75804M7.75804 16.2422L5.63672 18.3635M18.3635 18.3635L16.2422 16.2422M7.75804 7.75804L5.63672 5.63672" />
+  </Huge>
+);
+
 export const EaseCurveControlPointsIcon = (p: P) => (
   <Huge {...p}>
     <path d="M21 4C16 4 13.9792 8.0416 12 12C10.0208 15.9584 8 20 3 20" />

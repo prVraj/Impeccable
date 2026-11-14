@@ -1,17 +1,17 @@
 # Adding an item
 
-An item is anything in the library: a component, a button, a section, an animation or a skill. Each one lives in its own folder, `items/<name>/`, and has one line in `items/list.ts`. The sidebar, search, docs page, home iMac and install file all read from there.
+An item is anything in the library: a component, a button, a loader, a section, an animation or a skill. Each one lives in its own folder, `items/<name>/`, and has one line in `items/list.ts`. The sidebar, search, docs page, home iMac and install file all read from there.
 
 Use lowercase words joined by dashes for the name, like `price-slider`. It becomes the web address (`/docs/price-slider`) and the install file name.
 
 ## Steps
 
-1. **Copy the closest item.** For a component, copy `items/password-strength/` to `items/price-slider/`. For a button, copy `items/peter-tingle-button/`. For a login page, copy `items/hex-login/`. Rename the component file to match the folder: `items/price-slider/price-slider.tsx`.
+1. **Copy the closest item.** For a component, copy `items/password-strength/` to `items/price-slider/`. For a button, copy `items/peter-tingle-button/`. For a loader, copy `items/tug-of-work-loader/`. For a login page, copy `items/hex-login/`. Rename the component file to match the folder: `items/price-slider/price-slider.tsx`.
 2. **Build the component** in `price-slider.tsx`. This is the file people install, so it only imports React.
 3. **Fill in `info.ts`**:
    - `slug`: the folder name.
    - `name`: how it is written on the site, like `Price-Slider`.
-   - `group`: `components`, `buttons`, `sections`, `animations` or `skills`. Every button goes in `buttons`, never in `components`.
+   - `group`: `components`, `buttons`, `loaders`, `sections`, `animations` or `skills`. Every button goes in `buttons` and every loader or progress bar in `loaders`, never in `components`.
    - `family`: only for a variant inside a family page, like `login-pages`.
    - `blurb`: one short line for the docs home, search and family cards.
    - `description`: two lines at most, used under the page title, as the meta description and in the install file. Follow the descriptions skill.

@@ -40,7 +40,7 @@ export function DocsLayout({
       <Header className="lg:hidden" />
 
       {/* Desktop: the side panel sits on the frame, next to the page sheet. */}
-      <aside aria-label="Sidebar" className="sticky top-0 hidden h-dvh w-60 shrink-0 flex-col overflow-y-auto px-3 pt-4 pb-6 lg:flex">
+      <aside aria-label="Sidebar" className="sticky top-0 hidden h-dvh w-72 shrink-0 flex-col overflow-y-auto px-3 pt-4 pb-6 lg:flex">
         {/* Each part is drawn back by "Redraw this page" on the Agent-Draw docs. */}
         <Redraw>
           <Link href="/" className="flex items-center gap-2 px-2.5 py-1 text-[15px] font-semibold tracking-tight">

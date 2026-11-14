@@ -8,8 +8,11 @@ import { info as passwordStrength } from "@/items/password-strength/info";
 import { info as framedUpload } from "@/items/framed-upload/info";
 import { info as peterTingleButton } from "@/items/peter-tingle-button/info";
 import { info as venomButton } from "@/items/venom-button/info";
-import { info as pixelTremorButton } from "@/items/pixel-tremor-button/info";
+import { info as pixelButton } from "@/items/pixel-button/info";
 import { info as asciiTideButton } from "@/items/ascii-tide-button/info";
+import { info as glassShatterButton } from "@/items/glass-shatter-button/info";
+import { info as peepholeButton } from "@/items/peephole-button/info";
+import { info as tugOfWorkLoader } from "@/items/tug-of-work-loader/info";
 import { info as loginPages } from "@/items/login-pages/info";
 import { info as hexLogin } from "@/items/hex-login/info";
 import { info as blackHoleRefresh } from "@/items/black-hole-refresh/info";
@@ -26,8 +29,11 @@ export const INFO: Record<string, ItemInfo> = {
   "framed-upload": framedUpload,
   "peter-tingle-button": peterTingleButton,
   "venom-button": venomButton,
-  "pixel-tremor-button": pixelTremorButton,
+  "pixel-button": pixelButton,
   "ascii-tide-button": asciiTideButton,
+  "glass-shatter-button": glassShatterButton,
+  "peephole-button": peepholeButton,
+  "tug-of-work-loader": tugOfWorkLoader,
   "login-pages": loginPages,
   "hex-login": hexLogin,
   "black-hole-refresh": blackHoleRefresh,

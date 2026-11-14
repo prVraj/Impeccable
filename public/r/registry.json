@@ -160,19 +160,6 @@
       ]
     },
     {
-      "name": "pixel-tremor-button",
-      "type": "registry:component",
-      "title": "Pixel-Tremor-button",
-      "description": "A plain white button that turns to pixel blocks under your pointer and ripples into pixels on click. Use it for one main action, like a hero.",
-      "files": [
-        {
-          "path": "items/pixel-tremor-button/pixel-tremor-button.tsx",
-          "type": "registry:component",
-          "target": "components/ui/pixel-tremor-button.tsx"
-        }
-      ]
-    },
-    {
       "name": "ascii-tide-button",
       "type": "registry:component",
       "title": "ASCII-Tide-button",
@@ -182,6 +169,58 @@
           "path": "items/ascii-tide-button/ascii-tide-button.tsx",
           "type": "registry:component",
           "target": "components/ui/ascii-tide-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "glass-shatter-button",
+      "type": "registry:component",
+      "title": "Glass-Shatter-button",
+      "description": "A dark button in a ring of glass that glows as your pointer comes near and shatters into shards on click, then seals. Use it for one main action.",
+      "files": [
+        {
+          "path": "items/glass-shatter-button/glass-shatter-button.tsx",
+          "type": "registry:component",
+          "target": "components/ui/glass-shatter-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tug-of-work-loader",
+      "type": "registry:component",
+      "title": "Tug-of-Work-loader",
+      "description": "A see-through progress bar a tiny person hauls to 100% on a rope, straining when it waits. Use it for uploads, exports and builds that take a while.",
+      "files": [
+        {
+          "path": "items/tug-of-work-loader/tug-of-work-loader.tsx",
+          "type": "registry:component",
+          "target": "components/ui/tug-of-work-loader.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pixel-button",
+      "type": "registry:component",
+      "title": "Pixel-button",
+      "description": "A button with twinkling pixels behind its label, on hover or always on, a light circling its edge and a click wave. Use it for one main action.",
+      "files": [
+        {
+          "path": "items/pixel-button/pixel-button.tsx",
+          "type": "registry:component",
+          "target": "components/ui/pixel-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "peephole-button",
+      "type": "registry:component",
+      "title": "Peephole-button",
+      "description": "A glass button with a picture window that opens on hover into the whole image or your brand color. Use it on Contact or Gallery with a real photo.",
+      "files": [
+        {
+          "path": "items/peephole-button/peephole-button.tsx",
+          "type": "registry:component",
+          "target": "components/ui/peephole-button.tsx"
         }
       ]
     }

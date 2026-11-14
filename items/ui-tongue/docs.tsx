@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
+import { Button } from "@/components/site/button";
 import { DocsLayout } from "@/components/site/docs-layout";
 import { Code, DocSection, Lede, PageTitle } from "@/components/site/doc-parts";
 import { CopyButton } from "@/components/site/copy-button";
@@ -69,23 +70,25 @@ export default async function Docs({ info }: { info: ItemInfo }) {
 
         <DocSection id="download" title="Download">
           <Lede>One zip with everything inside. Free to use, change and share.</Lede>
-          <a
+          <Button
             href={ZIP}
             download
-            className="press btn-brand inline-flex h-11 items-center gap-2 rounded-full px-5 text-sm font-medium"
+            size="lg"
+            leading={
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path
+                  d="M8 2.5v8M4.75 7.5 8 10.75 11.25 7.5M3 13.25h10"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            }
           >
-            <svg viewBox="0 0 16 16" aria-hidden="true" className="size-4">
-              <path
-                d="M8 2.5v8M4.75 7.5 8 10.75 11.25 7.5M3 13.25h10"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
             Download UI-tongue
-          </a>
+          </Button>
           <p className="mt-8 mb-3 text-[15px] leading-relaxed text-[var(--muted)]">
             Read it before you install. This is <Code>SKILL.md</Code>, the file your AI tool reads first.
           </p>

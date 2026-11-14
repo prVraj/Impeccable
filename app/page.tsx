@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "@/components/site/button";
 import { Header } from "@/components/site/header";
 import { IMac } from "@/components/site/imac";
 import { Arrow, GitHub } from "@/components/site/icons";
@@ -47,22 +48,12 @@ export default function Home() {
             </p>
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-              <Link
-                href="/docs"
-                className="press inline-flex h-11 items-center gap-2 rounded-full btn-brand px-5 text-sm font-medium"
-              >
+              <Button href="/docs" size="lg" trailing={<Arrow />}>
                 Browse components
-                <Arrow className="size-4" />
-              </Link>
-              <a
-                href={GITHUB}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card press inline-flex h-11 items-center gap-2 rounded-full px-5 text-sm font-medium"
-              >
-                <GitHub />
+              </Button>
+              <Button href={GITHUB} hierarchy="secondary" size="lg" leading={<GitHub />}>
                 Star on GitHub
-              </a>
+              </Button>
             </div>
           </div>
           <IMac />

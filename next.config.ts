@@ -62,6 +62,9 @@ const nextConfig: NextConfig = {
       { source: "/components/:slug", destination: "/docs/:slug", permanent: true },
       // Brain-Map was renamed brain.txt.
       { source: "/docs/brain-map", destination: "/docs/brain-txt", permanent: true },
+      // Pixel-Tremor-button was rebuilt as Pixel-button.
+      { source: "/docs/pixel-tremor-button", destination: "/docs/pixel-button", permanent: true },
+      { source: "/r/pixel-tremor-button.json", destination: "/r/pixel-button.json", permanent: true },
     ];
   },
 };

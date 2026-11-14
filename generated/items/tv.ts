@@ -8,8 +8,11 @@ import passwordStrength from "@/items/password-strength/tv";
 import framedUpload from "@/items/framed-upload/tv";
 import peterTingleButton from "@/items/peter-tingle-button/tv";
 import venomButton from "@/items/venom-button/tv";
-import pixelTremorButton from "@/items/pixel-tremor-button/tv";
+import pixelButton from "@/items/pixel-button/tv";
 import asciiTideButton from "@/items/ascii-tide-button/tv";
+import glassShatterButton from "@/items/glass-shatter-button/tv";
+import peepholeButton from "@/items/peephole-button/tv";
+import tugOfWorkLoader from "@/items/tug-of-work-loader/tv";
 import hexLogin from "@/items/hex-login/tv";
 import blackHoleRefresh from "@/items/black-hole-refresh/tv";
 import agentDraw from "@/items/agent-draw/tv";
@@ -24,8 +27,11 @@ export const TV: Record<string, ComponentType<{ onReplay: () => void }>> = {
   "framed-upload": framedUpload,
   "peter-tingle-button": peterTingleButton,
   "venom-button": venomButton,
-  "pixel-tremor-button": pixelTremorButton,
+  "pixel-button": pixelButton,
   "ascii-tide-button": asciiTideButton,
+  "glass-shatter-button": glassShatterButton,
+  "peephole-button": peepholeButton,
+  "tug-of-work-loader": tugOfWorkLoader,
   "hex-login": hexLogin,
   "black-hole-refresh": blackHoleRefresh,
   "agent-draw": agentDraw,

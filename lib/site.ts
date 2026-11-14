@@ -4,13 +4,15 @@ import { ORDER } from "@/items/list";
 import { SITE, absolute, ogImage } from "@/lib/seo";
 import { INFO } from "@/generated/items/info";
 
-export type Group = "components" | "buttons" | "sections" | "skills" | "animations";
+export type Group = "components" | "buttons" | "loaders" | "sections" | "skills" | "animations";
 
 /** The parts of the library, in sidebar order. */
 export const GROUPS: { id: Group; label: string }[] = [
   { id: "components", label: "Components" },
   // Buttons of every kind. Its own dropdown, because there will be many.
   { id: "buttons", label: "Buttons" },
+  // Loaders and progress bars: what people see while they wait. Its own dropdown, like Buttons.
+  { id: "loaders", label: "Loaders" },
   // Website sections: header, top navbar, hero, footer and the like.
   { id: "sections", label: "Sections" },
   { id: "skills", label: "Skills" },

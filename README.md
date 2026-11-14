@@ -30,10 +30,11 @@ Impeccable UI is a free, open-source library of those moments. Every piece is de
 
 ## What's in the library
 
-The library has five parts. Browse all of them, with live previews, at **[impeccableui.vercel.app](https://impeccableui.vercel.app)**.
+The library has six parts. Browse all of them, with live previews, at **[impeccableui.vercel.app](https://impeccableui.vercel.app)**.
 
 - **Components:** building blocks with motion built in, like toasts, upload fields and password meters.
 - **Buttons:** buttons that react to the person using them.
+- **Loaders:** progress bars and loaders that keep people company while they wait.
 - **Sections:** whole page blocks, like login pages, grouped into families.
 - **Animations:** moments that play across a page: loaders, transitions, refreshes.
 - **Skills:** files you give your AI tool so it works your way.

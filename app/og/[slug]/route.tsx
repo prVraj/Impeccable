@@ -28,7 +28,7 @@ function card(slug: string) {
   if (slug === "home")
     return { label: "Free + MIT · React", name: "Animated React components with AI prompts", line: "Every piece comes with its code and two prompts, so your AI tool builds it the way it was meant to feel." };
   if (slug === "docs")
-    return { label: "Docs", name: "Components, buttons, sections, animations and skills", line: "A live preview, TS + JS code, one install command and two prompts for each." };
+    return { label: "Docs", name: "Components, buttons, loaders, sections, animations and skills", line: "A live preview, TS + JS code, one install command and two prompts for each." };
   const i = ITEMS.find((x) => x.slug === slug)!;
   const group = GROUPS.find((g) => g.id === i.group)!.label;
   // "Buttons · Button" says the same thing twice, so the category only shows when it adds something.

@@ -50,8 +50,8 @@ for (const slug of order.filter((s) => folders.includes(s))) {
   const where = `items/${slug}/info.ts`;
   if (it.infoSlug !== slug) errors.push(`${where}: slug is "${it.infoSlug}", but the folder is "${slug}". They must match.`);
   for (const k of ["name", "group", "blurb", "description", "added"]) if (!it[k]) errors.push(`${where}: "${k}" is missing.`);
-  if (it.group && !["components", "buttons", "sections", "skills", "animations"].includes(it.group))
-    errors.push(`${where}: group must be components, buttons, sections, skills or animations (it is "${it.group}").`);
+  if (it.group && !["components", "buttons", "loaders", "sections", "skills", "animations"].includes(it.group))
+    errors.push(`${where}: group must be components, buttons, loaders, sections, skills or animations (it is "${it.group}").`);
   if (it.added && !/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(it.added))
     errors.push(`${where}: added must look like "2026-11-12 14:30" (it is "${it.added}").`);
   if (it.description && it.description.length > 150)

@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { cx } from "@/lib/utils";
 import { scrollToElement } from "@/lib/scroll";
 import { Cancel01Icon, CommandLineIcon, PictureInPictureOnIcon } from "./hugeicons";
+import { Button } from "./button";
 import { InstallCommand } from "./install-command";
 import { Tabs, type Tab } from "./tabs";
 import { useViewport, ViewportStage, ViewportToolbar } from "./viewport";
@@ -65,19 +66,19 @@ export function Showcase({
         {vp.full &&
           createPortal(
             <div className="fixed top-3 right-3 z-[80] rounded-xl bg-[var(--panel-2)] p-1 shadow-[inset_0_0_0_1px_var(--line)] sm:top-5 sm:right-5">
-              <button
-                type="button"
+              <Button
+                hierarchy="secondary"
+                size="sm"
                 autoFocus
                 aria-label="Close fullscreen"
                 onClick={vp.closeFull}
-                className="card press inline-flex h-8 items-center gap-1.5 rounded-lg px-3 text-[13px] font-medium text-[var(--fg)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+                leading={<Cancel01Icon size={16} />}
               >
-                <Cancel01Icon size={15} />
                 Close
-                <kbd className="ml-1 hidden rounded-md bg-[var(--panel-2)] px-1.5 py-0.5 font-mono text-[11px] font-normal text-[var(--muted)] sm:inline">
+                <kbd className="ml-1 hidden rounded-md bg-[var(--panel-2)] px-1.5 py-0.5 font-mono text-[11px] font-normal text-[var(--muted)] shadow-[inset_0_0_0_1px_var(--line)] sm:inline">
                   Esc
                 </kbd>
-              </button>
+              </Button>
             </div>,
             document.body,
           )}
