@@ -47,6 +47,15 @@ export function Showcase({
     if (vp.full) setView("preview");
   }, [vp.full]);
 
+  // Lift Close into the top layer as it opens, then focus it (Esc or Enter closes).
+  const closeRef = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const el = closeRef.current;
+    if (!vp.full || !el) return;
+    if (typeof el.showPopover === "function" && !el.matches(":popover-open")) el.showPopover();
+    el.querySelector("button")?.focus({ preventScroll: true });
+  }, [vp.full]);
+
   useLayoutEffect(() => {
     const el = previewRef.current;
     if (!el) return;
@@ -62,14 +71,22 @@ export function Showcase({
           vp.full && "fixed inset-0 z-[70] flex flex-col overflow-auto bg-[var(--bg)] p-4 pt-16 sm:p-6 sm:pt-20",
         )}
       >
-        {/* Rendered on <body> so nothing on the page can sit above it or trap it. */}
+        {/* Close stays where it always was (top right, the item starts below it)
+            and always on top, so you can always get back: it sits in the browser's
+            top layer, above any z-index an item uses, with the highest z-index as
+            the fallback. The top-layer resets are inline, so they never wait on
+            a stylesheet rebuild. */}
         {vp.full &&
           createPortal(
-            <div className="fixed top-3 right-3 z-[80] rounded-xl bg-[var(--panel-2)] p-1 shadow-[inset_0_0_0_1px_var(--line)] sm:top-5 sm:right-5">
+            <div
+              ref={closeRef}
+              popover="manual"
+              className="fixed top-3 right-3 rounded-xl bg-[var(--panel-2)] p-1 shadow-[inset_0_0_0_1px_var(--line)] sm:top-5 sm:right-5"
+              style={{ zIndex: 2147483647, left: "auto", bottom: "auto", margin: 0, border: 0, overflow: "visible", color: "var(--fg)" }}
+            >
               <Button
                 hierarchy="secondary"
                 size="sm"
-                autoFocus
                 aria-label="Close fullscreen"
                 onClick={vp.closeFull}
                 leading={<Cancel01Icon size={16} />}

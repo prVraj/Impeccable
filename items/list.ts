@@ -15,6 +15,9 @@ export const ORDER = [
   "scratch-me",
   "password-strength",
   "framed-upload",
+  "task-progress",
+  "infinite-curl-gallery",
+  "orrery-gallery",
   // Buttons
   "peter-tingle-button",
   "venom-button",
@@ -27,6 +30,8 @@ export const ORDER = [
   // Sections
   "login-pages",
   "hex-login",
+  "faq-sections",
+  "coffee-faq",
   // Animations
   "black-hole-refresh",
   "agent-draw",

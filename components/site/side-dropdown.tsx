@@ -1,27 +1,39 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { cx } from "@/lib/utils";
+import { setGroupOpen, useGroupState } from "./group-state";
 
-/** A sidebar group that opens and closes. Starts open so nothing is hidden. */
+/**
+ * A sidebar group that opens and closes. Starts open so nothing is hidden, and
+ * remembers what someone chose, so moving to another page leaves it as it was.
+ */
 export function SideDropdown({
+  group,
   title,
   count,
   icon,
   children,
 }: {
+  group: string;
   title: string;
   count: number;
   icon?: React.ReactNode;
   children: React.ReactNode;
 }) {
-  const [open, setOpen] = useState(true);
+  const open = useGroupState("side")[group] ?? true;
   const id = useId();
+  // A remembered closed group shows closed at once on a fresh load, without the closing animation.
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setReady(true));
+    return () => cancelAnimationFrame(raf);
+  }, []);
   return (
     <div className="mb-3">
       <button
         type="button"
-        onClick={() => setOpen((o) => !o)}
+        onClick={() => setGroupOpen("side", group, !open)}
         aria-expanded={open}
         aria-controls={id}
         className="press flex w-full items-center justify-between rounded-md px-2.5 py-1.5 text-xs font-medium text-[var(--fg)] transition-colors hover:bg-[var(--panel-2)]"
@@ -34,7 +46,7 @@ export function SideDropdown({
         <svg
           viewBox="0 0 16 16"
           aria-hidden="true"
-          className={cx("size-3.5 text-[var(--muted)] transition-transform duration-200 ease-[var(--ease-out)]", open && "rotate-90")}
+          className={cx("size-3.5 text-[var(--muted)] duration-200 ease-[var(--ease-out)]", ready && "transition-transform", open && "rotate-90")}
         >
           <path d="M6 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
@@ -42,7 +54,8 @@ export function SideDropdown({
       <div
         id={id}
         className={cx(
-          "grid transition-[grid-template-rows,opacity] duration-200 ease-[var(--ease-out)] motion-reduce:transition-none",
+          "grid duration-200 ease-[var(--ease-out)] motion-reduce:transition-none",
+          ready && "transition-[grid-template-rows,opacity]",
           open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
         )}
       >

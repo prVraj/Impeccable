@@ -297,6 +297,26 @@ export function ViewportStage({ vp, children }: { vp: Viewport; children: ReactN
     return () => ro.disconnect();
   }, [paint]);
 
+  // Fullscreen: the demo's own card grows to the screen's height (it never
+  // shrinks, so a tall one scrolls from its top). A card that is a plain block
+  // (its item keeps a fixed height, like height={460}) also becomes a column
+  // that centres what is inside; grid and flex cards centre themselves.
+  // Inline, so it works without any new stylesheet class.
+  const demoRef = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const card = demoRef.current?.firstElementChild as HTMLElement | null;
+    if (!full || !card) return;
+    const s = card.style;
+    const before = [s.flex, s.display, s.flexDirection, s.justifyContent];
+    s.flex = "1 0 auto";
+    if (getComputedStyle(card).display === "block") {
+      Object.assign(s, { display: "flex", flexDirection: "column", justifyContent: "center" });
+    }
+    return () => {
+      [s.flex, s.display, s.flexDirection, s.justifyContent] = before;
+    };
+  }, [full, vp.resetKey]);
+
   const endDrag = () => {
     if (!dragStart.current) return;
     dragStart.current = null;
@@ -307,10 +327,13 @@ export function ViewportStage({ vp, children }: { vp: Viewport; children: ReactN
   return (
     // pr-5: a 20px strip on the right that holds the drag handle. Fullscreen has neither.
     <div ref={stageRef} className={cx("relative", full ? "flex flex-1 flex-col" : "dots rounded-2xl sm:pr-5")}>
-      {/* my-auto centres it on screen, and a tall one still scrolls from its top. */}
-      <div ref={frameRef} className={cx("relative w-full", full && "my-auto")}>
-        <div ref={innerRef} className="@container w-full origin-top-left">
-          <div key={vp.resetKey}>{children}</div>
+      {/* Fullscreen: every layer grows to the screen's height, and the demo's own
+          card grows with it (never shrinks, so a tall one scrolls from its top). */}
+      <div ref={frameRef} className={cx("relative w-full", full && "flex flex-1 flex-col")}>
+        <div ref={innerRef} className={cx("@container w-full origin-top-left", full && "flex flex-1 flex-col")}>
+          <div ref={demoRef} key={vp.resetKey} className={cx(full && "flex flex-1 flex-col")}>
+            {children}
+          </div>
         </div>
 
         {!full && (

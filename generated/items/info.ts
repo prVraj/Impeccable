@@ -6,6 +6,9 @@ import { info as brainTxt } from "@/items/brain-txt/info";
 import { info as scratchMe } from "@/items/scratch-me/info";
 import { info as passwordStrength } from "@/items/password-strength/info";
 import { info as framedUpload } from "@/items/framed-upload/info";
+import { info as taskProgress } from "@/items/task-progress/info";
+import { info as infiniteCurlGallery } from "@/items/infinite-curl-gallery/info";
+import { info as orreryGallery } from "@/items/orrery-gallery/info";
 import { info as peterTingleButton } from "@/items/peter-tingle-button/info";
 import { info as venomButton } from "@/items/venom-button/info";
 import { info as pixelButton } from "@/items/pixel-button/info";
@@ -15,6 +18,8 @@ import { info as peepholeButton } from "@/items/peephole-button/info";
 import { info as tugOfWorkLoader } from "@/items/tug-of-work-loader/info";
 import { info as loginPages } from "@/items/login-pages/info";
 import { info as hexLogin } from "@/items/hex-login/info";
+import { info as faqSections } from "@/items/faq-sections/info";
+import { info as coffeeFaq } from "@/items/coffee-faq/info";
 import { info as blackHoleRefresh } from "@/items/black-hole-refresh/info";
 import { info as agentDraw } from "@/items/agent-draw/info";
 import { info as burningScreen } from "@/items/burning-screen/info";
@@ -27,6 +32,9 @@ export const INFO: Record<string, ItemInfo> = {
   "scratch-me": scratchMe,
   "password-strength": passwordStrength,
   "framed-upload": framedUpload,
+  "task-progress": taskProgress,
+  "infinite-curl-gallery": infiniteCurlGallery,
+  "orrery-gallery": orreryGallery,
   "peter-tingle-button": peterTingleButton,
   "venom-button": venomButton,
   "pixel-button": pixelButton,
@@ -36,6 +44,8 @@ export const INFO: Record<string, ItemInfo> = {
   "tug-of-work-loader": tugOfWorkLoader,
   "login-pages": loginPages,
   "hex-login": hexLogin,
+  "faq-sections": faqSections,
+  "coffee-faq": coffeeFaq,
   "black-hole-refresh": blackHoleRefresh,
   "agent-draw": agentDraw,
   "burning-screen": burningScreen,

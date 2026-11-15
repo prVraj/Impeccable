@@ -6,6 +6,9 @@ import brainTxt from "@/items/brain-txt/tv";
 import scratchMe from "@/items/scratch-me/tv";
 import passwordStrength from "@/items/password-strength/tv";
 import framedUpload from "@/items/framed-upload/tv";
+import taskProgress from "@/items/task-progress/tv";
+import infiniteCurlGallery from "@/items/infinite-curl-gallery/tv";
+import orreryGallery from "@/items/orrery-gallery/tv";
 import peterTingleButton from "@/items/peter-tingle-button/tv";
 import venomButton from "@/items/venom-button/tv";
 import pixelButton from "@/items/pixel-button/tv";
@@ -14,6 +17,7 @@ import glassShatterButton from "@/items/glass-shatter-button/tv";
 import peepholeButton from "@/items/peephole-button/tv";
 import tugOfWorkLoader from "@/items/tug-of-work-loader/tv";
 import hexLogin from "@/items/hex-login/tv";
+import coffeeFaq from "@/items/coffee-faq/tv";
 import blackHoleRefresh from "@/items/black-hole-refresh/tv";
 import agentDraw from "@/items/agent-draw/tv";
 import burningScreen from "@/items/burning-screen/tv";
@@ -25,6 +29,9 @@ export const TV: Record<string, ComponentType<{ onReplay: () => void }>> = {
   "scratch-me": scratchMe,
   "password-strength": passwordStrength,
   "framed-upload": framedUpload,
+  "task-progress": taskProgress,
+  "infinite-curl-gallery": infiniteCurlGallery,
+  "orrery-gallery": orreryGallery,
   "peter-tingle-button": peterTingleButton,
   "venom-button": venomButton,
   "pixel-button": pixelButton,
@@ -33,6 +40,7 @@ export const TV: Record<string, ComponentType<{ onReplay: () => void }>> = {
   "peephole-button": peepholeButton,
   "tug-of-work-loader": tugOfWorkLoader,
   "hex-login": hexLogin,
+  "coffee-faq": coffeeFaq,
   "black-hole-refresh": blackHoleRefresh,
   "agent-draw": agentDraw,
   "burning-screen": burningScreen,

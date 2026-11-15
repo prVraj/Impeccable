@@ -20,7 +20,7 @@ export function UploadProgress({ percent }: { percent: number }) {
     <TugOfWorkLoader
       value={percent}                              // 0 to 100; leave it out to loop on its own
       label="Developers are working really hard."  // optional: the support text under the bar
-      color="var(--foreground)"                    // optional: the person, rope, border and fill tint
+      color="var(--foreground)"                    // optional: the person, rope, border and stone tint
       onComplete={() => toast("Upload done")}      // optional: runs when it reaches 100
       className="max-w-sm"
     />
@@ -28,13 +28,13 @@ export function UploadProgress({ percent }: { percent: number }) {
 }`;
 
 const PROPS: [string, string, string][] = [
-  ["value", "—", "Progress from 0 to 100. The person pulls the fill to it, never faster than about a third of the bar a second. Leave it out and the bar loops on its own, pulling and pausing like real work."],
+  ["value", "—", "Progress from 0 to 100. The person drags the stone to it, never faster than about a third of the bar a second. Leave it out and the bar loops on its own, pulling and pausing like real work."],
   ["label", '"Developers are working really hard."', "The support text under the bar. It wraps on narrow screens. Pass null to hide it."],
   ["showValue", "true", "Shows the percentage at the right, under the bar."],
-  ["color", "the text color around it", "The person, the rope, the border and the fill's tint. Any CSS color, including var(--…). The bar itself stays see-through."],
-  ["height", "44", "How tall the bar is in px, 28 to 64. The person grows with it and always stays inside the border."],
+  ["color", "the text color around it", "The person, the rope, the border and the stone's tint. Any CSS color, including var(--…). The bar and the stone stay see-through."],
+  ["height", "44", "How tall the bar is in px, 28 to 64. The person grows with it, and so does their fall at 100%."],
   ["duration", "8000", "Looping only: how long one pull from 0 to 100 takes, in ms, 3000 to 30000."],
-  ["onComplete", "—", "Runs each time the fill reaches 100."],
+  ["onComplete", "—", "Runs each time the stone reaches 100."],
   ["className / style, aria-*, …", "—", "On the outer box. It fills the width it is given, so set a max width here."],
 ];
 
@@ -60,7 +60,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
     { id: "props", title: "Props" },
   ];
 
-  const hint = <>It loops on its own here. Watch the pauses: that is where they strain on the rope.</>;
+  const hint = <>It loops on its own here. Watch the pauses, where the stone only budges, and watch what happens at 100%.</>;
 
   return (
     <DocsLayout slug="tug-of-work-loader" sections={SECTIONS}>
@@ -97,19 +97,28 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           Pass your real progress as <Code>value</Code>. Without it the bar loops, which suits waits you can&apos;t measure.
         </Lede>
         <Tabs tabs={[{ id: "usage", label: "upload-progress.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
+        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+          At 100% the person falls about three bar heights below the bar&apos;s right end, over whatever sits there, for
+          about a second.
+        </p>
       </DocSection>
 
       <DocSection id="how-it-moves" title="How it moves">
-        <Lede>The bar is see-through: a thin border and a striped tint. The only solid thing in it is the person.</Lede>
+        <Lede>The fill is a slab of stone, see-through like the bar around it. The only solid thing in it is the person.</Lede>
         <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
-          A tiny person stands inside the bar, facing the fill, leaning back on a rope tied to its front edge. As the
-          progress grows they walk backwards and haul the fill along, their steps matching the distance pulled. When the
-          bar waits, they keep heaving on the rope, lean further back, shake a little and now and then a drop of sweat
-          flies off. Near the end they run out of room, so they stay put and pull the rope in hand over hand until the
-          fill reaches them. At 100% they throw their arms up and hop twice. When looping, the finished bar rests for a
-          moment, fades and starts over. Everything, the person, the rope and the sweat, is clipped to the inside of the
-          border, so nothing ever spills out. With reduced motion, the fill still moves but the person stands still,
-          with no steps, heaves or hops.
+          The filled part of the bar is a heavy slab of stone: grain, pits and cracks that travel with it, a darker
+          underside and a chipped front edge. A tiny person stands ahead of it, leaning back on a rope tied to that
+          edge. As the progress grows they walk backwards and drag it along, their steps matching the distance pulled.
+          The stone is heavy, so it drags a little behind on each step, lurches forward, rumbles as it grinds and kicks
+          up dust along the bottom. When the bar waits, they keep heaving on the rope, lean further back, shake a
+          little and now and then a drop of sweat flies off, while the stone only budges a hair and puffs a little
+          dust. Near the end they run out of room, so they stay put and pull the rope in hand over hand until the
+          stone reaches them. At 100% the stone shoves them backwards out of the end of the bar: they scramble, let go
+          of the rope, windmill their arms, then tumble off and fall about three bar heights, fading as they go. When
+          looping, the finished bar rests for a moment, fades and starts over with them back at the start. Until that
+          fall, everything, the stone, the person, the rope, the sweat and the dust, stays inside the border. With
+          reduced motion, the stone still moves but the person stands still, with no steps, heaves, lurches or dust, and
+          at 100% they raise their arms instead of falling.
         </p>
       </DocSection>
 

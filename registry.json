@@ -189,7 +189,7 @@
       "name": "tug-of-work-loader",
       "type": "registry:component",
       "title": "Tug-of-Work-loader",
-      "description": "A see-through progress bar a tiny person hauls to 100% on a rope, straining when it waits. Use it for uploads, exports and builds that take a while.",
+      "description": "A progress bar where a tiny person drags a heavy stone to 100%, straining when it waits. Use it for uploads, exports and builds that take a while.",
       "files": [
         {
           "path": "items/tug-of-work-loader/tug-of-work-loader.tsx",
@@ -221,6 +221,58 @@
           "path": "items/peephole-button/peephole-button.tsx",
           "type": "registry:component",
           "target": "components/ui/peephole-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "task-progress",
+      "type": "registry:component",
+      "title": "Task-progress",
+      "description": "A task list that shows what is done, running or next, and strikes tasks through as they finish. Use it on AI agent or setup screens with 5 to 9 steps.",
+      "files": [
+        {
+          "path": "items/task-progress/task-progress.tsx",
+          "type": "registry:component",
+          "target": "components/ui/task-progress.tsx"
+        }
+      ]
+    },
+    {
+      "name": "coffee-faq",
+      "type": "registry:component",
+      "title": "Coffee-FAQ",
+      "description": "Questions that open one at a time, with a chat box at the end that types a reply to anything. Use it near the bottom of a landing or pricing page.",
+      "files": [
+        {
+          "path": "items/coffee-faq/coffee-faq.tsx",
+          "type": "registry:component",
+          "target": "components/ui/coffee-faq.tsx"
+        }
+      ]
+    },
+    {
+      "name": "infinite-curl-gallery",
+      "type": "registry:component",
+      "title": "Infinite-Curl-Gallery",
+      "description": "Pictures drift on an endless canvas you can throw any way, curling and fading at its edges. Use it on a portfolio or moodboard with 8 to 30 pictures.",
+      "files": [
+        {
+          "path": "items/infinite-curl-gallery/infinite-curl-gallery.tsx",
+          "type": "registry:component",
+          "target": "components/ui/infinite-curl-gallery.tsx"
+        }
+      ]
+    },
+    {
+      "name": "orrery-gallery",
+      "type": "registry:component",
+      "title": "Orrery-Gallery",
+      "description": "Round pictures orbit your name, fall into a stack and open into a curved strip you drag. Use it on a portfolio or launch page with 6 to 12 links.",
+      "files": [
+        {
+          "path": "items/orrery-gallery/orrery-gallery.tsx",
+          "type": "registry:component",
+          "target": "components/ui/orrery-gallery.tsx"
         }
       ]
     }

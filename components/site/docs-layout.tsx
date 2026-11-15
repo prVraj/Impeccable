@@ -1,15 +1,13 @@
 import { Children } from "react";
 import Link from "next/link";
-import { AUTHOR, COMPONENTS, FAMILIES, GITHUB, GROUPS, isSideActive, neighbours, sideItems } from "@/lib/site";
+import { AUTHOR, COMPONENTS, GITHUB, GROUPS, isSideActive, neighbours, sideItems } from "@/lib/site";
 import { cx } from "@/lib/utils";
 import { ArrowUpRight01Icon } from "./hugeicons";
 import { GroupIcon } from "./group-icon";
 import { SearchTrigger } from "./search";
 import { ArrowLeft, Arrow, GitHub, Mark } from "./icons";
 import { Header } from "./header";
-import { Footer } from "./footer";
 import { ThemeToggle } from "./theme-toggle";
-import { Breadcrumbs } from "./breadcrumbs";
 import { Toc } from "./toc";
 import { SideDropdown } from "./side-dropdown";
 import { Redraw } from "./page-redraw";
@@ -31,8 +29,6 @@ export function DocsLayout({
   sections: DocSection[];
   children: React.ReactNode;
 }) {
-  const current = slug ? (COMPONENTS.find((c) => c.slug === slug) ?? FAMILIES.find((f) => f.slug === slug)) : undefined;
-  const family = current && "family" in current && current.family ? FAMILIES.find((f) => f.slug === current.family) : undefined;
   const { prev, next } = neighbours(slug);
   return (
     <div className="min-h-dvh lg:flex lg:bg-[var(--frame)]">
@@ -40,78 +36,71 @@ export function DocsLayout({
       <Header className="lg:hidden" />
 
       {/* Desktop: the side panel sits on the frame, next to the page sheet. */}
-      <aside aria-label="Sidebar" className="sticky top-0 hidden h-dvh w-72 shrink-0 flex-col overflow-y-auto px-3 pt-4 pb-6 lg:flex">
-        {/* Each part is drawn back by "Redraw this page" on the Agent-Draw docs. */}
-        <Redraw>
-          <Link href="/" className="flex items-center gap-2 px-2.5 py-1 text-[15px] font-semibold tracking-tight">
-            <Mark className="h-6 w-[21px] text-[var(--fg)]" />
-            Impeccable
-          </Link>
+      <aside aria-label="Sidebar" className="sticky top-0 hidden h-dvh w-72 shrink-0 flex-col lg:flex">
+        {/* Each part is drawn back by "Redraw this page" on the Agent-Draw docs.
+            The logo and the card stay put; only the list under the divider scrolls. */}
+        <div className="shrink-0 px-3 pt-4">
+          <Redraw>
+            <Link href="/" className="flex items-center gap-2 px-2.5 py-1 text-[15px] font-semibold tracking-tight">
+              <Mark className="h-6 w-[21px] text-[var(--fg)]" />
+              Impeccable
+            </Link>
 
-          <a
-            href={GITHUB}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="press group mt-4 mb-6 flex items-center gap-3 rounded-xl border border-[var(--line)] bg-[var(--sheet)] p-2.5 transition-colors hover:border-[color-mix(in_srgb,var(--accent)_35%,var(--line))]"
-          >
-            <span className="btn-brand grid size-8 shrink-0 place-items-center rounded-lg">
-              <Mark className="h-4 w-[14px] text-white" />
-            </span>
-            <span className="min-w-0 flex-1">
-              <span className="block text-sm leading-tight font-medium">Animation-first UI</span>
-              <span className="block truncate text-[11px] text-[var(--muted)]">Open source · MIT</span>
-            </span>
-            <ArrowUpRight01Icon size={14} className="text-[var(--faint)] transition-colors group-hover:text-[var(--accent)]" />
-          </a>
-
-          <SideGroup title="Getting started">
-            <SideLink href="/docs" active={!slug}>
-              Introduction
-            </SideLink>
-          </SideGroup>
-          {GROUPS.map((g) => {
-            const items = sideItems(g.id);
-            const count = COMPONENTS.filter((c) => c.group === g.id).length;
-            return (
-              <SideDropdown key={g.id} title={g.label} count={count} icon={<GroupIcon group={g.id} />}>
-                {items.length ? (
-                  items.map((c) => (
-                    <SideLink
-                      key={c.slug}
-                      href={`/docs/${c.slug}`}
-                      active={isSideActive(c.slug, slug)}
-                    >
-                      {c.name}
-                    </SideLink>
-                  ))
-                ) : (
-                  <p className="px-2.5 py-1.5 text-sm text-[var(--faint)]">Coming soon</p>
-                )}
-              </SideDropdown>
-            );
-          })}
-        </Redraw>
+            <a
+              href={GITHUB}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="press group mt-4 mb-4 flex items-center gap-3 rounded-xl border border-[var(--line)] bg-[var(--sheet)] p-2.5 transition-colors hover:border-[color-mix(in_srgb,var(--accent)_35%,var(--line))]"
+            >
+              <span className="btn-brand grid size-8 shrink-0 place-items-center rounded-lg">
+                <Mark className="h-4 w-[14px] text-white" />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-sm leading-tight font-medium">Animation-first UI</span>
+                <span className="block truncate text-[11px] text-[var(--muted)]">Open source · MIT</span>
+              </span>
+              <ArrowUpRight01Icon size={14} className="text-[var(--faint)] transition-colors group-hover:text-[var(--accent)]" />
+            </a>
+          </Redraw>
+        </div>
+        <div className="mx-3 h-px shrink-0 bg-[var(--line)]" aria-hidden="true" />
+        <div className="no-scrollbar min-h-0 flex-1 overflow-y-auto px-3 pt-5 pb-6">
+          <Redraw>
+            <SideGroup title="Getting started">
+              <SideLink href="/docs" active={!slug}>
+                Introduction
+              </SideLink>
+            </SideGroup>
+            {GROUPS.map((g) => {
+              const items = sideItems(g.id);
+              const count = COMPONENTS.filter((c) => c.group === g.id).length;
+              return (
+                <SideDropdown key={g.id} group={g.id} title={g.label} count={count} icon={<GroupIcon group={g.id} />}>
+                  {items.length ? (
+                    items.map((c) => (
+                      <SideLink
+                        key={c.slug}
+                        href={`/docs/${c.slug}`}
+                        active={isSideActive(c.slug, slug)}
+                      >
+                        {c.name}
+                      </SideLink>
+                    ))
+                  ) : (
+                    <p className="px-2.5 py-1.5 text-sm text-[var(--faint)]">Coming soon</p>
+                  )}
+                </SideDropdown>
+              );
+            })}
+          </Redraw>
+        </div>
       </aside>
 
       {/* The page itself: a raised sheet with the tab cut into its top right corner. */}
       <div className="sheet relative min-w-0 flex-1 lg:my-2 lg:mr-2 lg:rounded-2xl lg:border lg:border-[var(--line)] lg:bg-[var(--sheet)]">
         <SheetTab />
         <div className="mx-auto flex max-w-6xl justify-center gap-12 px-4 sm:px-6 lg:px-10">
-          <main className="min-w-0 max-w-3xl flex-1 pt-10 pb-24 lg:pt-14">
-            <Redraw>
-              <Breadcrumbs
-                items={
-                  current
-                    ? [
-                        { label: "Docs", href: "/docs" },
-                        { label: GROUPS.find((g) => g.id === current.group)!.label },
-                        ...(family ? [{ label: family.name, href: `/docs/${family.slug}` }] : []),
-                        { label: current.name },
-                      ]
-                    : [{ label: "Docs", href: "/docs" }, { label: "Introduction" }]
-                }
-              />
-            </Redraw>
+          <main className="min-w-0 max-w-3xl flex-1 pt-12 pb-24 lg:pt-23">
             {Children.map(children, (child) => (child ? <Redraw>{child}</Redraw> : child))}
 
             <Redraw>
@@ -129,9 +118,6 @@ export function DocsLayout({
             </Redraw>
           </aside>
         </div>
-        <Redraw>
-          <Footer />
-        </Redraw>
       </div>
     </div>
   );

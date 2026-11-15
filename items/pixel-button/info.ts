@@ -14,5 +14,5 @@ export const info: ItemInfo = {
   // When it was added (newest shows first in search and on the home page).
   added: "2026-11-14 12:00",
   // Search words for Google and AI tools (see the seo field in lib/site.ts). The visible name stays as it is.
-  seo: { keyword: "pixel button react", title: "Pixel Glow Button with Click Wave for React" },
+  seo: { keyword: "pixel button react", title: "Pixel Glow Button for React" },
 };

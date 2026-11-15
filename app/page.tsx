@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/site/button";
+import { BrowseButton } from "@/components/site/browse-button";
 import { Header } from "@/components/site/header";
 import { IMac } from "@/components/site/imac";
 import { Arrow, GitHub } from "@/components/site/icons";
@@ -48,9 +49,7 @@ export default function Home() {
             </p>
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-              <Button href="/docs" size="lg" trailing={<Arrow />}>
-                Browse components
-              </Button>
+              <BrowseButton />
               <Button href={GITHUB} hierarchy="secondary" size="lg" leading={<GitHub />}>
                 Star on GitHub
               </Button>

@@ -8,6 +8,7 @@ import { COMPONENTS, GROUPS, isSideActive, sideItems, type Group } from "@/lib/s
 import { cx } from "@/lib/utils";
 import { GroupIcon } from "./group-icon";
 import { Mark } from "./icons";
+import { setGroupOpen, useGroupState } from "./group-state";
 
 /** The part of the library the page belongs to, so its dropdown can start open. */
 function groupOf(pathname: string | null): Group | undefined {
@@ -21,27 +22,24 @@ function groupOf(pathname: string | null): Group | undefined {
  * top, then Introduction and one dropdown for each part of the library
  * (Components, Buttons, Sections, Skills, Animations). Only the dropdown
  * holding the current page starts open, so every part is one tap away
- * instead of at the end of a long scroll.
+ * instead of at the end of a long scroll. Dropdowns someone opens or closes
+ * stay that way from page to page.
  */
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
-  const [openGroups, setOpenGroups] = useState<Group[]>(() => {
-    const g = groupOf(pathname);
-    return g ? [g] : [];
-  });
+  // Dropdowns someone opened or closed stay that way from page to page. One they never
+  // touched starts open only if it holds the current page.
+  const chosen = useGroupState("menu");
+  const here = groupOf(pathname);
+  const isGroupOpen = (id: Group) => chosen[id] ?? id === here;
 
   useEffect(() => setMounted(true), []);
-  // Close when the page changes, and open only the new page's dropdown.
-  useEffect(() => {
-    setOpen(false);
-    const g = groupOf(pathname);
-    setOpenGroups(g ? [g] : []);
-  }, [pathname]);
+  // Close the menu when the page changes. The dropdowns stay as they were.
+  useEffect(() => setOpen(false), [pathname]);
 
-  const toggleGroup = (id: Group) =>
-    setOpenGroups((o) => (o.includes(id) ? o.filter((x) => x !== id) : [...o, id]));
+  const toggleGroup = (id: Group) => setGroupOpen("menu", id, !isGroupOpen(id));
 
   useEffect(() => {
     if (!open) return;
@@ -118,7 +116,7 @@ export function MobileMenu() {
                 {GROUPS.map((g) => {
                   const items = sideItems(g.id);
                   const count = COMPONENTS.filter((c) => c.group === g.id).length;
-                  const isOpen = openGroups.includes(g.id);
+                  const isOpen = isGroupOpen(g.id);
                   const listId = `mobile-menu-${g.id}`;
                   return (
                     <section key={g.id}>
