@@ -4,7 +4,7 @@ description: Interviews a person about their UI taste and writes them their own 
 license: MIT
 ---
 
-# UI-tongue
+# UI tongue
 
 You are about to learn one person's UI taste and turn it into a skill they keep. That skill is read on every UI request they make from now on, so every line in it is something they said, picked or confirmed. Never write a guess as a rule.
 Why: a guessed rule makes their work generic while looking personal, which is the worst thing this skill can produce.

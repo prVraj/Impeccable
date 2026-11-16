@@ -2,7 +2,7 @@ import type { ItemInfo } from "@/lib/site";
 
 export const info: ItemInfo = {
   slug: "scratch-me",
-  name: "Scratch-me",
+  name: "Scratch me",
   group: "components",
   category: "Interactive",
   // Short line for the docs home, search and family cards.

@@ -37,7 +37,7 @@ function ScaledPage({ children, width = 960, height = 760 }: { children: React.R
   );
 }
 
-/** Coffee-FAQ as a card thumbnail on the FAQ sections page. Every family member's demo.tsx exports a Thumb. */
+/** Coffee FAQ as a card thumbnail on the FAQ sections page. Every family member's demo.tsx exports a Thumb. */
 export function Thumb() {
   return (
     <ScaledPage>

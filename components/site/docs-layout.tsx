@@ -37,7 +37,7 @@ export function DocsLayout({
 
       {/* Desktop: the side panel sits on the frame, next to the page sheet. */}
       <aside aria-label="Sidebar" className="sticky top-0 hidden h-dvh w-72 shrink-0 flex-col lg:flex">
-        {/* Each part is drawn back by "Redraw this page" on the Agent-Draw docs.
+        {/* Each part is drawn back by "Redraw this page" on the Agent Draw docs.
             The logo and the card stay put; only the list under the divider scrolls. */}
         <div className="shrink-0 px-3 pt-4">
           <Redraw>

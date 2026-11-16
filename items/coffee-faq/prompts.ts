@@ -1,4 +1,4 @@
-/* ---------- Coffee-FAQ ----------
+/* ---------- Coffee FAQ ----------
  * A section (an FAQ block with a chat box at the end).
  * Install: adds the exact section; asks only which page and where on it.
  * Blend: asks four short questions, then fits it through the section's own props. */
@@ -32,7 +32,7 @@ Read this before you touch anything, so you know what the code does and why it m
 6. **Theme.** Everything is drawn from the page's text and background colors, so it follows light and dark mode with no setup: the "You" tag, the face and the send arrow are the text color with background-colored marks.`;
 
 export function installPrompt(tsSource: string) {
-  return `# Coffee-FAQ
+  return `# Coffee FAQ
 
 A 1-file React section from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
 
@@ -100,7 +100,7 @@ ${tsSource.trimEnd()}
 }
 
 export function blendPrompt(tsSource: string) {
-  return `# Coffee-FAQ, fitted to your brand
+  return `# Coffee FAQ, fitted to your brand
 
 A 1-file React section from Impeccable. Add it to this project and fit it to the brand like a missing puzzle piece: it should look like it was always part of the product. It goes in the one place I choose, and nothing else changes.
 

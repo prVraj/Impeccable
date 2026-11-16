@@ -2,7 +2,7 @@ import type { ItemInfo } from "@/lib/site";
 
 export const info: ItemInfo = {
   slug: "burning-screen",
-  name: "Burning-Screen",
+  name: "Burning Screen",
   group: "animations",
   category: "Page transition",
   // Short line for the docs home, search and family cards.

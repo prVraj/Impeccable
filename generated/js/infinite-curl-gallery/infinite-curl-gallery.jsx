@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Infinite-Curl-Gallery, from Impeccable.
+ * Infinite Curl Gallery, from Impeccable.
  *
  * Your pictures float across an endless canvas that never runs out: it wraps
  * around in every direction. The canvas curls toward you at its edges, like the

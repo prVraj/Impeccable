@@ -3,7 +3,7 @@
 import { useEffect, useRef, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent } from "react";
 
 /**
- * Orrery-Gallery
+ * Orrery Gallery
  * Round pictures orbit your brand name like planets, fall into one stack, then
  * open into a curved strip you can drag. Dragging left squeezes the curve, dragging
  * right stretches it, and it wobbles back when you let go. Each picture opens its link.

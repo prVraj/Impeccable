@@ -1,4 +1,4 @@
-/* ---------- Infinite-Curl-Gallery ----------
+/* ---------- Infinite Curl Gallery ----------
  * Install: adds the exact gallery; asks only where it goes and which pictures it shows.
  * Blend: asks four short questions, then fits it through the component's own props. */
 
@@ -36,7 +36,7 @@ Read this before you touch anything, so you know what the code does and why it m
 8. **Speed.** Nothing loads until the gallery is near the screen. Pictures far outside the box are skipped each frame. The loop pauses off screen, in a hidden tab and when nothing moves.`;
 
 export function installPrompt(tsSource: string) {
-  return `# Infinite-Curl-Gallery
+  return `# Infinite Curl Gallery
 
 A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
 
@@ -107,7 +107,7 @@ ${tsSource.trimEnd()}
 }
 
 export function blendPrompt(tsSource: string) {
-  return `# Infinite-Curl-Gallery, fitted to your brand
+  return `# Infinite Curl Gallery, fitted to your brand
 
 A 1-file React component from Impeccable. Add it to this project and fit it to the brand like a missing puzzle piece: it should look like it was always part of the product. It goes in the one place I choose, and nothing else changes.
 

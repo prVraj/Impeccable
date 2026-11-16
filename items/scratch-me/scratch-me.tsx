@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Scratch-me, from Impeccable.
+ * Scratch me, from Impeccable.
  *
  * A promo code hidden under a scratch-off foil. Scratch it with the mouse or a finger:
  * the foil comes off where you rub and the shavings fall and pile up at the bottom.

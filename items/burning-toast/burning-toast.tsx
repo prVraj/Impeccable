@@ -11,7 +11,7 @@ import {
 } from "react";
 
 /* ---------------------------------------------------------------------------
- * Burning-toast
+ * Burning toast
  * Toasts that stack at the bottom of the screen and burn away instead of
  * sliding out. The close button burns it from the X, the timer burns it from
  * the top, and a swipe burns it from where your finger lets go.
@@ -633,7 +633,7 @@ const ICONS: Record<ToastType, ReactNode> = {
 };
 
 /* ---------------------------------------------------------------------------
- * The burn: the same fire as Burning-Screen, sized for a toast.
+ * The burn: the same fire as Burning Screen, sized for a toast.
  * ------------------------------------------------------------------------- */
 
 // Room around the toast for the flames and the rising ash.

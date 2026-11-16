@@ -2,7 +2,7 @@ import type { ItemInfo } from "@/lib/site";
 
 export const info: ItemInfo = {
   slug: "task-progress",
-  name: "Task-progress",
+  name: "Task progress",
   group: "components",
   category: "Feedback",
   // Short line for the docs home, search and family cards.

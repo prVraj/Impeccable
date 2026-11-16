@@ -52,7 +52,7 @@ export function ScaledPage({ children, width = 960, height = 760 }: { children: 
   );
 }
 
-/** Hex-Login as a card thumbnail on the Login pages family page. Every family member's demo.tsx exports a Thumb. */
+/** Hex Login as a card thumbnail on the Login pages family page. Every family member's demo.tsx exports a Thumb. */
 export function Thumb() {
   return (
     <ScaledPage>

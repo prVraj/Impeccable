@@ -9,6 +9,7 @@ import framedUpload from "@/items/framed-upload/tv";
 import taskProgress from "@/items/task-progress/tv";
 import infiniteCurlGallery from "@/items/infinite-curl-gallery/tv";
 import orreryGallery from "@/items/orrery-gallery/tv";
+import spindleGallery from "@/items/spindle-gallery/tv";
 import peterTingleButton from "@/items/peter-tingle-button/tv";
 import venomButton from "@/items/venom-button/tv";
 import pixelButton from "@/items/pixel-button/tv";
@@ -18,6 +19,9 @@ import peepholeButton from "@/items/peephole-button/tv";
 import tugOfWorkLoader from "@/items/tug-of-work-loader/tv";
 import hexLogin from "@/items/hex-login/tv";
 import coffeeFaq from "@/items/coffee-faq/tv";
+import windowStats from "@/items/window-stats/tv";
+import reelStats from "@/items/reel-stats/tv";
+import capsuleTestimonials from "@/items/capsule-testimonials/tv";
 import blackHoleRefresh from "@/items/black-hole-refresh/tv";
 import agentDraw from "@/items/agent-draw/tv";
 import burningScreen from "@/items/burning-screen/tv";
@@ -32,6 +36,7 @@ export const TV: Record<string, ComponentType<{ onReplay: () => void }>> = {
   "task-progress": taskProgress,
   "infinite-curl-gallery": infiniteCurlGallery,
   "orrery-gallery": orreryGallery,
+  "spindle-gallery": spindleGallery,
   "peter-tingle-button": peterTingleButton,
   "venom-button": venomButton,
   "pixel-button": pixelButton,
@@ -41,6 +46,9 @@ export const TV: Record<string, ComponentType<{ onReplay: () => void }>> = {
   "tug-of-work-loader": tugOfWorkLoader,
   "hex-login": hexLogin,
   "coffee-faq": coffeeFaq,
+  "window-stats": windowStats,
+  "reel-stats": reelStats,
+  "capsule-testimonials": capsuleTestimonials,
   "black-hole-refresh": blackHoleRefresh,
   "agent-draw": agentDraw,
   "burning-screen": burningScreen,

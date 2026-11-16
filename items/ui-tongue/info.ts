@@ -2,7 +2,7 @@ import type { ItemInfo } from "@/lib/site";
 
 export const info: ItemInfo = {
   slug: "ui-tongue",
-  name: "UI-tongue",
+  name: "UI tongue",
   group: "skills",
   category: "Skill",
   // Short line for the docs home, search and family cards.

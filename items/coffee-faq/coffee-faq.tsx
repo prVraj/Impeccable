@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Coffee-FAQ, from Impeccable.
+ * Coffee FAQ, from Impeccable.
  *
  * A centred FAQ section: a small label, a title, a line under it, then a stack
  * of question rows that open one at a time to show their answer. The last row

@@ -2,7 +2,7 @@ import type { ItemInfo } from "@/lib/site";
 
 export const info: ItemInfo = {
   slug: "hex-login",
-  name: "Hex-Login",
+  name: "Hex Login",
   group: "sections",
   family: "login-pages",
   category: "Login page",

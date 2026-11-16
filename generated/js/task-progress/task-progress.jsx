@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Task-progress, from Impeccable.
+ * Task progress, from Impeccable.
  *
  * A list of tasks, each one of three states:
  *   - "pending": not started yet, a dotted circle.

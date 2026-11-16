@@ -10,7 +10,7 @@ Use lowercase words joined by dashes for the name, like `price-slider`. It becom
 2. **Build the component** in `price-slider.tsx`. This is the file people install, so it only imports React.
 3. **Fill in `info.ts`**:
    - `slug`: the folder name.
-   - `name`: how it is written on the site, like `Price-Slider`.
+   - `name`: how it is written on the site, in plain words with spaces and never a dash, like `Price slider`. Dashes belong only in the slug. Why: a dashed name reads like code, not a product name. `pnpm check` fails on a dash.
    - `group`: `components`, `buttons`, `loaders`, `sections`, `animations` or `skills`. Every button goes in `buttons` and every loader or progress bar in `loaders`, never in `components`.
    - `family`: only for a variant inside a family page, like `login-pages`.
    - `blurb`: one short line for the docs home, search and family cards.

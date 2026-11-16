@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Hex-Login, from Impeccable.
+ * Hex Login, from Impeccable.
  *
  * A calm, centred login page: your logo inside four thin hexagon rings that
  * turn a little more the further out they are, a "Welcome back" line, Sign in

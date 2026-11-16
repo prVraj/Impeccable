@@ -1,6 +1,6 @@
 # {{Person}}'s taste
 
-Made with UI-tongue on {{date}} ({{mode}} mode). Every line below came from {{Person}}'s answers, picks, or inferences they confirmed. Source tags: **said** (their words), **picked** (chose from options), **confirmed** (inferred from references, then approved). Each rule carries its why, so it can be stretched to cases this file doesn't name.
+Made with UI tongue on {{date}} ({{mode}} mode). Every line below came from {{Person}}'s answers, picks, or inferences they confirmed. Source tags: **said** (their words), **picked** (chose from options), **confirmed** (inferred from references, then approved). Each rule carries its why, so it can be stretched to cases this file doesn't name.
 
 ## What I build
 

@@ -2,7 +2,7 @@ import type { ItemInfo } from "@/lib/site";
 
 export const info: ItemInfo = {
   slug: "text-mirroring",
-  name: "Text-mirroring",
+  name: "Text mirroring",
   group: "components",
   category: "Text",
   // Short line for the docs home, search and family cards.

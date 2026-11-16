@@ -2,7 +2,7 @@ import type { ItemInfo } from "@/lib/site";
 
 export const info: ItemInfo = {
   slug: "black-hole-refresh",
-  name: "Black-Hole-Refresh",
+  name: "Black Hole Refresh",
   group: "animations",
   category: "Page refresh",
   // Short line for the docs home, search and family cards.

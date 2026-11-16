@@ -555,7 +555,7 @@ const ICONS = {
 };
 
 /* ---------------------------------------------------------------------------
- * The burn: the same fire as Burning-Screen, sized for a toast.
+ * The burn: the same fire as Burning Screen, sized for a toast.
  * ------------------------------------------------------------------------- */
 
 // Room around the toast for the flames and the rising ash.

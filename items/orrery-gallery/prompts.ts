@@ -1,4 +1,4 @@
-/* ---------- Orrery-Gallery ----------
+/* ---------- Orrery Gallery ----------
  * Install: adds the exact gallery; asks only where it goes and which pictures and links it shows.
  * Blend: asks four short questions, then fits it through the component's own props. */
 
@@ -36,7 +36,7 @@ Read this before you touch anything, so you know what the code does and why it m
 10. **Colors and theme.** The gallery has no background of its own. The name, the mark and the keyboard ring take the text color around it, so they follow light and dark mode. The drawing stops when the gallery is off screen or still, so it costs nothing at rest.`;
 
 export function installPrompt(tsSource: string) {
-  return `# Orrery-Gallery
+  return `# Orrery Gallery
 
 A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
 
@@ -107,7 +107,7 @@ ${tsSource.trimEnd()}
 }
 
 export function blendPrompt(tsSource: string) {
-  return `# Orrery-Gallery, fitted to your brand
+  return `# Orrery Gallery, fitted to your brand
 
 A 1-file React component from Impeccable. Add it to this project and fit it to the brand like a missing puzzle piece: it should look like it was always part of the product. It goes in the one place I choose, and nothing else changes.
 

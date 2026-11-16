@@ -1,4 +1,4 @@
-/* ---------- Peter-Tingle-button ----------
+/* ---------- Peter Tingle button ----------
  * Install: adds the exact button; asks only where it goes.
  * Blend: asks three short questions, then fits it through the component's own props. */
 
@@ -30,7 +30,7 @@ Read this before you touch anything, so you know what the code does and why it m
 6. **Drawing.** The canvas hugs the button with 44px of room on every side and sits behind it. It only draws while something moves, and the loop stops the moment it is calm. All motion runs on elapsed time, so it feels the same on slow phones and fast screens. The colors are read from the page on every frame, so they follow light and dark mode.`;
 
 export function installPrompt(tsSource: string) {
-  return `# Peter-Tingle-button
+  return `# Peter Tingle button
 
 A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
 
@@ -94,7 +94,7 @@ ${tsSource.trimEnd()}
 }
 
 export function blendPrompt(tsSource: string) {
-  return `# Peter-Tingle-button, fitted to your brand
+  return `# Peter Tingle button, fitted to your brand
 
 A 1-file React component from Impeccable. Add it to this project and fit it to the brand like a missing puzzle piece: it should look like it was always part of the product. It goes in the one place I choose, and nothing else changes.
 

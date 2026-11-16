@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Venom-button, from Impeccable.
+ * Venom button, from Impeccable.
  *
  * A glossy ink button that is alive. Bring the pointer close and the surface bulges
  * toward it while a few feelers rise and taste the air; the closer you get, the more

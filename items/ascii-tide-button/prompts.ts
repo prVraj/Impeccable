@@ -1,4 +1,4 @@
-/* ---------- ASCII-Tide-button ----------
+/* ---------- ASCII Tide button ----------
  * Install: adds the exact button; asks only where it goes.
  * Blend: asks four short questions, then fits it through the component's own props. */
 
@@ -31,7 +31,7 @@ Read this before you touch anything, so you know what the code does and why it m
 6. **Drawing.** The canvas fills the button exactly; the button clips it. A loop runs only while the field shows, a tide rolls or the field is still settling, and stops when the button is at rest. All motion runs on elapsed time, so it feels the same on slow phones and fast screens. Colors are read from the page on every frame, so theme colors follow light and dark mode.`;
 
 export function installPrompt(tsSource: string) {
-  return `# ASCII-Tide-button
+  return `# ASCII Tide button
 
 A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
 
@@ -94,7 +94,7 @@ ${tsSource.trimEnd()}
 }
 
 export function blendPrompt(tsSource: string) {
-  return `# ASCII-Tide-button, fitted to your brand
+  return `# ASCII Tide button, fitted to your brand
 
 A 1-file React component from Impeccable. Add it to this project and fit it to the brand like a missing puzzle piece: it should look like it was always part of the product. It goes in the one place I choose, and nothing else changes.
 

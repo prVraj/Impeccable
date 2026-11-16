@@ -1,4 +1,4 @@
-/* ---------- Peephole-button ----------
+/* ---------- Peephole button ----------
  * Install: adds the exact button; asks only where it goes and which picture it shows.
  * Blend: asks four short questions, then fits it through the component's own props. */
 
@@ -33,7 +33,7 @@ Read this before you touch anything, so you know what the code does and why it m
 6. **Glass on top.** The sheen and the edge sit above everything, so the button still reads as glass when it is open.`;
 
 export function installPrompt(tsSource: string) {
-  return `# Peephole-button
+  return `# Peephole button
 
 A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
 
@@ -101,7 +101,7 @@ ${tsSource.trimEnd()}
 }
 
 export function blendPrompt(tsSource: string) {
-  return `# Peephole-button, fitted to your brand
+  return `# Peephole button, fitted to your brand
 
 A 1-file React component from Impeccable. Add it to this project and fit it to the brand like a missing puzzle piece: it should look like it was always part of the product. It goes in the one place I choose, and nothing else changes.
 

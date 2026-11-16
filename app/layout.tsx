@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { BurningScreen } from "@/items/burning-screen/burning-screen";
 import { themeScript } from "@/components/site/theme-toggle";
 import { redrawScript } from "@/components/site/page-redraw-script";
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-dvh font-sans">
         <BurningScreen>{children}</BurningScreen>
         <SiteSearch />
+        <Analytics />
       </body>
     </html>
   );

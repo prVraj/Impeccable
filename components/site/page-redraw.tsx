@@ -5,11 +5,11 @@ import type { AgentDrawProps } from "@/items/agent-draw/agent-draw";
 import { REDRAW_CLASS, REDRAW_KEY } from "./page-redraw-script";
 
 /**
- * "Redraw this page" on the Agent-Draw docs: the page really reloads, and on
- * the fresh page the Agent-Draw cursors draw every part of it back.
+ * "Redraw this page" on the Agent Draw docs: the page really reloads, and on
+ * the fresh page the Agent Draw cursors draw every part of it back.
  * A flag in sessionStorage survives the reload; the head script turns it into
  * a class that hides the page until the drawing takes over (no flash).
- * Normal visits never load Agent-Draw: <Redraw> just renders its children.
+ * Normal visits never load Agent Draw: <Redraw> just renders its children.
  */
 
 const KEY = REDRAW_KEY;

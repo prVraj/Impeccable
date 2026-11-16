@@ -3,7 +3,7 @@
 import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 
 /**
- * Agent-Draw — a loader that draws the page instead of spinning.
+ * Agent Draw — a loader that draws the page instead of spinning.
  *
  * Wrap any part of your UI. While it loads, a few named cursor "agents" fly in
  * and drag out skeleton shapes (rectangles and circles) for every block inside,
@@ -58,7 +58,7 @@ const HARD_CAP = 9;
 const TICK_MS = 400; // how long the content fade and skeleton fade take
 
 /* ------------------------------------------------------------------------ */
-/* Shared cursor pool: every Agent-Draw on the page shares the same cursors, */
+/* Shared cursor pool: every Agent Draw on the page shares the same cursors, */
 /* so the total on screen never goes over the cap.                           */
 /* ------------------------------------------------------------------------ */
 

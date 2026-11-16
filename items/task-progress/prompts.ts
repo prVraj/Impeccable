@@ -1,4 +1,4 @@
-/* ---------- Task-progress ----------
+/* ---------- Task progress ----------
  * Install: adds the exact list; asks only where it goes and which steps it shows.
  * Blend: asks four short questions, then fits it through the component's own props. */
 
@@ -33,7 +33,7 @@ Read this before you touch anything, so you know what the code does and why it m
 7. **Colors.** Everything is mixed from the text color around the list, so it follows light and dark mode. The check is white on light pages and near-black on dark pages; it is re-read when the theme changes.`;
 
 export function installPrompt(tsSource: string) {
-  return `# Task-progress
+  return `# Task progress
 
 A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
 
@@ -103,7 +103,7 @@ ${tsSource.trimEnd()}
 }
 
 export function blendPrompt(tsSource: string) {
-  return `# Task-progress, fitted to your brand
+  return `# Task progress, fitted to your brand
 
 A 1-file React component from Impeccable. Add it to this project and fit it to the brand like a missing puzzle piece: it should look like it was always part of the product. It goes in the one place I choose, and nothing else changes.
 

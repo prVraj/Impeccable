@@ -11,7 +11,7 @@ import {
 } from "react";
 
 /* ---------------------------------------------------------------------------
- * Burning-Screen
+ * Burning Screen
  * Burns the current screen away from the click and reveals the next page
  * through the hole. The browser's View Transitions API captures the old page;
  * a growing clip-path reveals the new page; a WebGL layer draws the charred

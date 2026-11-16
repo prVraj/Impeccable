@@ -1,4 +1,4 @@
-/* ---------- Text-mirroring ----------
+/* ---------- Text mirroring ----------
  * Install: adds the exact component; asks only which heading it goes on.
  * Blend: asks five short questions, then fits it through the component's own props. */
 
@@ -34,7 +34,7 @@ const TEXT_MIRRORING_ONE_LINE =
   "Bold header text that, on hover, turns to glass and opens smaller copies of each letter inside itself, one inside the other, like an infinite mirror; leaving plays it backwards.";
 
 export function installPrompt(tsSource: string) {
-  return `# Text-mirroring
+  return `# Text mirroring
 
 A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
 
@@ -97,7 +97,7 @@ ${tsSource.trimEnd()}
 }
 
 export function blendPrompt(tsSource: string) {
-  return `# Text-mirroring, fitted to your brand
+  return `# Text mirroring, fitted to your brand
 
 A 1-file React component from Impeccable. Add it to this project and fit it to the brand like a missing puzzle piece: it should look like it was always part of the product. It goes in the one place I choose, and nothing else changes.
 

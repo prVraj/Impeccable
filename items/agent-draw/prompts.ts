@@ -1,4 +1,4 @@
-/** Prompts for Agent-Draw. Same shape as Burning-Screen's.
+/** Prompts for Agent Draw. Same shape as Burning Screen's.
  * Install: adds the exact component; asks only which screen should load with it.
  * Blend: asks four short questions, then fits it through the component's own props. */
 
@@ -25,13 +25,13 @@ Read this before you touch anything, so you know what the code does and why it m
 1. **Read the layout.** When the wrapped block scrolls into view, it measures what's inside: images, icons, buttons, chips and inputs become one shape each; text becomes one bar per line; cards and panels become an outline. Round things become circles. Only rectangles and circles, like a skeleton.
 2. **Hand out shapes.** Shapes are sorted top to bottom. Each goes to the cursor that is free first, so it draws as a wave down the page. One cursor per shape, never two on the same one.
 3. **Draw.** A cursor flies to the shape's top-left corner on a slight curve, then drags it out to the bottom-right corner, like a Figma selection: an outline in its own color, a light tint and a "W × H" size tag. When it lets go, the shape settles into a quiet gray skeleton block.
-4. **Cursors.** Up to 8 on desktop and 4 on phones, shared by every Agent-Draw on the page, so there are never 10 or more. Each has its own light color and a name tag (Vraj, Sensei, Impeccable, then Agent 4, Agent 5…).
+4. **Cursors.** Up to 8 on desktop and 4 on phones, shared by every Agent Draw on the page, so there are never 10 or more. Each has its own light color and a name tag (Vraj, Sensei, Impeccable, then Agent 4, Agent 5…).
 5. **Finish.** After about 3.5 seconds the cursors drift off and fade. If the data has arrived, the real content fades in over the skeleton. If not, the skeleton shimmers until \`loading\` turns false, then the content fades in.
 
 The skeleton gray, outlines and shimmer adapt to the page: lighter on dark pages, darker on light ones. The content stays mounted (just invisible) while it draws, so it's ready the moment the drawing ends.`;
 
 export function installPrompt(tsSource: string) {
-  return `# Agent-Draw
+  return `# Agent Draw
 
 A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, on the one screen I choose, and change nothing else.
 
@@ -105,7 +105,7 @@ ${tsSource.trimEnd()}
 }
 
 export function blendPrompt(tsSource: string) {
-  return `# Agent-Draw, fitted to your brand
+  return `# Agent Draw, fitted to your brand
 
 A 1-file React component from Impeccable. Add it to this project and fit it to the brand like a missing puzzle piece: it should look like it was always part of the product. It goes on the one screen I choose, and nothing else changes.
 

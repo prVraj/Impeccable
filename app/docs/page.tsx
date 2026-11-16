@@ -74,7 +74,7 @@ export default function DocsIntroduction() {
               that was always meant to be there.
             </p>
             <p>
-              The skills take the same idea one step further. UI-tongue learns your taste once, so
+              The skills take the same idea one step further. UI tongue learns your taste once, so
               even a one-line prompt like &ldquo;make me a hero section&rdquo; comes out looking
               like you made it.
             </p>

@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * ASCII-Tide-button, from Impeccable.
+ * ASCII Tide button, from Impeccable.
  *
  * A plain dark pill until you reach for it. Bring the pointer onto it and a
  * field of tiny ASCII characters ( . : - = + * ) rises behind the label around

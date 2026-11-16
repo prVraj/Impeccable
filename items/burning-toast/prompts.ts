@@ -1,4 +1,4 @@
-/* ---------- Burning-toast ----------
+/* ---------- Burning toast ----------
  * Install: adds the exact component; asks only which moments pop a toast.
  * Blend: asks four short questions, then fits it through the component's own props. */
 
@@ -32,7 +32,7 @@ Read this before you touch anything, so you know what the code does and why it m
 8. **Phones.** When the toaster is less than 600px wide, toasts are always bottom center and full width, with 16px on each side and room for the home bar.`;
 
 export function installPrompt(tsSource: string) {
-  return `# Burning-toast
+  return `# Burning toast
 
 A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
 
@@ -100,7 +100,7 @@ ${tsSource.trimEnd()}
 }
 
 export function blendPrompt(tsSource: string) {
-  return `# Burning-toast, fitted to your brand
+  return `# Burning toast, fitted to your brand
 
 A 1-file React component from Impeccable. Add it to this project and fit it to the brand like a missing puzzle piece: it should look like it was always part of the product. It goes in the one place I choose, and nothing else changes.
 

@@ -107,7 +107,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
         <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
           For a wait with no steps, a single progress bar like{" "}
           <Link href="/docs/tug-of-work-loader" className="text-[var(--fg)] underline underline-offset-4">
-            Tug-of-Work-loader
+            Tug of Work loader
           </Link>{" "}
           fits better.
         </p>

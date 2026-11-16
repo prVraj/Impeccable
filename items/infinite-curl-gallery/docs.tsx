@@ -110,7 +110,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
         <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
           For one picture at a time, like a cover or an avatar,{" "}
           <Link href="/docs/framed-upload" className="text-[var(--fg)] underline underline-offset-4">
-            Framed-Upload
+            Framed Upload
           </Link>{" "}
           fits better.
         </p>

@@ -420,7 +420,7 @@ body::-webkit-scrollbar,
   animation: imac-on 420ms var(--ease-out) both;
 }
 /* clip-path, not transform: the screen's contents keep their real size,
-   so Agent-Draw measures the layout correctly while the tube warms up. */
+   so Agent Draw measures the layout correctly while the tube warms up. */
 @keyframes imac-on {
   0% {
     clip-path: inset(49.6% 20% 49.6% 20%);
@@ -634,7 +634,7 @@ html.is-resizing * {
   user-select: none !important;
 }
 
-/* "Redraw this page" (Agent-Draw docs): hidden for a moment after the reload,
+/* "Redraw this page" (Agent Draw docs): hidden for a moment after the reload,
    until the cursors take over. components/site/page-redraw.tsx */
 html.page-redraw body {
   visibility: hidden;

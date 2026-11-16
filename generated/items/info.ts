@@ -9,6 +9,7 @@ import { info as framedUpload } from "@/items/framed-upload/info";
 import { info as taskProgress } from "@/items/task-progress/info";
 import { info as infiniteCurlGallery } from "@/items/infinite-curl-gallery/info";
 import { info as orreryGallery } from "@/items/orrery-gallery/info";
+import { info as spindleGallery } from "@/items/spindle-gallery/info";
 import { info as peterTingleButton } from "@/items/peter-tingle-button/info";
 import { info as venomButton } from "@/items/venom-button/info";
 import { info as pixelButton } from "@/items/pixel-button/info";
@@ -20,6 +21,11 @@ import { info as loginPages } from "@/items/login-pages/info";
 import { info as hexLogin } from "@/items/hex-login/info";
 import { info as faqSections } from "@/items/faq-sections/info";
 import { info as coffeeFaq } from "@/items/coffee-faq/info";
+import { info as statsSections } from "@/items/stats-sections/info";
+import { info as windowStats } from "@/items/window-stats/info";
+import { info as reelStats } from "@/items/reel-stats/info";
+import { info as testimonialSections } from "@/items/testimonial-sections/info";
+import { info as capsuleTestimonials } from "@/items/capsule-testimonials/info";
 import { info as blackHoleRefresh } from "@/items/black-hole-refresh/info";
 import { info as agentDraw } from "@/items/agent-draw/info";
 import { info as burningScreen } from "@/items/burning-screen/info";
@@ -35,6 +41,7 @@ export const INFO: Record<string, ItemInfo> = {
   "task-progress": taskProgress,
   "infinite-curl-gallery": infiniteCurlGallery,
   "orrery-gallery": orreryGallery,
+  "spindle-gallery": spindleGallery,
   "peter-tingle-button": peterTingleButton,
   "venom-button": venomButton,
   "pixel-button": pixelButton,
@@ -46,6 +53,11 @@ export const INFO: Record<string, ItemInfo> = {
   "hex-login": hexLogin,
   "faq-sections": faqSections,
   "coffee-faq": coffeeFaq,
+  "stats-sections": statsSections,
+  "window-stats": windowStats,
+  "reel-stats": reelStats,
+  "testimonial-sections": testimonialSections,
+  "capsule-testimonials": capsuleTestimonials,
   "black-hole-refresh": blackHoleRefresh,
   "agent-draw": agentDraw,
   "burning-screen": burningScreen,

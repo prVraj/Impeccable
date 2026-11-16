@@ -121,7 +121,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           <code className="font-mono text-[13px] text-[var(--fg)]">--radius-lg</code> for the corners, so it follows light and dark
           mode on its own. It pairs well with{" "}
           <Link href="/docs/hex-login" className="font-medium text-[var(--fg)] underline decoration-[var(--line)] underline-offset-4 hover:decoration-[var(--fg)]">
-            Hex-Login
+            Hex Login
           </Link>
           , drawn from the same colors.
         </p>

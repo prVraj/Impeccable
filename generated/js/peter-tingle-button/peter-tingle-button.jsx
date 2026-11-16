@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Peter-Tingle-button, from Impeccable.
+ * Peter Tingle button, from Impeccable.
  *
  * A button with a sixth sense. When the pointer comes near, the button feels it
  * coming: short wavy sense lines start to pulse out of its edge, longest and

@@ -1,4 +1,4 @@
-/* ---------- Pixel-button ----------
+/* ---------- Pixel button ----------
  * Install: adds the exact button; asks only where it goes.
  * Blend: asks four short questions, then fits it through the component's own props. */
 
@@ -33,7 +33,7 @@ Read this before you touch anything, so you know what the code does and why it m
 7. **Drawing.** The canvas fills the button exactly; the button clips it. One loop draws everything while the button is on screen and pauses when it is off screen or the tab is hidden. All motion runs on elapsed time, so it feels the same on slow phones and fast screens. The pixel color is read from the page a few times a second, so theme colors follow light and dark mode, and the pixels and the edge light follow the button's own border-radius.`;
 
 export function installPrompt(tsSource: string) {
-  return `# Pixel-button
+  return `# Pixel button
 
 A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
 
@@ -97,7 +97,7 @@ ${tsSource.trimEnd()}
 }
 
 export function blendPrompt(tsSource: string) {
-  return `# Pixel-button, fitted to your brand
+  return `# Pixel button, fitted to your brand
 
 A 1-file React component from Impeccable. Add it to this project and fit it to the brand like a missing puzzle piece: it should look like it was always part of the product. It goes in the one place I choose, and nothing else changes.
 

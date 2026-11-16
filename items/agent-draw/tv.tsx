@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { Screen } from "@/components/site/tv-screen";
 import { AgentDraw } from "./agent-draw";
 
-/** Agent-Draw runs right inside the tube, then loops. */
+/** Agent Draw runs right inside the tube, then loops. */
 export default function AgentDrawChannel({ onReplay }: { onReplay: () => void }) {
   const loop = useRef<number>(0);
   useEffect(() => () => clearTimeout(loop.current), []);

@@ -2,7 +2,7 @@ import type { ItemInfo } from "@/lib/site";
 
 export const info: ItemInfo = {
   slug: "agent-draw",
-  name: "Agent-Draw",
+  name: "Agent Draw",
   group: "animations",
   category: "Loader",
   // Short line for the docs home, search and family cards.

@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Framed-Upload, from Impeccable.
+ * Framed Upload, from Impeccable.
  *
  * An image upload that hangs whatever you pick inside a picture frame: a bevelled
  * moulding, the picture window right inside it with an inner shadow, and a soft,

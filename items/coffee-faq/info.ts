@@ -2,7 +2,7 @@ import type { ItemInfo } from "@/lib/site";
 
 export const info: ItemInfo = {
   slug: "coffee-faq",
-  name: "Coffee-FAQ",
+  name: "Coffee FAQ",
   group: "sections",
   family: "faq-sections",
   category: "FAQ section",

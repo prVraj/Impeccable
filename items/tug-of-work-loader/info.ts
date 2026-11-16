@@ -2,7 +2,7 @@ import type { ItemInfo } from "@/lib/site";
 
 export const info: ItemInfo = {
   slug: "tug-of-work-loader",
-  name: "Tug-of-Work-loader",
+  name: "Tug of Work loader",
   group: "loaders",
   category: "Progress bar",
   // Short line for the docs home, search and family cards.

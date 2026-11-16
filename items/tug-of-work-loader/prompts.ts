@@ -1,4 +1,4 @@
-/* ---------- Tug-of-Work-loader ----------
+/* ---------- Tug of Work loader ----------
  * Install: adds the exact loader; asks only where it goes and what it tracks.
  * Blend: asks four short questions, then fits it through the component's own props. */
 
@@ -36,7 +36,7 @@ Read this before you touch anything, so you know what the code does and why it m
 9. **Drawing.** The canvas reaches past the bar's right end (only as far as the screen allows, so a full-width bar never makes the page scroll sideways) and three bar heights below it, for the fall. Until the fall, everything is clipped to the inside of the bar, so nothing leaves the border. A loop runs while anything moves and rests when nothing does. All motion runs on elapsed time, so it feels the same on slow phones and fast screens. The color is read from the page on every frame, so it follows light and dark mode.`;
 
 export function installPrompt(tsSource: string) {
-  return `# Tug-of-Work-loader
+  return `# Tug of Work loader
 
 A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
 
@@ -105,7 +105,7 @@ ${tsSource.trimEnd()}
 }
 
 export function blendPrompt(tsSource: string) {
-  return `# Tug-of-Work-loader, fitted to your brand
+  return `# Tug of Work loader, fitted to your brand
 
 A 1-file React component from Impeccable. Add it to this project and fit it to the brand like a missing puzzle piece: it should look like it was always part of the product. It goes in the one place I choose, and nothing else changes.
 

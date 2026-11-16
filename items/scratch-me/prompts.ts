@@ -1,4 +1,4 @@
-/** Prompts for Scratch-me. Same shape as the others.
+/** Prompts for Scratch me. Same shape as the others.
  * Install: adds the exact component; asks only where it goes and which code it shows.
  * Blend: asks four short questions, then fits it through the component's own props. */
 
@@ -33,7 +33,7 @@ Read this before you touch anything, so you know what the code does and why it m
 The pill, foil, text and shavings read the text color around the component, so they follow light and dark mode on their own. The code is in the page, so it is not a secret.`;
 
 export function installPrompt(tsSource: string) {
-  return `# Scratch-me
+  return `# Scratch me
 
 A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
 
@@ -97,7 +97,7 @@ ${tsSource.trimEnd()}
 }
 
 export function blendPrompt(tsSource: string) {
-  return `# Scratch-me, fitted to your product
+  return `# Scratch me, fitted to your product
 
 A 1-file React component from Impeccable. Add it to this project and fit it to the product like a missing puzzle piece: it should look like it was always part of it. It goes in the one place I choose, and nothing else changes.
 

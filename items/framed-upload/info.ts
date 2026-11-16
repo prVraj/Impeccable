@@ -2,7 +2,7 @@ import type { ItemInfo } from "@/lib/site";
 
 export const info: ItemInfo = {
   slug: "framed-upload",
-  name: "Framed-Upload",
+  name: "Framed Upload",
   group: "components",
   category: "Upload",
   // Short line for the docs home, search and family cards.

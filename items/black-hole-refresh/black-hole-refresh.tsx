@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 /* ---------------------------------------------------------------------------
- * Black-Hole-Refresh
+ * Black Hole Refresh
  * A refresh that opens a spinning black hole in the middle of the page.
  * Everything on the page spirals in along the same swirl as the hole, and
  * while it falls it is stretched into a long, thin, curved thread, the way

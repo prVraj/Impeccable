@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Glass-Shatter-button, from Impeccable.
+ * Glass Shatter button, from Impeccable.
  *
  * A solid pill wrapped in a thin ring of glass. Only the ring is glass: the
  * middle stays a plain button with a sharp label. As the pointer comes near,

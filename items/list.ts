@@ -18,6 +18,7 @@ export const ORDER = [
   "task-progress",
   "infinite-curl-gallery",
   "orrery-gallery",
+  "spindle-gallery",
   // Buttons
   "peter-tingle-button",
   "venom-button",
@@ -32,6 +33,11 @@ export const ORDER = [
   "hex-login",
   "faq-sections",
   "coffee-faq",
+  "stats-sections",
+  "window-stats",
+  "reel-stats",
+  "testimonial-sections",
+  "capsule-testimonials",
   // Animations
   "black-hole-refresh",
   "agent-draw",

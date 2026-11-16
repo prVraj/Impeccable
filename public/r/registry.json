@@ -6,7 +6,7 @@
     {
       "name": "burning-screen",
       "type": "registry:component",
-      "title": "Burning-Screen",
+      "title": "Burning Screen",
       "description": "One click burns the screen away from where you clicked and shows the next page through the hole. Save it for one big moment, like finishing sign-up.",
       "files": [
         {
@@ -19,7 +19,7 @@
     {
       "name": "agent-draw",
       "type": "registry:component",
-      "title": "Agent-Draw",
+      "title": "Agent Draw",
       "description": "Named cursors draw your page's skeleton while its data loads, then the real content fades in. Use it on slow screens, like a dashboard or profile.",
       "files": [
         {
@@ -45,7 +45,7 @@
     {
       "name": "scratch-me",
       "type": "registry:component",
-      "title": "Scratch-me",
+      "title": "Scratch me",
       "description": "A scratch-off foil hides a promo code that copies itself once revealed. Use it on a pricing, upgrade or thank-you page for one special offer.",
       "files": [
         {
@@ -58,7 +58,7 @@
     {
       "name": "password-strength",
       "type": "registry:component",
-      "title": "Password-Strength",
+      "title": "Password Strength",
       "description": "A password field that rates what you type as No, AI, AI agent or Human. Use it on sign-up and reset forms in place of a plain strength bar.",
       "files": [
         {
@@ -71,7 +71,7 @@
     {
       "name": "framed-upload",
       "type": "registry:component",
-      "title": "Framed-Upload",
+      "title": "Framed Upload",
       "description": "Drop in a picture and it hangs in a frame with a soft shadow, like a print on a wall. Use it on cover or portfolio forms, one picture per frame.",
       "files": [
         {
@@ -84,7 +84,7 @@
     {
       "name": "hex-login",
       "type": "registry:component",
-      "title": "Hex-Login",
+      "title": "Hex Login",
       "description": "A calm login page with your logo inside turning hexagon rings. Use it as your main sign-in page, with your own logo and real sign-in behind it.",
       "files": [
         {
@@ -97,7 +97,7 @@
     {
       "name": "burning-toast",
       "type": "registry:component",
-      "title": "Burning-toast",
+      "title": "Burning toast",
       "description": "Toasts that stack at the bottom of the screen and burn away when they close. Use it in apps and dashboards after a save or send, one short line each.",
       "files": [
         {
@@ -110,7 +110,7 @@
     {
       "name": "text-mirroring",
       "type": "registry:component",
-      "title": "Text-mirroring",
+      "title": "Text mirroring",
       "description": "Bold header text that echoes into an infinite glass mirror on hover. Use it on one hero or section title of two to four short words.",
       "files": [
         {
@@ -123,7 +123,7 @@
     {
       "name": "black-hole-refresh",
       "type": "registry:component",
-      "title": "Black-Hole-Refresh",
+      "title": "Black Hole Refresh",
       "description": "A black hole pulls your page into long thin threads, swallows them and blasts the page back fresh. Use it on refresh for a playful site or portfolio.",
       "files": [
         {
@@ -136,7 +136,7 @@
     {
       "name": "venom-button",
       "type": "registry:component",
-      "title": "Venom-button",
+      "title": "Venom button",
       "description": "A glossy ink button whose tentacles grab your pointer and pull on it until they snap. Use it for one main action, like the call to action in a hero.",
       "files": [
         {
@@ -149,7 +149,7 @@
     {
       "name": "peter-tingle-button",
       "type": "registry:component",
-      "title": "Peter-Tingle-button",
+      "title": "Peter Tingle button",
       "description": "A button that feels your pointer coming and tingles, with wavy lines pulsing toward it. Use it for one main action, like a hero call to action.",
       "files": [
         {
@@ -162,7 +162,7 @@
     {
       "name": "ascii-tide-button",
       "type": "registry:component",
-      "title": "ASCII-Tide-button",
+      "title": "ASCII Tide button",
       "description": "A dark button that shows drifting ASCII characters behind its label and sends a calm violet tide on tap. Use it for one main action, like a hero.",
       "files": [
         {
@@ -175,7 +175,7 @@
     {
       "name": "glass-shatter-button",
       "type": "registry:component",
-      "title": "Glass-Shatter-button",
+      "title": "Glass Shatter button",
       "description": "A dark button in a ring of glass that glows as your pointer comes near and shatters into shards on click, then seals. Use it for one main action.",
       "files": [
         {
@@ -188,7 +188,7 @@
     {
       "name": "tug-of-work-loader",
       "type": "registry:component",
-      "title": "Tug-of-Work-loader",
+      "title": "Tug of Work loader",
       "description": "A progress bar where a tiny person drags a heavy stone to 100%, straining when it waits. Use it for uploads, exports and builds that take a while.",
       "files": [
         {
@@ -201,7 +201,7 @@
     {
       "name": "pixel-button",
       "type": "registry:component",
-      "title": "Pixel-button",
+      "title": "Pixel button",
       "description": "A button with twinkling pixels behind its label, on hover or always on, a light circling its edge and a click wave. Use it for one main action.",
       "files": [
         {
@@ -214,7 +214,7 @@
     {
       "name": "peephole-button",
       "type": "registry:component",
-      "title": "Peephole-button",
+      "title": "Peephole button",
       "description": "A glass button with a picture window that opens on hover into the whole image or your brand color. Use it on Contact or Gallery with a real photo.",
       "files": [
         {
@@ -227,7 +227,7 @@
     {
       "name": "task-progress",
       "type": "registry:component",
-      "title": "Task-progress",
+      "title": "Task progress",
       "description": "A task list that shows what is done, running or next, and strikes tasks through as they finish. Use it on AI agent or setup screens with 5 to 9 steps.",
       "files": [
         {
@@ -240,7 +240,7 @@
     {
       "name": "coffee-faq",
       "type": "registry:component",
-      "title": "Coffee-FAQ",
+      "title": "Coffee FAQ",
       "description": "Questions that open one at a time, with a chat box at the end that types a reply to anything. Use it near the bottom of a landing or pricing page.",
       "files": [
         {
@@ -253,7 +253,7 @@
     {
       "name": "infinite-curl-gallery",
       "type": "registry:component",
-      "title": "Infinite-Curl-Gallery",
+      "title": "Infinite Curl Gallery",
       "description": "Pictures drift on an endless canvas you can throw any way, curling and fading at its edges. Use it on a portfolio or moodboard with 8 to 30 pictures.",
       "files": [
         {
@@ -266,13 +266,65 @@
     {
       "name": "orrery-gallery",
       "type": "registry:component",
-      "title": "Orrery-Gallery",
+      "title": "Orrery Gallery",
       "description": "Round pictures orbit your name, fall into a stack and open into a curved strip you drag. Use it on a portfolio or launch page with 6 to 12 links.",
       "files": [
         {
           "path": "items/orrery-gallery/orrery-gallery.tsx",
           "type": "registry:component",
           "target": "components/ui/orrery-gallery.tsx"
+        }
+      ]
+    },
+    {
+      "name": "window-stats",
+      "type": "registry:component",
+      "title": "Window Stats",
+      "description": "Your numbers on photo cards that slide over a still statement, which softens behind them. Use it on an about or landing page with 3 to 7 numbers.",
+      "files": [
+        {
+          "path": "items/window-stats/window-stats.tsx",
+          "type": "registry:component",
+          "target": "components/ui/window-stats.tsx"
+        }
+      ]
+    },
+    {
+      "name": "reel-stats",
+      "type": "registry:component",
+      "title": "Reel Stats",
+      "description": "Point at a heading and its picture rolls into the frame as a soft tab glides to it. Use it on a services or landing page with 3 to 6 short points.",
+      "files": [
+        {
+          "path": "items/reel-stats/reel-stats.tsx",
+          "type": "registry:component",
+          "target": "components/ui/reel-stats.tsx"
+        }
+      ]
+    },
+    {
+      "name": "spindle-gallery",
+      "type": "registry:component",
+      "title": "Spindle Gallery",
+      "description": "Round pictures orbit and stack, then open into a 3D ring of cards with space between them. Use it on a launch or portfolio page with 8 to 12 posters.",
+      "files": [
+        {
+          "path": "items/spindle-gallery/spindle-gallery.tsx",
+          "type": "registry:component",
+          "target": "components/ui/spindle-gallery.tsx"
+        }
+      ]
+    },
+    {
+      "name": "capsule-testimonials",
+      "type": "registry:component",
+      "title": "Capsule Testimonials",
+      "description": "Reviews sit as slim capsules with a face and a name, then open into a full card on click. Use it on a landing or pricing page with 4 to 7 reviews.",
+      "files": [
+        {
+          "path": "items/capsule-testimonials/capsule-testimonials.tsx",
+          "type": "registry:component",
+          "target": "components/ui/capsule-testimonials.tsx"
         }
       ]
     }

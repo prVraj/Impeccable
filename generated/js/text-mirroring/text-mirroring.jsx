@@ -3,7 +3,7 @@
 import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 
 /**
- * Text-mirroring: bold header text that, on hover, turns into a mirror box.
+ * Text mirroring: bold header text that, on hover, turns into a mirror box.
  * Each letter becomes a glass frame, and inside its own outline smaller frames
  * of the same letter open one after another, each inside the last, like a
  * screen shared into itself. Everything stays inside the letter's shape, so it

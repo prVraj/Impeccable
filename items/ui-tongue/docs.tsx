@@ -87,7 +87,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
               </svg>
             }
           >
-            Download UI-tongue
+            Download UI tongue
           </Button>
           <p className="mt-8 mb-3 text-[15px] leading-relaxed text-[var(--muted)]">
             Read it before you install. This is <Code>SKILL.md</Code>, the file your AI tool reads first.

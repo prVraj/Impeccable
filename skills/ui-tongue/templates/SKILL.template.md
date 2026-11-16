@@ -1,6 +1,6 @@
 ---
 name: {{skill-name}}
-description: "{{Person}}'s personal UI taste, made with UI-tongue. Use for ANY UI or frontend work for {{Person}}, even a one-line request: pages, sections, heroes, landing pages, dashboards, components, forms, styling, colours, fonts, animations or redesigns. It expands short requests into a brief in their taste, builds, checks quality, and keeps each project's DESIGN.md up to date. Also use when they say 'update my taste' or react to a design ('I don't like that', 'more like this')."
+description: "{{Person}}'s personal UI taste, made with UI tongue. Use for ANY UI or frontend work for {{Person}}, even a one-line request: pages, sections, heroes, landing pages, dashboards, components, forms, styling, colours, fonts, animations or redesigns. It expands short requests into a brief in their taste, builds, checks quality, and keeps each project's DESIGN.md up to date. Also use when they say 'update my taste' or react to a design ('I don't like that', 'more like this')."
 ---
 
 # {{Person}}'s UI

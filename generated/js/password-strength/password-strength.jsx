@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Password-Strength, from Impeccable.
+ * Password Strength, from Impeccable.
  *
  * A password field with a show/hide eye, a three-part meter and three checkpoints:
  *   1. at least 12 characters

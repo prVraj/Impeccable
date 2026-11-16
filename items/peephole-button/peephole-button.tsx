@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Peephole-button, from Impeccable.
+ * Peephole button, from Impeccable.
  *
  * A glassy button with a small window (the slot) that shows a picture. Two types:
  *

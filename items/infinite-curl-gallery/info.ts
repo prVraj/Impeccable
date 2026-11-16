@@ -2,7 +2,7 @@ import type { ItemInfo } from "@/lib/site";
 
 export const info: ItemInfo = {
   slug: "infinite-curl-gallery",
-  name: "Infinite-Curl-Gallery",
+  name: "Infinite Curl Gallery",
   group: "components",
   category: "Gallery",
   // Short line for the docs home, search and family cards.

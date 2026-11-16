@@ -2,7 +2,7 @@ import type { ItemInfo } from "@/lib/site";
 
 export const info: ItemInfo = {
   slug: "venom-button",
-  name: "Venom-button",
+  name: "Venom button",
   group: "buttons",
   category: "Button",
   // Short line for the docs home, search and family cards.

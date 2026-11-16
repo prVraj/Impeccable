@@ -1,4 +1,4 @@
-/* ---------- Framed-Upload ----------
+/* ---------- Framed Upload ----------
  * Install: adds the exact component; asks only where it goes.
  * Blend: asks four short questions, then fits it through the component's own props. */
 
@@ -34,7 +34,7 @@ Read this before you touch anything, so you know what the code does and why it m
 Light or dark is read from the text color around the frame, so it switches with the theme with no setup.`;
 
 export function installPrompt(tsSource: string) {
-  return `# Framed-Upload
+  return `# Framed Upload
 
 A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
 
@@ -100,7 +100,7 @@ ${tsSource.trimEnd()}
 }
 
 export function blendPrompt(tsSource: string) {
-  return `# Framed-Upload, fitted to your brand
+  return `# Framed Upload, fitted to your brand
 
 A 1-file React component from Impeccable. Add it to this project and fit it to the brand like a missing puzzle piece: it should look like it was always part of the product. It goes in the one place I choose, and nothing else changes.
 

@@ -2,7 +2,7 @@ import type { ItemInfo } from "@/lib/site";
 
 export const info: ItemInfo = {
   slug: "password-strength",
-  name: "Password-Strength",
+  name: "Password Strength",
   group: "components",
   category: "Form",
   // Short line for the docs home, search and family cards.

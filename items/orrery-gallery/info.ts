@@ -2,7 +2,7 @@ import type { ItemInfo } from "@/lib/site";
 
 export const info: ItemInfo = {
   slug: "orrery-gallery",
-  name: "Orrery-Gallery",
+  name: "Orrery Gallery",
   group: "components",
   category: "Media",
   // Short line for the docs home, search and family cards.

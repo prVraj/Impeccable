@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Tug-of-Work-loader, from Impeccable.
+ * Tug of Work loader, from Impeccable.
  *
  * A see-through progress bar where the fill is a heavy slab of stone and a
  * tiny person drags it. They lean back on a rope tied to the stone's chipped

@@ -21,7 +21,7 @@ const HARD_CAP = 9;
 const TICK_MS = 400; // how long the content fade and skeleton fade take
 
 /* ------------------------------------------------------------------------ */
-/* Shared cursor pool: every Agent-Draw on the page shares the same cursors, */
+/* Shared cursor pool: every Agent Draw on the page shares the same cursors, */
 /* so the total on screen never goes over the cap.                           */
 /* ------------------------------------------------------------------------ */
 

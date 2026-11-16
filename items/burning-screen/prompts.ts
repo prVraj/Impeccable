@@ -1,10 +1,10 @@
-/** Prompts for Burning-Screen. Both carry the full source.
+/** Prompts for Burning Screen. Both carry the full source.
  * Install: adds the exact component; asks only where it should burn.
  * Blend: asks four short questions, then fits it to the brand through the
  * component's own props and options (the component file stays as written). */
 
 export function installPrompt(tsSource: string) {
-  return `# Burning-Screen
+  return `# Burning Screen
 
 A 1-file React component from Impeccable. Add it to this project so it works and looks exactly like the source below, in the one place I choose, and change nothing else.
 
@@ -92,7 +92,7 @@ ${tsSource.trimEnd()}
 }
 
 export function blendPrompt(tsSource: string) {
-  return `# Burning-Screen, fitted to your brand
+  return `# Burning Screen, fitted to your brand
 
 A 1-file React component from Impeccable. Add it to this project and fit it to the brand like a missing puzzle piece: it should look like it was always part of the product. It goes in the one place I choose, and nothing else changes.
 

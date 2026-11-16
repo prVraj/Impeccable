@@ -63,7 +63,7 @@ const PROPS: [string, string, string][] = [
   ["colors", "Canvas, CanvasText", "surface, text, muted and border. Any CSS color, including var(--…). The default follows light and dark through color-scheme."],
   ["radius", '"var(--radius-lg, 12px)"', "Corner radius. The close button's corners follow it."],
   ["iconColors", "the text color", "One color per type: default, success, info, warning, error."],
-  ["burnColors", "black, white, gray", "char, glow, smoke and ember, as in Burning-Screen. The edge picks whichever shows on your toast and page."],
+  ["burnColors", "black, white, gray", "char, glow, smoke and ember, as in Burning Screen. The edge picks whichever shows on your toast and page."],
   ["id", "—", "Only for a second toaster on the same page. It shows only toasts sent with that toaster's id."],
 ];
 

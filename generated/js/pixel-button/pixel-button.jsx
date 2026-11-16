@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Pixel-button, from Impeccable.
+ * Pixel button, from Impeccable.
  *
  * A pill that is white in light mode and dark in dark mode, with a light that
  * keeps travelling around its edge. Behind the label sit tiny pixels, scattered
