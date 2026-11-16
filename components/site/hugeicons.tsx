@@ -65,6 +65,15 @@ export const Loading03Icon = (p: P) => (
   </Huge>
 );
 
+export const GridIcon = (p: P) => (
+  <Huge {...p}>
+    <path d="M7 3V21" />
+    <path d="M17 3V21" />
+    <path d="M21 7L3 7" />
+    <path d="M21 17L3 17" />
+  </Huge>
+);
+
 export const EaseCurveControlPointsIcon = (p: P) => (
   <Huge {...p}>
     <path d="M21 4C16 4 13.9792 8.0416 12 12C10.0208 15.9584 8 20 3 20" />

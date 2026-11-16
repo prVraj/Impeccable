@@ -327,6 +327,32 @@
           "target": "components/ui/reel-stats.tsx"
         }
       ]
+    },
+    {
+      "name": "loupe-grid",
+      "type": "registry:component",
+      "title": "Loupe Grid",
+      "description": "A faint grid background whose marks swell, brighten and glow under your pointer. Use it behind a hero or sign-up section with one short headline.",
+      "files": [
+        {
+          "path": "items/loupe-grid/loupe-grid.tsx",
+          "type": "registry:component",
+          "target": "components/ui/loupe-grid.tsx"
+        }
+      ]
+    },
+    {
+      "name": "isometric-wall",
+      "type": "registry:component",
+      "title": "Isometric Wall",
+      "description": "Faded picture cards slide slowly along diagonal columns on a tilted floor, and the one you hover lifts gently. Use it behind a hero with one short headline.",
+      "files": [
+        {
+          "path": "items/isometric-wall/isometric-wall.tsx",
+          "type": "registry:component",
+          "target": "components/ui/isometric-wall.tsx"
+        }
+      ]
     }
   ]
 }

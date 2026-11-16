@@ -17,6 +17,8 @@ import asciiTideButton from "@/items/ascii-tide-button/tv";
 import glassShatterButton from "@/items/glass-shatter-button/tv";
 import peepholeButton from "@/items/peephole-button/tv";
 import tugOfWorkLoader from "@/items/tug-of-work-loader/tv";
+import loupeGrid from "@/items/loupe-grid/tv";
+import isometricWall from "@/items/isometric-wall/tv";
 import hexLogin from "@/items/hex-login/tv";
 import coffeeFaq from "@/items/coffee-faq/tv";
 import windowStats from "@/items/window-stats/tv";
@@ -44,6 +46,8 @@ export const TV: Record<string, ComponentType<{ onReplay: () => void }>> = {
   "glass-shatter-button": glassShatterButton,
   "peephole-button": peepholeButton,
   "tug-of-work-loader": tugOfWorkLoader,
+  "loupe-grid": loupeGrid,
+  "isometric-wall": isometricWall,
   "hex-login": hexLogin,
   "coffee-faq": coffeeFaq,
   "window-stats": windowStats,

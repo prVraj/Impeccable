@@ -290,19 +290,6 @@
       ]
     },
     {
-      "name": "reel-stats",
-      "type": "registry:component",
-      "title": "Reel Stats",
-      "description": "Point at a heading and its picture rolls into the frame as a soft tab glides to it. Use it on a services or landing page with 3 to 6 short points.",
-      "files": [
-        {
-          "path": "items/reel-stats/reel-stats.tsx",
-          "type": "registry:component",
-          "target": "components/ui/reel-stats.tsx"
-        }
-      ]
-    },
-    {
       "name": "spindle-gallery",
       "type": "registry:component",
       "title": "Spindle Gallery",
@@ -325,6 +312,45 @@
           "path": "items/capsule-testimonials/capsule-testimonials.tsx",
           "type": "registry:component",
           "target": "components/ui/capsule-testimonials.tsx"
+        }
+      ]
+    },
+    {
+      "name": "reel-stats",
+      "type": "registry:component",
+      "title": "Reel Stats",
+      "description": "Point at a heading and its picture rolls into the frame as a soft tab glides to it. Use it on a services or landing page with 3 to 6 short points.",
+      "files": [
+        {
+          "path": "items/reel-stats/reel-stats.tsx",
+          "type": "registry:component",
+          "target": "components/ui/reel-stats.tsx"
+        }
+      ]
+    },
+    {
+      "name": "loupe-grid",
+      "type": "registry:component",
+      "title": "Loupe Grid",
+      "description": "A faint grid background whose marks swell, brighten and glow under your pointer. Use it behind a hero or sign-up section with one short headline.",
+      "files": [
+        {
+          "path": "items/loupe-grid/loupe-grid.tsx",
+          "type": "registry:component",
+          "target": "components/ui/loupe-grid.tsx"
+        }
+      ]
+    },
+    {
+      "name": "isometric-wall",
+      "type": "registry:component",
+      "title": "Isometric Wall",
+      "description": "Faded picture cards slide slowly along diagonal columns on a tilted floor, and the one you hover lifts gently. Use it behind a hero with one short headline.",
+      "files": [
+        {
+          "path": "items/isometric-wall/isometric-wall.tsx",
+          "type": "registry:component",
+          "target": "components/ui/isometric-wall.tsx"
         }
       ]
     }

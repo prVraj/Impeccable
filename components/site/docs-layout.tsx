@@ -99,8 +99,14 @@ export function DocsLayout({
       {/* The page itself: a raised sheet with the tab cut into its top right corner. */}
       <div className="sheet relative min-w-0 flex-1 lg:my-2 lg:mr-2 lg:rounded-2xl lg:border lg:border-[var(--line)] lg:bg-[var(--sheet)]">
         <SheetTab />
-        <div className="mx-auto flex max-w-6xl justify-center gap-12 px-4 sm:px-6 lg:px-10">
-          <main className="min-w-0 max-w-3xl flex-1 pt-12 pb-24 lg:pt-23">
+        {/* The text starts 40px in from the sheet's left edge at every width (not centred, so wide screens
+            don't leave a big gap on the left), and "On this page" sits at the right edge. */}
+        {/* Plain CSS rather than new Tailwind classes, so a running pnpm dev picks it up straight away. */}
+        <style>{`@media (min-width: 80rem) { .docs-main { padding-top: 3rem; } } .docs-toc { padding-top: 59px; }`}</style>
+        <div className="flex gap-12 px-4 sm:px-6 lg:px-10">
+          {/* 1024 to 1279px: the title starts lower so a long one clears the hanging bulb. From 1280px the
+              bulb sits right of the text, so the title moves up close to the top of the sheet. */}
+          <main className="docs-main min-w-0 max-w-3xl flex-1 pt-12 pb-24 lg:pt-23">
             {Children.map(children, (child) => (child ? <Redraw>{child}</Redraw> : child))}
 
             <Redraw>
@@ -111,8 +117,8 @@ export function DocsLayout({
             </Redraw>
           </main>
 
-          {/* Starts lower than the text, to leave room for the hanging bulb. */}
-          <aside aria-label="On this page" className="sticky top-[9px] hidden w-44 shrink-0 self-start pt-[103px] xl:block">
+          {/* Pinned to the right edge, level with the title. */}
+          <aside aria-label="On this page" className="docs-toc sticky top-[9px] ml-auto hidden w-44 shrink-0 self-start xl:block">
             <Redraw>
               <Toc sections={sections} />
             </Redraw>

@@ -30,11 +30,12 @@ Impeccable UI is a free, open-source library of those moments. Every piece is de
 
 ## What's in the library
 
-The library has six parts. Browse all of them, with live previews, at **[impeccableui.vercel.app](https://impeccableui.vercel.app)**.
+The library has seven parts. Browse all of them, with live previews, at **[impeccableui.vercel.app](https://impeccableui.vercel.app)**.
 
 - **Components:** building blocks with motion built in, like toasts, upload fields and password meters.
 - **Buttons:** buttons that react to the person using them.
 - **Loaders:** progress bars and loaders that keep people company while they wait.
+- **Backgrounds:** grids and patterns that sit behind a section or a whole page and answer the pointer.
 - **Sections:** whole page blocks, like login pages, grouped into families.
 - **Animations:** moments that play across a page: loaders, transitions, refreshes.
 - **Skills:** files you give your AI tool so it works your way.
@@ -51,7 +52,7 @@ The skills take the same idea one step further. They teach your AI tool your tas
 
 ## What you get
 
-Every component, button, section and animation page gives you the same things:
+Every component, button, loader, background, section and animation page gives you the same things:
 
 - **A live preview.** Play with it first, and check it at desktop, tablet and phone width. If it doesn't make you feel something there, it won't in your app either.
 - **The code, in TypeScript and JavaScript.** One file you own. Read it, copy it, change it. Nothing is hidden inside a package.
