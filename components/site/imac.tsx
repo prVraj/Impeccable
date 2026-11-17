@@ -5,8 +5,16 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { COMPONENTS } from "@/lib/site";
 import { TV } from "@/generated/items/tv";
 
-/** Only things with a live demo get a channel (skills have none). */
-const CHANNELS = COMPONENTS.filter((c) => c.group !== "skills");
+/** How many channels the iMac plays: the newest items in the library. */
+const NEWEST = 5;
+
+/**
+ * The 5 most recently added items (by `added` in each info.ts), newest first, so the
+ * home page always shows what's new. Only things with a live demo get a channel (skills have none).
+ */
+const CHANNELS = COMPONENTS.filter((c) => c.group !== "skills" && TV[c.slug])
+  .sort((a, b) => b.added.localeCompare(a.added))
+  .slice(0, NEWEST);
 
 /**
  * A 1998-style translucent iMac (graphite gray), drawn in CSS. Its screen plays one component
