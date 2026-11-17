@@ -48,7 +48,7 @@ Most component libraries hand you a component and stop there. Then you spend you
 
 Impeccable UI works the other way round. Before your AI tool writes any code, the prompt has it ask you a few short questions about your brand and where the piece should live. Your answers shape it, so it fits into your product like it was always meant to be there.
 
-The skills take the same idea one step further. They teach your AI tool your taste once, so even a one-line request comes out looking like you made it.
+The skills take the same idea one step further. They teach your AI tool how you work once, from your taste to the checks you run before you ship, so even a one-line request comes out looking like you made it.
 
 ## What you get
 

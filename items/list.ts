@@ -19,6 +19,7 @@ export const ORDER = [
   "infinite-curl-gallery",
   "orrery-gallery",
   "spindle-gallery",
+  "sleeve-card",
   // Buttons
   "peter-tingle-button",
   "venom-button",
@@ -41,10 +42,13 @@ export const ORDER = [
   "reel-stats",
   "testimonial-sections",
   "capsule-testimonials",
+  "feature-sections",
+  "deck-features",
   // Animations
   "black-hole-refresh",
   "agent-draw",
   "burning-screen",
   // Skills
   "ui-tongue",
+  "health-check",
 ];

@@ -5,6 +5,7 @@ import { BurningScreen } from "@/items/burning-screen/burning-screen";
 import { themeScript } from "@/components/site/theme-toggle";
 import { redrawScript } from "@/components/site/page-redraw-script";
 import { SiteSearch } from "@/components/site/search";
+import { ClickBurst } from "@/components/site/click-burst";
 import { SITE } from "@/lib/seo";
 import { pageMetadata } from "@/lib/site";
 import "./globals.css";
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-dvh font-sans">
         <BurningScreen>{children}</BurningScreen>
         <SiteSearch />
+        <ClickBurst />
         <Analytics />
       </body>
     </html>

@@ -10,6 +10,7 @@ import { info as taskProgress } from "@/items/task-progress/info";
 import { info as infiniteCurlGallery } from "@/items/infinite-curl-gallery/info";
 import { info as orreryGallery } from "@/items/orrery-gallery/info";
 import { info as spindleGallery } from "@/items/spindle-gallery/info";
+import { info as sleeveCard } from "@/items/sleeve-card/info";
 import { info as peterTingleButton } from "@/items/peter-tingle-button/info";
 import { info as venomButton } from "@/items/venom-button/info";
 import { info as pixelButton } from "@/items/pixel-button/info";
@@ -28,10 +29,13 @@ import { info as windowStats } from "@/items/window-stats/info";
 import { info as reelStats } from "@/items/reel-stats/info";
 import { info as testimonialSections } from "@/items/testimonial-sections/info";
 import { info as capsuleTestimonials } from "@/items/capsule-testimonials/info";
+import { info as featureSections } from "@/items/feature-sections/info";
+import { info as deckFeatures } from "@/items/deck-features/info";
 import { info as blackHoleRefresh } from "@/items/black-hole-refresh/info";
 import { info as agentDraw } from "@/items/agent-draw/info";
 import { info as burningScreen } from "@/items/burning-screen/info";
 import { info as uiTongue } from "@/items/ui-tongue/info";
+import { info as healthCheck } from "@/items/health-check/info";
 
 export const INFO: Record<string, ItemInfo> = {
   "text-mirroring": textMirroring,
@@ -44,6 +48,7 @@ export const INFO: Record<string, ItemInfo> = {
   "infinite-curl-gallery": infiniteCurlGallery,
   "orrery-gallery": orreryGallery,
   "spindle-gallery": spindleGallery,
+  "sleeve-card": sleeveCard,
   "peter-tingle-button": peterTingleButton,
   "venom-button": venomButton,
   "pixel-button": pixelButton,
@@ -62,8 +67,11 @@ export const INFO: Record<string, ItemInfo> = {
   "reel-stats": reelStats,
   "testimonial-sections": testimonialSections,
   "capsule-testimonials": capsuleTestimonials,
+  "feature-sections": featureSections,
+  "deck-features": deckFeatures,
   "black-hole-refresh": blackHoleRefresh,
   "agent-draw": agentDraw,
   "burning-screen": burningScreen,
   "ui-tongue": uiTongue,
+  "health-check": healthCheck,
 };

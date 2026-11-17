@@ -353,6 +353,32 @@
           "target": "components/ui/isometric-wall.tsx"
         }
       ]
+    },
+    {
+      "name": "deck-features",
+      "type": "registry:component",
+      "title": "Deck Features",
+      "description": "Feature cards pile up like a deck as you scroll, and the last one slides through them all. Use it on a landing page to show 3 to 6 features.",
+      "files": [
+        {
+          "path": "items/deck-features/deck-features.tsx",
+          "type": "registry:component",
+          "target": "components/ui/deck-features.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sleeve-card",
+      "type": "registry:component",
+      "title": "Sleeve Card",
+      "description": "A project card lifts and turns in 3D on hover as a View Project tab slides out from behind. Use it on a portfolio page, one card for each project.",
+      "files": [
+        {
+          "path": "items/sleeve-card/sleeve-card.tsx",
+          "type": "registry:component",
+          "target": "components/ui/sleeve-card.tsx"
+        }
+      ]
     }
   ]
 }
