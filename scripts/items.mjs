@@ -10,7 +10,7 @@ import { join } from "node:path";
 
 const ITEMS = "items";
 // The live address. Keep it the same as SITE.url in lib/seo.ts.
-const SITE = "https://impeccableui.vercel.app";
+const SITE = "https://impeccable-ui.com";
 const errors = [];
 const warnings = [];
 const read = (p) => readFileSync(p, "utf8");
@@ -154,10 +154,12 @@ const tv = items.filter((i) => has(i.slug, "tv.tsx"));
 write(
   "tv.ts",
   HEAD +
-    'import type { ComponentType } from "react";\n' +
-    tv.map((i) => `import ${id(i.slug)} from "@/items/${i.slug}/tv";`).join("\n") +
-    "\n\nexport const TV: Record<string, ComponentType<{ onReplay: () => void }>> = {\n" +
-    tv.map((i) => `  "${i.slug}": ${id(i.slug)},`).join("\n") +
+    'import { lazy, type ComponentType } from "react";\n\n' +
+    "// Each channel loads only when the iMac tunes to it, so the home page doesn't download every\n" +
+    "// item up front (that made it heavy and slow to wake up, and caused hydration error #418).\n" +
+    "type Channel = ComponentType<{ onReplay: () => void }>;\n\n" +
+    "export const TV: Record<string, Channel> = {\n" +
+    tv.map((i) => `  "${i.slug}": lazy(() => import("@/items/${i.slug}/tv")),`).join("\n") +
     "\n};\n",
 );
 

@@ -1,59 +1,36 @@
 // Written by scripts/items.mjs from items/. Don't edit: it is rewritten on every dev and build.
-import type { ComponentType } from "react";
-import textMirroring from "@/items/text-mirroring/tv";
-import burningToast from "@/items/burning-toast/tv";
-import brainTxt from "@/items/brain-txt/tv";
-import scratchMe from "@/items/scratch-me/tv";
-import passwordStrength from "@/items/password-strength/tv";
-import framedUpload from "@/items/framed-upload/tv";
-import taskProgress from "@/items/task-progress/tv";
-import infiniteCurlGallery from "@/items/infinite-curl-gallery/tv";
-import orreryGallery from "@/items/orrery-gallery/tv";
-import spindleGallery from "@/items/spindle-gallery/tv";
-import peterTingleButton from "@/items/peter-tingle-button/tv";
-import venomButton from "@/items/venom-button/tv";
-import pixelButton from "@/items/pixel-button/tv";
-import asciiTideButton from "@/items/ascii-tide-button/tv";
-import glassShatterButton from "@/items/glass-shatter-button/tv";
-import peepholeButton from "@/items/peephole-button/tv";
-import tugOfWorkLoader from "@/items/tug-of-work-loader/tv";
-import loupeGrid from "@/items/loupe-grid/tv";
-import isometricWall from "@/items/isometric-wall/tv";
-import hexLogin from "@/items/hex-login/tv";
-import coffeeFaq from "@/items/coffee-faq/tv";
-import windowStats from "@/items/window-stats/tv";
-import reelStats from "@/items/reel-stats/tv";
-import capsuleTestimonials from "@/items/capsule-testimonials/tv";
-import blackHoleRefresh from "@/items/black-hole-refresh/tv";
-import agentDraw from "@/items/agent-draw/tv";
-import burningScreen from "@/items/burning-screen/tv";
+import { lazy, type ComponentType } from "react";
 
-export const TV: Record<string, ComponentType<{ onReplay: () => void }>> = {
-  "text-mirroring": textMirroring,
-  "burning-toast": burningToast,
-  "brain-txt": brainTxt,
-  "scratch-me": scratchMe,
-  "password-strength": passwordStrength,
-  "framed-upload": framedUpload,
-  "task-progress": taskProgress,
-  "infinite-curl-gallery": infiniteCurlGallery,
-  "orrery-gallery": orreryGallery,
-  "spindle-gallery": spindleGallery,
-  "peter-tingle-button": peterTingleButton,
-  "venom-button": venomButton,
-  "pixel-button": pixelButton,
-  "ascii-tide-button": asciiTideButton,
-  "glass-shatter-button": glassShatterButton,
-  "peephole-button": peepholeButton,
-  "tug-of-work-loader": tugOfWorkLoader,
-  "loupe-grid": loupeGrid,
-  "isometric-wall": isometricWall,
-  "hex-login": hexLogin,
-  "coffee-faq": coffeeFaq,
-  "window-stats": windowStats,
-  "reel-stats": reelStats,
-  "capsule-testimonials": capsuleTestimonials,
-  "black-hole-refresh": blackHoleRefresh,
-  "agent-draw": agentDraw,
-  "burning-screen": burningScreen,
+// Each channel loads only when the iMac tunes to it, so the home page doesn't download every
+// item up front (that made it heavy and slow to wake up, and caused hydration error #418).
+type Channel = ComponentType<{ onReplay: () => void }>;
+
+export const TV: Record<string, Channel> = {
+  "text-mirroring": lazy(() => import("@/items/text-mirroring/tv")),
+  "burning-toast": lazy(() => import("@/items/burning-toast/tv")),
+  "brain-txt": lazy(() => import("@/items/brain-txt/tv")),
+  "scratch-me": lazy(() => import("@/items/scratch-me/tv")),
+  "password-strength": lazy(() => import("@/items/password-strength/tv")),
+  "framed-upload": lazy(() => import("@/items/framed-upload/tv")),
+  "task-progress": lazy(() => import("@/items/task-progress/tv")),
+  "infinite-curl-gallery": lazy(() => import("@/items/infinite-curl-gallery/tv")),
+  "orrery-gallery": lazy(() => import("@/items/orrery-gallery/tv")),
+  "spindle-gallery": lazy(() => import("@/items/spindle-gallery/tv")),
+  "peter-tingle-button": lazy(() => import("@/items/peter-tingle-button/tv")),
+  "venom-button": lazy(() => import("@/items/venom-button/tv")),
+  "pixel-button": lazy(() => import("@/items/pixel-button/tv")),
+  "ascii-tide-button": lazy(() => import("@/items/ascii-tide-button/tv")),
+  "glass-shatter-button": lazy(() => import("@/items/glass-shatter-button/tv")),
+  "peephole-button": lazy(() => import("@/items/peephole-button/tv")),
+  "tug-of-work-loader": lazy(() => import("@/items/tug-of-work-loader/tv")),
+  "loupe-grid": lazy(() => import("@/items/loupe-grid/tv")),
+  "isometric-wall": lazy(() => import("@/items/isometric-wall/tv")),
+  "hex-login": lazy(() => import("@/items/hex-login/tv")),
+  "coffee-faq": lazy(() => import("@/items/coffee-faq/tv")),
+  "window-stats": lazy(() => import("@/items/window-stats/tv")),
+  "reel-stats": lazy(() => import("@/items/reel-stats/tv")),
+  "capsule-testimonials": lazy(() => import("@/items/capsule-testimonials/tv")),
+  "black-hole-refresh": lazy(() => import("@/items/black-hole-refresh/tv")),
+  "agent-draw": lazy(() => import("@/items/agent-draw/tv")),
+  "burning-screen": lazy(() => import("@/items/burning-screen/tv")),
 };

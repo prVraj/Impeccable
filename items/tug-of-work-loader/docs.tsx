@@ -10,7 +10,7 @@ import { highlight } from "@/lib/highlight";
 import { blendPrompt as buildBlendPrompt, installPrompt as buildInstallPrompt } from "./prompts";
 import type { ItemInfo } from "@/lib/site";
 
-const REGISTRY_URL = "https://impeccableui.vercel.app/r/tug-of-work-loader.json";
+const REGISTRY_URL = "https://impeccable-ui.com/r/tug-of-work-loader.json";
 
 const USAGE = `"use client";
 import { TugOfWorkLoader } from "@/components/ui/tug-of-work-loader";

@@ -20,7 +20,7 @@ import {
 import type { ItemInfo } from "@/lib/site";
 
 const REGISTRY_URL =
-  "https://impeccableui.vercel.app/r/black-hole-refresh.json";
+  "https://impeccable-ui.com/r/black-hole-refresh.json";
 
 const USAGE_LAYOUT = `// app/layout.tsx
 import { BlackHoleRefresh } from "@/components/ui/black-hole-refresh";

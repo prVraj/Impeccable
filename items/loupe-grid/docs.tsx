@@ -10,7 +10,7 @@ import { highlight } from "@/lib/highlight";
 import { blendPrompt as buildBlendPrompt, installPrompt as buildInstallPrompt } from "./prompts";
 import type { ItemInfo } from "@/lib/site";
 
-const REGISTRY_URL = "https://impeccableui.vercel.app/r/loupe-grid.json";
+const REGISTRY_URL = "https://impeccable-ui.com/r/loupe-grid.json";
 
 const TYPES_CODE = `<LoupeGrid type="plus" />        // plus marks (the default)
 <LoupeGrid type="plus-lines" />  // plus marks on a grid of lines

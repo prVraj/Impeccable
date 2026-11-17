@@ -10,7 +10,7 @@ import { highlight } from "@/lib/highlight";
 import { blendPrompt as buildBlendPrompt, installPrompt as buildInstallPrompt } from "./prompts";
 import type { ItemInfo } from "@/lib/site";
 
-const REGISTRY_URL = "https://impeccableui.vercel.app/r/text-mirroring.json";
+const REGISTRY_URL = "https://impeccable-ui.com/r/text-mirroring.json";
 
 const USAGE = `import { TextMirroring } from "@/components/ui/text-mirroring";
 

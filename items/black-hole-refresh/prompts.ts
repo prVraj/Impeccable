@@ -61,7 +61,7 @@ The way the hole eats is the design: things spiral in along the spin, stretching
 
 ## Fastest path
 
-If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccableui.vercel.app/r/black-hole-refresh.json\`.
+If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccable-ui.com/r/black-hole-refresh.json\`.
 If the command succeeds, only fix import paths to match this project and skip to **Use it**. If it fails or there is no \`components.json\`, build it by hand as below.
 
 ${BUILD}
@@ -167,7 +167,7 @@ Only my answers above may change it, and only through props and options the anim
 
 ## Fastest path
 
-If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccableui.vercel.app/r/black-hole-refresh.json\`.
+If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccable-ui.com/r/black-hole-refresh.json\`.
 If the command succeeds, only fix import paths to match this project and skip to **Fit it to the brand**. If it fails or there is no \`components.json\`, build it by hand as below.
 
 ${BUILD}

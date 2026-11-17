@@ -6,7 +6,7 @@ const PEEPHOLE_ONE_LINE = `A glassy button with a small window (the slot) that s
 
 const PEEPHOLE_SHARED_BUILD = `## Fastest path
 
-If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccableui.vercel.app/r/peephole-button.json\`.
+If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccable-ui.com/r/peephole-button.json\`.
 If the command succeeds, only fix import paths to match this project and skip ahead. If it fails or there is no \`components.json\`, build it by hand as below.
 
 ## Build it

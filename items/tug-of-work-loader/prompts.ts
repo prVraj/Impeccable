@@ -6,7 +6,7 @@ const TUG_ONE_LINE = `A see-through progress bar where the filled part is a heav
 
 const TUG_SHARED_BUILD = `## Fastest path
 
-If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccableui.vercel.app/r/tug-of-work-loader.json\`.
+If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccable-ui.com/r/tug-of-work-loader.json\`.
 If the command succeeds, only fix import paths to match this project and skip ahead. If it fails or there is no \`components.json\`, build it by hand as below.
 
 ## Build it

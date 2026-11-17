@@ -10,7 +10,7 @@ import { highlight } from "@/lib/highlight";
 import { blendPrompt as buildBlendPrompt, installPrompt as buildInstallPrompt } from "./prompts";
 import type { ItemInfo } from "@/lib/site";
 
-const REGISTRY_URL = "https://impeccableui.vercel.app/r/spindle-gallery.json";
+const REGISTRY_URL = "https://impeccable-ui.com/r/spindle-gallery.json";
 
 const USAGE = `"use client";
 import { SpindleGallery, type SpindleImage } from "@/components/ui/spindle-gallery";

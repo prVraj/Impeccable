@@ -14,5 +14,5 @@ export const info: ItemInfo = {
   // When it was added (newest shows first in search and on the home page).
   added: "2026-11-16 23:50",
   // Search words for Google and AI tools (see the seo field in lib/site.ts). The visible name stays as it is.
-  seo: { keyword: "isometric image grid background react", title: "Isometric Image Grid Background for React" },
+  seo: { keyword: "isometric image grid background react", title: "Isometric Image Grid for React" },
 };

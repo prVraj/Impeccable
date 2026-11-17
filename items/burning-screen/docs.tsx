@@ -10,7 +10,7 @@ import { highlight } from "@/lib/highlight";
 import { blendPrompt as buildBlendPrompt, installPrompt as buildInstallPrompt } from "./prompts";
 import type { ItemInfo } from "@/lib/site";
 
-const REGISTRY_URL = "https://impeccableui.vercel.app/r/burning-screen.json";
+const REGISTRY_URL = "https://impeccable-ui.com/r/burning-screen.json";
 
 const USAGE_LAYOUT = `// app/layout.tsx
 import { BurningScreen } from "@/components/ui/burning-screen";

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { COMPONENTS } from "@/lib/site";
 import { TV } from "@/generated/items/tv";
 
@@ -317,5 +317,10 @@ function Speaker({
 /** What each component looks like on the little screen: its items/<name>/tv.tsx. */
 function Channel({ slug, onReplay }: { slug: string; onReplay: () => void }) {
   const Show = TV[slug];
-  return Show ? <Show onReplay={onReplay} /> : null;
+  // Channels load on demand (see generated/items/tv.ts); the screen stays dark for the moment it takes.
+  return Show ? (
+    <Suspense fallback={null}>
+      <Show onReplay={onReplay} />
+    </Suspense>
+  ) : null;
 }

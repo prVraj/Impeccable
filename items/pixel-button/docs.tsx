@@ -10,7 +10,7 @@ import { highlight } from "@/lib/highlight";
 import { blendPrompt as buildBlendPrompt, installPrompt as buildInstallPrompt } from "./prompts";
 import type { ItemInfo } from "@/lib/site";
 
-const REGISTRY_URL = "https://impeccableui.vercel.app/r/pixel-button.json";
+const REGISTRY_URL = "https://impeccable-ui.com/r/pixel-button.json";
 
 const TYPES = `// Only on hover (the default): plain until someone reaches for it.
 <PixelButton>Make a wave</PixelButton>

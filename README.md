@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://impeccableui.vercel.app">
+  <a href="https://impeccable-ui.com">
     <img src="app/icon.svg" width="64" height="64" alt="Impeccable UI logo" />
   </a>
 </p>
@@ -12,8 +12,8 @@
 </p>
 
 <p align="center">
-  <a href="https://impeccableui.vercel.app"><strong>Website</strong></a> ·
-  <a href="https://impeccableui.vercel.app/docs">Docs</a> ·
+  <a href="https://impeccable-ui.com"><strong>Website</strong></a> ·
+  <a href="https://impeccable-ui.com/docs">Docs</a> ·
   <a href="https://x.com/vrajsensei">Follow on X</a> ·
   <a href="LICENSE">MIT License</a>
 </p>
@@ -30,7 +30,7 @@ Impeccable UI is a free, open-source library of those moments. Every piece is de
 
 ## What's in the library
 
-The library has seven parts. Browse all of them, with live previews, at **[impeccableui.vercel.app](https://impeccableui.vercel.app)**.
+The library has seven parts. Browse all of them, with live previews, at **[impeccable-ui.com](https://impeccable-ui.com)**.
 
 - **Components:** building blocks with motion built in, like toasts, upload fields and password meters.
 - **Buttons:** buttons that react to the person using them.
@@ -71,12 +71,12 @@ Every component, button, loader, background, section and animation page gives yo
 
 ## Quick start
 
-Open any page on the [website](https://impeccableui.vercel.app/docs) and pick one of three ways in.
+Open any page on the [website](https://impeccable-ui.com/docs) and pick one of three ways in.
 
 **1. Install command.** In a project set up with shadcn, run the command shown on the page. It looks like this:
 
 ```bash
-npx shadcn@latest add https://impeccableui.vercel.app/r/<name>.json
+npx shadcn@latest add https://impeccable-ui.com/r/<name>.json
 ```
 
 **2. Copy the code.** Copy the TypeScript or JavaScript file into your components folder.

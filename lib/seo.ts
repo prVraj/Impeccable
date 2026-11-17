@@ -6,7 +6,7 @@
  */
 export const SITE = {
   /** No trailing slash. */
-  url: "https://impeccableui.vercel.app",
+  url: "https://impeccable-ui.com",
   /** The brand, written the same way everywhere: page titles, social cards, posts (vrajsensei, 2026-11-13). */
   name: "Impeccable UI",
   /** Other names people may use for it. */

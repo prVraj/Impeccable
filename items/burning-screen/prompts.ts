@@ -28,7 +28,7 @@ The burn is the design. Keep the ragged edge shape and how it grows in surges, t
 
 ## Fastest path
 
-If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccableui.vercel.app/r/burning-screen.json\`.
+If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccable-ui.com/r/burning-screen.json\`.
 If the command succeeds, only fix import paths to match this project and skip to **Check**. If it fails or there is no \`components.json\`, build it by hand as below.
 
 ## Build it
@@ -133,7 +133,7 @@ Only my answers above may change it, and only through props and options the comp
 
 ## Fastest path
 
-If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccableui.vercel.app/r/burning-screen.json\`.
+If this project has a \`components.json\` (shadcn), run \`npx shadcn@latest add https://impeccable-ui.com/r/burning-screen.json\`.
 If the command succeeds, only fix import paths to match this project and skip to **Fit it to the brand**. If it fails or there is no \`components.json\`, build it by hand as below.
 
 ## Build it

@@ -11,7 +11,7 @@ import { highlight } from "@/lib/highlight";
 import { blendPrompt as buildBlendPrompt, installPrompt as buildInstallPrompt } from "./prompts";
 import type { ItemInfo } from "@/lib/site";
 
-const REGISTRY_URL = "https://impeccableui.vercel.app/r/infinite-curl-gallery.json";
+const REGISTRY_URL = "https://impeccable-ui.com/r/infinite-curl-gallery.json";
 
 const USAGE = `"use client";
 import { InfiniteCurlGallery } from "@/components/ui/infinite-curl-gallery";

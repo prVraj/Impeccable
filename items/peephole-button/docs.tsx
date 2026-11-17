@@ -10,7 +10,7 @@ import { highlight } from "@/lib/highlight";
 import { blendPrompt as buildBlendPrompt, installPrompt as buildInstallPrompt } from "./prompts";
 import type { ItemInfo } from "@/lib/site";
 
-const REGISTRY_URL = "https://impeccableui.vercel.app/r/peephole-button.json";
+const REGISTRY_URL = "https://impeccable-ui.com/r/peephole-button.json";
 
 const TYPES = `// Reveal (the default): frosted glass tinted by the picture; hover opens the whole picture.
 <PeepholeButton image="/fields.jpg">Take a peek</PeepholeButton>

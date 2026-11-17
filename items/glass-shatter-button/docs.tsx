@@ -10,7 +10,7 @@ import { highlight } from "@/lib/highlight";
 import { blendPrompt as buildBlendPrompt, installPrompt as buildInstallPrompt } from "./prompts";
 import type { ItemInfo } from "@/lib/site";
 
-const REGISTRY_URL = "https://impeccableui.vercel.app/r/glass-shatter-button.json";
+const REGISTRY_URL = "https://impeccable-ui.com/r/glass-shatter-button.json";
 
 const USAGE = `"use client";
 import { GlassShatterButton } from "@/components/ui/glass-shatter-button";

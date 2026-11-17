@@ -11,7 +11,7 @@ import { highlight } from "@/lib/highlight";
 import { blendPrompt as buildBlendPrompt, installPrompt as buildInstallPrompt } from "./prompts";
 import type { ItemInfo } from "@/lib/site";
 
-const REGISTRY_URL = "https://impeccableui.vercel.app/r/reel-stats.json";
+const REGISTRY_URL = "https://impeccable-ui.com/r/reel-stats.json";
 
 const USAGE = `import { ReelStats } from "@/components/ui/reel-stats";
 
