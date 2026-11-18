@@ -392,6 +392,19 @@
           "target": "components/ui/comet-button.tsx"
         }
       ]
+    },
+    {
+      "name": "kitcut-button",
+      "type": "registry:component",
+      "title": "Kitcut button",
+      "description": "A button that cracks down the middle and splits open while it loads, then snaps back with a WooHoo. Use it on your main action, like Publish or Pay.",
+      "files": [
+        {
+          "path": "items/kitcut-button/kitcut-button.tsx",
+          "type": "registry:component",
+          "target": "components/ui/kitcut-button.tsx"
+        }
+      ]
     }
   ]
 }

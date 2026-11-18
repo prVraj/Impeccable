@@ -18,6 +18,7 @@ import { info as asciiTideButton } from "@/items/ascii-tide-button/info";
 import { info as glassShatterButton } from "@/items/glass-shatter-button/info";
 import { info as peepholeButton } from "@/items/peephole-button/info";
 import { info as cometButton } from "@/items/comet-button/info";
+import { info as kitcutButton } from "@/items/kitcut-button/info";
 import { info as tugOfWorkLoader } from "@/items/tug-of-work-loader/info";
 import { info as loupeGrid } from "@/items/loupe-grid/info";
 import { info as isometricWall } from "@/items/isometric-wall/info";
@@ -57,6 +58,7 @@ export const INFO: Record<string, ItemInfo> = {
   "glass-shatter-button": glassShatterButton,
   "peephole-button": peepholeButton,
   "comet-button": cometButton,
+  "kitcut-button": kitcutButton,
   "tug-of-work-loader": tugOfWorkLoader,
   "loupe-grid": loupeGrid,
   "isometric-wall": isometricWall,

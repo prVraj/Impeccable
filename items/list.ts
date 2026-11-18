@@ -28,6 +28,7 @@ export const ORDER = [
   "glass-shatter-button",
   "peephole-button",
   "comet-button",
+  "kitcut-button",
   // Loaders
   "tug-of-work-loader",
   // Backgrounds

@@ -102,7 +102,7 @@ export function DocsLayout({
         {/* The text starts 40px in from the sheet's left edge at every width (not centred, so wide screens
             don't leave a big gap on the left), and "On this page" sits at the right edge. */}
         {/* Plain CSS rather than new Tailwind classes, so a running pnpm dev picks it up straight away. */}
-        <style>{`@media (min-width: 80rem) { .docs-main { padding-top: 3rem; } } .docs-toc { padding-top: 59px; }`}</style>
+        <style>{`@media (min-width: 80rem) { .docs-main { padding-top: 3rem; } .docs-toc { position: sticky; top: 8px; height: calc(100dvh - 16px); display: flex; flex-direction: column; justify-content: center; width: 13rem; padding-block: 112px; margin-right: 38px; } } .docs-toc-list { min-height: 0; max-height: 100%; overflow-y: auto; }`}</style>
         <div className="flex gap-12 px-4 sm:px-6 lg:px-10">
           {/* 1024 to 1279px: the title starts lower so a long one clears the hanging bulb. From 1280px the
               bulb sits right of the text, so the title moves up close to the top of the sheet. */}
@@ -117,11 +117,17 @@ export function DocsLayout({
             </Redraw>
           </main>
 
-          {/* Pinned to the right edge, level with the title. */}
-          <aside aria-label="On this page" className="docs-toc sticky top-[9px] ml-auto hidden w-44 shrink-0 self-start xl:block">
-            <Redraw>
-              <Toc sections={sections} />
-            </Redraw>
+          {/* Centred top to bottom in the visible sheet while the page scrolls, and its left line sits right
+              under the bulb's wire (Toc fine-tunes the right margin), so it reads as hanging from the tab.
+              13rem wide so 16px section names fit on one line; it grows into the free space right of it.
+              112px of room above and below keeps it clear of the tab and the bulb; a list too long for a
+              short screen scrolls inside itself (no scrollbar) instead of running off the page. */}
+          <aside aria-label="On this page" className="docs-toc ml-auto hidden shrink-0 self-start xl:block">
+            <div className="docs-toc-list no-scrollbar">
+              <Redraw>
+                <Toc sections={sections} />
+              </Redraw>
+            </div>
           </aside>
         </div>
       </div>
