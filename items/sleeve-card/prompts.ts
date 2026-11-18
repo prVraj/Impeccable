@@ -2,7 +2,7 @@
  * Install: adds the exact card; asks only where it goes and which projects it shows.
  * Blend: asks three short questions, then fits it through the component's own props. */
 
-const SLEEVE_ONE_LINE = `A project card with a picture, a name, a small tag and one line of numbers. When I point at it, it rises off the page and turns in 3D, its right edge coming toward me, and a second card slides out from behind it, like a record from its sleeve, with "View Project" written up its edge; a softer third card peeks out between them. The whole card is one link. On a phone the first tap opens it and the second tap follows the link.`;
+const SLEEVE_ONE_LINE = `A project card with a picture, a name and one line of numbers. When I point at it, it rises off the page and turns in 3D, its right edge coming toward me, and a second card slides out from behind it, like a record from its sleeve, with "View Project" written up its edge; a softer third card peeks out between them. The whole card is one link. On a phone the first tap opens it and the second tap follows the link.`;
 
 const SLEEVE_SHARED_BUILD = `## Fastest path
 
@@ -31,7 +31,7 @@ Read this before you touch anything, so you know what the code does and why it m
 4. **It closes.** When the pointer leaves, everything slides back in one motion with the same curve.
 5. **The press.** Pressing the open card makes it give to 97% for a moment, so a click feels physical.
 6. **Room.** The tab sticks out about a quarter of the card's width to the right, so each card needs that much free space on its right (the gap in a grid). The open card rises above its neighbours.
-7. **Colors.** The card takes \`--card\` from the theme (else the page background), and the text takes \`--foreground\` (else \`--fg\`), so it follows light and dark mode. The tab and the tag pill share \`accent\`, with \`accentText\` on them; the soft card is \`peek\`. Text sizes follow the card's own width, so a small card has small text. Only transforms and shadows change while it moves.`;
+7. **Colors.** The card takes \`--card\` from the theme (else the page background), and the text takes \`--foreground\` (else \`--fg\`), so it follows light and dark mode. The tab is \`accent\`, with \`accentText\` on it; the soft card is \`peek\`. Text sizes follow the card's own width, so a small card has small text. Only transforms and shadows change while it moves.`;
 
 export function installPrompt(tsSource: string) {
   return `# Sleeve Card
@@ -44,7 +44,7 @@ ${SLEEVE_ONE_LINE}
 
 Look through this project first: pages that list work, projects, case studies or products (a portfolio or work section, a case study list, a product or template grid), the cards they use now, and where their pictures and links come from. Then ask me this in one message and wait for my answer:
 
-- **Where should it go, and which projects does it show?** Suggest the 1–3 spots it fits best from my code. For each one, name the projects (picture, name, tag, number and link) you would use. I can pick one or name another.
+- **Where should it go, and which projects does it show?** Suggest the 1–3 spots it fits best from my code. For each one, name the projects (picture, name, number and link) you would use. I can pick one or name another.
   *Why: each card is one door into a project, so it belongs in a list of things people open to see more.*
 
 Ask nothing else. If I say *skip*, use the best suggestion.
@@ -70,7 +70,6 @@ export function Work() {
         href="/work/nova"
         image={{ src: "/work/nova.webp", alt: "Nova app on a phone" }}
         title="Nova"
-        tag="Product"
         stat="6.2%"
         statLabel="Average engagement rate"
       />
@@ -119,11 +118,11 @@ ${SLEEVE_ONE_LINE} The full source is at the end of this prompt.
 
 1. Look through this project first: pages that list work, projects, case studies or products, the cards they use now, where their pictures and links come from, its corner radius tokens, and its theme (CSS variables, Tailwind theme, shadcn theme, light and dark mode).
 2. Tell me in two or three lines what you found, then ask these questions in **one message**. Give each one options, mark your suggestion and keep its one-line why, so I know what each answer changes. Ask nothing else:
-   1. **Where should it go, and which projects does it show?** Suggest the 1–3 spots it fits best, naming the projects (picture, name, tag, number and link) you'd use.
+   1. **Where should it go, and which projects does it show?** Suggest the 1–3 spots it fits best, naming the projects (picture, name, number and link) you'd use.
       *Why: each card is one door into a project, so it belongs in a list of things people open to see more.*
-   2. **Colors?** Keep the soft lavender tab and sage card, or match my brand. If you suggest brand colors, name which of my existing color variables you'd use for the tab and tag (\`accent\`), the text on them (\`accentText\`) and the card that peeks between (\`peek\`), and check the tab text stays readable in both modes.
+   2. **Colors?** Keep the soft lavender tab and sage card, or match my brand. If you suggest brand colors, name which of my existing color variables you'd use for the tab (\`accent\`), the text on it (\`accentText\`) and the card that peeks between (\`peek\`), and check the tab text stays readable in both modes.
       *Why: the tab is the only strong color on the card, so it is what ties it to my brand.*
-   3. **The tab's words and the corners?** "View Project" with 20px corners (suggested), "View case study", or "Open" for short cards; corners from my theme's radius.
+   3. **The tab's words and the corners?** "View Project" with 14px corners (suggested), "View case study", or "Open" for short cards; corners from my theme's radius.
       *Why: the tab's words say where the click goes, and the corners make the card match my other cards.*
    If I say *skip*, use your suggestions.
 3. After I answer, show a brief of about 5 lines: the place and projects, the colors, the words and corners, and "Everything else is kept as designed." Ask whether to save the brief to \`impeccable.md\` in the project (add a section if the file exists) or keep it in this chat only. Default: chat only.
@@ -133,9 +132,9 @@ ${SLEEVE_ONE_LINE} The full source is at the end of this prompt.
 
 **You may change** (only through my answers):
 
-- The place and projects: where the cards are rendered, and per card \`image\` (\`src\`, \`alt\`), \`title\`, \`tag\`, \`stat\`, \`statLabel\`, \`href\` (or \`onClick\`) and \`target\`.
+- The place and projects: where the cards are rendered, and per card \`image\` (\`src\`, \`alt\`), \`title\`, \`stat\`, \`statLabel\`, \`href\` (or \`onClick\`) and \`target\`.
 - The colors: \`accent\`, \`accentText\` and \`peek\`, as my theme's variables.
-- The words and corners: \`label\` and \`radius\` (px, default 20).
+- The words and corners: \`label\` and \`radius\` (px, default 14).
 
 All of these are props the component already has, so the component file itself stays as written.
 
@@ -154,7 +153,7 @@ Apply my answers through the component's own props:
 import { SleeveCard } from "@/components/ui/sleeve-card";
 
 // From my brief. Leave out any prop that stays at its default.
-export function Work({ projects }: { projects: { slug: string; cover: string; name: string; kind: string; result: string; resultLabel: string }[] }) {
+export function Work({ projects }: { projects: { slug: string; cover: string; name: string; result: string; resultLabel: string }[] }) {
   return (
     <div className="grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-x-16">
       {projects.map((p) => (
@@ -163,7 +162,6 @@ export function Work({ projects }: { projects: { slug: string; cover: string; na
           href={\`/work/\${p.slug}\`}
           image={{ src: p.cover, alt: p.name }}
           title={p.name}
-          tag={p.kind}
           stat={p.result}
           statLabel={p.resultLabel}
           label="View case study"

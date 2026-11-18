@@ -31,7 +31,7 @@ export default function NotFound() {
         <h1 className="sr-only">Page not found</h1>
         <Liquid404 className="h-auto w-[min(92vw,60rem,max(18rem,calc((100dvh-20rem)*2.5)))] select-none" />
         <p className="mt-8 max-w-md text-base text-pretty text-[var(--muted)] sm:mt-10 sm:text-lg">
-          This page will lead you towards the Stoneage.
+          This page will lead you towards the Stoneage. Please go Home.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Button href="/" hierarchy="secondary" size="lg">

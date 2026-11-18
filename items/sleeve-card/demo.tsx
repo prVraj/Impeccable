@@ -27,21 +27,18 @@ export const DEMO_CARDS: Omit<SleeveCardProps, "onClick">[] = [
   {
     image: { src: "/sleeve-card/spindle-gallery.webp", alt: "Spindle Gallery, a ring of posters turning in 3D" },
     title: "Spindle Gallery",
-    tag: "Components",
     stat: "60 fps",
     statLabel: "On every screen",
   },
   {
     image: { src: "/sleeve-card/isometric-wall.webp", alt: "Isometric Wall, picture cards on a tilted floor behind a headline" },
     title: "Isometric Wall",
-    tag: "Backgrounds",
     stat: "0",
     statLabel: "Extra packages",
   },
   {
     image: { src: "/sleeve-card/capsule-testimonials.webp", alt: "Capsule Testimonials, slim review capsules with faces" },
     title: "Capsule Testimonials",
-    tag: "Sections",
     stat: "100k+",
     statLabel: "Humans loved it",
   },
@@ -55,7 +52,7 @@ export function SleeveCardDemo() {
   const dark = useDark();
   return (
     <div className="card w-full rounded-2xl !bg-[var(--panel-2)] px-6 py-12 dark:!bg-[var(--bg)] @min-[40rem]:px-10 @min-[40rem]:py-16">
-      <div className="mx-auto grid w-full max-w-[18rem] grid-cols-1 gap-12 pr-14 @min-[40rem]:max-w-[47rem] @min-[40rem]:grid-cols-3 @min-[40rem]:gap-x-14 @min-[40rem]:pr-12">
+      <div className="mx-auto grid w-full max-w-[18rem] grid-cols-1 gap-12 pr-14 @min-[40rem]:max-w-[47rem] @min-[40rem]:grid-cols-3 @min-[40rem]:gap-x-12 @min-[40rem]:pr-12">
         {DEMO_CARDS.map((card) => (
           <SleeveCard key={card.title as string} {...themed(card, dark)} onClick={reload} />
         ))}

@@ -23,6 +23,7 @@ export const TV: Record<string, Channel> = {
   "ascii-tide-button": lazy(() => import("@/items/ascii-tide-button/tv")),
   "glass-shatter-button": lazy(() => import("@/items/glass-shatter-button/tv")),
   "peephole-button": lazy(() => import("@/items/peephole-button/tv")),
+  "comet-button": lazy(() => import("@/items/comet-button/tv")),
   "tug-of-work-loader": lazy(() => import("@/items/tug-of-work-loader/tv")),
   "loupe-grid": lazy(() => import("@/items/loupe-grid/tv")),
   "isometric-wall": lazy(() => import("@/items/isometric-wall/tv")),

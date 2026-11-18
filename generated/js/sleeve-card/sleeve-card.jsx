@@ -24,7 +24,7 @@ import { useEffect, useRef, useState } from "react";
 const EASE = "cubic-bezier(.22,1,.36,1)"; // quick start, long soft landing
 const OPEN_MS = 620; // the card turns and the tab slides out
 const TAB_DELAY = 50; // the tab leaves a beat after the card starts to turn
-const PAD = 8; // px between the card edge and the picture
+const PAD = 6; // px between the card edge and the picture
 const TURN = -16; // deg: the card turns so its right edge comes toward you
 const LIFT = 26; // px: and it rises off the page toward you
 const SHIFT = -4; // % of its width: it steps left to make room for the tab
@@ -53,10 +53,8 @@ const CSS = `
   box-shadow: var(--slc-shadow); transform: perspective(900px); transition: transform ${OPEN_MS}ms ${EASE}, box-shadow ${OPEN_MS}ms ${EASE}; backface-visibility: hidden; }
 .slc-pic { position: relative; display: block; overflow: hidden; aspect-ratio: 1 / 1.04; border-radius: max(0px, calc(var(--slc-r) - ${PAD}px)); background: color-mix(in oklab, var(--slc-fg) 6%, var(--slc-card)); }
 .slc-pic img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; display: block; pointer-events: none; -webkit-user-drag: none; user-select: none; }
-.slc-tag { position: absolute; top: ${PAD}px; right: ${PAD}px; max-width: calc(100% - ${PAD * 2}px); box-sizing: border-box; padding: .3em .85em; border-radius: 999px; background: var(--slc-accent); color: var(--slc-on-accent);
-  font-size: clamp(10px, 4.2cqi, 13px); font-weight: 500; line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .slc-body { display: block; padding: clamp(8px, 4.6cqi, 14px) clamp(4px, 2.6cqi, 8px) clamp(4px, 2.2cqi, 8px); }
-.slc-title { display: block; font-size: clamp(13px, 6.6cqi, 20px); font-weight: 500; line-height: 1.25; letter-spacing: -0.01em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.slc-title { display: block; font-size: clamp(12px, 6.2cqi, 19px); font-weight: 500; line-height: 1.25; letter-spacing: -0.01em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .slc-meta { display: block; margin-top: .35em; font-size: clamp(10px, 4.3cqi, 13px); line-height: 1.35; color: color-mix(in oklab, var(--slc-fg) 58%, transparent); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .slc-stat { color: color-mix(in oklab, var(--slc-fg) 78%, transparent); font-variant-numeric: tabular-nums; margin-right: .55em; }
 .slc-back { position: absolute; inset: 0; display: block; border-radius: var(--slc-r); transform-origin: 100% 50%; transform: ${TUCK}; transition: transform ${OPEN_MS}ms ${EASE}; }
@@ -96,7 +94,6 @@ const SHADOW = {
 export function SleeveCard({
   image,
   title,
-  tag,
   stat,
   statLabel,
   label = "View Project",
@@ -107,7 +104,7 @@ export function SleeveCard({
   accent = ACCENT,
   accentText = ACCENT_TEXT,
   peek = PEEK,
-  radius = 20,
+  radius = 14,
   className,
   style,
 }) {
@@ -166,7 +163,6 @@ export function SleeveCard({
               onError={() => setBroken(image.src)}
             />
           )}
-          {tag != null && <span className="slc-tag">{tag}</span>}
         </span>
         <span className="slc-body">
           <span className="slc-title">{title}</span>

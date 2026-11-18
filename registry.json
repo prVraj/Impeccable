@@ -379,6 +379,19 @@
           "target": "components/ui/sleeve-card.tsx"
         }
       ]
+    },
+    {
+      "name": "comet-button",
+      "type": "registry:component",
+      "title": "Comet button",
+      "description": "A dark pill whose glow races round its border while it loads, then glides back to rest. Use it on a save or sign up button that waits on a server.",
+      "files": [
+        {
+          "path": "items/comet-button/comet-button.tsx",
+          "type": "registry:component",
+          "target": "components/ui/comet-button.tsx"
+        }
+      ]
     }
   ]
 }

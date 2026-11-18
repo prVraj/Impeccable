@@ -21,7 +21,6 @@ export function Work() {
         href="/work/nova"
         image={{ src: "/work/nova.webp", alt: "Nova app on a phone" }}
         title="Nova"
-        tag="Product"
         stat="6.2%"
         statLabel="Average engagement rate"
       />
@@ -33,16 +32,15 @@ export function Work() {
 const PROPS: [string, string, string][] = [
   ["image", "—", "The picture: { src, alt }. Shown nearly square. alt is read by screen readers."],
   ["title", "—", "The project name under the picture."],
-  ["tag", "—", "Small pill on the picture's top right corner, like a category."],
   ["stat / statLabel", "—", "The line under the title: a number, then a few words."],
   ["href", "—", "Where the card goes. The whole card is one link."],
   ["target", "—", 'Link target. "_blank" also adds rel="noopener noreferrer".'],
   ["onClick", "—", "Runs on click. Without href the card is a button. On touch screens the first tap only opens it."],
   ["label", '"View Project"', "Written down the card that slides out, in capitals."],
   ["open", "—", "true keeps it open. Leave it out and it opens on hover, focus or a first tap."],
-  ["accent / accentText", "lavender / ink", "The sliding card and the tag pill, and the text on them. Any CSS color or token."],
+  ["accent / accentText", "lavender / ink", "The sliding card, and the text on it. Any CSS color or token."],
   ["peek", "soft sage", "The card that peeks out between them. Any CSS color or token."],
-  ["radius", "20", "Card corners in px. The picture inside follows: inner radius = outer radius minus the 8px padding."],
+  ["radius", "14", "Card corners in px. The picture inside follows: inner radius = outer radius minus the 6px padding."],
   ["className / style", "—", "On the card. It fills its width; keep about a quarter of its width free on its right for the tab."],
 ];
 

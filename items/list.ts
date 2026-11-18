@@ -27,6 +27,7 @@ export const ORDER = [
   "ascii-tide-button",
   "glass-shatter-button",
   "peephole-button",
+  "comet-button",
   // Loaders
   "tug-of-work-loader",
   // Backgrounds
