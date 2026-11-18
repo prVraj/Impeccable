@@ -38,17 +38,15 @@ export default function Home() {
               <Arrow className="size-3.5 text-[var(--muted)] transition-transform group-hover:translate-x-0.5" />
             </Link>
 
-            <h1 className="mt-8 text-[44px] leading-[1.02] font-semibold tracking-[-0.045em] text-balance sm:text-6xl xl:text-7xl">
+            <h1 className="mt-6 max-w-xl text-4xl leading-[1.08] font-semibold tracking-tighter text-balance sm:text-5xl">
               Let&apos;s make something for Humans once again.
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-pretty text-[var(--muted)] sm:text-lg">
-              Screens are easy to make now. Feeling is not. Impeccable is a
-              small set of React animations made with care, each with the code
-              and two prompts so your AI tool builds it exactly as it was meant
-              to feel.
+            <p className="mt-5 max-w-md text-base leading-relaxed text-pretty text-[var(--muted)] sm:text-lg">
+              React animations made with care. Each one comes with the code and
+              two prompts for your AI tool.
             </p>
 
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
               <BrowseButton />
               <Button href={GITHUB} hierarchy="secondary" size="lg" leading={<GitHub />}>
                 Star on GitHub
