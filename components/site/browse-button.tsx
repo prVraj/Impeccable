@@ -16,7 +16,13 @@ import { Arrow } from "./icons";
  * - Mouse: plays on press, so the sound lands with the finger.
  * - Touch and keyboard (Enter): plays on the tap or key itself, because
  *   phones only allow sound from a finished tap.
+ * - Safari (and some others) don't count the press itself as permission to make sound, only
+ *   the finished click. So if the sound couldn't start on the press, the click plays it.
+ *   It never plays twice: once the sound is allowed, the press alone plays it.
  * - If the browser blocks sound, the button just works silently.
+ *
+ * Keep this sound. The click on Browse components is part of the site (vrajsensei); never
+ * drop it when changing this button, its link or the Button component.
  */
 const LOUDNESS = 1; // 0 to 1. At 1 the click peaks just under full volume (no crackle).
 
@@ -37,11 +43,30 @@ function getContext() {
   return ctx;
 }
 
+let waiting = false; // asked the browser to allow sound, and the click plays once it says yes
+
 function playClick() {
   try {
     const ac = getContext();
     if (!ac || !noise) return;
-    if (ac.state !== "running") ac.resume().catch(() => {});
+    if (ac.state === "running") return tock(ac);
+    // Sound isn't allowed yet: ask, and play the moment it is. Asking again from a click
+    // (which every browser accepts) unlocks the same wait, so it still plays only once.
+    if (waiting) return void ac.resume().catch(() => {});
+    waiting = true;
+    ac.resume()
+      .then(() => tock(ac))
+      .catch(() => {})
+      .finally(() => (waiting = false));
+  } catch {
+    // No sound support: the button still works.
+  }
+}
+
+/** The click itself: a falling "tock" with a crisp tap on top. */
+function tock(ac: AudioContext) {
+  try {
+    if (!noise) return;
     const t = ac.currentTime + 0.005;
 
     const out = ac.createGain();
@@ -92,9 +117,10 @@ export function BrowseButton() {
         lastPointer.current = e.pointerType;
         if (e.pointerType === "mouse" && e.button === 0) playClick();
       }}
-      // Touch taps and Enter on the keyboard (detail 0) play here.
+      // Touch taps and Enter on the keyboard (detail 0) play here, and a mouse click
+      // whose press wasn't allowed to make sound (Safari).
       onClick={(e) => {
-        if (e.detail === 0 || lastPointer.current !== "mouse") playClick();
+        if (e.detail === 0 || lastPointer.current !== "mouse" || ctx?.state !== "running") playClick();
       }}
     >
       Browse components
