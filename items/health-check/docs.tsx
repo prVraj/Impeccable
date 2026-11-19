@@ -13,7 +13,7 @@ const ZIP = "/downloads/health-check.zip";
 const CLAUDE_CODE = "unzip ~/Downloads/health-check.zip -d ~/.claude/skills";
 
 const STEPS: [string, string][] = [
-  ["Learn the project", "It reads your scripts, package manager and pages first, so every check runs the way your project does."],
+  ["Learn the project", "It reads your scripts, package manager and pages, then runs a quick scan, so every check runs the way your project does."],
   ["See what is going out", "It names every changed file and leaves out leftovers like screenshots, scratch files and copies."],
   ["Secrets", "It makes sure no key, password file or private note is about to go public, and tells you what to replace if one ever did."],
   ["Packages", "It runs an audit, fixes serious holes in what your site ships, and only installs versions that have been out for two weeks."],
@@ -26,8 +26,13 @@ const STEPS: [string, string][] = [
 
 const TREE = `health-check/
   SKILL.md            the nine steps, read before every push
-  references/
+  references/         one file per step, plus where each rule comes from
     headers.md        starter security headers for Next.js, Vercel, Netlify and Cloudflare
+  examples/           a handover that is ready, and one that blocks the push
+  teaching/           common mistakes, each with its fix
+  scripts/scan.mjs    a quick first pass that never changes a file
+  evals/              test cases for anyone changing the skill
+  README.md           what is inside and how to change it
   LICENSE             MIT`;
 
 const SECTIONS = [

@@ -26,6 +26,7 @@ ${groups.join("\n")}
 ## Optional
 
 - [Introduction](${absolute("/docs")}): why the library exists, what every item comes with, and how the Install and Blend prompts work.
+- [All components](${absolute("/components")}): every item in one list, newest first, with a picture of each.
 - [Source code on GitHub](${GITHUB}): the full site and every component, MIT licensed.
 `;
   return new Response(text, { headers: { "Content-Type": "text/plain; charset=utf-8" } });

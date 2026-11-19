@@ -3,6 +3,8 @@ import Link from "next/link";
 import { AUTHOR, COMPONENTS, GITHUB, GROUPS, isSideActive, neighbours, sideItems } from "@/lib/site";
 import { cx } from "@/lib/utils";
 import { ArrowUpRight01Icon } from "./hugeicons";
+import { Button } from "./button";
+import { Tooltip } from "./tooltip";
 import { GroupIcon } from "./group-icon";
 import { SearchTrigger } from "./search";
 import { ArrowLeft, Arrow, GitHub, Mark } from "./icons";
@@ -18,18 +20,23 @@ export type DocSection = { id: string; title: string };
  * Desktop: the side panel on the left, on the frame colour; the page is a
  * raised sheet next to it with "On this page" on its right.
  * Phones and tablets: the top bar with the hamburger menu, then the page.
- * Leave out `slug` for the Introduction page.
+ * Leave out `slug` for the Introduction page. A page outside /docs (like /components) passes its
+ * `page` address instead. `wide` gives the page the whole sheet (no "On this page"), for a card grid.
  */
 export function DocsLayout({
   slug,
+  page,
+  wide,
   sections,
   children,
 }: {
   slug?: string;
+  page?: string;
+  wide?: boolean;
   sections: DocSection[];
   children: React.ReactNode;
 }) {
-  const { prev, next } = neighbours(slug);
+  const { prev, next } = neighbours(slug, page);
   return (
     <div className="min-h-dvh lg:flex lg:bg-[var(--frame)]">
       {/* Phones and tablets: the top bar with the hamburger menu. */}
@@ -67,8 +74,11 @@ export function DocsLayout({
         <div className="no-scrollbar min-h-0 flex-1 overflow-y-auto px-3 pt-5 pb-6">
           <Redraw>
             <SideGroup title="Getting started">
-              <SideLink href="/docs" active={!slug}>
+              <SideLink href="/docs" active={!slug && !page}>
                 Introduction
+              </SideLink>
+              <SideLink href="/components" active={page === "/components"}>
+                All components
               </SideLink>
             </SideGroup>
             {GROUPS.map((g) => {
@@ -106,7 +116,7 @@ export function DocsLayout({
         <div className="flex gap-12 px-4 sm:px-6 lg:px-10">
           {/* 1024 to 1279px: the title starts lower so a long one clears the hanging bulb. From 1280px the
               bulb sits right of the text, so the title moves up close to the top of the sheet. */}
-          <main className="docs-main min-w-0 max-w-3xl flex-1 pt-12 pb-24 lg:pt-23">
+          <main className={cx("docs-main min-w-0 flex-1 pt-12 pb-24 lg:pt-23", wide ? "max-w-6xl" : "max-w-3xl")}>
             {Children.map(children, (child) => (child ? <Redraw>{child}</Redraw> : child))}
 
             <Redraw>
@@ -122,13 +132,15 @@ export function DocsLayout({
               13rem wide so 16px section names fit on one line; it grows into the free space right of it.
               112px of room above and below keeps it clear of the tab and the bulb; a list too long for a
               short screen scrolls inside itself (no scrollbar) instead of running off the page. */}
-          <aside aria-label="On this page" className="docs-toc ml-auto hidden shrink-0 self-start xl:block">
-            <div className="docs-toc-list no-scrollbar">
-              <Redraw>
-                <Toc sections={sections} />
-              </Redraw>
-            </div>
-          </aside>
+          {!wide && (
+            <aside aria-label="On this page" className="docs-toc ml-auto hidden shrink-0 self-start xl:block">
+              <div className="docs-toc-list no-scrollbar">
+                <Redraw>
+                  <Toc sections={sections} />
+                </Redraw>
+              </div>
+            </aside>
+          )}
         </div>
       </div>
     </div>
@@ -138,7 +150,8 @@ export function DocsLayout({
 /**
  * The tab in the sheet's top right corner, on the frame colour, like a
  * folder tab cut out of the page: Search (with the bulb theme switch
- * hanging under it), GitHub, the author.
+ * hanging under it), GitHub, Hire Vraj. GitHub and Hire Vraj show a
+ * small hint on hover.
  * It stays at the top while the page scrolls.
  */
 function SheetTab() {
@@ -158,7 +171,7 @@ function SheetTab() {
           <path d="M0 .5C9 .5 12 2 15 8L25 36.5C27.5 42 31 43.5 40 43.5" fill="none" stroke="var(--line)" />
         </svg>
         <div className="flex items-center border-b border-[var(--line)] bg-[var(--frame)] pr-1 text-[13px] text-[var(--muted)]">
-          {/* Search first, then GitHub, then the author, split by thin
+          {/* Search first, then GitHub, then the Hire Vraj button, split by thin
               dividers. The bulb takes no room in the tab: it hangs below it,
               centred under Search. The bulb's frame sits behind the Search
               button so clicks reach it. */}
@@ -171,24 +184,23 @@ function SheetTab() {
             </div>
           </div>
           <TabDivider />
-          <a
-            href={GITHUB}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-4 transition-colors hover:text-[var(--fg)]"
-          >
-            <GitHub className="size-4" />
-            GitHub
-          </a>
+          <Tooltip label="star if you are human">
+            <a
+              href={GITHUB}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 self-stretch px-4 transition-colors hover:text-[var(--fg)]"
+            >
+              <GitHub className="size-4" />
+              GitHub
+            </a>
+          </Tooltip>
           <TabDivider />
-          <a
-            href={AUTHOR.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 transition-colors hover:text-[var(--fg)]"
-          >
-            Built by <span className="text-[var(--fg)]">Vraj</span>
-          </a>
+          <Tooltip label="Improve your product!" align="end" className="pr-1 pl-3">
+            <Button href={AUTHOR.href} size="xs">
+              Hire Vraj
+            </Button>
+          </Tooltip>
         </div>
         {/* The sheet's rounded corner under the tab. It sits on the tab's
             bottom line, so the line stops exactly where the curve begins. */}

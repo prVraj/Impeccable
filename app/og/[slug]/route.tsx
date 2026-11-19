@@ -4,7 +4,7 @@ import { SITE } from "@/lib/seo";
 
 /**
  * Social cards (the picture X, LinkedIn and Slack show for a shared link), 1200 x 630,
- * one template for every page: /og/home, /og/docs and /og/<item slug>.
+ * one template for every page: /og/home, /og/docs, /og/components and /og/<item slug>.
  * Made once at build time. Text stays inside the middle 1000 x 500, because each
  * platform crops the edges a little differently.
  */
@@ -14,7 +14,7 @@ export const dynamicParams = false;
 const ITEMS = [...FAMILIES, ...COMPONENTS];
 
 export function generateStaticParams() {
-  return [{ slug: "home" }, { slug: "docs" }, ...ITEMS.map((i) => ({ slug: i.slug }))];
+  return [{ slug: "home" }, { slug: "docs" }, { slug: "components" }, ...ITEMS.map((i) => ({ slug: i.slug }))];
 }
 
 // The logo mark from components/site/icons.tsx, in near-black.
@@ -29,6 +29,8 @@ function card(slug: string) {
     return { label: "Free + MIT · React", name: "Animated React components with AI prompts", line: "Every piece comes with its code and two prompts, so your AI tool builds it the way it was meant to feel." };
   if (slug === "docs")
     return { label: "Docs", name: "Components, buttons, loaders, backgrounds, sections, animations and skills", line: "A live preview, TS + JS code, one install command and two prompts for each." };
+  if (slug === "components")
+    return { label: "All components", name: "Every Impeccable UI piece, newest first", line: "Hover a card to watch it move. Open it for the code and two prompts." };
   const i = ITEMS.find((x) => x.slug === slug)!;
   const group = GROUPS.find((g) => g.id === i.group)!.label;
   // "Buttons · Button" says the same thing twice, so the category only shows when it adds something.

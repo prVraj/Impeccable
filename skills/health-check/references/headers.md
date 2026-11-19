@@ -2,6 +2,8 @@
 
 Read this when the project sends no security headers (step 6). Offer the set below, add it only with the person's yes, then open every page again (step 8).
 
+Contents: The values (and the Content-Security-Policy line by line), Where to put them (Next.js, Vercel, Netlify and Cloudflare Pages), After adding them.
+
 ## The values
 
 | Header | Value |

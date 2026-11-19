@@ -1,5 +1,7 @@
 # Writing the skill
 
+Read this at step 5, and at step 4 for the draft folder. Contents: name and place, draft, folder, translating answers into values, the project identity rule, feedback log.
+
 ## Name and place
 
 - Skill name: what they chose, else `{first-name}-ui`, lowercase with hyphens (`maya-ui`). At most 64 characters, letters, digits and hyphens only.
@@ -84,13 +86,6 @@ So two projects share type, feel, depth and voice, but each has its own signatur
 
 Every "no" and "why not" from the interview goes in feedback-log.md, with the date and question. Later tuning ("I don't like that") is logged there too. When the person updates their skill, read this first: it shows where the interview read them wrong.
 
-## Validate before handing over
+## Validate and hand over
 
-- Frontmatter has only `name` and `description` (plus optional `license`). Keep the description wrapped in double quotes, with no double quotes inside it (the name or a colon can break the YAML otherwise). Name matches the folder. Description under 1024 characters, no angle brackets, and says plainly that it is for any UI work for this person, including one-liners.
-- SKILL.md under 200 lines. No `{{` placeholder left anywhere. `[[` slots remain only in references/DESIGN.md.
-- tokens.css is valid CSS: easing is a cubic-bezier, durations in ms, no words like "spring".
-- No two rules contradict each other.
-- Every rule in taste.md traces to an answer, a pick, or a confirmed inference, and has its why filled in.
-- No soft words left in any rule (search for: reasonably, appropriate, try to, tasteful, nice, clean, modern).
-
-Then tell them in three lines: where it is installed (or the zip), how to use it ("just ask for UI as usual"), and how to tune it ("say 'update my taste' or just tell it what you don't like").
+Run the gate and the audit in `references/verify.md`, then hand over with its template.

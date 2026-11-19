@@ -55,10 +55,10 @@ const nextConfig: NextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
-  // Component pages used to live under /components. Old links keep working.
+  // Component pages used to live under /components/<slug>. Old links keep working.
+  // /components itself is the list of everything (app/components/page.tsx), not a redirect.
   async redirects() {
     return [
-      { source: "/components", destination: "/docs", permanent: true },
       { source: "/components/:slug", destination: "/docs/:slug", permanent: true },
       // Brain-Map was renamed brain.txt.
       { source: "/docs/brain-map", destination: "/docs/brain-txt", permanent: true },

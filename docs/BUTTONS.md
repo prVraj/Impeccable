@@ -54,12 +54,13 @@ Dark theme: primary keeps the same brand gradient; secondary goes panel-2 to pan
 
 | Size | Height | Side padding | Text | Icon-only square |
 | --- | --- | --- | --- | --- |
+| `xs` | 28 | 10 | 13/18 medium | 28 |
 | `sm` | 36 | 12 | 14/20 medium | 32 |
 | `md` (default) | 40 | 14 | 14/20 medium | 36 |
 | `lg` | 44 | 16 | 16/24 medium | 36 |
 | `xl` | 48 | 18 | 16/24 medium | 40 |
 
-Icons are 16px at every size, 6px from the label. Links have no height or padding: 20px line at sm/md, 24px at lg/xl.
+Icons are 16px at every size, 6px from the label. `xs` is the compact size for site chrome like the docs tab's Hire Vraj, sized to sit beside the 28px Search pill. Links have no height or padding: 18px line at xs, 20px line at sm/md, 24px at lg/xl.
 
 ## Corners
 

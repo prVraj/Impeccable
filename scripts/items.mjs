@@ -79,6 +79,8 @@ for (const it of items) {
     }
     if (!existsSync(join("public/r", `${s}.json`)))
       warnings.push(`${s}: no install file yet. Run \`pnpm registry:build\` so ${SITE}/r/${s}.json works.`);
+    if (!["light", "dark"].every((t) => existsSync(join("public/previews", `${s}-${t}.webp`))))
+      warnings.push(`${s}: no still picture for /components yet (its card plays live until then). With the site running, run \`node scripts/previews.mjs\`.`);
   }
   if (isSkill(it) && has(s, "prompts.ts")) errors.push(`${s}: skills have no prompts; remove prompts.ts.`);
   if (it.family) {

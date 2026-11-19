@@ -1,5 +1,7 @@
 # Interview
 
+Read this at step 3. Contents: Round 1 (you and your references, the bucket list, vague answers), Round 2 (look), Round 3 (motion), Round 4 (rules), the round checklist, conflicts.
+
 16 questions in 4 rounds. **Quick** mode (default) asks the 14 marked (Q). **Deep** mode asks all 16. In Quick mode, the two Deep questions are inferred from the references and shown in the round checklist, where rule 2 (nothing accepted silently) applies to them.
 
 Each question carries its **why**. The why is for you, not the person: it tells you what the answer must decide. If an answer doesn't settle what the why needs, ask one follow-up. Never more than one per question (in Q3, one per site).

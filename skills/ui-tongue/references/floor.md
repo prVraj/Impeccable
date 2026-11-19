@@ -1,5 +1,7 @@
 # Floor
 
+Read this when you write the skill (it is copied unchanged into every generated skill) and when an answer would break a quality rule.
+
 These rules hold for every build, whatever the taste. They are where respected design and motion guidance agrees. The person's taste never relaxes them; if the person explicitly insists on breaking one, do it only where they said, and say once what it costs (for example, lower contrast fails some readers).
 
 ## Accessibility

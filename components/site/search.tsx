@@ -18,6 +18,8 @@ import { Mark } from "./icons";
 
 const OPEN_EVENT = "impeccable:search";
 const RECENT_KEY = "impeccable-recent-search";
+/** How many of the newest items the empty search shows. */
+const NEWEST = 5;
 const RECENT_MAX = 5;
 
 // The open: from 90% size and half opacity to full, like it comes up through
@@ -205,9 +207,15 @@ export function SiteSearch() {
 
   const sections: Section[] = useMemo(() => {
     if (query.trim()) return find(query);
-    const seen = recent.map((h) => ITEMS.find((i) => i.href === h)).filter((i): i is Item => !!i);
-    if (seen.length) return [{ label: "Recent", recent: true, items: seen }];
-    return [{ label: "Recently added", items: newest(4) }];
+    // The 5 newest items always come first, so every visitor sees what's new.
+    // The visitor's own recent picks follow, minus any already listed above.
+    const fresh = newest(NEWEST);
+    const seen = recent
+      .map((h) => ITEMS.find((i) => i.href === h))
+      .filter((i): i is Item => !!i && !fresh.includes(i));
+    const out: Section[] = [{ label: "Recently added", items: fresh }];
+    if (seen.length) out.push({ label: "Recent", recent: true, items: seen });
+    return out;
   }, [query, recent]);
   const flat = useMemo(() => sections.flatMap((s) => s.items), [sections]);
 

@@ -111,6 +111,11 @@ export function MobileMenu() {
                   Introduction
                 </MenuLink>
               </div>
+              <div {...row()} className="mobile-menu-row">
+                <MenuLink href="/components" active={pathname === "/components"} onPick={() => setOpen(false)}>
+                  All components
+                </MenuLink>
+              </div>
 
               <div className="mt-4 flex flex-col">
                 {GROUPS.map((g) => {

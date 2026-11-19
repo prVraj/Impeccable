@@ -1,5 +1,7 @@
 # Sample check
 
+Read this at step 4.
+
 The sample shows the person whether their answers became the taste they meant. People react to a picture far better than to a question, so this step catches what the interview missed.
 
 ## Build it

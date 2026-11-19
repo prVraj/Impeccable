@@ -16,7 +16,7 @@ Use lowercase words joined by dashes for the name, like `price-slider`. It becom
    - `blurb`: one short line for the docs home, search and family cards.
    - `description`: two lines at most, used under the page title, as the meta description and in the install file. Follow the descriptions skill.
    - `tags`: the small labels under the title.
-   - `added`: now, as `"2026-11-12 14:30"`. The newest item shows first in search and in the home page's New pill.
+   - `added`: now, as `"2026-11-12 14:30"`. The newest item shows first in search, in the home page's New pill and at the top of /components.
    - `seo`: `{ keyword, title }`, the words people search for it. `title` goes in the browser tab as "<name>: <title> | Impeccable UI" (65 characters at most), like `"Fire Page Transition for React"`. The visible name never changes.
 4. **Write `demo.tsx`**, the live preview. Use the secondary pill button, never the brand button. Use `@min-[40rem]:` instead of `sm:` so it reacts to the preview width. A family member's `demo.tsx` also exports `Thumb`, the picture on the family page's card.
 5. **Write `tv.tsx`**, its channel on the home iMac. Draw it inside `<Screen>` from `components/site/tv-screen`.
@@ -24,8 +24,9 @@ Use lowercase words joined by dashes for the name, like `price-slider`. It becom
 7. **Write `prompts.ts`**: `installPrompt` and `blendPrompt`, following the prompts skill. Skills have no prompts, so skip this for a skill.
 8. **Add one line** to `items/list.ts`, where it should sit in the sidebar.
 9. **Run `pnpm dev`.** The checker runs first. If a piece is missing it stops and says which, for example `price-slider: tv.tsx is missing (its channel on the home iMac; without it the TV goes blank)`.
-10. **Run `pnpm registry:build`** so the install command works. Leave `README.md` alone: it describes the project, not each item, and the website is the list.
-11. **Before you push**, run the edge-case check, then the pre-push check.
+10. **Make its still for /components.** With the site running (`pnpm dev` or `pnpm start`), run `node scripts/previews.mjs`. It films the new item's `tv.tsx` on the /components page and saves `public/previews/<slug>-light.webp` and `-dark.webp` (small WebP pictures; the cards show these until you hover). Until then its card plays live, so nothing breaks. Run it again with the slug (`node scripts/previews.mjs <slug>`) after changing `tv.tsx`.
+11. **Run `pnpm registry:build`** so the install command works. Leave `README.md` alone: it describes the project, not each item, and the website is the list.
+12. **Before you push**, run the edge-case check, then the pre-push check.
 
 ## A skill
 

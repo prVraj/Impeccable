@@ -90,3 +90,25 @@ export function ItemJsonLd({ info }: { info: ItemInfo }) {
     />
   );
 }
+
+/** The /components page: a collection page with every item in the order it shows (newest first). */
+export function ListJsonLd({ items, path, name, description }: { items: ItemInfo[]; path: string; name: string; description: string }) {
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name,
+        description,
+        url: absolute(path),
+        isPartOf: { "@type": "WebSite", "@id": WEBSITE_ID, name: SITE.name, url: `${SITE.url}/` },
+        mainEntity: {
+          "@type": "ItemList",
+          itemListOrder: "https://schema.org/ItemListOrderDescending",
+          numberOfItems: items.length,
+          itemListElement: items.map((i, n) => ({ "@type": "ListItem", position: n + 1, name: i.name, url: absolute(`/docs/${i.slug}`) })),
+        },
+      }}
+    />
+  );
+}

@@ -61,6 +61,12 @@ export const FAMILIES = ALL.filter((i) => i.kind === "family");
 /** Every item that is not a family page, in sidebar order. */
 export const COMPONENTS = ALL.filter((i) => i.kind !== "family");
 
+/**
+ * Everything people can open and use (no family pages), newest first: the /components list.
+ * The newest `added` in info.ts is the top card, so a new item lands at the top on its own.
+ */
+export const LIBRARY = [...COMPONENTS].sort((a, b) => b.added.localeCompare(a.added));
+
 /** Every item and family page, newest first. */
 export function newestFirst() {
   return [...ALL].sort((a, b) => b.added.localeCompare(a.added));
@@ -124,9 +130,10 @@ export function isSideActive(item: string, slug?: string) {
   return item === slug || (!!slug && COMPONENTS.find((c) => c.slug === slug)?.family === item);
 }
 
-/** The docs in reading order: Introduction first, then each group in sidebar order (a family page, then its members). */
+/** The docs in reading order: Introduction and All components first, then each group in sidebar order (a family page, then its members). */
 export const DOC_PAGES = [
   { href: "/docs", name: "Introduction" },
+  { href: "/components", name: "All components" },
   ...GROUPS.flatMap((g) =>
     sideItems(g.id).flatMap((i) => [
       { href: `/docs/${i.slug}`, name: i.name },
@@ -135,9 +142,9 @@ export const DOC_PAGES = [
   ),
 ];
 
-/** Previous and next docs page. Leave out `slug` for the Introduction. */
-export function neighbours(slug?: string) {
-  const href = slug ? `/docs/${slug}` : "/docs";
+/** Previous and next docs page. Leave out `slug` for the Introduction; pass `page` for a page outside /docs (like /components). */
+export function neighbours(slug?: string, page?: string) {
+  const href = page ?? (slug ? `/docs/${slug}` : "/docs");
   const i = DOC_PAGES.findIndex((p) => p.href === href);
   return { prev: DOC_PAGES[i - 1], next: DOC_PAGES[i + 1] };
 }

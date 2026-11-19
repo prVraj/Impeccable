@@ -1,5 +1,7 @@
 # Reading references
 
+Read this at step 2, before you ask Q3.
+
 Study every site or screenshot the person shares before you ask about it. Your notes become (a) the recommendation on each later question and (b) the candidate list when an answer is vague.
 
 ## How to look
@@ -38,4 +40,4 @@ Also note radius and texture: these two are never asked, only inferred, so your 
 - **Recommendations** cite the site: "Recommended: hairline borders. Linear and Raycast, the sites you picked for depth, both use them."
 - **Patterns across sites** are the strongest signal. One site with a glow is a detail; three are a taste.
 - **Disliked sites** sharpen the never list: name the specific thing ("the purple-to-blue hero gradient on X"), not the whole site.
-- **Take qualities, never layouts or brands.** The skill should give the person Linear's restraint, not Linear's homepage.
+- **Take qualities, never layouts or brands.** The skill gives the person Linear's restraint, not Linear's homepage.

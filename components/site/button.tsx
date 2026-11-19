@@ -10,7 +10,7 @@ import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "reac
  *   <Button hierarchy="secondary" iconOnly aria-label="Close"><Cancel01Icon /></Button>
  */
 export type ButtonHierarchy = "primary" | "secondary" | "tertiary" | "link" | "link-gray";
-export type ButtonSize = "sm" | "md" | "lg" | "xl";
+export type ButtonSize = "xs" | "sm" | "md" | "lg" | "xl";
 
 type Own = {
   hierarchy?: ButtonHierarchy;

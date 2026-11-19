@@ -1,0 +1,35 @@
+{
+  "skill": "ui-tongue",
+  "evals": [
+    {
+      "id": "reflex-yes",
+      "prompt": "/ui-tongue. Quick mode. (Then answers ok, next, sure to half the questions.)",
+      "expected": [
+        "Studies the shared sites before asking Q3",
+        "Each round ends with a round checklist marking answered, inferred and accepted without comment",
+        "Every ok or next item is asked again with its nearest alternative",
+        "A no gets why not, logged in feedback-log.md"
+      ],
+      "must_not": ["Writes an unconfirmed inference into taste.md", "Asks for hex codes or pixel values"]
+    },
+    {
+      "id": "vague-reference",
+      "prompt": "I love Linear. Why? It just looks clean.",
+      "expected": ["Shows a candidate list of what it found on Linear and invites additions", "Writes values, not the word clean"],
+      "must_not": ["Accepts clean as a rule", "Asks more than one follow-up"]
+    },
+    {
+      "id": "update-taste",
+      "prompt": "Update my taste, I don't like the bouncy motion anymore.",
+      "files": ["maya-ui/references/taste.md", "maya-ui/references/feedback-log.md"],
+      "expected": ["Reads taste.md and feedback-log.md first", "Asks only the motion questions", "Runs check-skill.mjs again before handing over"],
+      "must_not": ["Re-runs the whole interview"]
+    },
+    {
+      "id": "conflict",
+      "prompt": "(Q11) Cinematic. (Q4) I hate things moving around.",
+      "expected": ["Asks one question: which wins and where", "Writes a scoped rule such as cinematic in the hero only"],
+      "must_not": ["Picks one silently"]
+    }
+  ]
+}

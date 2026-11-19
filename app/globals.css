@@ -71,18 +71,24 @@
   --btn-ring-gap-width: var(--stroke-2);
   --btn-ring-width: calc(var(--stroke-2) * 2);
   /* Sizes: height, side padding, icon-only square, text */
+  --btn-h-xs: calc(var(--spacing) * 7);
   --btn-h-sm: calc(var(--spacing) * 9);
   --btn-h-md: calc(var(--spacing) * 10);
   --btn-h-lg: calc(var(--spacing) * 11);
   --btn-h-xl: calc(var(--spacing) * 12);
+  --btn-px-xs: calc(var(--spacing) * 2.5);
   --btn-px-sm: calc(var(--spacing) * 3);
   --btn-px-md: calc(var(--spacing) * 3.5);
   --btn-px-lg: calc(var(--spacing) * 4);
   --btn-px-xl: calc(var(--spacing) * 4.5);
+  --btn-square-xs: calc(var(--spacing) * 7);
   --btn-square-sm: calc(var(--spacing) * 8);
   --btn-square-md: calc(var(--spacing) * 9);
   --btn-square-lg: calc(var(--spacing) * 9);
   --btn-square-xl: calc(var(--spacing) * 10);
+  /* xs: the compact header size, 13px to match the header's own text */
+  --btn-text-xs: 0.8125rem;
+  --btn-leading-xs: calc(var(--spacing) * 4.5);
   --btn-text-small: var(--text-sm);
   --btn-leading-small: var(--text-sm--line-height);
   --btn-text-large: var(--text-base);
@@ -262,6 +268,7 @@ body::-webkit-scrollbar,
   }
 
   /* Sizes */
+  .btn-xs { --btn-h: var(--btn-h-xs); --btn-px: var(--btn-px-xs); --btn-square: var(--btn-square-xs); font-size: var(--btn-text-xs); line-height: var(--btn-leading-xs); }
   .btn-sm { --btn-h: var(--btn-h-sm); --btn-px: var(--btn-px-sm); --btn-square: var(--btn-square-sm); font-size: var(--btn-text-small); line-height: var(--btn-leading-small); }
   .btn-md { --btn-h: var(--btn-h-md); --btn-px: var(--btn-px-md); --btn-square: var(--btn-square-md); font-size: var(--btn-text-small); line-height: var(--btn-leading-small); }
   .btn-lg { --btn-h: var(--btn-h-lg); --btn-px: var(--btn-px-lg); --btn-square: var(--btn-square-lg); font-size: var(--btn-text-large); line-height: var(--btn-leading-large); }

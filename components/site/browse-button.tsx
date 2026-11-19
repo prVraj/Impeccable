@@ -6,6 +6,7 @@ import { Arrow } from "./icons";
 
 /**
  * The "Browse components" button (home hero and 404 page), with a click sound.
+ * It opens /components, the list of everything in the library, newest first.
  *
  * The sound is made right in the browser with the Web Audio API: a crisp tap
  * on top of a quick falling "tock". There is no sound file, so nothing is
@@ -84,7 +85,7 @@ export function BrowseButton() {
   const lastPointer = useRef("");
   return (
     <Button
-      href="/docs"
+      href="/components"
       size="lg"
       trailing={<Arrow />}
       onPointerDown={(e) => {

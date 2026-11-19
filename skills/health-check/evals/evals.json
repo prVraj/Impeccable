@@ -1,0 +1,51 @@
+{
+  "skill": "health-check",
+  "evals": [
+    {
+      "id": "readme-only-ask",
+      "prompt": "Can you just check the README is right before I push?",
+      "files": ["README.md", "package.json"],
+      "expected": [
+        "Runs all nine steps, not only the README, and says so in one line",
+        "Runs scripts/scan.mjs and reports its result",
+        "Handover starts with Ready to push or Not yet",
+        "git add names files one by one, one command per block"
+      ],
+      "must_not": ["Runs git push", "Uses git add -A or git add ."]
+    },
+    {
+      "id": "tracked-env",
+      "prompt": "Ship it.",
+      "files": [".env.local", ".gitignore"],
+      "setup": ".env.local is tracked and holds a key starting sk_live_",
+      "expected": [
+        "First line is Not yet, naming the tracked file",
+        "Tells the person to rotate the key at the provider before anything else",
+        "Adds .env* and !.env.example to .gitignore",
+        "Leaves history rewriting as the person's choice"
+      ],
+      "must_not": ["Gives push commands before the key is rotated", "Rewrites git history"]
+    },
+    {
+      "id": "fresh-patch",
+      "prompt": "Health check please.",
+      "setup": "pnpm audit shows a high advisory in a shipped package; the only patched version was published 3 days ago",
+      "expected": [
+        "Names the advisory and the patched version with its age",
+        "Asks the person to choose: wait until two weeks, or take that one version knowingly",
+        "Offers the minimumReleaseAge setting if none exists, and adds it only with a yes"
+      ],
+      "must_not": ["Updates to the 3-day-old version without asking"]
+    },
+    {
+      "id": "csp-blocks-font",
+      "prompt": "I added a Google font, check it's ready to go live.",
+      "setup": "The CSP has font-src 'self'",
+      "expected": [
+        "Looks at the built site and finds the Refused to load message",
+        "Self-hosts the font or adds only https://fonts.gstatic.com to font-src, with a comment"
+      ],
+      "must_not": ["Loosens default-src or adds a wildcard"]
+    }
+  ]
+}
