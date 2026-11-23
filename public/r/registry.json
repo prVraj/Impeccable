@@ -405,6 +405,45 @@
           "target": "components/ui/kitcut-button.tsx"
         }
       ]
+    },
+    {
+      "name": "tumble-gallery",
+      "type": "registry:component",
+      "title": "Tumble Gallery",
+      "description": "A split flap board for pictures that flips in 3D and lands flat on the next one. Use it on a hero or portfolio page with 4 or more wide pictures.",
+      "files": [
+        {
+          "path": "items/tumble-gallery/tumble-gallery.tsx",
+          "type": "registry:component",
+          "target": "components/ui/tumble-gallery.tsx"
+        }
+      ]
+    },
+    {
+      "name": "spotlight-ticker",
+      "type": "registry:component",
+      "title": "Spotlight Ticker",
+      "description": "A gliding row of pictures stops as the one you point at grows, and a click opens its story. Use it on a home or work page with 5 to 10 projects.",
+      "files": [
+        {
+          "path": "items/spotlight-ticker/spotlight-ticker.tsx",
+          "type": "registry:component",
+          "target": "components/ui/spotlight-ticker.tsx"
+        }
+      ]
+    },
+    {
+      "name": "rolling-clock",
+      "type": "registry:component",
+      "title": "Rolling clock",
+      "description": "A live clock whose digits roll on a curve, the new number rising from below as the old one swings away. Use it in a hero, footer or dashboard header.",
+      "files": [
+        {
+          "path": "items/rolling-clock/rolling-clock.tsx",
+          "type": "registry:component",
+          "target": "components/ui/rolling-clock.tsx"
+        }
+      ]
     }
   ]
 }

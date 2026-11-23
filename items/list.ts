@@ -19,7 +19,10 @@ export const ORDER = [
   "infinite-curl-gallery",
   "orrery-gallery",
   "spindle-gallery",
+  "tumble-gallery",
   "sleeve-card",
+  "spotlight-ticker",
+  "rolling-clock",
   // Buttons
   "peter-tingle-button",
   "venom-button",

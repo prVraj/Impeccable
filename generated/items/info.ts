@@ -10,7 +10,10 @@ import { info as taskProgress } from "@/items/task-progress/info";
 import { info as infiniteCurlGallery } from "@/items/infinite-curl-gallery/info";
 import { info as orreryGallery } from "@/items/orrery-gallery/info";
 import { info as spindleGallery } from "@/items/spindle-gallery/info";
+import { info as tumbleGallery } from "@/items/tumble-gallery/info";
 import { info as sleeveCard } from "@/items/sleeve-card/info";
+import { info as spotlightTicker } from "@/items/spotlight-ticker/info";
+import { info as rollingClock } from "@/items/rolling-clock/info";
 import { info as peterTingleButton } from "@/items/peter-tingle-button/info";
 import { info as venomButton } from "@/items/venom-button/info";
 import { info as pixelButton } from "@/items/pixel-button/info";
@@ -50,7 +53,10 @@ export const INFO: Record<string, ItemInfo> = {
   "infinite-curl-gallery": infiniteCurlGallery,
   "orrery-gallery": orreryGallery,
   "spindle-gallery": spindleGallery,
+  "tumble-gallery": tumbleGallery,
   "sleeve-card": sleeveCard,
+  "spotlight-ticker": spotlightTicker,
+  "rolling-clock": rollingClock,
   "peter-tingle-button": peterTingleButton,
   "venom-button": venomButton,
   "pixel-button": pixelButton,
