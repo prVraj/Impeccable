@@ -28,6 +28,8 @@ export function ClickBurst() {
       if (e.pointerType === "touch" || e.button !== 0 || reduce.matches) return;
       // Venom button swaps the pointer for a drawn one while held, so the real tip is elsewhere.
       if (document.documentElement.hasAttribute("data-venom-hold")) return;
+      // A Click Pop demo on the page draws its own pop there.
+      if ((e.target as Element | null)?.closest?.("[data-click-pop]")) return;
 
       if (!layer || !layer.isConnected) {
         layer = document.createElement("div");

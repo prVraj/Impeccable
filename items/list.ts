@@ -4,7 +4,7 @@
  * see docs/ADDING-AN-ITEM.md. A family page (like login-pages) sits next to
  * its members; the sidebar shows it once, in the place of its first member.
  * The order of the groups themselves (Components, Buttons, Loaders, Backgrounds, Sections,
- * Skills, Animations) comes from GROUPS in lib/site.ts. Each item's group is set in
+ * Skills, Animations, Interactions) comes from GROUPS in lib/site.ts. Each item's group is set in
  * its own info.ts; the comments below only keep the list easy to read.
  */
 export const ORDER = [
@@ -23,6 +23,8 @@ export const ORDER = [
   "sleeve-card",
   "spotlight-ticker",
   "rolling-clock",
+  "peek-list",
+  "settle-counter",
   // Buttons
   "peter-tingle-button",
   "venom-button",
@@ -51,9 +53,14 @@ export const ORDER = [
   "deck-features",
   // Animations
   "black-hole-refresh",
+  "puzzle-refresh",
   "agent-draw",
   "burning-screen",
+  "tile-flip-image",
   // Skills
   "ui-tongue",
   "health-check",
+  // Interactions
+  "click-pop",
+  "cube-flip-image",
 ];

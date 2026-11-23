@@ -28,6 +28,7 @@ const OUT = "public/previews";
 const WAIT = {
   default: 2200,
   "black-hole-refresh": 1500, // the hole has just started pulling the page in
+  "puzzle-refresh": 1750, // the page has cracked and its pieces are falling
   "burning-toast": 1700, // the toast is up
   "window-stats": 5000, // a photo card has slid over the blurred statement
   "reel-stats": 3200, // a picture has rolled in and its number has counted up

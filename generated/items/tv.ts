@@ -1,9 +1,10 @@
 // Written by scripts/items.mjs from items/. Don't edit: it is rewritten on every dev and build.
 import { lazy, type ComponentType } from "react";
+import type { ChannelProps } from "@/components/site/tv-screen";
 
 // Each channel loads only when the iMac tunes to it, so the home page doesn't download every
 // item up front (that made it heavy and slow to wake up, and caused hydration error #418).
-type Channel = ComponentType<{ onReplay: () => void }>;
+type Channel = ComponentType<ChannelProps>;
 
 export const TV: Record<string, Channel> = {
   "text-mirroring": lazy(() => import("@/items/text-mirroring/tv")),
@@ -20,6 +21,8 @@ export const TV: Record<string, Channel> = {
   "sleeve-card": lazy(() => import("@/items/sleeve-card/tv")),
   "spotlight-ticker": lazy(() => import("@/items/spotlight-ticker/tv")),
   "rolling-clock": lazy(() => import("@/items/rolling-clock/tv")),
+  "peek-list": lazy(() => import("@/items/peek-list/tv")),
+  "settle-counter": lazy(() => import("@/items/settle-counter/tv")),
   "peter-tingle-button": lazy(() => import("@/items/peter-tingle-button/tv")),
   "venom-button": lazy(() => import("@/items/venom-button/tv")),
   "pixel-button": lazy(() => import("@/items/pixel-button/tv")),
@@ -38,6 +41,10 @@ export const TV: Record<string, Channel> = {
   "capsule-testimonials": lazy(() => import("@/items/capsule-testimonials/tv")),
   "deck-features": lazy(() => import("@/items/deck-features/tv")),
   "black-hole-refresh": lazy(() => import("@/items/black-hole-refresh/tv")),
+  "puzzle-refresh": lazy(() => import("@/items/puzzle-refresh/tv")),
   "agent-draw": lazy(() => import("@/items/agent-draw/tv")),
   "burning-screen": lazy(() => import("@/items/burning-screen/tv")),
+  "tile-flip-image": lazy(() => import("@/items/tile-flip-image/tv")),
+  "click-pop": lazy(() => import("@/items/click-pop/tv")),
+  "cube-flip-image": lazy(() => import("@/items/cube-flip-image/tv")),
 };

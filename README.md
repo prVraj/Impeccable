@@ -30,7 +30,7 @@ Impeccable UI is a free, open-source library of those moments. Every piece is de
 
 ## What's in the library
 
-The library has seven parts. Browse all of them, with live previews, at **[impeccable-ui.com](https://impeccable-ui.com)**.
+The library has eight parts. Browse all of them, with live previews, at **[impeccable-ui.com](https://impeccable-ui.com)**.
 
 - **Components:** building blocks with motion built in, like toasts, upload fields and password meters.
 - **Buttons:** buttons that react to the person using them.
@@ -38,6 +38,7 @@ The library has seven parts. Browse all of them, with live previews, at **[impec
 - **Backgrounds:** grids and patterns that sit behind a section or a whole page and answer the pointer.
 - **Sections:** whole page blocks, like login pages, grouped into families.
 - **Animations:** moments that play across a page: loaders, transitions, refreshes.
+- **Interactions:** small touches for any website, like a small pop at the pointer on every click.
 - **Skills:** files you give your AI tool so it works your way.
 
 New pieces are added often. The website is always the up-to-date list.

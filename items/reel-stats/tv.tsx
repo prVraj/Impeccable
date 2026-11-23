@@ -15,6 +15,7 @@ export default function ReelStatsChannel() {
     const el = box.current;
     if (!el) return;
     const measure = () => {
+      if (!el.clientWidth) return; // hidden or not laid out yet: 0 wide would make the height NaN
       const scale = el.clientWidth / W;
       setFit({ scale, height: el.clientHeight / scale });
     };

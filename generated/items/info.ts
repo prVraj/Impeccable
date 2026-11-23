@@ -14,6 +14,8 @@ import { info as tumbleGallery } from "@/items/tumble-gallery/info";
 import { info as sleeveCard } from "@/items/sleeve-card/info";
 import { info as spotlightTicker } from "@/items/spotlight-ticker/info";
 import { info as rollingClock } from "@/items/rolling-clock/info";
+import { info as peekList } from "@/items/peek-list/info";
+import { info as settleCounter } from "@/items/settle-counter/info";
 import { info as peterTingleButton } from "@/items/peter-tingle-button/info";
 import { info as venomButton } from "@/items/venom-button/info";
 import { info as pixelButton } from "@/items/pixel-button/info";
@@ -37,10 +39,14 @@ import { info as capsuleTestimonials } from "@/items/capsule-testimonials/info";
 import { info as featureSections } from "@/items/feature-sections/info";
 import { info as deckFeatures } from "@/items/deck-features/info";
 import { info as blackHoleRefresh } from "@/items/black-hole-refresh/info";
+import { info as puzzleRefresh } from "@/items/puzzle-refresh/info";
 import { info as agentDraw } from "@/items/agent-draw/info";
 import { info as burningScreen } from "@/items/burning-screen/info";
+import { info as tileFlipImage } from "@/items/tile-flip-image/info";
 import { info as uiTongue } from "@/items/ui-tongue/info";
 import { info as healthCheck } from "@/items/health-check/info";
+import { info as clickPop } from "@/items/click-pop/info";
+import { info as cubeFlipImage } from "@/items/cube-flip-image/info";
 
 export const INFO: Record<string, ItemInfo> = {
   "text-mirroring": textMirroring,
@@ -57,6 +63,8 @@ export const INFO: Record<string, ItemInfo> = {
   "sleeve-card": sleeveCard,
   "spotlight-ticker": spotlightTicker,
   "rolling-clock": rollingClock,
+  "peek-list": peekList,
+  "settle-counter": settleCounter,
   "peter-tingle-button": peterTingleButton,
   "venom-button": venomButton,
   "pixel-button": pixelButton,
@@ -80,8 +88,12 @@ export const INFO: Record<string, ItemInfo> = {
   "feature-sections": featureSections,
   "deck-features": deckFeatures,
   "black-hole-refresh": blackHoleRefresh,
+  "puzzle-refresh": puzzleRefresh,
   "agent-draw": agentDraw,
   "burning-screen": burningScreen,
+  "tile-flip-image": tileFlipImage,
   "ui-tongue": uiTongue,
   "health-check": healthCheck,
+  "click-pop": clickPop,
+  "cube-flip-image": cubeFlipImage,
 };

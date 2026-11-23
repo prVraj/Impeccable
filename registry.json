@@ -444,6 +444,84 @@
           "target": "components/ui/rolling-clock.tsx"
         }
       ]
+    },
+    {
+      "name": "peek-list",
+      "type": "registry:component",
+      "title": "Peek List",
+      "description": "Point at a row and its picture follows your pointer; a click opens the row like a pop up. Use it for 3 to 8 products, services or features.",
+      "files": [
+        {
+          "path": "items/peek-list/peek-list.tsx",
+          "type": "registry:component",
+          "target": "components/ui/peek-list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "settle-counter",
+      "type": "registry:component",
+      "title": "Settle counter",
+      "description": "A number where each changed digit arrives big and faint, then settles in as the old one fades. Use it large, on a live count in a hero or dashboard.",
+      "files": [
+        {
+          "path": "items/settle-counter/settle-counter.tsx",
+          "type": "registry:component",
+          "target": "components/ui/settle-counter.tsx"
+        }
+      ]
+    },
+    {
+      "name": "click-pop",
+      "type": "registry:component",
+      "title": "Click Pop",
+      "description": "A small pop at the pointer on every click: burst, ring, particles, crosshair or wavy. Use it once in your layout, in a calm color, for the whole site.",
+      "files": [
+        {
+          "path": "items/click-pop/click-pop.tsx",
+          "type": "registry:component",
+          "target": "components/ui/click-pop.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tile-flip-image",
+      "type": "registry:component",
+      "title": "Tile flip image",
+      "description": "A picture that turns over in tiny tiles, in random order, onto the next one in 1.2 seconds. Use it on a hero or product shot that changes.",
+      "files": [
+        {
+          "path": "items/tile-flip-image/tile-flip-image.tsx",
+          "type": "registry:component",
+          "target": "components/ui/tile-flip-image.tsx"
+        }
+      ]
+    },
+    {
+      "name": "cube-flip-image",
+      "type": "registry:component",
+      "title": "Cube flip image",
+      "description": "Click a picture and tiny cubes roll over from that spot, a wave that shows the next one. Use it on a gallery or hero with 3 to 10 photos.",
+      "files": [
+        {
+          "path": "items/cube-flip-image/cube-flip-image.tsx",
+          "type": "registry:component",
+          "target": "components/ui/cube-flip-image.tsx"
+        }
+      ]
+    },
+    {
+      "name": "puzzle-refresh",
+      "type": "registry:component",
+      "title": "Puzzle Refresh",
+      "description": "Your page cracks into jigsaw pieces that tumble into a heap, then fly back up and click into place. Use it on refresh for a playful site or portfolio.",
+      "files": [
+        {
+          "path": "items/puzzle-refresh/puzzle-refresh.tsx",
+          "type": "registry:component",
+          "target": "components/ui/puzzle-refresh.tsx"
+        }
+      ]
     }
   ]
 }

@@ -1,24 +1,41 @@
 "use client";
 
 import Link from "next/link";
-import { Suspense, useCallback, useEffect, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { COMPONENTS } from "@/lib/site";
 import { TV } from "@/generated/items/tv";
+import type { ChannelProps } from "@/components/site/tv-screen";
 
-/** How many channels the iMac plays: the newest items in the library. */
-const NEWEST = 5;
+/** How many of the newest items the iMac picks from. */
+const NEWEST = 10;
+/** How long each channel plays before the iMac tunes to another one on its own. */
+const DWELL_MS = 5000;
+/** A channel in the middle of a beat (see ChannelProps.onLoop) may finish it, but never hold the screen longer than this. */
+const MAX_DWELL_MS = 12000;
 
 /**
- * The 5 most recently added items (by `added` in each info.ts), newest first, so the
- * home page always shows what's new. Only things with a live demo get a channel (skills have none).
+ * The 10 most recently added items (by `added` in each info.ts), newest first, so the home page
+ * always shows what's new. Only things with a live demo get a channel (skills have none).
+ * CH 01 is the newest; the iMac plays them in a random order.
  */
 const CHANNELS = COMPONENTS.filter((c) => c.group !== "skills" && TV[c.slug])
   .sort((a, b) => b.added.localeCompare(a.added))
   .slice(0, NEWEST);
 
+/** A fresh random order of every channel except `skip`, so each one plays once before any repeats. */
+function shuffled(skip: number | null) {
+  const order = CHANNELS.map((_, i) => i).filter((i) => i !== skip);
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  return order;
+}
+
 /**
  * A 1998-style translucent iMac (graphite gray), drawn in CSS. Its screen plays one component
- * from the library at a time. Speakers flip channels, the power button replays,
+ * from the library at a time and tunes to another random one every 5 seconds (or once the
+ * channel's current beat has finished). Speakers flip channels, the power button replays,
  * and the CD slot is "I want this".
  */
 
@@ -32,10 +49,32 @@ export function IMac() {
   const [staticOn, setStaticOn] = useState(false);
   const [osd, setOsd] = useState(false);
   const timers = useRef<number[]>([]);
+  const root = useRef<HTMLDivElement>(null);
+
+  const now = useRef<number | null>(null); // the channel on screen, for the timers
+  const bag = useRef<number[]>([]); // channels still to play in this random round
+  const back = useRef<number[]>([]); // channels already played, for the left speaker
+  const tuning = useRef(false); // static is on screen and a new channel is about to show
+
+  /** A random channel that isn't `from`, without repeats until every channel has played. */
+  const pick = (from: number | null) => {
+    if (CHANNELS.length < 2) return 0;
+    let next: number | undefined;
+    do {
+      if (!bag.current.length) bag.current = shuffled(from);
+      next = bag.current.pop();
+    } while (next === from);
+    return next!;
+  };
+
+  const show = (c: number) => {
+    now.current = c;
+    setChannel(c);
+  };
 
   // Pick a random channel once we're in the browser (keeps SSR stable).
   useEffect(() => {
-    setChannel(Math.floor(Math.random() * CHANNELS.length));
+    show(pick(null));
     flashOsd();
     const t = timers.current;
     return () => t.forEach(clearTimeout);
@@ -47,26 +86,123 @@ export function IMac() {
     timers.current.push(window.setTimeout(() => setOsd(false), 1800));
   };
 
-  const tune = useCallback((dir: 1 | -1) => {
+  /** Right speaker (and the timer): a new random channel. Left speaker: the one before. */
+  const tune = useCallback((dir: 1 | -1, auto = false) => {
+    if (auto && tuning.current) return;
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const go = () => {
-      setChannel(
-        (c) => ((c ?? 0) + dir + CHANNELS.length) % CHANNELS.length,
-      );
+      tuning.current = false;
+      const from = now.current;
+      let to: number;
+      if (dir === -1 && back.current.length) to = back.current.pop()!;
+      else {
+        to = pick(from);
+        if (dir === 1 && from !== null) back.current = [...back.current, from].slice(-20);
+      }
+      show(to);
       setRun((r) => r + 1);
       setStaticOn(false);
       flashOsd();
     };
     if (reduced) return go();
+    tuning.current = true;
     setStaticOn(true);
     timers.current.push(window.setTimeout(go, 260));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const current = channel === null ? null : CHANNELS[channel];
+  const key = current ? `${current.slug}-${run}` : null;
+
+  /* ---- Moving on by itself ---- */
+  // The 5 seconds start once the channel has actually loaded, and pause while someone is using the
+  // screen or about to press "I want this", while a finger is down, or while the iMac can't be seen.
+  const [ready, setReady] = useState<string | null>(null);
+  const [overScreen, setOverScreen] = useState(false);
+  const [overLink, setOverLink] = useState(false);
+  const [pressing, setPressing] = useState(false);
+  const [seen, setSeen] = useState(true);
+  const busy = useRef<string | null>(null); // the channel that is mid-beat
+  const due = useRef<string | null>(null); // the channel whose 5 seconds are up, waiting for its beat to end
+  const held = overScreen || overLink || pressing;
+
+  useEffect(() => {
+    if (!key || ready !== key || held || !seen || CHANNELS.length < 2) return;
+    const wait = window.setTimeout(() => {
+      if (busy.current === key) due.current = key;
+      else tune(1, true);
+    }, DWELL_MS);
+    const cap = window.setTimeout(() => tune(1, true), MAX_DWELL_MS);
+    return () => {
+      window.clearTimeout(wait);
+      window.clearTimeout(cap);
+      due.current = null;
+    };
+  }, [key, ready, held, seen, tune]);
+
+  const onLoop = useMemo<ChannelProps["onLoop"]>(
+    () =>
+      key
+        ? (phase) => {
+            if (phase === "start") return void (busy.current = key);
+            if (busy.current === key) busy.current = null;
+            if (due.current === key) {
+              due.current = null;
+              tune(1, true);
+            }
+          }
+        : undefined,
+    [key, tune],
+  );
+
+  // Only count time while the iMac is on screen and the tab is open.
+  useEffect(() => {
+    const el = root.current;
+    if (!el) return;
+    let inView = true;
+    const update = () => setSeen(inView && !document.hidden);
+    const io = new IntersectionObserver(([e]) => {
+      inView = e.isIntersecting;
+      update();
+    });
+    io.observe(el);
+    document.addEventListener("visibilitychange", update);
+    return () => {
+      io.disconnect();
+      document.removeEventListener("visibilitychange", update);
+    };
+  }, []);
+
+  // A finger on the iMac (dragging a gallery, tapping a button) holds the channel until it lifts.
+  useEffect(() => {
+    if (!pressing) return;
+    const up = () => setPressing(false);
+    window.addEventListener("pointerup", up);
+    window.addEventListener("pointercancel", up);
+    return () => {
+      window.removeEventListener("pointerup", up);
+      window.removeEventListener("pointercancel", up);
+    };
+  }, [pressing]);
+
+  /**
+   * Only a real mouse counts as resting on something: phones never hover. Channels that act out a
+   * pretend pointer (Peek List) send made-up pointer events, which must not hold the screen.
+   */
+  const hover = (set: (v: boolean) => void) => ({
+    onPointerEnter: (e: React.PointerEvent) =>
+      e.nativeEvent.isTrusted && e.pointerType === "mouse" && set(true),
+    onPointerLeave: (e: React.PointerEvent) =>
+      e.nativeEvent.isTrusted && e.pointerType === "mouse" && set(false),
+  });
+
 
   return (
     <div
+      ref={root}
+      onPointerDown={(e) =>
+        e.nativeEvent.isTrusted && e.pointerType !== "mouse" && setPressing(true)
+      }
       className="imac relative mx-auto w-full [container-type:inline-size]"
       style={{ maxWidth: "min(560px, calc((100dvh - 8rem) * 1.05))" }}
     >
@@ -102,6 +238,7 @@ export function IMac() {
         >
           {/* The tube */}
           <div
+            {...hover(setOverScreen)}
             className="absolute overflow-hidden"
             style={{
               inset: "3.2% 2.6%",
@@ -113,9 +250,11 @@ export function IMac() {
             <div className="imac-screen absolute inset-0 [container-type:inline-size]">
               {current && (
                 <Channel
-                  key={`${current.slug}-${run}`}
+                  key={key}
                   slug={current.slug}
                   onReplay={() => setRun((r) => r + 1)}
+                  onLoop={onLoop}
+                  onReady={() => setReady(key)}
                 />
               )}
             </div>
@@ -176,6 +315,7 @@ export function IMac() {
         {current ? (
           <Link
             href={`/docs/${current.slug}`}
+            {...hover(setOverLink)}
             className="group absolute flex items-center justify-center rounded-full outline-offset-2 focus-visible:outline-2 focus-visible:outline-[var(--brand-500)]"
             style={{
               left: "35%",
@@ -315,12 +455,24 @@ function Speaker({
 }
 
 /** What each component looks like on the little screen: its items/<name>/tv.tsx. */
-function Channel({ slug, onReplay }: { slug: string; onReplay: () => void }) {
+function Channel({
+  slug,
+  onReady,
+  ...props
+}: ChannelProps & { slug: string; onReady: () => void }) {
   const Show = TV[slug];
   // Channels load on demand (see generated/items/tv.ts); the screen stays dark for the moment it takes.
+  // <Ready> sits in the same Suspense, so it only mounts once the channel has loaded and is showing.
   return Show ? (
     <Suspense fallback={null}>
-      <Show onReplay={onReplay} />
+      <Show {...props} />
+      <Ready onReady={onReady} />
     </Suspense>
   ) : null;
+}
+
+function Ready({ onReady }: { onReady: () => void }) {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(onReady, []);
+  return null;
 }

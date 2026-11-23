@@ -4,7 +4,7 @@ import { ORDER } from "@/items/list";
 import { SITE, absolute, ogImage } from "@/lib/seo";
 import { INFO } from "@/generated/items/info";
 
-export type Group = "components" | "buttons" | "loaders" | "backgrounds" | "sections" | "skills" | "animations";
+export type Group = "components" | "buttons" | "loaders" | "backgrounds" | "sections" | "skills" | "animations" | "interactions";
 
 /** The parts of the library, in sidebar order. */
 export const GROUPS: { id: Group; label: string }[] = [
@@ -19,6 +19,8 @@ export const GROUPS: { id: Group; label: string }[] = [
   { id: "sections", label: "Sections" },
   { id: "skills", label: "Skills" },
   { id: "animations", label: "Animations" },
+  // Small interactions for any website, like a small pop at the pointer on every click. Its own dropdown, like Buttons.
+  { id: "interactions", label: "Interactions" },
 ];
 
 /** Everything about one item, from items/<slug>/info.ts. */

@@ -51,8 +51,8 @@ for (const slug of order.filter((s) => folders.includes(s))) {
   if (it.infoSlug !== slug) errors.push(`${where}: slug is "${it.infoSlug}", but the folder is "${slug}". They must match.`);
   for (const k of ["name", "group", "blurb", "description", "added"]) if (!it[k]) errors.push(`${where}: "${k}" is missing.`);
   if (it.name?.includes("-")) errors.push(`${where}: name "${it.name}" has a dash. Write it in plain words with spaces, like "Price slider" (the dash belongs only in the slug).`);
-  if (it.group && !["components", "buttons", "loaders", "backgrounds", "sections", "skills", "animations"].includes(it.group))
-    errors.push(`${where}: group must be components, buttons, loaders, backgrounds, sections, skills or animations (it is "${it.group}").`);
+  if (it.group && !["components", "buttons", "loaders", "backgrounds", "sections", "skills", "animations", "interactions"].includes(it.group))
+    errors.push(`${where}: group must be components, buttons, loaders, backgrounds, sections, skills, animations or interactions (it is "${it.group}").`);
   if (it.added && !/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(it.added))
     errors.push(`${where}: added must look like "2026-11-12 14:30" (it is "${it.added}").`);
   if (it.description && it.description.length > 150)
@@ -156,10 +156,11 @@ const tv = items.filter((i) => has(i.slug, "tv.tsx"));
 write(
   "tv.ts",
   HEAD +
-    'import { lazy, type ComponentType } from "react";\n\n' +
+    'import { lazy, type ComponentType } from "react";\n' +
+    'import type { ChannelProps } from "@/components/site/tv-screen";\n\n' +
     "// Each channel loads only when the iMac tunes to it, so the home page doesn't download every\n" +
     "// item up front (that made it heavy and slow to wake up, and caused hydration error #418).\n" +
-    "type Channel = ComponentType<{ onReplay: () => void }>;\n\n" +
+    "type Channel = ComponentType<ChannelProps>;\n\n" +
     "export const TV: Record<string, Channel> = {\n" +
     tv.map((i) => `  "${i.slug}": lazy(() => import("@/items/${i.slug}/tv")),`).join("\n") +
     "\n};\n",

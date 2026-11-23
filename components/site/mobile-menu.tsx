@@ -20,7 +20,7 @@ function groupOf(pathname: string | null): Group | undefined {
  * Phones and tablets only (the sidebar shows from `lg` up).
  * Three lines in the header open a full-screen menu: logo and a close X on
  * top, then Introduction and one dropdown for each part of the library
- * (Components, Buttons, Sections, Skills, Animations). Only the dropdown
+ * (Components, Buttons, Sections, Skills, Animations, Interactions). Only the dropdown
  * holding the current page starts open, so every part is one tap away
  * instead of at the end of a long scroll. Dropdowns someone opens or closes
  * stay that way from page to page.
