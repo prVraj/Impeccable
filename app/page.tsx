@@ -48,7 +48,7 @@ export default function Home() {
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
               <BrowseButton />
-              <Button href={GITHUB} hierarchy="secondary" size="lg" leading={<GitHub />}>
+              <Button href={GITHUB} hierarchy="secondary" size="lg" leading={<GitHub />} data-cta-sound>
                 Star on GitHub
               </Button>
             </div>

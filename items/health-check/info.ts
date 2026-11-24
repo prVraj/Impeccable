@@ -13,6 +13,8 @@ export const info: ItemInfo = {
   tags: ["Skill", "Claude", "Free + MIT", "Security"],
   // When it was added (newest shows first in search and on the home page).
   added: "2026-11-17 18:20",
+  // When it last got a change people would notice (the latest updates get the Updated chip).
+  updated: "2026-11-19 13:56",
   // Search words for Google and AI tools (see the seo field in lib/site.ts). The visible name stays as it is.
   seo: { keyword: "claude code security review", title: "Claude Code Pre-Push Security Check" },
 };

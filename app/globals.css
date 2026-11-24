@@ -113,6 +113,11 @@
   --btn-secondary-text: var(--gray-900);
   --btn-secondary-drop: 0 1px 2px color-mix(in srgb, var(--shadow-ink-neutral) 6%, transparent),
     0 3px 6px -2px color-mix(in srgb, var(--shadow-ink-neutral) 8%, transparent);
+  /* The New chip on the newest items: the secondary button's soft surface, a lighter edge, quiet text. */
+  --chip-new-edge: var(--gray-200);
+  --chip-new-text: var(--gray-600);
+  /* "Updated": text only, in a light shade of the brand colour, so it stays quieter than New. */
+  --chip-updated-text: var(--brand-400);
   /* Tertiary and links */
   --btn-tertiary-text: var(--gray-700);
   --btn-tertiary-hover: var(--gray-50);
@@ -158,6 +163,9 @@
   --btn-secondary-text: var(--fg);
   --btn-secondary-drop: 0 1px 2px color-mix(in srgb, var(--shadow-ink-neutral) 80%, transparent),
     0 3px 6px -2px color-mix(in srgb, var(--shadow-ink-neutral) 70%, transparent);
+  --chip-new-edge: color-mix(in srgb, var(--fg) 10%, transparent);
+  --chip-new-text: var(--muted);
+  --chip-updated-text: var(--brand-300);
   --btn-tertiary-text: color-mix(in srgb, var(--fg) 80%, var(--bg));
   --btn-tertiary-hover: var(--panel-2);
   --btn-link-text: var(--brand-300);
@@ -377,6 +385,35 @@ body::-webkit-scrollbar,
       inset 0 0 0 var(--btn-edge-width) var(--btn-primary-edge),
       inset 0 calc(var(--btn-edge-width) * 2) 0 calc(var(--btn-edge-width) * -1) var(--btn-primary-highlight),
       var(--btn-primary-drop);
+  }
+
+  /* "New" on the newest items (lib/site.ts isNew): a small soft pill, like a secondary button
+     shrunk down. Tokens --chip-new-* above; the surface reuses --btn-secondary-*. */
+  .new-chip {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    height: calc(var(--spacing) * 4.5);
+    padding: 0 calc(var(--spacing) * 1.5);
+    border-radius: var(--radius-md);
+    background-image: linear-gradient(180deg, var(--btn-secondary-top), var(--btn-secondary-bottom));
+    box-shadow:
+      inset 0 0 0 var(--btn-edge-width) var(--chip-new-edge),
+      inset 0 calc(var(--btn-edge-width) * 2) 0 calc(var(--btn-edge-width) * -1) var(--btn-secondary-highlight),
+      var(--btn-secondary-drop);
+    color: var(--chip-new-text);
+    font-size: 11px;
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: 0;
+    white-space: nowrap;
+    user-select: none;
+  }
+  /* Updated is plain text (same size and spot as New, no pill), so it never outshines New. */
+  .updated-chip {
+    background: none;
+    box-shadow: none;
+    color: var(--chip-updated-text);
   }
 
   /* 8px corners with Figma's 60% corner smoothing: where the browser can draw a squircle,

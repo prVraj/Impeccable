@@ -13,6 +13,8 @@ export const info: ItemInfo = {
   tags: ["Upload", "No extra packages", "Light + dark", "Mobile"],
   // When it was added (newest shows first in search and on the home page).
   added: "2026-11-11 23:50",
+  // When it last got a change people would notice (the latest updates get the Updated chip).
+  updated: "2026-11-13 23:45",
   // Search words for Google and AI tools (see the seo field in lib/site.ts). The visible name stays as it is.
   seo: { keyword: "image upload component react", title: "Image Upload Component for React" },
 };

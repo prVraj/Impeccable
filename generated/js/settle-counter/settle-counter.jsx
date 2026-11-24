@@ -6,6 +6,8 @@
  * A number where every digit that changes settles into place. The old digit
  * shrinks and fades away while the new one arrives bigger and faint (1.6x,
  * 30% see-through) and settles down to the size of the digits around it.
+ * A digit that changes counts there: from 1 to 6 it shows 2, 3, 4 and 5 on the
+ * way, quick at first and slowing into the last one, which settles as above.
  * Digits that stay the same don't move. Commas between thousands come and go
  * the same way.
  *
@@ -33,6 +35,13 @@ const LAND_AT = 300; // when the digits start settling while the frame widens (m
 const CLOSE_AT = 160; // when the frame starts closing after a digit starts leaving (ms)
 const STAGGER_MS = 45; // between digits that change together, left to right
 const FADE_MS = 180; // reduced motion: a plain crossfade
+// Counting: a digit that changes steps through every number in between (1, 2, 3, 4, 5, 6), up or down.
+const STEP_GAP = 70; // time per in-between number, before the cap
+const RUN_MAX = 560; // the longest the in-between numbers may take, so 0 to 9 never drags
+const RUN_CURVE = 1.35; // above 1: quick at first, then slowing into the last number
+const STEP_IN_MS = 240; // an in-between number arriving
+const STEP_GROW = 1.3; // how big an in-between number starts (the last one starts at GROW)
+const STEP_OUT_MS = 180; // an in-between number leaving
 
 const CSS = `
 .stlc{display:inline-flex;align-items:center;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap;vertical-align:middle}
@@ -72,6 +81,17 @@ function places(text) {
   });
 }
 
+/** The digits between two digits, in counting order: "1" to "6" gives 2, 3, 4, 5; "6" to "1" gives 5, 4, 3, 2. */
+function between(from, to) {
+  const a = Number(from);
+  const b = Number(to);
+  if (!/^[0-9]$/.test(from) || !/^[0-9]$/.test(to)) return [];
+  const dir = b > a ? 1 : -1;
+  const out = [];
+  for (let d = a + dir; d !== b; d += dir) out.push(String(d));
+  return out;
+}
+
 function Glyph({ g, reduced, onGone }) {
   const ref = useRef(null);
   const anim = useRef(null);
@@ -88,11 +108,11 @@ function Glyph({ g, reduced, onGone }) {
       reduced
         ? [{ opacity: 0 }, { opacity: 1 }]
         : [
-            { opacity: FAINT, transform: `scale(${GROW})` },
+            { opacity: FAINT, transform: `scale(${g.quick ? STEP_GROW : GROW})` },
             { opacity: 1, transform: "scale(1)" },
           ],
       {
-        duration: reduced ? FADE_MS : IN_MS,
+        duration: reduced ? FADE_MS : g.quick ? STEP_IN_MS : IN_MS,
         easing: reduced ? "linear" : IN_EASE,
         delay: g.delay,
         fill: "forwards",
@@ -123,7 +143,7 @@ function Glyph({ g, reduced, onGone }) {
         ? [{ opacity: from.opacity }, { opacity: 0 }]
         : [from, { opacity: 0, transform: `scale(${SHRINK})` }],
       {
-        duration: reduced ? FADE_MS : OUT_MS,
+        duration: reduced ? FADE_MS : g.quick ? STEP_OUT_MS : OUT_MS,
         easing: reduced ? "linear" : OUT_EASE,
         delay: g.delay,
         fill: "both",
@@ -154,6 +174,24 @@ function Slot({ s, reduced, onGone }) {
   ]);
   const handled = useRef(-1); // the last change this place has acted on (so a second run in React's strict mode does nothing)
   const was = useRef(0); // the frame's width after the last change
+  const timers = useRef([]); // the counting steps still to come
+  const stop = () => {
+    timers.current.forEach(clearTimeout);
+    timers.current = [];
+  };
+
+  // Show the next number in this place: the ones on screen leave as it arrives.
+  const show = (char, delay, quick) =>
+    setGlyphs((gs) => {
+      const kept = gs.map((g) => (g.out ? g : { ...g, out: true, delay }));
+      // Never more than three leaving at once: drop the oldest if numbers change faster than they settle.
+      const leaving = kept.filter((g) => g.out);
+      const drop = new Set(leaving.slice(0, Math.max(0, leaving.length - 3)).map((g) => g.id));
+      return [
+        ...kept.filter((g) => !drop.has(g.id)),
+        { id: ids.current++, char, enter: true, out: false, delay, quick },
+      ];
+    });
 
   // The frame: open from `from` to the digit's width, or close to 0 and then tell the number it is gone.
   const frame = (from, to, delay, closing) => {
@@ -190,6 +228,7 @@ function Slot({ s, reduced, onGone }) {
       if (s.gen > 0 && s.fresh) frame(0, to, 0, false);
       return;
     }
+    stop();
     const now = width.current ? px(b) : null;
     if (s.leaving) {
       // The digit leaves first, then the frame closes behind it.
@@ -201,18 +240,24 @@ function Slot({ s, reduced, onGone }) {
     // A new digit (or the same place coming back): open or resize the frame, then the new digit settles in.
     frame(now ?? (s.fresh ? 0 : was.current), to, 0, false);
     was.current = to;
-    setGlyphs((gs) => {
-      const kept = gs.map((g) => (g.out ? g : { ...g, out: true, delay: s.delay }));
-      // Never more than two leaving at once: drop the oldest if numbers change faster than they settle.
-      const leaving = kept.filter((g) => g.out);
-      const drop = new Set(leaving.slice(0, Math.max(0, leaving.length - 2)).map((g) => g.id));
-      return [
-        ...kept.filter((g) => !drop.has(g.id)),
-        { id: ids.current++, char: s.char, enter: true, out: false, delay: s.delay },
-      ];
+    const run = reduced || s.fresh ? [] : s.steps;
+    if (!run.length) {
+      show(s.char, s.delay, false);
+      return;
+    }
+    // Count: every number in between gets its turn, the gaps growing so it slows into the last one.
+    const m = run.length;
+    const span = Math.min(RUN_MAX, m * STEP_GAP);
+    [...run, s.char].forEach((char, k) => {
+      const at = s.delay + span * (k / m) ** RUN_CURVE;
+      const go = () => show(char, 0, k < m);
+      if (at < 1) go();
+      else timers.current.push(window.setTimeout(go, at));
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [s.gen]);
+
+  useEffect(() => stop, []);
 
   const gone = useCallback((id) => setGlyphs((gs) => gs.filter((g) => g.id !== id)), []);
 
@@ -239,7 +284,7 @@ export function SettleCounter({
 }) {
   const text = show(value, separator);
   const [slots, setSlots] = useState(() =>
-    places(text).map((p) => ({ ...p, leaving: false, fresh: false, delay: 0, gen: 0 })),
+    places(text).map((p) => ({ ...p, steps: [], leaving: false, fresh: false, delay: 0, gen: 0 })),
   );
   const [reduced, setReduced] = useState(false);
   const last = useRef(text);
@@ -276,6 +321,7 @@ export function SettleCounter({
         if (n && (!p || p.leaving))
           out.push({
             ...n,
+            steps: [],
             leaving: false,
             fresh: true,
             delay: base + order++ * step,
@@ -285,6 +331,7 @@ export function SettleCounter({
           out.push({
             ...p,
             char: n.char,
+            steps: between(p.char, n.char),
             fresh: false,
             delay: base + order++ * step,
             gen: ++gen.current,

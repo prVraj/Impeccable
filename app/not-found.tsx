@@ -34,7 +34,7 @@ export default function NotFound() {
           This page will lead you towards the Stoneage. Please go Home.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <Button href="/" hierarchy="secondary" size="lg">
+          <Button href="/" hierarchy="secondary" size="lg" data-cta-sound>
             Go Home
           </Button>
           <BrowseButton />

@@ -13,6 +13,8 @@ export const info: ItemInfo = {
   tags: ["Card", "3D", "Hover", "No extra packages", "Light + dark", "Mobile"],
   // When it was added (newest shows first in search and on the home page).
   added: "2026-11-17 17:30",
+  // When it last got a change people would notice (the latest updates get the Updated chip).
+  updated: "2026-11-18 15:05",
   // Search words for Google and AI tools (see the seo field in lib/site.ts). The visible name stays as it is.
   seo: { keyword: "3d hover card react", title: "3D Hover Project Card for React" },
 };

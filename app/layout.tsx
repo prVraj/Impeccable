@@ -7,6 +7,7 @@ import { redrawScript } from "@/components/site/page-redraw-script";
 import { InlineScript } from "@/components/site/inline-script";
 import { SiteSearch } from "@/components/site/search";
 import { ClickBurst } from "@/components/site/click-burst";
+import { CtaSound } from "@/components/site/cta-sound";
 import { SITE } from "@/lib/seo";
 import { pageMetadata } from "@/lib/site";
 import "./globals.css";
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <BurningScreen>{children}</BurningScreen>
         <SiteSearch />
         <ClickBurst />
+        <CtaSound />
         <Analytics />
       </body>
     </html>

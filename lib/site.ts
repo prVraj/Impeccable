@@ -42,6 +42,11 @@ export type ItemInfo = {
   /** When it was added, "YYYY-MM-DD HH:MM". Newest shows first in search and on the home page. */
   added: string;
   /**
+   * When it last got a real change people would notice (a new look, behaviour or option),
+   * "YYYY-MM-DD HH:MM". Leave it out until then. The latest updates get the Updated chip.
+   */
+  updated?: string;
+  /**
    * Search words for Google and AI tools. The visible name stays as it is; these only go in the
    * browser-tab title and the page's hidden data. `keyword`: the main phrase people search.
    * `title`: what it is in searched words, like "Fire Page Transition for React".
@@ -68,6 +73,43 @@ export const COMPONENTS = ALL.filter((i) => i.kind !== "family");
  * The newest `added` in info.ts is the top card, so a new item lands at the top on its own.
  */
 export const LIBRARY = [...COMPONENTS].sort((a, b) => b.added.localeCompare(a.added));
+
+/**
+ * The New chip. Two rules, both read from each item's `added` date in info.ts, so a new item
+ * gets the chip on its own and the oldest one loses it:
+ * the 5 newest items on the whole site, plus the 2 newest in each sidebar group.
+ */
+export const NEW_ON_SITE = 5;
+export const NEW_IN_GROUP = 2;
+const NEW_SLUGS = new Set(
+  [
+    ...LIBRARY.slice(0, NEW_ON_SITE),
+    ...GROUPS.flatMap((g) => LIBRARY.filter((i) => i.group === g.id).slice(0, NEW_IN_GROUP)),
+  ].map((i) => i.slug),
+);
+
+/** True when an item gets the New chip. A family page (like Stats sections) gets it when one of its members does. */
+export function isNew(slug: string) {
+  return NEW_SLUGS.has(slug) || COMPONENTS.some((c) => c.family === slug && NEW_SLUGS.has(c.slug));
+}
+
+/**
+ * The Updated chip: the 5 items changed most recently, by the `updated` date in info.ts.
+ * An item that is still New keeps New (one chip at a time), so it doesn't use up a place here.
+ */
+export const UPDATED_COUNT = 5;
+const UPDATED_SLUGS = new Set(
+  LIBRARY.filter((i) => i.updated && i.updated > i.added && !NEW_SLUGS.has(i.slug))
+    .sort((a, b) => b.updated!.localeCompare(a.updated!))
+    .slice(0, UPDATED_COUNT)
+    .map((i) => i.slug),
+);
+
+/** Which chip an item (or a family page, through its members) shows next to its name, if any. */
+export function itemChip(slug: string): "new" | "updated" | undefined {
+  if (isNew(slug)) return "new";
+  if (UPDATED_SLUGS.has(slug) || COMPONENTS.some((c) => c.family === slug && UPDATED_SLUGS.has(c.slug))) return "updated";
+}
 
 /** Every item and family page, newest first. */
 export function newestFirst() {
@@ -110,6 +152,8 @@ export function pageMetadata(p: { title: string; description: string; path: stri
 
 export const GITHUB = "https://github.com/prVraj/Impeccable";
 export const AUTHOR = { name: "Vraj Parikh", href: "https://x.com/vrajsensei" };
+/** Where the docs header's Talk to Vraj button goes: Vraj's booking page. */
+export const TALK = "https://cal.com/vraj-sensei/talk-to-vraj?overlayCalendar=true";
 
 /** What the sidebar lists for a group: its items, with each family shown once in place of its members. */
 export function sideItems(group: Group): { slug: string; name: string }[] {

@@ -1,6 +1,6 @@
 import { Children } from "react";
 import Link from "next/link";
-import { AUTHOR, COMPONENTS, GITHUB, GROUPS, isSideActive, neighbours, sideItems } from "@/lib/site";
+import { COMPONENTS, GITHUB, TALK, GROUPS, isSideActive, neighbours, sideItems } from "@/lib/site";
 import { cx } from "@/lib/utils";
 import { ArrowUpRight01Icon } from "./hugeicons";
 import { Button } from "./button";
@@ -13,6 +13,7 @@ import { ThemeToggle } from "./theme-toggle";
 import { Toc } from "./toc";
 import { SideDropdown } from "./side-dropdown";
 import { Redraw } from "./page-redraw";
+import { NewChip } from "./new-chip";
 
 export type DocSection = { id: string; title: string };
 
@@ -92,6 +93,7 @@ export function DocsLayout({
                         key={c.slug}
                         href={`/docs/${c.slug}`}
                         active={isSideActive(c.slug, slug)}
+                        badge={<NewChip slug={c.slug} />}
                       >
                         {c.name}
                       </SideLink>
@@ -150,7 +152,7 @@ export function DocsLayout({
 /**
  * The tab in the sheet's top right corner, on the frame colour, like a
  * folder tab cut out of the page: Search (with the bulb theme switch
- * hanging under it), GitHub, Hire Vraj. GitHub and Hire Vraj show a
+ * hanging under it), GitHub, Talk to Vraj. GitHub and Talk to Vraj show a
  * small hint on hover.
  * It stays at the top while the page scrolls.
  */
@@ -171,7 +173,7 @@ function SheetTab() {
           <path d="M0 .5C9 .5 12 2 15 8L25 36.5C27.5 42 31 43.5 40 43.5" fill="none" stroke="var(--line)" />
         </svg>
         <div className="flex items-center border-b border-[var(--line)] bg-[var(--frame)] pr-1 text-[13px] text-[var(--muted)]">
-          {/* Search first, then GitHub, then the Hire Vraj button, split by thin
+          {/* Search first, then GitHub, then the Talk to Vraj button, split by thin
               dividers. The bulb takes no room in the tab: it hangs below it,
               centred under Search. The bulb's frame sits behind the Search
               button so clicks reach it. */}
@@ -189,6 +191,7 @@ function SheetTab() {
               href={GITHUB}
               target="_blank"
               rel="noopener noreferrer"
+              data-cta-sound
               className="flex items-center gap-1.5 self-stretch px-4 transition-colors hover:text-[var(--fg)]"
             >
               <GitHub className="size-4" />
@@ -197,8 +200,8 @@ function SheetTab() {
           </Tooltip>
           <TabDivider />
           <Tooltip label="Improve your product!" align="end" className="pr-1 pl-3">
-            <Button href={AUTHOR.href} size="xs">
-              Hire Vraj
+            <Button href={TALK} size="xs" data-cta-sound>
+              Talk to Vraj
             </Button>
           </Tooltip>
         </div>
@@ -235,7 +238,7 @@ function SideLink({
 }: {
   href: string;
   active?: boolean;
-  badge?: string;
+  badge?: React.ReactNode;
   icon?: React.ReactNode;
   children: React.ReactNode;
 }) {
@@ -249,12 +252,8 @@ function SideLink({
       )}
     >
       {icon && <span className={active ? "text-[var(--accent)]" : "text-[var(--faint)]"}>{icon}</span>}
-      <span className="flex-1">{children}</span>
-      {badge && (
-        <span className="rounded-full bg-[color-mix(in_srgb,var(--accent)_16%,transparent)] px-1.5 text-[10px] leading-4 font-medium text-[var(--accent)]">
-          {badge}
-        </span>
-      )}
+      <span className="min-w-0 flex-1">{children}</span>
+      {badge}
     </Link>
   );
 }

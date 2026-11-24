@@ -56,6 +56,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           <Button
             href={ZIP}
             download
+            data-cta-sound
             size="lg"
             leading={
               <svg viewBox="0 0 16 16" aria-hidden="true">

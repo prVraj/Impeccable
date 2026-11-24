@@ -24,6 +24,7 @@ export const ORDER = [
   "spotlight-ticker",
   "rolling-clock",
   "peek-list",
+  "peek-index",
   "settle-counter",
   // Buttons
   "peter-tingle-button",

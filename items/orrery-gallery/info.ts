@@ -13,6 +13,8 @@ export const info: ItemInfo = {
   tags: ["Media", "No extra packages", "Light + dark", "Mobile"],
   // When it was added (newest shows first in search and on the home page).
   added: "2026-11-15 15:45",
+  // When it last got a change people would notice (the latest updates get the Updated chip).
+  updated: "2026-11-16 19:30",
   // Search words for Google and AI tools (see the seo field in lib/site.ts). The visible name stays as it is.
   seo: { keyword: "draggable image gallery react", title: "Orbiting Image Gallery for React" },
 };

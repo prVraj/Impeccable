@@ -15,6 +15,7 @@ import { info as sleeveCard } from "@/items/sleeve-card/info";
 import { info as spotlightTicker } from "@/items/spotlight-ticker/info";
 import { info as rollingClock } from "@/items/rolling-clock/info";
 import { info as peekList } from "@/items/peek-list/info";
+import { info as peekIndex } from "@/items/peek-index/info";
 import { info as settleCounter } from "@/items/settle-counter/info";
 import { info as peterTingleButton } from "@/items/peter-tingle-button/info";
 import { info as venomButton } from "@/items/venom-button/info";
@@ -64,6 +65,7 @@ export const INFO: Record<string, ItemInfo> = {
   "spotlight-ticker": spotlightTicker,
   "rolling-clock": rollingClock,
   "peek-list": peekList,
+  "peek-index": peekIndex,
   "settle-counter": settleCounter,
   "peter-tingle-button": peterTingleButton,
   "venom-button": venomButton,

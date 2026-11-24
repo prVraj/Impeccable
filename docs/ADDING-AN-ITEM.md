@@ -17,6 +17,7 @@ Use lowercase words joined by dashes for the name, like `price-slider`. It becom
    - `description`: two lines at most, used under the page title, as the meta description and in the install file. Follow the descriptions skill.
    - `tags`: the small labels under the title.
    - `added`: now, as `"2026-11-12 14:30"`. The newest item shows first in search, in the home page's New pill and at the top of /components.
+   - `updated` (leave it out for a new item): when you later give it a change people would notice (a new look, behaviour or option), set it to that time, like `"2026-11-24 12:30"`. The 5 latest updates get the purple Updated chip in the sidebar, phone menu, /components and search (an item that is still New keeps New). Small fixes don't count.
    - `seo`: `{ keyword, title }`, the words people search for it. `title` goes in the browser tab as "<name>: <title> | Impeccable UI" (65 characters at most), like `"Fire Page Transition for React"`. The visible name never changes.
 4. **Write `demo.tsx`**, the live preview. Use the secondary pill button, never the brand button. Use `@min-[40rem]:` instead of `sm:` so it reacts to the preview width. A family member's `demo.tsx` also exports `Thumb`, the picture on the family page's card.
 5. **Write `tv.tsx`**, its channel on the home iMac. Draw it inside `<Screen>` from `components/site/tv-screen`.

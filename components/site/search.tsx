@@ -7,6 +7,7 @@ import { COMPONENTS, FAMILIES, GROUPS, newestFirst, type Group } from "@/lib/sit
 import { cx } from "@/lib/utils";
 import { ArrowTurnBackwardIcon, Cancel01Icon, Clock01Icon, CommandIcon, Search01Icon } from "./hugeicons";
 import { GroupIcon } from "./group-icon";
+import { NewChip } from "./new-chip";
 import { Mark } from "./icons";
 
 /**
@@ -485,6 +486,8 @@ export function SiteSearch() {
                         )}
                       </span>
                       <span className="shrink-0 font-medium text-[var(--fg)]">{item.name}</span>
+                      {/* "Recently added" is all new already, so the chip only shows in results and Recent. */}
+                      {s.label !== "Recently added" && <NewChip slug={item.href.replace(/^\/docs\//, "")} />}
                       <span className="hidden min-w-0 flex-1 truncate text-[13px] text-[var(--faint)] sm:block">{item.blurb}</span>
                       <ArrowTurnBackwardIcon
                         size={14}

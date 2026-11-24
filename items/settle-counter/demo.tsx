@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { SettleCounter } from "./settle-counter";
 
 const START = 7329; // the first number, the same on the server and in the browser
-const HOLD_MS = 3000; // each number stays this long before the next one
+const HOLD_MS = 7000; // each number stays this long before the next one
 
 /**
  * A random number from 100 to 1,00,000. Picked evenly by number of digits (3, 4, 5 or 6), so the
@@ -16,14 +16,25 @@ export function randomNumber(not?: number) {
   return n;
 }
 
-/** Plays random numbers on its own, a new one every 3 seconds. `next` changes it now and restarts the wait. */
+/**
+ * Plays random numbers on its own, a new one every 7 seconds. `next` changes it now; after that
+ * it stops playing on its own and stays on the visitor's number until they press again.
+ */
 export function useDemoNumber() {
   const [value, setValue] = useState(START);
+  const [touched, setTouched] = useState(false);
   useEffect(() => {
+    if (touched) return;
     const t = window.setTimeout(() => setValue((v) => randomNumber(v)), HOLD_MS);
     return () => clearTimeout(t);
-  }, [value]);
-  return { value, next: () => setValue((v) => randomNumber(v)) };
+  }, [value, touched]);
+  return {
+    value,
+    next: () => {
+      setTouched(true);
+      setValue((v) => randomNumber(v));
+    },
+  };
 }
 
 const PILL =

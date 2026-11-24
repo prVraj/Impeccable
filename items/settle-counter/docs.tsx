@@ -57,8 +57,9 @@ export default async function Docs({ info }: { info: ItemInfo }) {
 
   const hint = (
     <>
-      A new random number every 3 seconds, or press Change number. Watch only the changed digit: the old one shrinks away as the new one
-      lands big and faint, then settles. When a digit is added the number widens first, and when one leaves it closes up after.
+      A new random number every 7 seconds until you press Change number, then it stays on yours. Watch a changed digit count
+      there (1, 2, 3, 4, 5, 6), slowing into the last number, which lands big and faint and settles. When a digit is added the
+      number widens first, and when one leaves it closes up after.
     </>
   );
 
@@ -115,9 +116,12 @@ export default async function Docs({ info }: { info: ItemInfo }) {
       <DocSection id="how-it-moves" title="How it moves">
         <Lede>Only the digits that change move. The rest stay perfectly still.</Lede>
         <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
-          The old digit shrinks to half its size and fades out in 0.38 seconds, gone early with no tail. At the same moment
-          the new digit appears 1.6 times bigger at 30% and settles to full size and full color in 0.62 seconds: quick at
-          first, then a long, soft landing. When the number gets longer, the frame opens first, one digit wide in 0.42
+          A digit that changes counts to its new number, up or down, showing every number in between: from 1 to 6 you see
+          2, 3, 4 and 5 on the way. Each one arrives a little bigger (1.3 times) and leaves in 0.18 seconds. The count is
+          quick at first and slows into the last number, and never takes more than 0.56 seconds, so 0 to 9 doesn&apos;t
+          drag. The last number arrives 1.6 times bigger at 30% and settles to full size and full color in 0.62 seconds:
+          quick at first, then a long, soft landing. The old digit shrinks to half its size and fades out in 0.38 seconds,
+          gone early with no tail. When the number gets longer, the frame opens first, one digit wide in 0.42
           seconds, easing in and out so it never jolts, and the new digit starts settling 0.3 seconds in, when there is
           almost room for it. When the number gets shorter, the digit leaves first and the frame closes behind it. Digits
           that change together start 45ms apart, left to right. If a new number comes while digits are still settling, each

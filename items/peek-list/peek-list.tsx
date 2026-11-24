@@ -357,6 +357,8 @@ export function PeekList({
     }
     window.clearTimeout(timer.current);
     if (open !== null && open !== i) startClose(open, false);
+    // A row still lifting its story away folds now (or, if it is this row, simply opens again).
+    else if (closing !== null) setClosing(null);
     // Only a real keyboard press moves focus to the X, and only a real click may scroll the page.
     from.current = { box, i, keys: e.detail === 0 && e.nativeEvent.isTrusted, real: e.nativeEvent.isTrusted };
     openedAt.current = e.timeStamp || performance.now();

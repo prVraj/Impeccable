@@ -13,6 +13,8 @@ export const info: ItemInfo = {
   tags: ["Loader", "Progress bar", "Stone", "Stick figure", "No extra packages", "Light + dark", "Mobile"],
   // When it was added (newest shows first in search and on the home page).
   added: "2026-11-14 06:00",
+  // When it last got a change people would notice (the latest updates get the Updated chip).
+  updated: "2026-11-15 19:56",
   // Search words for Google and AI tools (see the seo field in lib/site.ts). The visible name stays as it is.
   seo: { keyword: "animated progress bar react", title: "React Animated Progress Bar" },
 };

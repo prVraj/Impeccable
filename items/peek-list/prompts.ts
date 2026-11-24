@@ -17,7 +17,7 @@ If the command succeeds, only fix import paths to match this project and skip ah
   - \`components/ui/peek-list.tsx\`
 - Keep these exports and their names: \`PeekList\` (also the default export), \`PeekListProps\`, \`PeekListItem\`.
 - Keep \`"use client"\` at the top in Next.js App Router projects. In other setups it is harmless.
-- Keep the tuning values at the top exactly as written: \`PEEK_IN_MS\`, \`PEEK_OUT_MS\`, \`PEEK_SCALE\`, \`PEEK_EASE\`, \`PEEK_LIFT\`, \`FOLLOW\`, \`OPEN_MS\`, \`CLOSE_MS\`, \`GLIDE_EASE\`, \`DIM\`, \`DIM_MS\`, \`TEXT_DELAY\`, \`TEXT_MS\`, \`TEXT_DROP\`, \`TEXT_BLUR\`, \`TEXT_STAGGER\`, \`TEXT_OUT_MS\`, \`X_SIZE\`, \`X_GAP\`, \`STACK_AT\` and the \`CSS\` block. They are the design and its timing.
+- Keep the tuning values at the top exactly as written: \`PEEK_IN_MS\`, \`PEEK_OUT_MS\`, \`PEEK_SCALE\`, \`PEEK_EASE\`, \`PEEK_GAP\`, \`FOLLOW\`, \`OPEN_MS\`, \`CLOSE_MS\`, \`GLIDE_EASE\`, \`HOVER_DIM\`, \`DIM\`, \`TEXT_DELAY\`, \`TEXT_MS\`, \`TEXT_DROP\`, \`TEXT_BLUR\`, \`TEXT_STAGGER\`, \`TEXT_OUT_MS\`, \`X_SIZE\`, \`X_INSET\`, \`STACK_AT\` and the \`CSS\` block. They are the design and its timing.
 - Keep the fallbacks: the floating picture shows only where a real mouse can hover (\`(hover: hover) and (pointer: fine)\`), never on phones or tablets, where one tap opens the row. Narrow lists (under 560px) put the picture above the words. Tab moves row by row, Enter opens a row and moves focus to the X, Esc closes it and gives focus back. With \`prefers-reduced-motion: reduce\` nothing glides or grows, things only fade.`;
 
 const PEEK_HOW = `## How the list works

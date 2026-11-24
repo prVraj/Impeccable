@@ -522,6 +522,19 @@
           "target": "components/ui/puzzle-refresh.tsx"
         }
       ]
+    },
+    {
+      "name": "peek-index",
+      "type": "registry:component",
+      "title": "Peek Index",
+      "description": "Numbered rows whose picture or video follows your pointer; a click opens a story with points and a link. Made for 3 to 8 services or products.",
+      "files": [
+        {
+          "path": "items/peek-index/peek-index.tsx",
+          "type": "registry:component",
+          "target": "components/ui/peek-index.tsx"
+        }
+      ]
     }
   ]
 }

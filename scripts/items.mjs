@@ -45,6 +45,7 @@ for (const slug of order.filter((s) => folders.includes(s))) {
     blurb: field(src, "blurb"),
     description: field(src, "description"),
     added: field(src, "added"),
+    updated: field(src, "updated"),
   };
   items.push(it);
   const where = `items/${slug}/info.ts`;
@@ -55,6 +56,10 @@ for (const slug of order.filter((s) => folders.includes(s))) {
     errors.push(`${where}: group must be components, buttons, loaders, backgrounds, sections, skills, animations or interactions (it is "${it.group}").`);
   if (it.added && !/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(it.added))
     errors.push(`${where}: added must look like "2026-11-12 14:30" (it is "${it.added}").`);
+  if (it.updated && !/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(it.updated))
+    errors.push(`${where}: updated must look like "2026-11-24 12:30" (it is "${it.updated}").`);
+  if (it.updated && it.added && it.updated <= it.added)
+    errors.push(`${where}: updated ("${it.updated}") must be later than added ("${it.added}").`);
   if (it.description && it.description.length > 150)
     warnings.push(`${where}: the description is ${it.description.length} characters; keep it to 150 or fewer (two lines), per the descriptions skill.`);
 }

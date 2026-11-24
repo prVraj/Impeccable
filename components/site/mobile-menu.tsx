@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { COMPONENTS, GROUPS, isSideActive, sideItems, type Group } from "@/lib/site";
 import { cx } from "@/lib/utils";
 import { GroupIcon } from "./group-icon";
+import { NewChip } from "./new-chip";
 import { Mark } from "./icons";
 import { setGroupOpen, useGroupState } from "./group-state";
 
@@ -167,6 +168,7 @@ export function MobileMenu() {
                                     active={isSideActive(c.slug, pathname?.replace(/^\/docs\//, ""))}
                                     onPick={() => setOpen(false)}
                                     small
+                                    badge={<NewChip slug={c.slug} />}
                                   >
                                     {c.name}
                                   </MenuLink>
@@ -200,7 +202,7 @@ function MenuLink({
 }: {
   href: string;
   active?: boolean;
-  badge?: string;
+  badge?: React.ReactNode;
   small?: boolean;
   onPick: () => void;
   children: React.ReactNode;
@@ -218,11 +220,7 @@ function MenuLink({
     >
       {active && <span className="size-1.5 rounded-full bg-[var(--accent)]" aria-hidden="true" />}
       {children}
-      {badge && (
-        <span className="rounded-full bg-[color-mix(in_srgb,var(--accent)_16%,transparent)] px-1.5 text-[10px] leading-4 font-medium text-[var(--accent)]">
-          {badge}
-        </span>
-      )}
+      {badge}
     </Link>
   );
 }

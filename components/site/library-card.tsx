@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { TV } from "@/generated/items/tv";
 import { Arrow } from "./icons";
+import { NewChip } from "./new-chip";
 
 /**
  * One card on /components: a picture of the item, its name, its kind and its short line.
@@ -130,6 +131,7 @@ export function LibraryCard({
       <div className="px-2.5 pt-3 pb-2.5">
         <div className="flex items-center gap-2">
           <h2 className="truncate text-sm font-medium text-[var(--fg)]">{name}</h2>
+          <NewChip slug={slug} />
           <Arrow className="lib-arrow size-3.5 shrink-0 text-[var(--accent)]" />
           <span className="ml-auto shrink-0 text-xs text-[var(--faint)]">{kind}</span>
         </div>
