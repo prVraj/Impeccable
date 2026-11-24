@@ -19,7 +19,7 @@ const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
 // social card through pageMetadata() or itemMetadata() in lib/site.ts.
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  ...pageMetadata({ title: SITE.title, description: SITE.description, path: "/", image: "home", imageAlt: SITE.title }),
+  ...pageMetadata({ title: SITE.title, description: SITE.description, path: "/" }),
   alternates: undefined,
   applicationName: SITE.name,
   authors: [{ name: SITE.author.name, url: SITE.author.url }],

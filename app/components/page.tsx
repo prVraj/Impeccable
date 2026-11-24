@@ -19,8 +19,6 @@ export const metadata: Metadata = pageMetadata({
   title: "All Components: Animated React UI, Newest First | Impeccable UI",
   description: "Every Impeccable UI component, button, loader, background, section, animation and skill in one list, newest first, with a preview of each.",
   path: "/components",
-  image: "components",
-  imageAlt: "All Impeccable UI components, newest first",
 });
 
 /** Stills are checked once, when the page is built. */

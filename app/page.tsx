@@ -8,7 +8,7 @@ import { AUTHOR, GITHUB, newestFirst, pageMetadata } from "@/lib/site";
 import { SITE } from "@/lib/seo";
 import { SiteJsonLd } from "@/components/site/json-ld";
 
-export const metadata = pageMetadata({ title: SITE.title, description: SITE.description, path: "/", image: "home", imageAlt: SITE.title });
+export const metadata = pageMetadata({ title: SITE.title, description: SITE.description, path: "/" });
 
 /** One screen, nothing to scroll: the promise, two ways in. */
 export default function Home() {

@@ -1,7 +1,7 @@
 /** The site's list of items. The order lives in items/list.ts; each item's details in items/<slug>/info.ts. */
 import type { Metadata } from "next";
 import { ORDER } from "@/items/list";
-import { SITE, absolute, ogImage } from "@/lib/seo";
+import { SITE, SHARE_IMAGE, absolute } from "@/lib/seo";
 import { INFO } from "@/generated/items/info";
 
 export type Group = "components" | "buttons" | "loaders" | "backgrounds" | "sections" | "skills" | "animations" | "interactions";
@@ -121,12 +121,13 @@ export function itemMetadata(info: ItemInfo): Metadata {
   const what = info.seo?.title ?? info.category ?? GROUPS.find((g) => g.id === info.group)!.label;
   const title = `${info.name}: ${what} | ${SITE.name}`;
   const path = `/docs/${info.slug}`;
-  return pageMetadata({ title, description: info.description, path, image: info.slug, imageAlt: `${info.name}: ${info.blurb}` });
+  return pageMetadata({ title, description: info.description, path });
 }
 
-/** Title, description, canonical link and social card for any page. Pages never set openGraph themselves. */
-export function pageMetadata(p: { title: string; description: string; path: string; image: string; imageAlt: string }): Metadata {
-  const image = ogImage(p.image, p.imageAlt);
+/** Title, description, canonical link and social card for any page. Pages never set openGraph themselves.
+ *  The social card is always the one main picture (SHARE_IMAGE), on every page. */
+export function pageMetadata(p: { title: string; description: string; path: string }): Metadata {
+  const image = SHARE_IMAGE;
   return {
     title: { absolute: p.title },
     description: p.description,

@@ -39,13 +39,17 @@ export const SITE = {
 export const absolute = (path = "/") => SITE.url + (path === "/" ? "" : path);
 
 /**
- * The social card image for a page: "home", "docs" or an item's slug.
- * Home and docs use a hand-made card that shows real pieces (public/social/impeccable-ui-2026-11-23.jpg,
- * light on purpose: vrajsensei, 2026-11-13). When the card changes, give the file a NEW name (the date):
- * X, LinkedIn, Slack and others keep the old picture for days if the address stays the same.
- * Item pages use the card made by app/og/[slug]/route.tsx.
+ * The one social card (the picture X, LinkedIn, Slack and WhatsApp show for a shared link).
+ * EVERY page uses this same picture, item pages too: vrajsensei, 2026-11-24 ("every link from
+ * Impeccable shows only the main preview image"). No per-page or per-item cards.
+ * It shows real pieces and is light on purpose (vrajsensei, 2026-11-13).
+ * When the card changes, give the file a NEW name (the date): X, LinkedIn, Slack and others
+ * keep the old picture for days if the address stays the same.
  */
-export const ogImage = (slug: string, alt: string) =>
-  slug === "home" || slug === "docs"
-    ? { url: "/social/impeccable-ui-2026-11-23.jpg", width: 2400, height: 1260, alt, type: "image/jpeg" }
-    : { url: `/og/${slug}`, width: 1200, height: 630, alt, type: "image/png" };
+export const SHARE_IMAGE = {
+  url: "/social/impeccable-ui-2026-11-23.jpg",
+  width: 2400,
+  height: 1260,
+  alt: "Impeccable UI: Animations that blend right into your project.",
+  type: "image/jpeg",
+};

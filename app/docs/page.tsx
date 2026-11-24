@@ -9,8 +9,6 @@ export const metadata: Metadata = pageMetadata({
   title: "Docs: Animated React Components and AI Skills | Impeccable UI",
   description: "Why Impeccable exists, what every component comes with, and how the Install and Blend prompts fit it to your product.",
   path: "/docs",
-  image: "docs",
-  imageAlt: "Impeccable UI docs",
 });
 
 const SECTIONS = [
