@@ -63,7 +63,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
     { id: "props", title: "Props" },
   ];
 
-  const code = "font-mono text-[13px] text-[var(--fg)]";
+  const code = "font-mono text-code-inline text-[var(--fg)]";
   const link = "font-medium text-[var(--fg)] underline decoration-[var(--line)] underline-offset-4 hover:decoration-[var(--fg)]";
 
   return (
@@ -109,7 +109,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
       <DocSection id="usage" title="Usage">
         <Lede>Put it on its own between two sections of a long page, and give it your own numbers and photos.</Lede>
         <Tabs tabs={[{ id: "usage", label: "components/about.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           The page&apos;s own scrolling moves everything, so it feels like the rest of your site. The statement sticks to the
           screen, or to the nearest box that scrolls, so no wrapper between the section and that scroller may have{" "}
           <code className={code}>overflow: hidden</code>. Photos load only as they come near, and the script runs only while the

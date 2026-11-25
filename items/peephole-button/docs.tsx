@@ -148,7 +148,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
       <DocSection id="usage" title="Usage">
         <Lede>Use it like any button. Only the picture is needed.</Lede>
         <Tabs tabs={[{ id: "usage", label: "talk-to-us.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Everything happens inside the button, so it needs no extra room around it. Pictures look best when they are at least
           twice the button&apos;s size.
         </p>
@@ -159,7 +159,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           At rest the slot is a small window in the glass. On hover it stretches open from where it sits until it fills the
           whole button.
         </Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           In <Code>reveal</Code>, the glass is a heavily blurred copy of your picture, so it always takes the picture&apos;s
           colors, and the slot shows the same picture sharp. On hover the window widens across the button in 560ms with a soft
           ease out, the picture settles from a slight zoom to its real size, and a light shade fades in so the label stays easy

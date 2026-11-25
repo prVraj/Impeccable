@@ -100,7 +100,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
       <DocSection id="usage" title="Usage">
         <Lede>Use it like any button. Everything has a default.</Lede>
         <Tabs tabs={[{ id: "usage", label: "hero-action.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           The sense lines reach about 40px past the edge. Give it that much room, or a box with hidden overflow will cut
           them off.
         </p>
@@ -112,7 +112,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           the way in. Coming in fast makes it stronger still, so a rush feels like a threat and a slow approach feels like
           a hunch.
         </Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           The lines are longest and brightest on the side your pointer comes from, so the button seems to look at it. The
           moment the pointer lands on the button, the lines flash outward once and everything goes still, so your click is
           always steady. Phones have no pointer to sense, so a tap sets off one short tingle all around. Keyboard focus sets

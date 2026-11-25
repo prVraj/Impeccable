@@ -17,7 +17,7 @@ export function FileView({
   return (
     <div className="card overflow-hidden rounded-xl">
       <div className="flex items-center border-b border-[var(--line)] bg-[var(--panel-2)]/60 px-2 py-1.5">
-        <span className="inline-flex h-7 items-center rounded-md bg-[var(--panel)] px-2.5 text-xs font-medium text-[var(--fg)] shadow-[0_0_0_1px_var(--line)]">
+        <span className="inline-flex h-7 items-center rounded-md bg-[var(--panel)] px-2.5 text-label-12 font-medium text-[var(--fg)] shadow-[0_0_0_1px_var(--line)]">
           {name}
         </span>
       </div>
@@ -25,7 +25,7 @@ export function FileView({
         role="region"
         aria-label={name}
         tabIndex={0}
-        className="overflow-auto p-4 text-[13px] leading-relaxed [&_pre]:break-words [&_pre]:whitespace-pre-wrap"
+        className="overflow-auto p-4 text-code-13 [&_pre]:break-words [&_pre]:whitespace-pre-wrap"
         style={{ maxHeight }}
       >
         {children}

@@ -103,14 +103,14 @@ export default async function Docs({ info }: { info: ItemInfo }) {
       <DocSection id="usage" title="Usage">
         <Lede>Make it the whole login page and pass it your logo and your sign-in.</Lede>
         <Tabs tabs={[{ id: "usage", label: "app/login/page.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Continue checks the email first. Empty or not an email, a short message opens under the field and nothing is sent. Colors
-          come from your theme: it reads <code className="font-mono text-[13px] text-[var(--fg)]">--foreground</code> and{" "}
-          <code className="font-mono text-[13px] text-[var(--fg)]">--background</code> (or{" "}
-          <code className="font-mono text-[13px] text-[var(--fg)]">--fg</code> and{" "}
-          <code className="font-mono text-[13px] text-[var(--fg)]">--bg</code>),{" "}
-          <code className="font-mono text-[13px] text-[var(--fg)]">--destructive</code> for errors and{" "}
-          <code className="font-mono text-[13px] text-[var(--fg)]">--radius-lg</code> for the field, so it follows light and dark mode
+          come from your theme: it reads <code className="font-mono text-code-inline text-[var(--fg)]">--foreground</code> and{" "}
+          <code className="font-mono text-code-inline text-[var(--fg)]">--background</code> (or{" "}
+          <code className="font-mono text-code-inline text-[var(--fg)]">--fg</code> and{" "}
+          <code className="font-mono text-code-inline text-[var(--fg)]">--bg</code>),{" "}
+          <code className="font-mono text-code-inline text-[var(--fg)]">--destructive</code> for errors and{" "}
+          <code className="font-mono text-code-inline text-[var(--fg)]">--radius-lg</code> for the field, so it follows light and dark mode
           on its own.
         </p>
       </DocSection>

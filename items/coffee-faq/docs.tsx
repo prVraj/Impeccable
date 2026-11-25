@@ -109,16 +109,16 @@ export default async function Docs({ info }: { info: ItemInfo }) {
       <DocSection id="usage" title="Usage">
         <Lede>Put it near the end of a page and give it your own questions.</Lede>
         <Tabs tabs={[{ id: "usage", label: "components/faq.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           One row is open at a time, and a question you ask becomes a new open row above the box. Asking again replaces it, so only your latest question stays and the section never keeps growing. With no{" "}
-          <code className="font-mono text-[13px] text-[var(--fg)]">onAsk</code>, nothing leaves the page: every question gets{" "}
-          <code className="font-mono text-[13px] text-[var(--fg)]">reply</code>. To answer for real later, return the answer from{" "}
-          <code className="font-mono text-[13px] text-[var(--fg)]">onAsk</code>. Colors come from your theme: it reads{" "}
-          <code className="font-mono text-[13px] text-[var(--fg)]">--foreground</code> and{" "}
-          <code className="font-mono text-[13px] text-[var(--fg)]">--background</code> (or{" "}
-          <code className="font-mono text-[13px] text-[var(--fg)]">--fg</code> and{" "}
-          <code className="font-mono text-[13px] text-[var(--fg)]">--bg</code>) and{" "}
-          <code className="font-mono text-[13px] text-[var(--fg)]">--radius-lg</code> for the corners, so it follows light and dark
+          <code className="font-mono text-code-inline text-[var(--fg)]">onAsk</code>, nothing leaves the page: every question gets{" "}
+          <code className="font-mono text-code-inline text-[var(--fg)]">reply</code>. To answer for real later, return the answer from{" "}
+          <code className="font-mono text-code-inline text-[var(--fg)]">onAsk</code>. Colors come from your theme: it reads{" "}
+          <code className="font-mono text-code-inline text-[var(--fg)]">--foreground</code> and{" "}
+          <code className="font-mono text-code-inline text-[var(--fg)]">--background</code> (or{" "}
+          <code className="font-mono text-code-inline text-[var(--fg)]">--fg</code> and{" "}
+          <code className="font-mono text-code-inline text-[var(--fg)]">--bg</code>) and{" "}
+          <code className="font-mono text-code-inline text-[var(--fg)]">--radius-lg</code> for the corners, so it follows light and dark
           mode on its own. It pairs well with{" "}
           <Link href="/docs/hex-login" className="font-medium text-[var(--fg)] underline decoration-[var(--line)] underline-offset-4 hover:decoration-[var(--fg)]">
             Hex Login

@@ -132,7 +132,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
 
       <DocSection id="how-it-moves" title="How it moves">
         <Lede>One click, one wave, rolling out from the exact spot you clicked like a wave on water.</Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           The picture is made of tiny cubes about 20 pixels wide, the current picture on their fronts and the next one on their
           backs. A click sends a slow wave out from that spot, crossing to the farthest corner in 1.4 seconds, so you can watch
           it travel. As the wave reaches a cube, a dark gap opens round it so you see it on its own, and it swells up toward you,

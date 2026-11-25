@@ -73,7 +73,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           >
             Download Health check
           </Button>
-          <p className="mt-8 mb-3 text-[15px] leading-relaxed text-[var(--muted)]">
+          <p className="mt-8 mb-3 max-w-prose text-copy-16 text-[var(--muted)]">
             Read it before you install. This is <Code>SKILL.md</Code>, the file your AI tool reads first.
           </p>
           <FileView name="SKILL.md">
@@ -82,22 +82,22 @@ export default async function Docs({ info }: { info: ItemInfo }) {
         </DocSection>
 
         <DocSection id="install" title="Install">
-          <h3 className="mb-2 text-[15px] font-medium">Claude on the web or desktop</h3>
-          <p className="mb-6 max-w-2xl text-[15px] leading-relaxed text-[var(--muted)]">
+          <h3 className="mb-2 text-heading-16">Claude on the web or desktop</h3>
+          <p className="mb-6 max-w-prose text-copy-16 text-[var(--muted)]">
             Open Settings, find Skills, and upload the zip as it is. No need to unzip it.
           </p>
-          <h3 className="mb-2 text-[15px] font-medium">Claude Code</h3>
-          <p className="mb-3 max-w-2xl text-[15px] leading-relaxed text-[var(--muted)]">
+          <h3 className="mb-2 text-heading-16">Claude Code</h3>
+          <p className="mb-3 max-w-prose text-copy-16 text-[var(--muted)]">
             Unzip it into your skills folder so it works in every project:
           </p>
           <div className="card flex items-center justify-between gap-2 overflow-hidden rounded-xl py-1.5 pr-2 pl-4">
-            <code className="overflow-x-auto font-mono text-[13px] whitespace-nowrap">
+            <code className="overflow-x-auto font-mono text-code-13 whitespace-nowrap">
               <span className="text-[var(--faint)] select-none">$ </span>
               {CLAUDE_CODE}
             </code>
             <CopyButton text={CLAUDE_CODE} />
           </div>
-          <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-[var(--muted)]">
+          <p className="mt-6 max-w-prose text-copy-16 text-[var(--muted)]">
             Then say <Code>is this ready to push?</Code> or <Code>run a health check</Code>. It also runs on its own when you ask to push, commit or deploy.
           </p>
         </DocSection>
@@ -110,10 +110,10 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           <ol className="card divide-y divide-[var(--line)] overflow-hidden rounded-xl">
             {STEPS.map(([title, body], i) => (
               <li key={title} className="flex gap-4 px-4 py-3.5">
-                <span className="mt-px font-mono text-xs text-[var(--faint)] tabular-nums">{i + 1}</span>
+                <span className="mt-px font-mono text-code-12 text-[var(--muted)] tabular-nums">{i + 1}</span>
                 <div className="min-w-0">
-                  <p className="text-[15px] font-medium tracking-tight">{title}</p>
-                  <p className="mt-0.5 text-sm leading-relaxed text-pretty text-[var(--muted)]">{body}</p>
+                  <p className="text-label-16 font-medium">{title}</p>
+                  <p className="mt-0.5 max-w-prose text-copy-14 text-pretty text-[var(--muted)]">{body}</p>
                 </div>
               </li>
             ))}
@@ -126,7 +126,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
             real phone. Then the commands, adding only your own files, so nothing half done goes out with them.
           </Lede>
           <div className="card overflow-x-auto rounded-xl px-4 py-3.5">
-            <pre className="font-mono text-[12.5px] leading-relaxed text-[var(--muted)]">{TREE}</pre>
+            <pre className="font-mono text-code-13 leading-relaxed text-[var(--muted)]">{TREE}</pre>
           </div>
         </DocSection>
       </DocsLayout>

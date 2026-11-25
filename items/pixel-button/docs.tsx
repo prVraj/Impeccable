@@ -116,7 +116,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
       <DocSection id="usage" title="Usage">
         <Lede>Use it like any button. Everything has a default.</Lede>
         <Tabs tabs={[{ id: "usage", label: "hero-action.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Everything happens inside the button, so it needs no extra room around it.
         </p>
       </DocSection>
@@ -126,7 +126,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           A white pill in light mode and a dark one in dark mode, with a light that keeps travelling round its edge: a
           bright head with a soft, fading tail.
         </Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Behind the label sit tiny 2px pixels, each nudged a little off the grid with some spots left empty, so they feel
           scattered by hand. Each has its own brightness, breathes at its own uneven pace, and a few now and then light up
           brighter and fade back. They are brighter toward the edge than in the middle, so the label always reads first. With{" "}

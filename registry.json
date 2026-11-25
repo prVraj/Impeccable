@@ -535,6 +535,32 @@
           "target": "components/ui/peek-index.tsx"
         }
       ]
+    },
+    {
+      "name": "liquid-orbit-loader",
+      "type": "registry:component",
+      "title": "Liquid Orbit loader",
+      "description": "A drop of liquid floats and wobbles in a liquid ring, then pours away and rises back. Use it on a first load or a dashboard waiting on data.",
+      "files": [
+        {
+          "path": "items/liquid-orbit-loader/liquid-orbit-loader.tsx",
+          "type": "registry:component",
+          "target": "components/ui/liquid-orbit-loader.tsx"
+        }
+      ]
+    },
+    {
+      "name": "chain-testimonials",
+      "type": "registry:component",
+      "title": "Chain Testimonials",
+      "description": "Picture cards joined like a chain, and the middle one opens into a review. The chain shifts on its own. Use it on a landing page with 5 to 9 reviews.",
+      "files": [
+        {
+          "path": "items/chain-testimonials/chain-testimonials.tsx",
+          "type": "registry:component",
+          "target": "components/ui/chain-testimonials.tsx"
+        }
+      ]
     }
   ]
 }

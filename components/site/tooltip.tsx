@@ -29,7 +29,7 @@ export function Tooltip({
       <span
         aria-hidden="true"
         className={cx(
-          "pointer-events-none absolute top-full z-40 mt-1.5 rounded-md border border-[var(--line)] bg-[var(--sheet)] px-2 py-1 text-xs whitespace-nowrap text-[var(--fg)] shadow-[var(--shadow-card)]",
+          "pointer-events-none absolute top-full z-40 mt-1.5 rounded-md border border-[var(--line)] bg-[var(--sheet)] px-2 py-1 text-label-12 whitespace-nowrap text-[var(--fg)] shadow-[var(--shadow-card)]",
           "translate-y-[-2px] opacity-0 transition-[opacity,translate] duration-150 ease-[var(--ease-out)]",
           "group-hover/tip:translate-y-0 group-hover/tip:opacity-100 group-hover/tip:delay-200",
           "group-has-[:focus-visible]/tip:translate-y-0 group-has-[:focus-visible]/tip:opacity-100",

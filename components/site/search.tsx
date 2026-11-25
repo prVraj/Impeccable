@@ -90,7 +90,7 @@ function Shortcut({ mac }: { mac: boolean | null }) {
   return (
     <kbd
       className={cx(
-        "flex h-5 items-center gap-0.5 rounded-[5px] border border-[var(--line)] bg-[var(--panel-2)] px-1 font-sans text-[11px] leading-none font-medium text-[var(--muted)]",
+        "flex h-5 items-center gap-0.5 rounded-[5px] border border-[var(--line)] bg-[var(--panel-2)] px-1 font-sans text-label-11 leading-none font-medium text-[var(--muted)]",
         mac === null && "invisible",
       )}
     >
@@ -130,7 +130,7 @@ export function SearchTrigger({ compact, className }: { compact?: boolean; class
       aria-haspopup="dialog"
       aria-keyshortcuts={keys}
       className={cx(
-        "press flex h-7 items-center gap-1.5 rounded-lg border border-[var(--line)] bg-[var(--panel)] pr-1 pl-2 text-[13px] text-[var(--muted)] transition-colors hover:border-[color-mix(in_srgb,var(--accent)_35%,var(--line))] hover:text-[var(--fg)]",
+        "press flex h-7 items-center gap-1.5 rounded-lg border border-[var(--line)] bg-[var(--panel)] pr-1 pl-2 text-label-13 text-[var(--muted)] transition-colors hover:border-[color-mix(in_srgb,var(--accent)_35%,var(--line))] hover:text-[var(--fg)]",
         className,
       )}
     >
@@ -397,7 +397,7 @@ export function SiteSearch() {
               setActive(0);
             }}
             placeholder="Search the library…"
-            className="h-full min-w-0 flex-1 bg-transparent text-[15px] text-[var(--fg)] outline-none placeholder:text-[var(--faint)]"
+            className="h-full min-w-0 flex-1 bg-transparent text-label-16 text-[var(--fg)] outline-none placeholder:text-[var(--faint)]"
             role="combobox"
             aria-expanded="true"
             aria-controls="site-search-list"
@@ -416,7 +416,7 @@ export function SiteSearch() {
             className="press grid h-6 shrink-0 place-items-center rounded-[5px] text-[var(--muted)] transition-colors hover:text-[var(--fg)] sm:border sm:border-[var(--line)] sm:bg-[var(--panel-2)] sm:px-1.5"
           >
             <Cancel01Icon size={16} className="sm:hidden" />
-            <span className="hidden text-[11px] font-medium sm:block">Esc</span>
+            <span className="hidden text-label-11 font-medium sm:block">Esc</span>
           </button>
         </div>
 
@@ -428,14 +428,14 @@ export function SiteSearch() {
           className="max-h-[min(360px,calc(100dvh-160px))] overflow-y-auto overscroll-contain p-1.5"
         >
           {flat.length === 0 ? (
-            <p className="px-3 py-10 text-center text-sm text-[var(--muted)]">
+            <p className="px-3 py-10 text-center text-copy-14 text-[var(--muted)]">
               Nothing found for “<span className="text-[var(--fg)]">{query.trim()}</span>”.
             </p>
           ) : (
             sections.map((s) => (
               <div key={s.label} role="group" aria-label={s.label} className="pb-1">
                 <div className="flex items-center justify-between px-2.5 pt-2 pb-1.5">
-                  <p className="text-xs font-medium text-[var(--faint)]">{s.label}</p>
+                  <p className="text-label-12 font-medium text-[var(--muted)]">{s.label}</p>
                   {s.recent && (
                     <button
                       type="button"
@@ -446,7 +446,7 @@ export function SiteSearch() {
                         setActive(0);
                         input.current?.focus();
                       }}
-                      className="text-xs text-[var(--faint)] transition-colors hover:text-[var(--fg)]"
+                      className="text-label-12 text-[var(--muted)] transition-colors hover:text-[var(--fg)]"
                     >
                       Clear
                     </button>
@@ -472,7 +472,7 @@ export function SiteSearch() {
                         hide();
                       }}
                       className={cx(
-                        "flex h-10 items-center gap-2.5 rounded-lg px-2.5 text-sm",
+                        "flex h-10 items-center gap-2.5 rounded-lg px-2.5 text-label-14",
                         on ? "bg-[color-mix(in_srgb,var(--accent)_9%,transparent)]" : "",
                       )}
                     >
@@ -488,7 +488,7 @@ export function SiteSearch() {
                       <span className="shrink-0 font-medium text-[var(--fg)]">{item.name}</span>
                       {/* "Recently added" is all new already, so the chip only shows in results and Recent. */}
                       {s.label !== "Recently added" && <NewChip slug={item.href.replace(/^\/docs\//, "")} />}
-                      <span className="hidden min-w-0 flex-1 truncate text-[13px] text-[var(--faint)] sm:block">{item.blurb}</span>
+                      <span className="hidden min-w-0 flex-1 truncate text-label-13 text-[var(--muted)] sm:block">{item.blurb}</span>
                       <ArrowTurnBackwardIcon
                         size={14}
                         className={cx("ml-auto shrink-0 text-[var(--muted)] transition-opacity duration-150", on ? "opacity-100" : "opacity-0")}
@@ -501,7 +501,7 @@ export function SiteSearch() {
           )}
         </div>
 
-        <div className="hidden h-10 items-center gap-4 border-t border-[var(--line)] px-4 text-[11px] text-[var(--faint)] sm:flex">
+        <div className="hidden h-10 items-center gap-4 border-t border-[var(--line)] px-4 text-label-12 text-[var(--muted)] sm:flex">
           <span className="flex items-center gap-1.5">
             <Key>↑</Key>
             <Key>↓</Key>
@@ -523,7 +523,7 @@ export function SiteSearch() {
 
 function Key({ children }: { children: React.ReactNode }) {
   return (
-    <kbd className="grid h-5 min-w-5 place-items-center rounded-[5px] border border-[var(--line)] bg-[var(--panel-2)] px-1 font-sans text-[11px] leading-none text-[var(--muted)]">
+    <kbd className="grid h-5 min-w-5 place-items-center rounded-[5px] border border-[var(--line)] bg-[var(--panel-2)] px-1 font-sans text-label-11 leading-none font-medium text-[var(--muted)]">
       {children}
     </kbd>
   );

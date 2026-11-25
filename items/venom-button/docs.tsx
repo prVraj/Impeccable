@@ -102,7 +102,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
       <DocSection id="usage" title="Usage">
         <Lede>Use it like any button. Everything has a default.</Lede>
         <Tabs tabs={[{ id: "usage", label: "hero-action.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Give it room: the tentacles reach up to <Code>snapAt</Code> (220px) past the edge and are drawn above everything
           else, so a box with hidden overflow never cuts them off. One per screen is plenty.
         </p>
@@ -114,7 +114,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           system pointer is hidden and a drawn arrow takes its place. The arrow is pulled back toward the button by{" "}
           <Code>weight</Code> (18% by default) and trails a little behind, so it feels heavy.
         </Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Over the button the real pointer is back, so clicking it is always exact. When the last tentacles snap, the arrow
           slides back onto the real pointer in a fraction of a second and the system pointer returns. Clicking anywhere
           else while held lets go first. On touch screens and with reduced motion there is no drawn pointer.

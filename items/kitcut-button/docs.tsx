@@ -105,14 +105,14 @@ export default async function Docs({ info }: { info: ItemInfo }) {
       <DocSection id="usage" title="Usage">
         <Lede>Use it like any button. Return a promise from onClick, or pass loading yourself.</Lede>
         <Tabs tabs={[{ id: "usage", label: "publish-action.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           The sparks fly about 40px above and below the button on success, so give it a little room inside a box that hides overflow. They never go past its sides.
         </p>
       </DocSection>
 
       <DocSection id="how-it-moves" title="How it moves">
         <Lede>At rest it is a plain brand button: a soft top to bottom shade, a thin darker edge, a lit top line and a small shadow.</Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           On click it dips a little and a jagged zigzag crack runs down its middle in 90ms, with a short crack sound
           made in the browser (a sharp snap, a low knock and a few tiny splinters). The crack is new every time. Then
           the two halves pull apart from the crack in 460ms, fast at first and landing softly. The label splits with

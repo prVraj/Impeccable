@@ -137,7 +137,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
 
       <DocSection id="how-it-moves" title="How it moves">
         <Lede>Every pop starts at the very tip of the pointer, on the frame of the press, and is gone in about half a second.</Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Burst throws four short lines up and out from just above the tip; they travel about 22px, shrink to dots and fade
           after the halfway mark, in 0.42 seconds. Ring opens from 3px to 26px around the click while its line thins out, in
           0.52 seconds. Particles throws eight dots all around, each a little off its slot and a little farther or nearer, then

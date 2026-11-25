@@ -27,9 +27,9 @@ export default function Home() {
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
             <Link
               href={`/docs/${latest.slug}`}
-              className="card press group inline-flex items-center gap-2 rounded-full py-1 pr-3 pl-1 text-[13px]"
+              className="card press group inline-flex items-center gap-2 rounded-full py-1 pr-3 pl-1 text-label-13"
             >
-              <span className="btn-brand rounded-full px-2 py-0.5 text-[11px] font-medium">
+              <span className="btn-brand rounded-full px-2 py-0.5 text-label-11 font-medium">
                 New
               </span>
               <span className="text-[var(--muted)] transition-colors group-hover:text-[var(--fg)]">
@@ -38,10 +38,10 @@ export default function Home() {
               <Arrow className="size-3.5 text-[var(--muted)] transition-transform group-hover:translate-x-0.5" />
             </Link>
 
-            <h1 className="mt-6 max-w-xl text-4xl leading-[1.08] font-semibold tracking-tighter text-balance sm:text-5xl">
-              Let&apos;s make something for Humans once again.
+            <h1 className="mt-6 max-w-xl text-heading-40 text-balance sm:text-heading-48">
+              Let&rsquo;s make something for Humans once again.
             </h1>
-            <p className="mt-5 max-w-md text-base leading-relaxed text-pretty text-[var(--muted)] sm:text-lg">
+            <p className="mt-5 max-w-md text-copy-16 text-pretty text-[var(--muted)] sm:text-copy-18">
               React animations made with care. Each one comes with the code and
               two prompts for your AI tool.
             </p>
@@ -56,13 +56,13 @@ export default function Home() {
           <IMac />
         </div>
       </main>
-      <footer className="relative px-4 pb-6 text-center text-xs text-[var(--faint)]">
+      <footer className="relative px-4 pb-6 text-center text-label-12 text-[var(--muted)]">
         Built by{" "}
         <a
           href={AUTHOR.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[var(--muted)] hover:text-[var(--fg)]"
+          className="text-[var(--fg)] underline decoration-[var(--line)] underline-offset-4 hover:decoration-[var(--fg)]"
         >
           {AUTHOR.name}
         </a>

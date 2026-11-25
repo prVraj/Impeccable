@@ -116,7 +116,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
 
       <DocSection id="how-it-moves" title="How it moves">
         <Lede>Nothing moves until the new picture has fully loaded. Then the whole picture changes in 1.2 seconds.</Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           The picture is cut into tiny square tiles about 14 pixels wide, each holding its own piece of the old picture on its
           front and the same piece of the new one on its back. The tiles are shuffled, and their starts follow a soft curve: a
           few first, most in the middle, a few last, so the whole change eases in and out. Each one turns over on its upright

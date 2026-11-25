@@ -13,6 +13,8 @@ export const info: ItemInfo = {
   tags: ["Feedback", "No extra packages", "Light + dark", "Mobile"],
   // When it was added (newest shows first in search and on the home page).
   added: "2026-11-14 15:30",
+  // Last visible change: the folded list now follows the task in progress.
+  updated: "2026-11-25 08:35",
   // Search words for Google and AI tools (see the seo field in lib/site.ts). The visible name stays as it is.
   seo: { keyword: "animated task list react", title: "Animated Task List for React" },
 };

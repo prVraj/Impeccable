@@ -5,6 +5,67 @@
 @theme {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* ---- Type scale. Spec: docs/TYPOGRAPHY.md ----
+     One token per style, named by its job and size. Each one sets size, line height and
+     letter spacing together (headings also their weight), so `text-heading-24` is the whole
+     style. Colour stays separate: --fg for what people read and act on, --muted for what
+     supports it. Never write a px size by hand on the site; pick the job's token. */
+  /* Heading: introduces a page, section or card. 600, tighter as it grows. */
+  --text-heading-48: 3rem;
+  --text-heading-48--line-height: 3.5rem;
+  --text-heading-48--letter-spacing: -0.05em;
+  --text-heading-48--font-weight: 600;
+  --text-heading-40: 2.5rem;
+  --text-heading-40--line-height: 3rem;
+  --text-heading-40--letter-spacing: -0.05em;
+  --text-heading-40--font-weight: 600;
+  --text-heading-32: 2rem;
+  --text-heading-32--line-height: 2.5rem;
+  --text-heading-32--letter-spacing: -0.04em;
+  --text-heading-32--font-weight: 600;
+  --text-heading-24: 1.5rem;
+  --text-heading-24--line-height: 2rem;
+  --text-heading-24--letter-spacing: -0.04em;
+  --text-heading-24--font-weight: 600;
+  --text-heading-20: 1.25rem;
+  --text-heading-20--line-height: 1.625rem;
+  --text-heading-20--letter-spacing: -0.02em;
+  --text-heading-20--font-weight: 600;
+  --text-heading-16: 1rem;
+  --text-heading-16--line-height: 1.5rem;
+  --text-heading-16--letter-spacing: -0.02em;
+  --text-heading-16--font-weight: 600;
+  /* Copy: is read, several lines. Open line height. */
+  --text-copy-18: 1.125rem;
+  --text-copy-18--line-height: 1.75rem;
+  --text-copy-16: 1rem;
+  --text-copy-16--line-height: 1.5rem;
+  --text-copy-14: 0.875rem;
+  --text-copy-14--line-height: 1.25rem;
+  --text-copy-13: 0.8125rem;
+  --text-copy-13--line-height: 1.125rem;
+  /* Label: names a thing in one line (menus, rows, tabs, meta). Line height = the row it sits in. */
+  --text-label-18: 1.125rem;
+  --text-label-18--line-height: 1.5rem;
+  --text-label-16: 1rem;
+  --text-label-16--line-height: 1.25rem;
+  --text-label-14: 0.875rem;
+  --text-label-14--line-height: 1.25rem;
+  --text-label-13: 0.8125rem;
+  --text-label-13--line-height: 1rem;
+  --text-label-12: 0.75rem;
+  --text-label-12--line-height: 1rem;
+  /* The floor: chips, counts and keycaps only, opened up so the letters don't run together. */
+  --text-label-11: 0.6875rem;
+  --text-label-11--line-height: 1rem;
+  --text-label-11--letter-spacing: 0.02em;
+  /* Code: one step smaller than the text beside it. code-inline follows whatever line it sits in. */
+  --text-code-13: 0.8125rem;
+  --text-code-13--line-height: 1.25rem;
+  --text-code-12: 0.75rem;
+  --text-code-12--line-height: 1rem;
+  --text-code-inline: 0.875em;
 }
 
 :root {
@@ -186,6 +247,7 @@ body {
 body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  font-optical-sizing: auto;
 }
 
 /* No scrollbars on the page or the docs sidebar list: they only distract.
@@ -402,10 +464,10 @@ body::-webkit-scrollbar,
       inset 0 calc(var(--btn-edge-width) * 2) 0 calc(var(--btn-edge-width) * -1) var(--btn-secondary-highlight),
       var(--btn-secondary-drop);
     color: var(--chip-new-text);
-    font-size: 11px;
+    font-size: var(--text-label-11);
     line-height: 1;
     font-weight: 500;
-    letter-spacing: 0;
+    letter-spacing: var(--text-label-11--letter-spacing);
     white-space: nowrap;
     user-select: none;
   }

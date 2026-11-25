@@ -92,7 +92,7 @@ export function Showcase({
                 leading={<Cancel01Icon size={16} />}
               >
                 Close
-                <kbd className="ml-1 hidden rounded-md bg-[var(--panel-2)] px-1.5 py-0.5 font-mono text-[11px] font-normal text-[var(--muted)] shadow-[inset_0_0_0_1px_var(--line)] sm:inline">
+                <kbd className="ml-1 hidden rounded-md bg-[var(--panel-2)] px-1.5 py-0.5 font-sans text-label-11 font-medium text-[var(--muted)] shadow-[inset_0_0_0_1px_var(--line)] sm:inline">
                   Esc
                 </kbd>
               </Button>
@@ -119,7 +119,7 @@ export function Showcase({
                 aria-controls={`showcase-${id}`}
                 onClick={() => setView(id)}
                 className={cx(
-                  "press relative z-10 inline-flex h-8 items-center justify-center gap-1.5 rounded-lg px-3.5 text-[13px] font-medium transition-colors duration-200",
+                  "press relative z-10 inline-flex h-8 items-center justify-center gap-1.5 rounded-lg px-3.5 text-label-13 font-medium transition-colors duration-200",
                   view === id ? "text-[var(--fg)]" : "text-[var(--muted)] hover:text-[var(--fg)]",
                 )}
               >
@@ -151,8 +151,8 @@ export function Showcase({
 
       <div id="installation" className="mt-6 scroll-mt-20">
         <InstallCommand url={installUrl} />
-        {hint && <div className="mt-3 px-1 text-[13px] leading-relaxed text-pretty text-[var(--muted)]">{hint}</div>}
-        <p className="mt-2 px-1 text-[13px] leading-relaxed text-[var(--muted)]">
+        {hint && <div className="mt-3 max-w-prose px-1 text-copy-14 text-pretty text-[var(--muted)]">{hint}</div>}
+        <p className="mt-2 max-w-prose px-1 text-copy-14 text-pretty text-[var(--muted)]">
           Run it in a project set up with shadcn. No other packages needed. Or open{" "}
           <button
             type="button"
@@ -166,7 +166,7 @@ export function Showcase({
             Code
           </button>{" "}
           and copy the file into{" "}
-          <code className="rounded-md bg-[var(--panel-2)] px-1.5 py-0.5 font-mono text-[12px] whitespace-nowrap text-[var(--fg)]">
+          <code className="rounded-md bg-[var(--panel-2)] px-1.5 py-0.5 font-mono text-code-inline whitespace-nowrap text-[var(--fg)]">
             {filePath}
           </code>
           .

@@ -110,7 +110,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           Give it your pictures with an <Code>alt</Code> and a link each, your name, and a height.
         </Lede>
         <Tabs tabs={[{ id: "usage", label: "work.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Pictures from another site must be allowed by your Content-Security-Policy (<Code>img-src</Code>), or they stay as
           soft placeholders.
         </p>
@@ -118,7 +118,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
 
       <DocSection id="how-it-moves" title="How it moves">
         <Lede>One small show when it first comes into view, then a strip that answers your hand.</Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Your name fades in from a soft blur and the pictures pop in around it as circles, one after another, on a tilted
           ring that turns slowly, front ones bigger, like planets on an orrery. Then the ring falls into the middle,
           faster and faster, spinning quicker as it shrinks, and the pictures land in one loose stack over your name. The
@@ -126,7 +126,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           on the way, and the curve settles in with a small bounce. Your name then rests small in the corner. Tap during
           the show and the rest plays faster.
         </p>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           The strip is shorter in the middle and taller at the sides, like the inside of a cylinder, and loops forever.
           A soft blur at both sides lets pictures drift out of focus as they leave, so the middle one holds your eye.
           Dragging works like a rubber band pinned at both sides: the ends keep their height, and only the middle is

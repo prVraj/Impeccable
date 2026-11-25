@@ -98,7 +98,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
       <DocSection id="usage" title="Usage">
         <Lede>Use it like any button. Everything has a default.</Lede>
         <Tabs tabs={[{ id: "usage", label: "hero-action.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Everything happens inside the button, so it needs no extra room around it.
         </p>
       </DocSection>
@@ -108,7 +108,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           At rest it is a plain dark pill. Only when someone reaches for it does the text-mode water show up behind the
           label.
         </Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Bring your pointer onto it and tiny ASCII characters ( . : - = + * ) rise behind the label within{" "}
           <Code>reach</Code> (64px) of the pointer, fading out softly toward the edge. Two slow waves drift through them, so
           the characters shift between faint and strong like moving water, and the field follows your pointer. They are drawn

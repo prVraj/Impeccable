@@ -105,19 +105,19 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           Give each picture a heading, two to four short bullet points and one button. Give the ticker the full width of its section.
         </Lede>
         <Tabs tabs={[{ id: "usage", label: "showcase.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Keep each picture small (about 500px square, WebP). Pictures load only when they come near the screen.
         </p>
       </DocSection>
 
       <DocSection id="how-it-moves" title="How it moves">
         <Lede>A row that stops for the picture you point at, and opens it like a pop up.</Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           The row glides at a calm 32 pixels a second, slow enough to see every picture. Point at one and the row slows to
           a stop as the picture slowly grows to 1.8 times its size, and the others dim to 40%, so the one you
           chose is in focus. Both sides of the row fade out softly, so no picture is ever cut off with a hard edge, and near an edge the grown picture steps inward.
         </p>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Click it and the others fade away while the picture glides to the left. The heading, each bullet point and the
           button drop in from above, line by line. Close it with the X, Esc, a click on the picture or a click anywhere outside:
           the picture glides home in under a second, the others come back and the row carries on. Phones have no hover,

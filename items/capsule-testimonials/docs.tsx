@@ -54,7 +54,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
     { id: "props", title: "Props" },
   ];
 
-  const code = "font-mono text-[13px] text-[var(--fg)]";
+  const code = "font-mono text-code-inline text-[var(--fg)]";
   const link = "font-medium text-[var(--fg)] underline decoration-[var(--line)] underline-offset-4 hover:decoration-[var(--fg)]";
 
   return (
@@ -100,7 +100,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
       <DocSection id="usage" title="Usage">
         <Lede>Put it after your features or pricing, where people want proof, and give it your own reviews and photos.</Lede>
         <Tabs tabs={[{ id: "usage", label: "components/reviews.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Only one review is open at a time, and its words are laid out at the full card size, so they never re-wrap while it
           opens. Under 560px of width the capsules lie down and stack, so it works with a thumb on a phone. Page text comes from
           your theme: it reads <code className={code}>--foreground</code> and <code className={code}>--background</code> (or{" "}

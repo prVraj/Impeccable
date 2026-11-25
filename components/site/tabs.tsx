@@ -22,7 +22,7 @@ export function Tabs({ tabs, maxHeight = "28rem" }: { tabs: Tab[]; maxHeight?: s
               aria-selected={t.id === active}
               onClick={() => setActive(t.id)}
               className={cx(
-                "h-7 shrink-0 rounded-md px-2.5 text-xs font-medium transition-colors",
+                "h-7 shrink-0 rounded-md px-2.5 text-label-12 font-medium transition-colors",
                 t.id === active
                   ? "bg-[var(--panel)] text-[var(--fg)] shadow-[0_0_0_1px_var(--line)]"
                   : "text-[var(--muted)] hover:text-[var(--fg)]",
@@ -35,7 +35,7 @@ export function Tabs({ tabs, maxHeight = "28rem" }: { tabs: Tab[]; maxHeight?: s
         <CopyButton text={tab.copy} />
       </div>
       {/* tabIndex: keyboard users can focus the box and scroll it with the arrow keys. */}
-      <div tabIndex={0} className="overflow-auto p-4 text-[13px] leading-relaxed" style={{ maxHeight }}>
+      <div tabIndex={0} className="overflow-auto p-4 text-code-13" style={{ maxHeight }}>
         {tab.body}
       </div>
     </div>

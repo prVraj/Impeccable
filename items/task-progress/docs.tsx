@@ -28,9 +28,9 @@ export function SetupSteps({ step }: { step: number }) {
 
 const PROPS: [string, string, string][] = [
   ["tasks", "—", 'The list, in order. Each task is { id, label, status }, where status is "pending" (not started), "active" (in progress) or "done". Change a status and that row animates.'],
-  ["limit", "5", "How many tasks show before the rest fold under Show more."],
+  ["limit", "5", "How many tasks show at a time. They follow the task in progress; the rest wait under Show more."],
   ["moreLabel", "(n) => `Show ${n} more`", "Text of the button that opens the rest. It gets the number of hidden tasks."],
-  ["lessLabel", '"Show less"', "Text of the button that folds them away."],
+  ["lessLabel", '"Show less"', "Text of the button that slides back to the task in progress."],
   ["defaultExpanded", "false", "Start with every task showing."],
   ["activeColor", "the text color", "Color of the spinning arc on the task in progress. Any CSS color, including var(--…)."],
   ["emptyLabel", '"No tasks yet."', "Shown when the list is empty."],
@@ -62,8 +62,8 @@ export default async function Docs({ info }: { info: ItemInfo }) {
 
   const hint = (
     <>
-      It plays on its own here and pauses while your pointer is on it. Hover a struck task to read it, and open Show 2
-      more for the last two.
+      It plays on its own here and never pauses. Watch the list slide up as each task finishes, open Show 4 more for
+      the finished ones, and hover a struck task to read it.
     </>
   );
 
@@ -104,7 +104,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           <Code>status</Code> to move it along.
         </Lede>
         <Tabs tabs={[{ id: "usage", label: "setup-steps.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           For a wait with no steps, a single progress bar like{" "}
           <Link href="/docs/tug-of-work-loader" className="text-[var(--fg)] underline underline-offset-4">
             Tug of Work loader
@@ -114,15 +114,17 @@ export default async function Docs({ info }: { info: ItemInfo }) {
       </DocSection>
 
       <DocSection id="how-it-moves" title="How it moves">
-        <Lede>Three icons, one strike and a fold. Everything takes its color from the text around it.</Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <Lede>Three icons, one strike and a list that follows the work. Everything takes its color from the text around it.</Lede>
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           A task that has not started shows a ring of eight soft dots. When it starts, a dark arc draws in over the dots
           and spins, once every 0.9 seconds. When it finishes, the arc closes into a full ring, a filled circle pops in
           with a tiny overshoot and a check draws inside it. A moment later the text fades and a thin line draws across
           it from left to right, line by line on wrapped text. Hover a finished task and the line pulls back while the
-          text darkens, so you can read it; move away and it strikes again. On a phone, tap it instead. Only the first
-          five tasks show. Show more opens the rest: the space grows with a soft landing and the rows fade in one after
-          another. Show less folds them away. With reduced motion the arc stands still and every change is a short fade.
+          text darkens, so you can read it; move away and it strikes again. On a phone, tap it instead. Five tasks
+          show at a time, and they follow the work: once a finished task&apos;s strike has drawn, the list glides up so
+          the task in progress and the ones after it stay in view, and the finished task fades out at the top. Show more
+          opens everything, with the earlier finished tasks fading in above. Show less slides back to the task in
+          progress. Hovering never pauses it. With reduced motion the arc stands still and every change is a short fade.
         </p>
       </DocSection>
 

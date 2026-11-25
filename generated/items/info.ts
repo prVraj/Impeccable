@@ -26,6 +26,7 @@ import { info as peepholeButton } from "@/items/peephole-button/info";
 import { info as cometButton } from "@/items/comet-button/info";
 import { info as kitcutButton } from "@/items/kitcut-button/info";
 import { info as tugOfWorkLoader } from "@/items/tug-of-work-loader/info";
+import { info as liquidOrbitLoader } from "@/items/liquid-orbit-loader/info";
 import { info as loupeGrid } from "@/items/loupe-grid/info";
 import { info as isometricWall } from "@/items/isometric-wall/info";
 import { info as loginPages } from "@/items/login-pages/info";
@@ -37,6 +38,7 @@ import { info as windowStats } from "@/items/window-stats/info";
 import { info as reelStats } from "@/items/reel-stats/info";
 import { info as testimonialSections } from "@/items/testimonial-sections/info";
 import { info as capsuleTestimonials } from "@/items/capsule-testimonials/info";
+import { info as chainTestimonials } from "@/items/chain-testimonials/info";
 import { info as featureSections } from "@/items/feature-sections/info";
 import { info as deckFeatures } from "@/items/deck-features/info";
 import { info as blackHoleRefresh } from "@/items/black-hole-refresh/info";
@@ -76,6 +78,7 @@ export const INFO: Record<string, ItemInfo> = {
   "comet-button": cometButton,
   "kitcut-button": kitcutButton,
   "tug-of-work-loader": tugOfWorkLoader,
+  "liquid-orbit-loader": liquidOrbitLoader,
   "loupe-grid": loupeGrid,
   "isometric-wall": isometricWall,
   "login-pages": loginPages,
@@ -87,6 +90,7 @@ export const INFO: Record<string, ItemInfo> = {
   "reel-stats": reelStats,
   "testimonial-sections": testimonialSections,
   "capsule-testimonials": capsuleTestimonials,
+  "chain-testimonials": chainTestimonials,
   "feature-sections": featureSections,
   "deck-features": deckFeatures,
   "black-hole-refresh": blackHoleRefresh,

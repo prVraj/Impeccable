@@ -63,8 +63,8 @@ export default function ComponentsPage() {
       <style>{CSS}</style>
       <DocsLayout page="/components" wide sections={[]}>
         <div className="mt-4">
-          <h1 className="text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">{TITLE}</h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-pretty text-[var(--muted)] sm:text-lg">{LEDE}</p>
+          <h1 className="text-heading-32 text-balance sm:text-heading-40">{TITLE}</h1>
+          <p className="mt-4 max-w-2xl text-copy-16 text-pretty text-[var(--muted)] sm:text-copy-18">{LEDE}</p>
         </div>
 
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">

@@ -22,7 +22,7 @@ export default function NotFound() {
     <div
       className="flex min-h-dvh flex-col items-center overflow-hidden px-4 [--liquid-back:color-mix(in_srgb,var(--brand-300)_55%,transparent)] [--liquid-bottom:var(--brand-700)] [--liquid-glass:color-mix(in_srgb,var(--fg)_5%,transparent)] [--liquid-top:var(--brand-500)] dark:[--liquid-back:color-mix(in_srgb,var(--brand-300)_30%,transparent)] dark:[--liquid-bottom:var(--brand-600)] dark:[--liquid-glass:color-mix(in_srgb,var(--fg)_7%,transparent)] dark:[--liquid-top:var(--brand-400)]"
     >
-      <Link href="/" className="mt-6 flex items-center gap-2 text-[15px] font-semibold tracking-tight sm:mt-8">
+      <Link href="/" className="mt-6 flex items-center gap-2 text-heading-16 sm:mt-8">
         <Mark className="h-6 w-[21px] text-[var(--fg)]" />
         Impeccable
       </Link>
@@ -30,12 +30,12 @@ export default function NotFound() {
       <main className="flex w-full flex-1 flex-col items-center justify-center py-10 text-center">
         <h1 className="sr-only">Page not found</h1>
         <Liquid404 className="h-auto w-[min(92vw,60rem,max(18rem,calc((100dvh-20rem)*2.5)))] select-none" />
-        <p className="mt-8 max-w-md text-base text-pretty text-[var(--muted)] sm:mt-10 sm:text-lg">
-          This page will lead you towards the Stoneage. Please go Home.
+        <p className="mt-8 max-w-md text-copy-16 text-pretty text-[var(--muted)] sm:mt-10 sm:text-copy-18">
+          This page will lead you towards the Stone Age. Please go home.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Button href="/" hierarchy="secondary" size="lg" data-cta-sound>
-            Go Home
+            Go home
           </Button>
           <BrowseButton />
         </div>

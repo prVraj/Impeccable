@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { DocsLayout } from "@/components/site/docs-layout";
 import { DocSection, Lede } from "@/components/site/doc-parts";
 import { Arrow } from "@/components/site/icons";
-import { AUTHOR, COMPONENTS, GITHUB, GROUPS, pageMetadata } from "@/lib/site";
+import { AUTHOR, COMPONENTS, GITHUB, GROUPS, pageMetadata, type Group } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "Docs: Animated React Components and AI Skills | Impeccable UI",
@@ -14,12 +14,12 @@ export const metadata: Metadata = pageMetadata({
 const SECTIONS = [
   { id: "why", title: "Why it exists" },
   { id: "name", title: "The name" },
-  { id: "three-parts", title: "Three parts" },
+  { id: "groups", title: "How it’s organized" },
   { id: "what-you-get", title: "What you get" },
   { id: "install-or-blend", title: "Install or Blend" },
-  { id: "who-for", title: "Who it's for" },
+  { id: "who-for", title: "Who it’s for" },
   { id: "promises", title: "Promises" },
-  { id: "inside", title: "What's inside" },
+  { id: "inside", title: "What’s inside" },
   { id: "who", title: "Who makes it" },
 ];
 
@@ -30,11 +30,17 @@ const GETS: [string, string][] = [
   ["Two prompts", "Paste one into Claude Code, Cursor or v0, and your AI tool builds it the way it was meant to feel."],
 ];
 
-const PARTS: [string, string][] = [
-  ["Animations", "Moments of motion you drop into a page: a loader, a page transition. Each comes with code and two prompts."],
-  ["Skills", "Files you give your AI tool so it works your way. Download one, add it to Claude, and it does the rest."],
-  ["Components", "Bigger building blocks with motion built in. The first ones are on their way."],
-];
+/** One line for each sidebar group. A group added to GROUPS in lib/site.ts needs its line here. */
+const GROUP_LINES: Record<Group, string> = {
+  components: "Building blocks with motion built in: galleries, cards, counters, uploads.",
+  buttons: "Buttons that answer a press, each with its own small moment.",
+  loaders: "What people see while they wait.",
+  backgrounds: "Grids and patterns that sit behind a section or a whole page.",
+  sections: "Whole parts of a page: login pages, FAQs, stats, testimonials.",
+  skills: "Files you give your AI tool so it works your way.",
+  animations: "Page-wide moments of motion, like a page transition or a refresh.",
+  interactions: "Small touches for any site, like a pop at the pointer on every click.",
+};
 
 const PROMISES = [
   "Everything is original. Nothing here is a copy of someone else's work.",
@@ -49,16 +55,16 @@ export default function DocsIntroduction() {
     <>
       <DocsLayout sections={SECTIONS}>
         <div className="mt-4">
-          <h1 className="text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">Introduction</h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-pretty text-[var(--muted)] sm:text-lg">
-            Impeccable is a library of animations and skills that fit your product like the missing
-            piece of a puzzle. Before your AI tool builds anything, it asks you a few questions, so
+          <h1 className="text-heading-32 text-balance sm:text-heading-40">Introduction</h1>
+          <p className="mt-4 max-w-2xl text-copy-16 text-pretty text-[var(--muted)] sm:text-copy-18">
+            Impeccable is a library of animated components and skills that fit your product like the
+            missing piece of a puzzle. Before your AI tool builds anything, it asks you a few questions, so
             what you get feels made for you, not borrowed from someone else.
           </p>
         </div>
 
         <DocSection id="why" title="Why it exists">
-          <div className="max-w-2xl space-y-4 text-[15px] leading-relaxed text-pretty text-[var(--muted)]">
+          <div className="max-w-prose space-y-4 text-copy-16 text-pretty text-[var(--muted)]">
             <p>
               I wanted people to get things that feel personal. Most component libraries hand you a
               component and stop there. Then you spend time changing it to match your project, and
@@ -76,56 +82,61 @@ export default function DocsIntroduction() {
               even a one-line prompt like &ldquo;make me a hero section&rdquo; comes out looking
               like you made it.
             </p>
-            <p className="text-[var(--fg)]">Let&apos;s make something for Humans once again.</p>
+            <p className="font-medium text-[var(--fg)]">Let&rsquo;s make something for Humans once again.</p>
           </div>
         </DocSection>
 
         <DocSection id="name" title="The name">
-          <p className="max-w-2xl text-[15px] leading-relaxed text-pretty text-[var(--muted)]">
-            Impeccable means perfect, without a flaw. It&apos;s the bar I hold every component to
-            before it ships: every detail of the motion is worked out here, so you don&apos;t have
+          <p className="max-w-prose text-copy-16 text-pretty text-[var(--muted)]">
+            Impeccable means perfect, without a flaw. It&rsquo;s the bar I hold every component to
+            before it ships: every detail of the motion is worked out here, so you don&rsquo;t have
             to.
           </p>
         </DocSection>
 
-        <DocSection id="three-parts" title="Three parts">
-          <Lede>The sidebar splits the library into three parts, so it stays easy to find your way as it grows.</Lede>
-          <div className="grid gap-3 sm:grid-cols-3">
-            {PARTS.map(([title, text]) => (
-              <div key={title} className="card rounded-xl p-4">
-                <h3 className="text-[15px] font-semibold tracking-tight">{title}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-[var(--muted)]">{text}</p>
+        <DocSection id="groups" title="How it’s organized">
+          <Lede>The sidebar sorts the library into groups, so it stays easy to find your way as it grows.</Lede>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {GROUPS.map((g) => (
+              <div key={g.id} className="card rounded-xl p-4">
+                <div className="flex items-baseline justify-between gap-3">
+                  <h3 className="text-heading-16">{g.label}</h3>
+                  <span className="text-label-12 text-[var(--muted)] tabular-nums">
+                    {COMPONENTS.filter((c) => c.group === g.id).length}
+                  </span>
+                </div>
+                <p className="mt-1 text-copy-14 text-pretty text-[var(--muted)]">{GROUP_LINES[g.id]}</p>
               </div>
             ))}
           </div>
         </DocSection>
 
         <DocSection id="what-you-get" title="What you get">
-          <Lede>Every animation page has the same four things, in the same order.</Lede>
+          <Lede>Every component, section and animation page has the same four things, in the same order.</Lede>
           <div className="grid gap-3 sm:grid-cols-2">
             {GETS.map(([title, text], i) => (
               <div key={title} className="card rounded-xl p-4">
-                <span className="font-mono text-xs text-[var(--faint)]">0{i + 1}</span>
-                <h3 className="mt-2 text-[15px] font-semibold tracking-tight">{title}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-[var(--muted)]">{text}</p>
+                <span className="font-mono text-code-12 text-[var(--muted)] tabular-nums">0{i + 1}</span>
+                <h3 className="mt-2 text-heading-16">{title}</h3>
+                <p className="mt-1 text-copy-14 text-pretty text-[var(--muted)]">{text}</p>
               </div>
             ))}
           </div>
         </DocSection>
 
         <DocSection id="install-or-blend" title="Install or Blend">
-          <Lede>Every animation comes with two prompts. Pick the one that matches what you want from it.</Lede>
+          <Lede>Every component, section and animation comes with two prompts. Pick the one that matches what you want from it.</Lede>
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="card rounded-xl p-5">
-              <h3 className="text-[15px] font-semibold tracking-tight">Install</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-[var(--muted)]">
+              <h3 className="text-heading-16">Install</h3>
+              <p className="mt-1.5 text-copy-14 text-pretty text-[var(--muted)]">
                 You want it exactly as you see it here. The prompt adds the component as it is and
                 only asks where it should go.
               </p>
             </div>
             <div className="card rounded-xl p-5">
-              <h3 className="text-[15px] font-semibold tracking-tight">Blend</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-[var(--muted)]">
+              <h3 className="text-heading-16">Blend</h3>
+              <p className="mt-1.5 text-copy-14 text-pretty text-[var(--muted)]">
                 You want it to feel like it was always part of your product. Your agent asks you a few
                 short questions first, then builds it with your colors, names and words. The motion
                 stays as designed.
@@ -134,8 +145,8 @@ export default function DocsIntroduction() {
           </div>
         </DocSection>
 
-        <DocSection id="who-for" title="Who it's for">
-          <p className="max-w-2xl text-[15px] leading-relaxed text-pretty text-[var(--muted)]">
+        <DocSection id="who-for" title="Who it’s for">
+          <p className="max-w-prose text-copy-16 text-pretty text-[var(--muted)]">
             Every product owner and brand that wants to stand out in public. If people will see
             your product and you want them to remember it, these are for you, whether you write the
             code yourself or let an AI tool do it.
@@ -143,7 +154,7 @@ export default function DocsIntroduction() {
         </DocSection>
 
         <DocSection id="promises" title="Promises">
-          <ul className="max-w-2xl space-y-2.5 text-[15px] leading-relaxed text-[var(--muted)]">
+          <ul className="max-w-prose space-y-2.5 text-copy-16 text-pretty text-[var(--muted)]">
             {PROMISES.map((p) => (
               <li key={p} className="flex gap-3">
                 <span className="mt-[9px] size-1.5 shrink-0 rounded-full bg-[var(--accent)]" aria-hidden="true" />
@@ -153,9 +164,9 @@ export default function DocsIntroduction() {
           </ul>
         </DocSection>
 
-        <DocSection id="inside" title="What's inside">
+        <DocSection id="inside" title="What’s inside">
           <Lede>
-            Everything in the library today. New pieces arrive when they&apos;re ready, not on a
+            Everything in the library today. New pieces arrive when they&rsquo;re ready, not on a
             schedule.
           </Lede>
           <div className="card divide-y divide-[var(--line)] overflow-hidden rounded-xl">
@@ -167,12 +178,12 @@ export default function DocsIntroduction() {
               >
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
-                    <span className="text-[15px] font-medium tracking-tight">{c.name}</span>
-                    <span className="text-xs text-[var(--faint)]">
+                    <span className="text-label-16 font-medium">{c.name}</span>
+                    <span className="text-label-12 text-[var(--muted)]">
                       {GROUPS.find((g) => g.id === c.group)!.label}
                     </span>
                   </div>
-                  <p className="mt-0.5 text-sm text-[var(--muted)]">{c.blurb}</p>
+                  <p className="mt-1 text-copy-14 text-pretty text-[var(--muted)]">{c.blurb}</p>
                 </div>
                 <Arrow className="size-4 shrink-0 text-[var(--muted)] transition-transform group-hover:translate-x-0.5" />
               </Link>
@@ -181,8 +192,8 @@ export default function DocsIntroduction() {
         </DocSection>
 
         <DocSection id="who" title="Who makes it">
-          <p className="max-w-2xl text-[15px] leading-relaxed text-pretty text-[var(--muted)]">
-            I&apos;m{" "}
+          <p className="max-w-prose text-copy-16 text-pretty text-[var(--muted)]">
+            I&rsquo;m{" "}
             <a href={AUTHOR.href} target="_blank" rel="noopener noreferrer" className="text-[var(--fg)] underline decoration-[var(--line)] underline-offset-4 hover:decoration-[var(--fg)]">
               Vraj Sensei
             </a>
@@ -191,7 +202,11 @@ export default function DocsIntroduction() {
             <a href={GITHUB} target="_blank" rel="noopener noreferrer" className="text-[var(--fg)] underline decoration-[var(--line)] underline-offset-4 hover:decoration-[var(--fg)]">
               GitHub
             </a>{" "}
-            or say hi on X.
+            or say hi on{" "}
+            <a href={AUTHOR.href} target="_blank" rel="noopener noreferrer" className="text-[var(--fg)] underline decoration-[var(--line)] underline-offset-4 hover:decoration-[var(--fg)]">
+              X
+            </a>
+            .
           </p>
         </DocSection>
       </DocsLayout>

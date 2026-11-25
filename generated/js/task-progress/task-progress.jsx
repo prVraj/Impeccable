@@ -8,14 +8,17 @@
  *   - "active":  in progress, a spinning arc over the dotted circle.
  *   - "done":    a filled circle with a check, the text faded and struck through.
  * Hover a done task (tap it on a phone) and the strike pulls back and the text
- * darkens, so it can be read. Only the first 5 tasks show; the rest open
- * under "Show N more" and close again with "Show less".
+ * darkens, so it can be read. Only 5 tasks show at a time, and they follow the
+ * work: the task in progress and the ones after it. When a task finishes, its
+ * strike draws, then the list slides up and the finished task moves out of
+ * view. "Show N more" opens everything (the earlier finished tasks too) and
+ * "Show less" slides back to the task in progress.
  *
  * No packages. Colors come from the text color around the list, so it follows
  * light and dark mode on its own.
  */
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 
 /* ---------- the design: keep as written ---------- */
 
@@ -28,6 +31,9 @@ const STRIKE_DELAY = 300; // waits for the check before it strikes
 const PEEK_MS = 260; // the strike pulling back on hover
 const OPEN_MS = 420; // "Show more" opening or closing
 const STAGGER = 45; // between rows as they open
+const FOLLOW_MS = 560; // the list sliding up to the next task
+const FOLLOW_WAIT = STRIKE_DELAY + STRIKE_MS; // lets the strike finish before the list slides
+const FADE = 6; // soft edge, in px, where rows slide out of view
 
 const R = 7; // circle radius in the 18px icon
 const C = 2 * Math.PI * R; // its length
@@ -59,11 +65,16 @@ const CSS = `
   .itp-row[data-status="done"]:hover .itp-label { color: color-mix(in oklab, currentColor 88%, transparent); background-size: 0% 1.25px; transition: color .2s ${EASE}, background-size ${PEEK_MS}ms ${EASE}; }
 }
 .itp-row[data-status="done"][data-peek] .itp-label { color: color-mix(in oklab, currentColor 88%, transparent); background-size: 0% 1.25px; transition: color .2s ${EASE}, background-size ${PEEK_MS}ms ${EASE}; }
-.itp-more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows ${OPEN_MS}ms ${EASE}; }
-.itp-more[data-open="true"] { grid-template-rows: 1fr; }
-.itp-more > ul { min-height: 0; overflow: hidden; }
-.itp-more .itp-row { opacity: 0; transform: translateY(-6px); filter: blur(2px); transition: opacity .2s, transform .25s ${EASE}, filter .2s; }
-.itp-more[data-open="true"] .itp-row { opacity: 1; transform: none; filter: none; transition: opacity .3s ${EASE}, transform .4s ${EASE}, filter .3s; }
+.itp-view { position: relative; margin: -${FADE}px 0; padding: ${FADE}px 0; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 ${FADE}px, #000 calc(100% - ${FADE}px), transparent); mask-image: linear-gradient(to bottom, transparent, #000 ${FADE}px, #000 calc(100% - ${FADE}px), transparent); }
+.itp-view > ul { position: relative; }
+.itp-view[data-anim] { transition: height ${OPEN_MS}ms ${EASE}; }
+.itp-view[data-anim] > ul { transition: transform ${OPEN_MS}ms ${EASE}; }
+.itp-view[data-anim][data-follow] { transition-duration: ${FOLLOW_MS}ms; }
+.itp-view[data-anim][data-follow] > ul { transition-duration: ${FOLLOW_MS}ms; }
+.itp-view:not([data-measured]) .itp-row[data-out] { display: none; }
+.itp-row[data-out] { opacity: 0; filter: blur(2px); }
+.itp-view[data-anim] .itp-row { transition: opacity .35s ${EASE}, filter .35s ${EASE}; }
+.itp-view[data-anim] .itp-row[data-out] { transition: opacity .25s, filter .25s; }
 .itp-toggle { all: unset; box-sizing: border-box; display: inline-flex; margin: 4px 0 2px 24px; padding: 3px 6px; border-radius: 8px; cursor: pointer; color: var(--itp-soft); transition: color .15s, background-color .15s; -webkit-tap-highlight-color: transparent; }
 .itp-toggle:focus-visible { box-shadow: 0 0 0 2px var(--itp-soft); }
 @media (hover: hover) { .itp-toggle:hover { color: color-mix(in oklab, currentColor 88%, transparent); } }
@@ -73,8 +84,9 @@ const CSS = `
 .itp-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 @media (prefers-reduced-motion: reduce) {
   .itp-spin { animation: none; }
-  .itp-arc, .itp-dots, .itp-disc, .itp-check, .itp-row .itp-label, .itp-more, .itp-more .itp-row { transition-duration: .15s !important; transition-delay: 0s !important; }
-  .itp-disc, .itp-more .itp-row { transform: none !important; filter: none !important; }
+  .itp-arc, .itp-dots, .itp-disc, .itp-check, .itp-row, .itp-row .itp-label, .itp-view, .itp-view > ul { transition-duration: .15s !important; transition-delay: 0s !important; }
+  .itp-disc { transform: none !important; }
+  .itp-row[data-out] { filter: none; }
   .itp-label { transition-property: color, opacity !important; }
   .itp-toggle span { animation: none; }
 }`;
@@ -108,7 +120,7 @@ function useLightText(ref) {
 }
 
 /** One task. Remembers when it has just finished, so only that strike waits for the check. */
-function Row({ task, lightText, style }) {
+function Row({ task, lightText, out, style }) {
   const { status, label } = task;
   // Set during render (not in an effect), so the strike's delay is in place on the very frame the task turns done.
   const [seen, setSeen] = useState(status);
@@ -133,6 +145,8 @@ function Row({ task, lightText, style }) {
       data-status={status}
       data-fresh={fresh ? "" : undefined}
       data-peek={peek && status === "done" ? "" : undefined}
+      data-out={out ? "" : undefined}
+      inert={out}
       aria-current={status === "active" ? "step" : undefined}
       style={style}
       onPointerDown={(e) => (touch.current = e.pointerType !== "mouse")}
@@ -195,15 +209,65 @@ export function TaskProgress({
   style,
 }) {
   const rootRef = useRef(null);
+  const listRef = useRef(null);
   const lightText = useLightText(rootRef);
   const [open, setOpen] = useState(defaultExpanded);
-  const moreId = useId();
+  const viewId = useId();
 
   const list = Array.isArray(tasks) ? tasks : [];
+  const n = list.length;
   const shown = Number.isFinite(limit) && limit >= 1 ? Math.floor(limit) : 5;
-  const first = list.slice(0, shown);
-  const rest = list.slice(shown);
+  const folds = n > shown;
+  const collapsed = folds && !open;
   const key = (t, i) => t.id ?? i;
+
+  // The window of tasks that shows while folded: the task in progress and the ones after it.
+  // It moves down at once, but moves up only after the finished task's strike has drawn.
+  const target = focusIndex(list, shown);
+  const [start, setStart] = useState(target);
+  const from = Math.min(start, Math.max(0, n - shown));
+  useEffect(() => {
+    if (target === start) return;
+    if (target < start) return setStart(target);
+    const t = window.setTimeout(() => setStart(target), FOLLOW_WAIT);
+    return () => clearTimeout(t);
+  }, [target, start]);
+
+  // Measured size of the window, so it can slide and grow smoothly whatever the rows' heights.
+  const [measured, setMeasured] = useState(false);
+  const [box, setBox] = useState(null);
+  const [anim, setAnim] = useState(false);
+  // Following the work is a slower glide than opening or closing. Decided during render, so the
+  // right speed is in place on the same frame the window moves.
+  const [seen, setSeen] = useState({ from, open, follow: false });
+  if (seen.from !== from || seen.open !== open) setSeen({ from, open, follow: seen.open === open });
+  const follow = seen.follow;
+  useLayoutEffect(() => setMeasured(true), []);
+  useLayoutEffect(() => {
+    const ul = listRef.current;
+    if (!measured || !ul) return;
+    const measure = () => {
+      const rows = ul.children;
+      const a = rows[from];
+      const b = rows[Math.min(n, from + shown) - 1];
+      const next = !collapsed
+        ? { h: ul.offsetHeight, y: 0 }
+        : a && b
+          ? { h: b.offsetTop + b.offsetHeight - a.offsetTop, y: a.offsetTop }
+          : null;
+      if (next) setBox((p) => (p && p.h === next.h && p.y === next.y ? p : next));
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(ul);
+    return () => ro.disconnect();
+  }, [measured, collapsed, from, shown, n, tasks]);
+  useEffect(() => {
+    // Animate only after the first paint, so the list doesn't slide into place on load.
+    if (!box || anim) return;
+    const r = requestAnimationFrame(() => setAnim(true));
+    return () => cancelAnimationFrame(r);
+  }, [box, anim]);
 
   return (
     <div
@@ -212,42 +276,66 @@ export function TaskProgress({
       style={{ ...(activeColor ? { "--itp-arc": activeColor } : null), ...style }}
     >
       <style>{CSS}</style>
-      {list.length === 0 ? (
+      {n === 0 ? (
         <p className="itp-empty" style={{ margin: 0 }}>
           {emptyLabel}
         </p>
       ) : (
-        <ul aria-label={ariaLabel}>
-          {first.map((t, i) => (
-            <Row key={key(t, i)} task={t} lightText={lightText} />
-          ))}
-        </ul>
-      )}
-      {rest.length > 0 && (
-        <>
-          <div className="itp-more" data-open={open} id={moreId} inert={!open}>
-            <ul aria-label={ariaLabel}>
-              {rest.map((t, i) => (
+        <div
+          className="itp-view"
+          id={viewId}
+          data-measured={measured ? "" : undefined}
+          data-anim={anim ? "" : undefined}
+          data-follow={follow ? "" : undefined}
+          style={folds && box ? { height: box.h + FADE * 2 } : undefined}
+        >
+          <ul
+            ref={listRef}
+            aria-label={ariaLabel}
+            style={folds && box ? { transform: `translateY(${-box.y}px)` } : undefined}
+          >
+            {list.map((t, i) => {
+              const out = collapsed && (i < from || i >= from + shown);
+              // Opening: the hidden rows fade in one after another, nearest first.
+              const dist = i < from ? from - 1 - i : i - (from + shown);
+              return (
                 <Row
-                  key={key(t, i + shown)}
+                  key={key(t, i)}
                   task={t}
                   lightText={lightText}
-                  style={{ transitionDelay: open ? `${60 + i * STAGGER}ms` : "0ms" }}
+                  out={out}
+                  style={
+                    open && folds && dist >= 0
+                      ? { transitionDelay: `${60 + dist * STAGGER}ms` }
+                      : undefined
+                  }
                 />
-              ))}
-            </ul>
-          </div>
-          <button
-            type="button"
-            className="itp-toggle"
-            aria-expanded={open}
-            aria-controls={moreId}
-            onClick={() => setOpen((o) => !o)}
-          >
-            <span key={open ? "less" : "more"}>{open ? lessLabel : moreLabel(rest.length)}</span>
-          </button>
-        </>
+              );
+            })}
+          </ul>
+        </div>
+      )}
+      {folds && (
+        <button
+          type="button"
+          className="itp-toggle"
+          aria-expanded={open}
+          aria-controls={viewId}
+          onClick={() => setOpen((o) => !o)}
+        >
+          <span key={open ? "less" : "more"}>{open ? lessLabel : moreLabel(n - shown)}</span>
+        </button>
       )}
     </div>
   );
+}
+
+/** First task in progress (or, if none, the first not done), kept so a full window still shows. */
+function focusIndex(list, shown) {
+  const n = list.length;
+  if (n <= shown) return 0;
+  let i = list.findIndex((t) => t.status === "active");
+  if (i < 0) i = list.findIndex((t) => t.status !== "done");
+  if (i < 0) i = n;
+  return Math.min(i, n - shown);
 }

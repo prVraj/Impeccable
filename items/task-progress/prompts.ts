@@ -2,7 +2,7 @@
  * Install: adds the exact list; asks only where it goes and which steps it shows.
  * Blend: asks four short questions, then fits it through the component's own props. */
 
-const TASK_ONE_LINE = `A task list where each task is not started (a dotted circle), in progress (an arc spinning over the dots) or done (a filled circle with a check). When a task finishes, its check draws in, its text fades and a strike line draws across it. Hovering a done task (tapping it on a phone) pulls the strike back and darkens the text so it can be read. Only the first 5 tasks show; the rest open under "Show N more" and close with "Show less".`;
+const TASK_ONE_LINE = `A task list where each task is not started (a dotted circle), in progress (an arc spinning over the dots) or done (a filled circle with a check). When a task finishes, its check draws in, its text fades and a strike line draws across it. Hovering a done task (tapping it on a phone) pulls the strike back and darkens the text so it can be read. Only 5 tasks show at a time, and they follow the work: the task in progress and the ones after it. When a task finishes, the list slides up and the finished task moves out of view. "Show N more" opens every task, the earlier finished ones too, and "Show less" slides back to the task in progress.`;
 
 const TASK_SHARED_BUILD = `## Fastest path
 
@@ -17,8 +17,8 @@ If the command succeeds, only fix import paths to match this project and skip ah
   - \`components/ui/task-progress.tsx\`
 - Keep these exports and their names: \`TaskProgress\`, \`TaskProgressProps\`, \`Task\`, \`TaskStatus\`.
 - Keep \`"use client"\` at the top in Next.js App Router projects. In other setups it is harmless.
-- Keep the tuning values at the top exactly as written: \`EASE\`, \`POP\`, \`SPIN_MS\`, \`ARC\`, \`STRIKE_MS\`, \`STRIKE_DELAY\`, \`PEEK_MS\`, \`OPEN_MS\`, \`STAGGER\`, \`R\` and the \`CSS\` block. They are the design and its timing.
-- Keep the fallbacks: with \`prefers-reduced-motion: reduce\` the arc stops spinning and every change is a short fade (the strike appears without drawing). The rows under "Show more" are \`inert\` while folded, so keyboards and screen readers skip them. Screen readers hear "Done", "In progress" or "Not started" before each task, and the task in progress has \`aria-current="step"\`.`;
+- Keep the tuning values at the top exactly as written: \`EASE\`, \`POP\`, \`SPIN_MS\`, \`ARC\`, \`STRIKE_MS\`, \`STRIKE_DELAY\`, \`PEEK_MS\`, \`OPEN_MS\`, \`STAGGER\`, \`FOLLOW_MS\`, \`FOLLOW_WAIT\`, \`FADE\`, \`R\`, the \`focusIndex\` rule and the \`CSS\` block. They are the design and its timing.
+- Keep the fallbacks: with \`prefers-reduced-motion: reduce\` the arc stops spinning and every change is a short fade (the strike appears without drawing). Rows outside the window are \`inert\` while it is closed, so keyboards and screen readers skip them. Screen readers hear "Done", "In progress" or "Not started" before each task, and the task in progress has \`aria-current="step"\`.`;
 
 const TASK_HOW = `## How the list works
 
@@ -29,8 +29,9 @@ Read this before you touch anything, so you know what the code does and why it m
 3. **In progress.** An arc covering 62% of the circle draws in over the dots and spins once every 0.9 seconds. It is the text color unless \`activeColor\` is set.
 4. **Done.** The arc closes into a full ring, then a filled circle (46% of the text color) pops in with a tiny overshoot, and a check draws inside it. 0.3 seconds later the text fades to 46% and a 1.25px line draws across it from left to right in 0.52 seconds. On wrapped text the line runs across the first line, then the next. Tasks that are already done when the list first shows are struck at once, with no animation.
 5. **Peek.** Hovering a done task pulls the line back to the left in 0.26 seconds and darkens the text to 88%; leaving draws it back. Phones have no hover, so a tap does the same and a second tap undoes it.
-6. **Show more.** Only the first \`limit\` tasks (5) show. Under them, "Show N more" (the number of hidden tasks) opens the rest: the space grows in 0.42 seconds with a soft landing and the rows fade and slide down into place 45ms apart. The button then reads "Show less" and folds them away again. The list keeps its order; tasks are never moved.
-7. **Colors.** Everything is mixed from the text color around the list, so it follows light and dark mode. The check is white on light pages and near-black on dark pages; it is re-read when the theme changes.`;
+6. **Following the work.** Only \`limit\` tasks (5) show at a time, through a window that keeps the first task in progress at its top, with the tasks after it below. Running and upcoming tasks always win the space; finished tasks only fill it when too few are left (near the end, or when all are done). When a task finishes, the window waits 0.82 seconds for its check and strike, then glides up in 0.56 seconds, and the finished task fades and blurs out at the top edge (a 6px soft fade, never a hard cut). If the work goes back (a reset or a retry), it moves back at once. It never pauses, hovered or not.
+7. **Show more.** Under the window, "Show N more" (the number of hidden tasks) opens every task: the window grows in 0.42 seconds with a soft landing, slides down to show the earlier finished tasks above, and the hidden rows fade in 45ms apart, nearest first. The button then reads "Show less" and slides back to the task in progress. The list keeps its order; tasks are never moved. Hidden rows are \`inert\`, so keyboards and screen readers skip them.
+8. **Colors.** Everything is mixed from the text color around the list, so it follows light and dark mode. The check is white on light pages and near-black on dark pages; it is re-read when the theme changes.`;
 
 export function installPrompt(tsSource: string) {
   return `# Task progress
@@ -50,10 +51,10 @@ Ask nothing else. If I say *skip*, use the best suggestion.
 
 ## Keep it as it is
 
-The three icons (dotted circle, spinning arc, filled circle with a check), the strike that draws across a finished task, the peek on hover or tap, and the fold after 5 tasks with "Show N more" and "Show less", with their timing, are the design. Keep them exactly as in the source. If something doesn't fit my project, tell me instead of changing it.
+The three icons (dotted circle, spinning arc, filled circle with a check), the strike that draws across a finished task, the peek on hover or tap, the 5-task window that follows the task in progress and slides up when one finishes, and "Show N more" / "Show less", with their timing, are the design. Keep them exactly as in the source. If something doesn't fit my project, tell me instead of changing it.
 
 - Add only the component file and the one place I picked. If it replaces an existing checklist or stepper there, keep that spot's logic and remove only the old list. Don't add packages, change other files, or restyle anything.
-- Don't add the demo parts from the Impeccable website: the list that plays on its own and starts over (\`useTaskRun\`), its example task names, pausing while the pointer is on it, the dotted card behind it, and the home page's TV.
+- Don't add the demo parts from the Impeccable website: the list that plays on its own and starts over (\`useTaskRun\`), its example task names, the dotted card behind it, and the home page's TV.
 
 ${TASK_SHARED_BUILD}
 
@@ -83,7 +84,7 @@ ${TASK_HOW}
 ## Check
 
 - It type-checks and the page renders with no console errors.
-- The task in progress spins. When it finishes, its check draws in and, about 0.3 seconds later, a line draws across its text from left to right while the text fades. Hovering a done task pulls the line back and darkens the text. With more than 5 tasks, "Show N more" opens the rest and "Show less" folds them away.
+- The task in progress spins. When it finishes, its check draws in and, about 0.3 seconds later, a line draws across its text from left to right while the text fades. Hovering a done task pulls the line back and darkens the text. With more than 5 tasks, the list slides up after each finish so the task in progress always shows, "Show N more" opens the earlier finished tasks and "Show less" slides back. Hovering never pauses it.
 - It looks right in light and dark mode (check both): the check is readable inside the filled circle in each.
 - It works with a finger on a phone: tapping a done task shows it clearly, tapping again strikes it, and nothing scrolls sideways.
 - With \`prefers-reduced-motion: reduce\`, the arc stands still and every change is a short fade.
@@ -115,8 +116,8 @@ ${TASK_ONE_LINE} The full source is at the end of this prompt.
 2. Tell me in two or three lines what you found, then ask these questions in **one message**. Give each one options, mark your suggestion and keep its one-line why, so I know what each answer changes. Ask nothing else:
    1. **Where should it go, and which steps does it show?** Suggest the 1–3 spots it fits best, naming the steps you would list and the state you would read for each.
       *Why: the list is only honest when its states come from real work, so it belongs where my product already knows which step it is on.*
-   2. **How many show before it folds?** 5 (suggested), 3 for a small side panel, or all of them for 6 or fewer steps.
-      *Why: the fold keeps a long run calm to look at; a short list doesn't need one.*
+   2. **How many show at a time?** 5 (suggested), 3 for a small side panel, or all of them for 6 or fewer steps.
+      *Why: the window follows the task in progress, so it decides how many upcoming steps people see; a short list doesn't need one.*
    3. **The words?** Keep "Show N more" and "Show less" (suggested), or the same in my product's voice and language. Same for the line shown when there are no tasks.
       *Why: these are the only words the list adds to my screen, so they should sound like the rest of my product.*
    4. **The spinner's color?** Keep my text color (suggested, it stays calm and monochrome), or name which of my existing color variables you'd use for the arc on the task in progress, like my brand or accent color.
@@ -138,9 +139,9 @@ All of these are props the component already has, so the component file itself s
 
 **Locked**
 
-- The three icons (dotted circle, spinning arc, filled circle with a check), the strike that draws across a finished task, the peek on hover or tap, and the fold with "Show more", with their sizes and timing, stay exactly as in the source. If something doesn't fit my product, tell me instead of changing it.
+- The three icons (dotted circle, spinning arc, filled circle with a check), the strike that draws across a finished task, the peek on hover or tap, the 5-task window that follows the task in progress, and "Show more", with their sizes and timing, stay exactly as in the source. If something doesn't fit my product, tell me instead of changing it.
 
-- No new packages, no changes to files other than the component and the place I picked, no restyling, and none of the website's demo parts (the list that plays on its own and starts over, its example task names, pausing while the pointer is on it, the dotted card and the home page's TV).
+- No new packages, no changes to files other than the component and the place I picked, no restyling, and none of the website's demo parts (the list that plays on its own and starts over, its example task names, the dotted card and the home page's TV).
 
 ${TASK_SHARED_BUILD}
 
@@ -182,7 +183,7 @@ ${TASK_HOW}
 ## Check
 
 - It type-checks and the page renders with no console errors.
-- My steps show with my words, and their states follow my real state. The task in progress spins in my chosen color. When it finishes, its check draws in and, about 0.3 seconds later, a line draws across its text while the text fades. Hovering a done task pulls the line back. With more tasks than my limit, my "show more" words open the rest and my "show less" words fold them away.
+- My steps show with my words, and their states follow my real state. The task in progress spins in my chosen color. When it finishes, its check draws in and, about 0.3 seconds later, a line draws across its text while the text fades. Hovering a done task pulls the line back. With more tasks than my limit, the list slides up after each finish so the task in progress always shows, my "show more" words open the earlier finished tasks and my "show less" words slide back. Hovering never pauses it.
 - It looks right in light and dark mode (check both), with the spinner color and the check readable in each.
 - It works with a finger on a phone: tapping a done task shows it clearly, tapping again strikes it, and nothing scrolls sideways.
 - With \`prefers-reduced-motion: reduce\`, the arc stands still and every change is a short fade.

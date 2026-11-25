@@ -17,7 +17,7 @@ export function CopyButton({ text, label = "Copy" }: { text: string; label?: str
           setTimeout(() => setDone(false), 1400);
         } catch {}
       }}
-      className="press inline-flex h-7 shrink-0 items-center gap-1.5 rounded-md border border-[var(--line)] bg-transparent px-2.5 text-xs font-medium text-[var(--muted)] transition-colors hover:border-[var(--faint)] hover:text-[var(--fg)]"
+      className="press inline-flex h-7 shrink-0 items-center gap-1.5 rounded-md border border-[var(--line)] bg-transparent px-2.5 text-label-12 font-medium text-[var(--muted)] transition-colors hover:border-[var(--faint)] hover:text-[var(--fg)]"
     >
       {/* Both words share one spot so the button doesn't change width. */}
       <span className="grid">

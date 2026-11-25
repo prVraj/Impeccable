@@ -113,7 +113,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
         <DocSection id="usage" title="Usage">
           <Lede>1. Wrap your app once, in the root layout, so it survives page changes.</Lede>
           <Tabs tabs={[{ id: "layout", label: "layout.tsx", copy: USAGE_LAYOUT, body: <Html html={layoutHtml} /> }]} />
-          <p className="mt-6 mb-4 text-[15px] leading-relaxed text-[var(--muted)]">
+          <p className="mt-6 mb-4 max-w-prose text-copy-16 text-[var(--muted)]">
             2. Call <Code>burn()</Code> with the change you want. It waits for the new page, then
             burns from the click.
           </p>
@@ -122,7 +122,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
 
         <DocSection id="props" title="Props">
           <PropsTable rows={PROPS} />
-          <p className="mt-3 text-sm text-[var(--muted)]">
+          <p className="mt-3 max-w-prose text-copy-14 text-[var(--muted)]">
             Set them on <Code>&lt;BurningScreen&gt;</Code> as defaults, or per call in{" "}
             <Code>burn(update, options)</Code>.
           </p>

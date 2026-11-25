@@ -170,7 +170,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
 
       <DocSection id="props" title="Props">
         <PropsTable rows={PROPS} />
-        <p className="mt-8 mb-3 text-[15px] font-medium text-[var(--fg)]">toast() options</p>
+        <p className="mt-8 mb-3 text-heading-16 text-[var(--fg)]">toast() options</p>
         <PropsTable rows={TOAST_OPTIONS} />
       </DocSection>
 

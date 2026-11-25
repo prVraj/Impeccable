@@ -78,7 +78,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           { id: "js", label: "password-strength.jsx", copy: js, body: <Html html={jsHtml} /> },
         ]}
       />
-      <p className="mt-3 text-sm leading-relaxed text-pretty text-[var(--muted)]">
+      <p className="mt-3 text-copy-14 text-pretty text-[var(--muted)]">
         Try <Code>Sunflower-Pie42</Code> and watch it turn Human. The eye shows and hides the password
         without moving the cursor or closing the phone keyboard.
       </p>
@@ -101,7 +101,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
       <DocSection id="usage" title="Usage">
         <Lede>Drop it in your sign-up form. Everything has a default.</Lede>
         <Tabs tabs={[{ id: "usage", label: "sign-up-password.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           The three checkpoints: at least 12 characters, at least 2 upper and 2 lower case letters, and at
           least one number and one special character. None met is No, 1 is AI, 2 is AI agent, 3 is Human.
         </p>

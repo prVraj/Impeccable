@@ -99,7 +99,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
       <DocSection id="usage" title="Usage">
         <Lede>Use it like any button. Everything has a default.</Lede>
         <Tabs tabs={[{ id: "usage", label: "hero-action.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           The shards fly up to about 60px outside the button, so keep it away from the edge of a box that hides overflow.
         </p>
       </DocSection>
@@ -108,7 +108,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
         <Lede>
           Only the ring around the button is glass. The middle is a plain, solid button, so the label always reads.
         </Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           As your pointer comes within <Code>range</Code> (120px), the part of the ring nearest to it catches the light.
           The glow grows faster the closer you get: faint at the edge of the range, bright and wide once you are on the
           button, and its edges light up most, like light running along cut glass. Click it and the click goes through

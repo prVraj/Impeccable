@@ -49,7 +49,7 @@ export function DocsLayout({
             The logo and the card stay put; only the list under the divider scrolls. */}
         <div className="shrink-0 px-3 pt-4">
           <Redraw>
-            <Link href="/" className="flex items-center gap-2 px-2.5 py-1 text-[15px] font-semibold tracking-tight">
+            <Link href="/" className="flex items-center gap-2 px-2.5 py-1 text-heading-16">
               <Mark className="h-6 w-[21px] text-[var(--fg)]" />
               Impeccable
             </Link>
@@ -64,8 +64,8 @@ export function DocsLayout({
                 <Mark className="h-4 w-[14px] text-white" />
               </span>
               <span className="min-w-0 flex-1">
-                <span className="block text-sm leading-tight font-medium">Animation-first UI</span>
-                <span className="block truncate text-[11px] text-[var(--muted)]">Open source · MIT</span>
+                <span className="block text-label-14 font-medium">Animation-first UI</span>
+                <span className="block truncate text-label-12 text-[var(--muted)]">Open source · MIT</span>
               </span>
               <ArrowUpRight01Icon size={14} className="text-[var(--faint)] transition-colors group-hover:text-[var(--accent)]" />
             </a>
@@ -99,7 +99,7 @@ export function DocsLayout({
                       </SideLink>
                     ))
                   ) : (
-                    <p className="px-2.5 py-1.5 text-sm text-[var(--faint)]">Coming soon</p>
+                    <p className="px-2.5 py-1.5 text-label-14 text-[var(--muted)]">Coming soon</p>
                   )}
                 </SideDropdown>
               );
@@ -172,7 +172,7 @@ function SheetTab() {
           <path d="M0 .5C9 .5 12 2 15 8L25 36.5C27.5 42 31 43.5 40 43.5V0H0Z" fill="var(--frame)" />
           <path d="M0 .5C9 .5 12 2 15 8L25 36.5C27.5 42 31 43.5 40 43.5" fill="none" stroke="var(--line)" />
         </svg>
-        <div className="flex items-center border-b border-[var(--line)] bg-[var(--frame)] pr-1 text-[13px] text-[var(--muted)]">
+        <div className="flex items-center border-b border-[var(--line)] bg-[var(--frame)] pr-1 text-label-13 text-[var(--muted)]">
           {/* Search first, then GitHub, then the Talk to Vraj button, split by thin
               dividers. The bulb takes no room in the tab: it hangs below it,
               centred under Search. The bulb's frame sits behind the Search
@@ -223,7 +223,7 @@ function TabDivider() {
 function SideGroup({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="mb-7">
-      <p className="mb-2 px-2.5 text-xs font-medium text-[var(--fg)]">{title}</p>
+      <p className="mb-2 px-2.5 text-label-12 font-medium text-[var(--fg)]">{title}</p>
       <div className="flex flex-col gap-px">{children}</div>
     </div>
   );
@@ -247,7 +247,7 @@ function SideLink({
       href={href}
       aria-current={active ? "page" : undefined}
       className={cx(
-        "flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-sm transition-colors",
+        "flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-label-14 transition-colors",
         active ? "bg-[color-mix(in_srgb,var(--accent)_10%,transparent)] font-medium text-[var(--fg)]" : "text-[var(--muted)] hover:text-[var(--fg)]",
       )}
     >
@@ -264,12 +264,12 @@ function PagerCard({ dir, href, name }: { dir: "prev" | "next"; href: string; na
       href={href}
       className={cx("card press group flex flex-col gap-1 rounded-xl px-4 py-3.5", dir === "next" && "items-end text-right sm:col-start-2")}
     >
-      <span className="flex items-center gap-1 text-xs text-[var(--muted)]">
+      <span className="flex items-center gap-1 text-label-12 text-[var(--muted)]">
         {dir === "prev" && <ArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-0.5" />}
         {dir === "prev" ? "Previous" : "Next"}
         {dir === "next" && <Arrow className="size-3.5 transition-transform group-hover:translate-x-0.5" />}
       </span>
-      <span className="text-sm font-medium">{name}</span>
+      <span className="text-label-16 font-medium">{name}</span>
     </Link>
   );
 }

@@ -101,7 +101,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           Give it at least 4 pictures, each with an <Code>alt</Code>.
         </Lede>
         <Tabs tabs={[{ id: "usage", label: "campaign.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Keep each picture small (about 700px wide, WebP). Pictures from
           another site must be allowed by your Content-Security-Policy (<Code>img-src</Code>), or they stay as soft
           placeholders.
@@ -110,13 +110,13 @@ export default async function Docs({ info }: { info: ItemInfo }) {
 
       <DocSection id="how-it-moves" title="How it moves">
         <Lede>A split flap board for pictures, flipping like a card file.</Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Each picture is cut across the middle onto two flaps that hang on one hinge. The picture in view always sits
           flat and whole, facing you. Every 2 seconds one flap falls toward you over the middle hinge, slow at first
           and faster and faster, and lands on the next picture in 0.8 seconds. It never skips a picture, and no line
           shows across the middle. The flaps darken as they tip and lighten as they land.
         </p>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           A mouse over it pauses it. Drag down to pull flaps toward you, drag up to turn them back; a flick moves one more, never further.
           It needs at least 4 pictures, because one flap always swings round the back, out of sight. Pictures are never
           links and can&apos;t be selected or dragged out. With reduced motion it never flips on its own and only moves

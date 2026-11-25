@@ -125,7 +125,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           Wrap a section&apos;s content in it and give it a size. Everything inside sits above the grid.
         </Lede>
         <Tabs tabs={[{ id: "usage", label: "hero.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           For a whole page, leave it empty and fix it to the screen, so it stays one screen big however long the page is.
         </p>
         <div className="mt-4">
@@ -138,7 +138,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           At rest it is a faint, even grid. Under the pointer it works like a loupe: the marks within{" "}
           <Code>radius</Code> swell, light up and spread apart a little.
         </Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           The mark right under the pointer grows the most and turns fully into the hover color, with a soft glow behind it.
           Marks farther out grow less and keep more of their faint color, fading smoothly to nothing at the edge of the
           loupe, so there is never a hard ring. The marks spread a few pixels away from the pointer, and on the types with

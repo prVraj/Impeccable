@@ -37,6 +37,7 @@ export const ORDER = [
   "kitcut-button",
   // Loaders
   "tug-of-work-loader",
+  "liquid-orbit-loader",
   // Backgrounds
   "loupe-grid",
   "isometric-wall",
@@ -50,6 +51,7 @@ export const ORDER = [
   "reel-stats",
   "testimonial-sections",
   "capsule-testimonials",
+  "chain-testimonials",
   "feature-sections",
   "deck-features",
   // Animations

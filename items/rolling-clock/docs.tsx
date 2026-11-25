@@ -112,7 +112,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
 
       <DocSection id="how-it-moves" title="How it moves">
         <Lede>Each pair of digits rolls like two little wheels turning side by side.</Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           When a digit changes, the bigger number rises from below and the old one leaves upward, in 0.62 seconds. The
           move starts gently and lands softly. They never travel in a straight line: the left digit of each pair swings out
           to the left on a curve and the right digit swings out to the right, leaning along the curve, shrinking and

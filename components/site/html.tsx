@@ -3,5 +3,5 @@ export function Html({ html }: { html: string }) {
 }
 
 export function PromptBody({ text }: { text: string }) {
-  return <pre className="font-mono text-[12.5px] whitespace-pre-wrap text-[var(--fg)]">{text}</pre>;
+  return <pre className="font-mono text-code-13 whitespace-pre-wrap text-[var(--fg)]">{text}</pre>;
 }

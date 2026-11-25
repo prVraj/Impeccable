@@ -90,7 +90,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           >
             Download UI tongue
           </Button>
-          <p className="mt-8 mb-3 text-[15px] leading-relaxed text-[var(--muted)]">
+          <p className="mt-8 mb-3 max-w-prose text-copy-16 text-[var(--muted)]">
             Read it before you install. This is <Code>SKILL.md</Code>, the file your AI tool reads first.
           </p>
           <FileView name="SKILL.md">
@@ -99,22 +99,22 @@ export default async function Docs({ info }: { info: ItemInfo }) {
         </DocSection>
 
         <DocSection id="install" title="Install">
-          <h3 className="mb-2 text-[15px] font-medium">Claude on the web or desktop</h3>
-          <p className="mb-6 max-w-2xl text-[15px] leading-relaxed text-[var(--muted)]">
+          <h3 className="mb-2 text-heading-16">Claude on the web or desktop</h3>
+          <p className="mb-6 max-w-prose text-copy-16 text-[var(--muted)]">
             Open Settings, find Skills, and upload the zip as it is. No need to unzip it.
           </p>
-          <h3 className="mb-2 text-[15px] font-medium">Claude Code</h3>
-          <p className="mb-3 max-w-2xl text-[15px] leading-relaxed text-[var(--muted)]">
+          <h3 className="mb-2 text-heading-16">Claude Code</h3>
+          <p className="mb-3 max-w-prose text-copy-16 text-[var(--muted)]">
             Unzip it into your skills folder so it works in every project:
           </p>
           <div className="card flex items-center justify-between gap-2 overflow-hidden rounded-xl py-1.5 pr-2 pl-4">
-            <code className="overflow-x-auto font-mono text-[13px] whitespace-nowrap">
+            <code className="overflow-x-auto font-mono text-code-13 whitespace-nowrap">
               <span className="text-[var(--faint)] select-none">$ </span>
               {CLAUDE_CODE}
             </code>
             <CopyButton text={CLAUDE_CODE} />
           </div>
-          <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-[var(--muted)]">
+          <p className="mt-6 max-w-prose text-copy-16 text-[var(--muted)]">
             Then just say <Code>make my UI skill</Code>. It takes it from there.
           </p>
         </DocSection>
@@ -128,10 +128,10 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           <ol className="card divide-y divide-[var(--line)] overflow-hidden rounded-xl">
             {RULES.map(([title, body], i) => (
               <li key={title} className="flex gap-4 px-4 py-3.5">
-                <span className="mt-px font-mono text-xs text-[var(--faint)] tabular-nums">{i + 1}</span>
+                <span className="mt-px font-mono text-code-12 text-[var(--muted)] tabular-nums">{i + 1}</span>
                 <div className="min-w-0">
-                  <p className="text-[15px] font-medium tracking-tight">{title}</p>
-                  <p className="mt-0.5 text-sm leading-relaxed text-pretty text-[var(--muted)]">{body}</p>
+                  <p className="text-label-16 font-medium">{title}</p>
+                  <p className="mt-0.5 max-w-prose text-copy-14 text-pretty text-[var(--muted)]">{body}</p>
                 </div>
               </li>
             ))}
@@ -143,14 +143,14 @@ export default async function Docs({ info }: { info: ItemInfo }) {
             Quick mode asks 14 and takes about 15 minutes, including a sample it builds for you. Say &ldquo;deep mode&rdquo; for all 16.
             Every question comes with a suggested answer taken from your own references.
           </Lede>
-          <ol className="max-w-2xl space-y-2 text-[15px] leading-relaxed text-[var(--muted)]">
+          <ol className="max-w-2xl space-y-2 max-w-prose text-copy-16 text-[var(--muted)]">
             {QUESTIONS.map(({ q, deep }, i) => (
               <li key={q} className="flex gap-3">
-                <span className="w-5 shrink-0 text-right font-mono text-xs leading-[1.6rem] text-[var(--faint)] tabular-nums">{i + 1}</span>
+                <span className="w-5 shrink-0 text-right font-mono text-code-12 leading-[1.6rem] text-[var(--muted)] tabular-nums">{i + 1}</span>
                 <span>
                   {q}
                   {deep && (
-                    <span className="ml-2 rounded-full border border-[var(--line)] px-1.5 py-px align-[1px] text-[11px] text-[var(--faint)]">
+                    <span className="ml-2 rounded-full border border-[var(--line)] px-1.5 py-px align-[1px] text-label-11 text-[var(--muted)]">
                       Deep
                     </span>
                   )}
@@ -167,7 +167,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
             that&rdquo; any time and it offers to remember.
           </Lede>
           <div className="card overflow-x-auto rounded-xl px-4 py-3.5">
-            <pre className="font-mono text-[12.5px] leading-relaxed text-[var(--muted)]">{TREE}</pre>
+            <pre className="font-mono text-code-13 leading-relaxed text-[var(--muted)]">{TREE}</pre>
           </div>
         </DocSection>
       </DocsLayout>

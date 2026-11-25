@@ -101,19 +101,19 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           picture over the first row has room.
         </Lede>
         <Tabs tabs={[{ id: "usage", label: "components.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Keep each picture small (about 1000px wide, 3:2, WebP). Pictures load only when the list comes near the screen.
         </p>
       </DocSection>
 
       <DocSection id="how-it-moves" title="How it moves">
         <Lede>A picture that peeks out where you point, and a row that opens like a pop up.</Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Point at a row and its picture fades in just above your pointer, growing a little, then trails it softly as you
           move, always inside that row, while the other rows soften to 70%. Leave the row and it fades away; move to the next row and that row&apos;s picture takes
           over.
         </p>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Click and the row grows in place, pushing the rows below down while the others dim. The picture glides from your
           pointer to its seat on the left, the title glides to the top of the story, and the description and button drop in
           from above, line by line. The + turns into an X in the top right corner of the open row. Close it with the X, Esc or a

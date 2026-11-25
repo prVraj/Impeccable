@@ -90,7 +90,7 @@ export function MobileMenu() {
             className="mobile-menu fixed inset-0 z-50 flex flex-col bg-[var(--bg)] lg:hidden"
           >
             <div className="flex h-14 shrink-0 items-center justify-between border-b border-[var(--line)] px-4 sm:px-6">
-              <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-2 text-[15px] font-semibold tracking-tight">
+              <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-2 text-heading-16">
                 <Mark className="h-6 w-[21px] text-[var(--fg)]" />
                 Impeccable
               </Link>
@@ -132,12 +132,12 @@ export function MobileMenu() {
                         onClick={() => toggleGroup(g.id)}
                         aria-expanded={isOpen}
                         aria-controls={listId}
-                        className="mobile-menu-row flex min-h-12 w-full items-center justify-between gap-3 text-left text-lg font-medium tracking-tight text-[var(--fg)]"
+                        className="mobile-menu-row flex min-h-12 w-full items-center justify-between gap-3 text-left text-label-18 font-medium text-[var(--fg)]"
                       >
                         <span className="flex items-center gap-2.5">
                           <GroupIcon group={g.id} size={18} className="shrink-0 text-[var(--muted)]" />
                           {g.label}
-                          <span className="font-mono text-[11px] font-normal text-[var(--faint)]">{count}</span>
+                          <span className="text-label-11 font-normal text-[var(--muted)] tabular-nums">{count}</span>
                         </span>
                         <svg
                           viewBox="0 0 16 16"
@@ -175,7 +175,7 @@ export function MobileMenu() {
                                 </div>
                               ))
                             ) : (
-                              <p className="py-2.5 text-base text-[var(--faint)]">Coming soon</p>
+                              <p className="py-2.5 text-label-16 text-[var(--muted)]">Coming soon</p>
                             )}
                           </div>
                         </div>
@@ -213,8 +213,8 @@ function MenuLink({
       onClick={onPick}
       aria-current={active ? "page" : undefined}
       className={cx(
-        "flex items-center gap-2 tracking-tight transition-colors",
-        small ? "min-h-11 text-base" : "py-2 text-lg",
+        "flex items-center gap-2 transition-colors",
+        small ? "min-h-11 text-label-16" : "py-2 text-label-18",
         active ? "font-medium text-[var(--fg)]" : "text-[var(--muted)] hover:text-[var(--fg)]",
       )}
     >

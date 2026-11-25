@@ -107,20 +107,20 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           Give each card a picture, a title and an <Code>href</Code>. Leave room on the right of each card for the tab.
         </Lede>
         <Tabs tabs={[{ id: "usage", label: "work.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Keep each picture small (about twice the size it shows, WebP). Pictures load only when they come near the screen.
         </p>
       </DocSection>
 
       <DocSection id="how-it-moves" title="How it moves">
         <Lede>A card that turns toward you, and a second card that slides out of it like a record from its sleeve.</Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Point at the card and it rises off the page and turns, its right edge coming toward you, while it steps a little
           to the left. A beat later the tab slides out from behind it, leaning a little, with View Project written up its
           edge, and a softer card peeks out between them. Its shadow grows as it rises. Move away and it all slides back
           in one smooth motion. Pressing it makes it give a little.
         </p>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           The whole card is one link, so it is one stop for the keyboard, and focusing it opens it too. Touch screens have
           no hover, so the first tap opens it, the second tap follows the link, and a tap anywhere else closes it. With
           reduced motion nothing turns or slides: the tab simply fades in.

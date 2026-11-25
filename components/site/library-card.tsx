@@ -130,12 +130,12 @@ export function LibraryCard({
 
       <div className="px-2.5 pt-3 pb-2.5">
         <div className="flex items-center gap-2">
-          <h2 className="truncate text-sm font-medium text-[var(--fg)]">{name}</h2>
+          <h2 className="truncate text-label-14 font-medium text-[var(--fg)]">{name}</h2>
           <NewChip slug={slug} />
           <Arrow className="lib-arrow size-3.5 shrink-0 text-[var(--accent)]" />
-          <span className="ml-auto shrink-0 text-xs text-[var(--faint)]">{kind}</span>
+          <span className="ml-auto shrink-0 text-label-12 text-[var(--muted)]">{kind}</span>
         </div>
-        <p className="mt-1 line-clamp-2 text-[13px] leading-5 text-pretty text-[var(--muted)]">{blurb}</p>
+        <p className="mt-1 line-clamp-2 text-copy-13 text-pretty text-[var(--muted)]">{blurb}</p>
       </div>
     </Link>
   );
@@ -155,7 +155,7 @@ function SkillSheet() {
   return (
     <div className="dots absolute inset-0 grid place-items-center">
       <div className="lib-sheet card w-[46%] rounded-lg p-3">
-        <div className="flex items-center gap-1.5 font-mono text-[11px] text-[var(--muted)]">
+        <div className="flex items-center gap-1.5 font-mono text-label-11 text-[var(--muted)]">
           <span className="size-1.5 rounded-full bg-[var(--accent)]" />
           SKILL.md
         </div>

@@ -65,7 +65,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
     { id: "props", title: "Props" },
   ];
 
-  const code = "font-mono text-[13px] text-[var(--fg)]";
+  const code = "font-mono text-code-inline text-[var(--fg)]";
   const link = "font-medium text-[var(--fg)] underline decoration-[var(--line)] underline-offset-4 hover:decoration-[var(--fg)]";
 
   return (
@@ -111,7 +111,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
       <DocSection id="usage" title="Usage">
         <Lede>Put it on its own between two sections of a landing or services page, and give it your own rows and pictures.</Lede>
         <Tabs tabs={[{ id: "usage", label: "components/services.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Pictures load only when the section comes near the screen: the open one first, the rest right after it, so it adds
           nothing to your page load. Until a picture arrives its slot shows the soft tint. The frame and the tab share one tint,
           8% of your text color mixed into your page color, so it works in light and dark mode; pass{" "}

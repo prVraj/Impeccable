@@ -99,7 +99,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
       <DocSection id="usage" title="Usage">
         <Lede>Give it the code. Everything else has a default.</Lede>
         <Tabs tabs={[{ id: "usage", label: "upgrade-offer.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           The code sits in the page, so anyone can read it in the page source. Use it for friendly
           offers, not secrets.
         </p>

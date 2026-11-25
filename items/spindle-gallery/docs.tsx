@@ -107,7 +107,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           Give it your pictures with an <Code>alt</Code> each, and a height.
         </Lede>
         <Tabs tabs={[{ id: "usage", label: "campaign.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Keep each picture small (about 500px wide, WebP): the browser loads each one once and reuses it for both sides of its card. Pictures from
           another site must be allowed by your Content-Security-Policy (<Code>img-src</Code>), or they stay as soft
           placeholders.
@@ -116,14 +116,14 @@ export default async function Docs({ info }: { info: ItemInfo }) {
 
       <DocSection id="how-it-moves" title="How it moves">
         <Lede>The same picture show as Orrery Gallery, then a ring of flat cards you can spin.</Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           The pictures pop in as circles on a tilted ring that turns slowly, front ones bigger. The ring falls into the
           middle, spinning quicker as it shrinks, and the pictures land in one loose stack. Then each card grows into a
           tall page and swings out to its place, half one way and half the other. The pages don&apos;t meet in one point:
           they leave an open middle, and each one is turned at an angle, like the blades of a fan. The ring tips back so
           you look down on it a little, and starts to turn. Tap during the show and the rest plays faster.
         </p>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Each card is one flat picture, with space between it and the next, and darkens a little as it turns
           edge-on. It turns right to left, one turn in 12 seconds, and slows under the
           mouse so you can look closer. Drag it sideways and the page under your pointer follows; flick it and it spins

@@ -105,19 +105,19 @@ export default async function Docs({ info }: { info: ItemInfo }) {
       <DocSection id="usage" title="Usage">
         <Lede>Drop it in a form. Everything else has a default.</Lede>
         <Tabs tabs={[{ id: "usage", label: "cover-field.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           The frame&apos;s corners come from your design token, not a fixed number. It reads{" "}
-          <code className="font-mono text-[13px] text-[var(--fg)]">--radius-lg</code>, and only falls back to 8px
-          when your project doesn&apos;t have it. Pass <code className="font-mono text-[13px] text-[var(--fg)]">radius</code> to
+          <code className="font-mono text-code-inline text-[var(--fg)]">--radius-lg</code>, and only falls back to 8px
+          when your project doesn&apos;t have it. Pass <code className="font-mono text-code-inline text-[var(--fg)]">radius</code> to
           point it at another token.
         </p>
         <div className="mt-4">
           <Tabs tabs={[{ id: "tokens", label: "globals.css", copy: TOKENS, body: <Html html={tokensHtml} /> }]} />
         </div>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           It only shows the picture. Uploading it to your storage is up to your form, through{" "}
-          <code className="font-mono text-[13px] text-[var(--fg)]">name</code> or{" "}
-          <code className="font-mono text-[13px] text-[var(--fg)]">onChange</code>.
+          <code className="font-mono text-code-inline text-[var(--fg)]">name</code> or{" "}
+          <code className="font-mono text-code-inline text-[var(--fg)]">onChange</code>.
         </p>
       </DocSection>
 

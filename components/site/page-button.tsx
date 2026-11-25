@@ -18,7 +18,7 @@ export function PageButton({
       <button
         type="button"
         onClick={onClick}
-        className="press inline-flex h-11 items-center rounded-full bg-[var(--fg)] px-[22px] text-[15px] font-semibold tracking-[-0.01em] text-[var(--bg)] shadow-[inset_0_1px_0_rgb(255_255_255/.16),0_1px_2px_rgb(0_0_0/.18),0_6px_14px_-8px_rgb(0_0_0/.4)]"
+        className="press inline-flex h-11 items-center rounded-full bg-[var(--fg)] px-[22px] text-label-16 font-medium text-[var(--bg)] shadow-[inset_0_1px_0_rgb(255_255_255/.16),0_1px_2px_rgb(0_0_0/.18),0_6px_14px_-8px_rgb(0_0_0/.4)]"
       >
         {children}
       </button>

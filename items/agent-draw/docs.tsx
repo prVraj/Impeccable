@@ -110,7 +110,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
             inside and turns every block into a rectangle or circle.
           </Lede>
           <Tabs tabs={[{ id: "usage", label: "profile-page.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-          <p className="mt-6 mb-4 text-[15px] leading-relaxed text-[var(--muted)]">
+          <p className="mt-6 mb-4 max-w-prose text-copy-16 text-[var(--muted)]">
             Add <Code>data-agent-draw</Code> to draw an element as one solid shape (good for image
             placeholders), or <Code>data-agent-skip</Code> to leave it out. On a long page, wrap each section.
           </p>

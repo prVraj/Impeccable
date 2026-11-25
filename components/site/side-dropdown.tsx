@@ -36,12 +36,12 @@ export function SideDropdown({
         onClick={() => setGroupOpen("side", group, !open)}
         aria-expanded={open}
         aria-controls={id}
-        className="press flex w-full items-center justify-between rounded-md px-2.5 py-1.5 text-xs font-medium text-[var(--fg)] transition-colors hover:bg-[var(--panel-2)]"
+        className="press flex w-full items-center justify-between rounded-md px-2.5 py-1.5 text-label-12 font-medium text-[var(--fg)] transition-colors hover:bg-[var(--panel-2)]"
       >
         <span className="flex items-center gap-1.5">
           {icon && <span className="mr-0.5 flex text-[var(--muted)]">{icon}</span>}
           {title}
-          <span className="font-mono text-[10px] text-[var(--faint)]">{count}</span>
+          <span className="text-label-11 font-normal text-[var(--muted)] tabular-nums">{count}</span>
         </span>
         <svg
           viewBox="0 0 16 16"

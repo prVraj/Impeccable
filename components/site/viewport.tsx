@@ -119,7 +119,7 @@ export function ViewportToolbar({ vp, showPreviewTools }: { vp: Viewport; showPr
     >
       <span
         ref={vp.readoutRef}
-        className={cx("hidden px-2 font-mono text-xs whitespace-pre text-[var(--muted)] tabular-nums lg:inline", dim)}
+        className={cx("hidden px-2 font-mono text-code-12 whitespace-pre text-[var(--muted)] tabular-nums lg:inline", dim)}
       />
       <Divider className="hidden lg:block" />
 

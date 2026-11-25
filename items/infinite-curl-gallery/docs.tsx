@@ -107,7 +107,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           on the long side is plenty.
         </Lede>
         <Tabs tabs={[{ id: "usage", label: "work-wall.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           For one picture at a time, like a cover or an avatar,{" "}
           <Link href="/docs/framed-upload" className="text-[var(--fg)] underline underline-offset-4">
             Framed Upload
@@ -118,7 +118,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
 
       <DocSection id="how-it-moves" title="How it moves">
         <Lede>One endless canvas that bends at its edges and fades out through a mask.</Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           The pictures sit on a grid that repeats in every direction, so you never reach an end. Each one has its own
           size, from small to big, and its own shape. Near the edges the canvas curls toward you, like the inside of a
           bowl: pictures turn to face the middle and come a little closer. The edges fade out evenly through a

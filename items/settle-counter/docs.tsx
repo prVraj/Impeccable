@@ -115,7 +115,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
 
       <DocSection id="how-it-moves" title="How it moves">
         <Lede>Only the digits that change move. The rest stay perfectly still.</Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           A digit that changes counts to its new number, up or down, showing every number in between: from 1 to 6 you see
           2, 3, 4 and 5 on the way. Each one arrives a little bigger (1.3 times) and leaves in 0.18 seconds. The count is
           quick at first and slows into the last number, and never takes more than 0.56 seconds, so 0 to 9 doesn&apos;t

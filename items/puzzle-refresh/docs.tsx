@@ -208,7 +208,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
             },
           ]}
         />
-        <p className="mt-6 mb-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-6 mb-4 max-w-prose text-copy-16 text-[var(--muted)]">
           2. Phones have no reload keys, so give your own refresh button{" "}
           <Code>puzzleRefresh()</Code>.
         </p>
@@ -222,7 +222,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
             },
           ]}
         />
-        <p className="mt-6 mb-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-6 mb-4 max-w-prose text-copy-16 text-[var(--muted)]">
           3. A slow site? Pass <Code>refresh</Code> and the page refreshes
           while the pieces fall. In Next.js, <Code>router.refresh()</Code>{" "}
           loads the fresh page without a full reload, and the fresh page is
@@ -238,7 +238,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
             },
           ]}
         />
-        <p className="mt-6 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-6 max-w-prose text-copy-16 text-[var(--muted)]">
           Want your refresh to feel heavier? Try{" "}
           <Link
             href="/docs/black-hole-refresh"
@@ -252,7 +252,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
 
       <DocSection id="props" title="Props">
         <PropsTable rows={PROPS} />
-        <p className="mt-3 text-sm text-[var(--muted)]">
+        <p className="mt-3 max-w-prose text-copy-14 text-[var(--muted)]">
           Set them on <Code>&lt;PuzzleRefresh&gt;</Code>, or pass them to{" "}
           <Code>puzzleRefresh(options)</Code>.
         </p>

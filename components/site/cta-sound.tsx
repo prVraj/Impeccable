@@ -8,7 +8,7 @@ import { useEffect } from "react";
  *
  * Which buttons: any element with the `data-cta-sound` attribute. Today that is
  * Browse components (home + 404), Star on GitHub (home), the GitHub tab and the
- * Talk to Vraj button (docs header), Go Home (404) and the Download buttons on the
+ * Talk to Vraj button (docs header), Go home (404) and the Download buttons on the
  * UI tongue and Health check pages. Utility buttons (tabs, copy, menus, close),
  * demo buttons and plain clicks stay silent. To give a new main CTA the sound, add
  * `data-cta-sound` to it; nothing else.

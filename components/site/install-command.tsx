@@ -46,7 +46,7 @@ export function InstallCommand({ url }: { url: string }) {
               aria-selected={m.id === pm}
               onClick={() => pick(m.id)}
               className={cx(
-                "relative h-9 px-2.5 font-mono text-[12.5px] transition-colors duration-200",
+                "relative h-9 px-2.5 font-mono text-code-13 transition-colors duration-200",
                 m.id === pm ? "text-[var(--accent)]" : "text-[var(--muted)] hover:text-[var(--fg)]",
               )}
             >
@@ -64,7 +64,7 @@ export function InstallCommand({ url }: { url: string }) {
         <CopyButton text={cmd} />
       </div>
       <div className="card overflow-x-auto rounded-xl px-5 py-4">
-        <code className="font-mono text-[13px] whitespace-nowrap">{cmd}</code>
+        <code className="font-mono text-code-13 whitespace-nowrap">{cmd}</code>
       </div>
     </div>
   );

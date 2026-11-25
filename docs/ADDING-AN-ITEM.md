@@ -21,7 +21,7 @@ Use lowercase words joined by dashes for the name, like `price-slider`. It becom
    - `seo`: `{ keyword, title }`, the words people search for it. `title` goes in the browser tab as "<name>: <title> | Impeccable UI" (65 characters at most), like `"Fire Page Transition for React"`. The visible name never changes.
 4. **Write `demo.tsx`**, the live preview. Use the secondary pill button, never the brand button. Use `@min-[40rem]:` instead of `sm:` so it reacts to the preview width. A family member's `demo.tsx` also exports `Thumb`, the picture on the family page's card.
 5. **Write `tv.tsx`**, its channel on the home iMac. Draw it inside `<Screen>` from `components/site/tv-screen`.
-6. **Write `docs.tsx`**, the page: Showcase (preview, install bar, hint), then Types or Position if it has variants, then Prompts, Usage and Props. The title, description and tags come from `info.ts`.
+6. **Write `docs.tsx`**, the page: Showcase (preview, install bar, hint), then Types or Position if it has variants, then Prompts, Usage and Props. The title, description and tags come from `info.ts`. Text on the page uses the type tokens from `docs/TYPOGRAPHY.md` (for example `text-copy-16` for paragraphs, `text-heading-16` for a small heading, `text-code-inline` for code inside a sentence), never a px size like `text-[15px]`.
 7. **Write `prompts.ts`**: `installPrompt` and `blendPrompt`, following the prompts skill. Skills have no prompts, so skip this for a skill.
 8. **Add one line** to `items/list.ts`, where it should sit in the sidebar.
 9. **Run `pnpm dev`.** The checker runs first. If a piece is missing it stops and says which, for example `price-slider: tv.tsx is missing (its channel on the home iMac; without it the TV goes blank)`.

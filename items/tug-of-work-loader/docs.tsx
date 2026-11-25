@@ -97,7 +97,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           Pass your real progress as <Code>value</Code>. Without it the bar loops, which suits waits you can&apos;t measure.
         </Lede>
         <Tabs tabs={[{ id: "usage", label: "upload-progress.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           At 100% the person falls about three bar heights below the bar&apos;s right end, over whatever sits there, for
           about a second.
         </p>
@@ -105,7 +105,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
 
       <DocSection id="how-it-moves" title="How it moves">
         <Lede>The fill is a slab of stone, see-through like the bar around it. The only solid thing in it is the person.</Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           The filled part of the bar is a heavy slab of stone: grain, pits and cracks that travel with it, a darker
           underside and a chipped front edge. A tiny person stands ahead of it, leaning back on a rope tied to that
           edge. As the progress grows they walk backwards and drag it along, their steps matching the distance pulled.

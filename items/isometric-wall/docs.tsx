@@ -105,7 +105,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
       <DocSection id="usage" title="Usage">
         <Lede>Wrap a section&apos;s content in it, pass your pictures and give it a size. Everything inside sits above the wall.</Lede>
         <Tabs tabs={[{ id: "usage", label: "hero.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           For a whole page, leave it empty and fix it to the screen, so it stays one screen big however long the page is.
         </p>
         <div className="mt-4">
@@ -119,7 +119,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           diagonal columns, every other column half a card further along, and every column slides along itself, up and to
           the left, at <Code>speed</Code> px a second, forever.
         </Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Hover a card and it rises <Code>lift</Code> px off the floor in 320ms, with a quick start and a long soft finish,
           while its shadow slides further out, grows wider and turns softer. Move away and it lands again in 480ms, a touch
           slower than it rose, so a fast sweep across the wall leaves a gentle wave behind the mouse. The drift never stops

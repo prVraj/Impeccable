@@ -105,14 +105,14 @@ export default async function Docs({ info }: { info: ItemInfo }) {
       <DocSection id="usage" title="Usage">
         <Lede>Use it like any button. Return a promise from onClick, or pass loading yourself.</Lede>
         <Tabs tabs={[{ id: "usage", label: "save-action.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           The soft glow spreads about 18px past the edge, so give it a little room inside a box that hides overflow.
         </p>
       </DocSection>
 
       <DocSection id="how-it-moves" title="How it moves">
         <Lede>At rest the glow sits still: a bright streak on the top edge and a dim one on the bottom.</Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           When it starts loading, the label lifts away and three dots hop in, one after another. Both streaks brighten,
           pick up speed in a fraction of a second and race round the border, one lap every <Code>speed</Code> seconds
           (1.4). While they run, each one grows a sharp head and a long tail, like a comet. When loading ends, the

@@ -114,7 +114,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
           the picture over the first row has room.
         </Lede>
         <Tabs tabs={[{ id: "usage", label: "services.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Keep each picture small (about 1000px wide, WebP). A video should be short, silent and small (a few seconds, MP4
           or WebM, under 2MB) with a poster: it starts loading only when its row is pointed at or opened.
         </p>
@@ -122,12 +122,12 @@ export default async function Docs({ info }: { info: ItemInfo }) {
 
       <DocSection id="how-it-moves" title="How it moves">
         <Lede>A picture that peeks out where you point, and a numbered row that opens into its story.</Lede>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Point at a row and its picture or video fades in just above your pointer, growing a little, then trails it softly
           as you move, always inside that row, while the other rows soften to 70%. Leave the row and it fades away; move to
           the next row and that row&apos;s picture takes over.
         </p>
-        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
+        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
           Click and the row grows in place, pushing the rows below down while the others dim. The picture glides from your
           pointer to its seat on the left, and the paragraph, the points and the link drop in from above, line by line. The
           + turns into a −. Close it with the −, Esc or a click anywhere outside, and the row folds back. Phones never show

@@ -56,7 +56,7 @@ export function Toc({ sections }: { sections: { id: string; title: string }[] })
     <div ref={root}>
       {/* Two levels, on the site's type scale: the label is a quiet 14px medium heading with extra room under
           it, the sections are 14px regular, and the one you're reading turns dark with the purple line. */}
-      <p className="mb-5 text-sm font-medium text-[var(--muted)]">On this page</p>
+      <p className="mb-5 text-label-14 font-medium text-[var(--muted)]">On this page</p>
       <ul className="space-y-0.5 border-l border-[var(--line)]">
         {sections.map((s) => (
           <li key={s.id}>
@@ -72,7 +72,7 @@ export function Toc({ sections }: { sections: { id: string; title: string }[] })
                 scrollToElement(el, () => (scrolling.current = false));
               }}
               className={cx(
-                "-ml-px block border-l py-1 pl-4 text-sm transition-colors",
+                "-ml-px block border-l py-1 pl-4 text-label-14 transition-colors",
                 active === s.id
                   ? "border-[var(--accent)] font-medium text-[var(--fg)]"
                   : "border-transparent text-[var(--muted)] hover:text-[var(--fg)]",

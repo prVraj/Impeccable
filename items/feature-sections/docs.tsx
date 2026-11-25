@@ -29,10 +29,10 @@ export default async function Docs({ info }: { info: ItemInfo }) {
                 <div className="border-b border-[var(--line)]">{Thumb(p.slug)}</div>
                 <div className="flex items-start justify-between gap-3 px-4 py-3.5">
                   <span className="min-w-0">
-                    <Link href={`/docs/${p.slug}`} className="block text-sm font-medium after:absolute after:inset-0 after:rounded-2xl">
+                    <Link href={`/docs/${p.slug}`} className="block text-label-14 font-medium after:absolute after:inset-0 after:rounded-2xl">
                       {p.name}
                     </Link>
-                    <span className="mt-0.5 block text-[13px] leading-snug text-[var(--muted)]">{p.blurb}</span>
+                    <span className="mt-0.5 block text-copy-13 text-[var(--muted)]">{p.blurb}</span>
                   </span>
                   <Arrow className="mt-0.5 size-4 shrink-0 text-[var(--faint)] transition-[color,transform] group-hover:translate-x-0.5 group-hover:text-[var(--accent)]" />
                 </div>
@@ -40,7 +40,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
             </li>
           ))}
         </ul>
-        <p className="mt-6 text-[13px] text-[var(--muted)]">More feature sections are on the way. Each new one shows up here.</p>
+        <p className="mt-6 text-copy-14 text-[var(--muted)]">More feature sections are on the way. Each new one shows up here.</p>
       </section>
     </DocsLayout>
   );
