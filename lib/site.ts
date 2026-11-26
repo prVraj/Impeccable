@@ -4,11 +4,13 @@ import { ORDER } from "@/items/list";
 import { SITE, SHARE_IMAGE, absolute } from "@/lib/seo";
 import { INFO } from "@/generated/items/info";
 
-export type Group = "components" | "buttons" | "loaders" | "backgrounds" | "sections" | "skills" | "animations" | "interactions";
+export type Group = "components" | "intentional" | "buttons" | "loaders" | "backgrounds" | "sections" | "skills" | "animations" | "interactions";
 
 /** The parts of the library, in sidebar order. */
 export const GROUPS: { id: Group; label: string }[] = [
   { id: "components", label: "Components" },
+  // Items with logic behind them: each one lists every rule it follows in its Logic checkpoint.
+  { id: "intentional", label: "Intentional" },
   // Buttons of every kind. Its own dropdown, because there will be many.
   { id: "buttons", label: "Buttons" },
   // Loaders and progress bars: what people see while they wait. Its own dropdown, like Buttons.
@@ -52,7 +54,20 @@ export type ItemInfo = {
    * `title`: what it is in searched words, like "Fire Page Transition for React".
    */
   seo?: { keyword: string; title: string };
+  /**
+   * The Logic checkpoint: every rule the item follows, in groups, each rule one plain sentence.
+   * Shown as its own section right after Installation. Items in the Intentional group have one.
+   */
+  logic?: LogicGroup[];
 };
+
+/** One group of rules in a Logic checkpoint, like "Hover card". */
+export type LogicGroup = { title: string; rules: string[] };
+
+/** How many rules an item's Logic checkpoint lists (0 when it has none). */
+export function logicCount(info: Pick<ItemInfo, "logic">) {
+  return info.logic?.reduce((n, g) => n + g.rules.length, 0) ?? 0;
+}
 
 export type SiteComponent = ItemInfo;
 export type Family = ItemInfo;

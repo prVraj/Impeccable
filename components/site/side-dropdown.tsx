@@ -34,6 +34,7 @@ export function SideDropdown({
       <button
         type="button"
         onClick={() => setGroupOpen("side", group, !open)}
+        data-peek-group={group}
         aria-expanded={open}
         aria-controls={id}
         className="press flex w-full items-center justify-between rounded-md px-2.5 py-1.5 text-label-12 font-medium text-[var(--fg)] transition-colors hover:bg-[var(--panel-2)]"
@@ -62,6 +63,7 @@ export function SideDropdown({
         <div className="overflow-hidden" inert={!open}>
           {/* A thin line from under the icon down to the last item, so the group's end is clear. */}
           <div
+            data-peek-list={group}
             className={cx(
               "mt-px flex flex-col gap-px pb-1",
               icon ? "ml-[17px] border-l border-[var(--line)] pl-1.5" : "",

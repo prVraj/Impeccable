@@ -24,6 +24,7 @@ export const TV: Record<string, Channel> = {
   "peek-list": lazy(() => import("@/items/peek-list/tv")),
   "peek-index": lazy(() => import("@/items/peek-index/tv")),
   "settle-counter": lazy(() => import("@/items/settle-counter/tv")),
+  "intent-sidebar": lazy(() => import("@/items/intent-sidebar/tv")),
   "peter-tingle-button": lazy(() => import("@/items/peter-tingle-button/tv")),
   "venom-button": lazy(() => import("@/items/venom-button/tv")),
   "pixel-button": lazy(() => import("@/items/pixel-button/tv")),

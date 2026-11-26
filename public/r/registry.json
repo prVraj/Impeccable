@@ -561,6 +561,19 @@
           "target": "components/ui/chain-testimonials.tsx"
         }
       ]
+    },
+    {
+      "name": "intent-sidebar",
+      "type": "registry:component",
+      "title": "Intent sidebar",
+      "description": "A chat sidebar that reads intent: hover cards that follow you from chat to chat, every file one click away, and submenus that stay open on a diagonal.",
+      "files": [
+        {
+          "path": "items/intent-sidebar/intent-sidebar.tsx",
+          "type": "registry:component",
+          "target": "components/ui/intent-sidebar.tsx"
+        }
+      ]
     }
   ]
 }

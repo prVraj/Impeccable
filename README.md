@@ -30,9 +30,10 @@ Impeccable UI is a free, open-source library of those moments. Every piece is de
 
 ## What's in the library
 
-The library has eight parts. Browse all of them, with live previews, at **[impeccable-ui.com](https://impeccable-ui.com)**.
+The library has nine parts. Browse all of them, with live previews, at **[impeccable-ui.com](https://impeccable-ui.com)**.
 
 - **Components:** building blocks with motion built in, like toasts, upload fields and password meters.
+- **Intentional:** pieces with logic behind them, like a sidebar that knows when you are heading for a submenu. Each page lists every rule it follows in its Logic checkpoint.
 - **Buttons:** buttons that react to the person using them.
 - **Loaders:** progress bars and loaders that keep people company while they wait.
 - **Backgrounds:** grids and patterns that sit behind a section or a whole page and answer the pointer.

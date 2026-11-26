@@ -58,7 +58,7 @@ Ask nothing else. If I say *skip*, use the best suggestion. The section needs re
 The section is the design: the row of picture cards joined by curved links, 5 cards on desktop, 3 on tablets and 1 on phones, the open card in the middle with the result, the quote and the person, the calm move where one card folds as the next opens, the words coming in line by line, and the pill that fills and slides to the next dot. Keep them exactly as in the source. If something doesn't fit my project, tell me instead of changing it.
 
 - Add only the section file and the one place I picked. Don't add packages, change other files, or restyle anything.
-- Don't add the demo parts from the Impeccable website: the preview card, the preview size buttons and fullscreen, the hint text, the Impeccable item pictures, and the self-playing TV on the home page.
+- Don't add the demo parts from the Impeccable website: the preview card, the preview size buttons and fullscreen, the hint text, the sample portraits, and the self-playing TV on the home page.
 
 ${CHAIN_SHARED_BUILD}
 
@@ -88,7 +88,7 @@ export default function Home() {
 \`\`\`
 
 - Put it between the two sections I picked, full width. It centres its own 1288px column (a row up to 1240px) with 24px sides (16px on phones), so don't wrap it in extra padding.
-- \`items\` takes \`{ heading, quote, name, role, image, alt }\`; 5 to 9 reviews read best. Square or portrait pictures crop best: a product shot, their work or a portrait. A review without a picture shows initials.
+- \`items\` takes \`{ heading, quote, name, role, image, alt }\`; 5 to 9 reviews read best. Square or portrait pictures crop best: a portrait of the person, or their work. A review without a picture shows initials.
 - The default reviews and the default heading are made-up samples. If you found no real reviews, keep them but tell me clearly, so nothing fake ships on my page.
 
 ${CHAIN_HOW}
@@ -131,7 +131,7 @@ ${ONE_LINE} The full source is at the end of this prompt.
       *Why: reviews persuade most right after people have seen what they would buy.*
    2. **Which reviews, and what result line on each?** Use the reviews you found and draft a short result line for each from their words (suggested when you found 5 or more), draft 5–7 from what my customers already say for me to approve, or keep the samples for now.
       *Why: the result line is the biggest text on the card, so it should be a real, concrete outcome, not a slogan.*
-   3. **Which pictures?** Their work or product shots (suggested when I have them), portraits of the people, or screens of my own product.
+   3. **Which pictures?** Portraits of the people (suggested when I have them), their work or product shots, or screens of my own product.
       *Why: the pictures are the only color in the section, and they are what people see first on the side cards.*
    4. **What do the heading and line above it say?** Draft them in my voice from my pages (suggested), use words I already have, or no heading.
       *Why: it is the first thing people read before the chain starts to move.*
@@ -150,7 +150,7 @@ ${ONE_LINE} The full source is at the end of this prompt.
 
 All of these are props the section already has, so the section file itself stays as written.
 
-**Locked:** the row of picture cards joined by curved links, 5 cards on desktop, 3 on tablets and 1 on phones, the open card's layout (result on top, quote and person at the bottom, picture on the right or on top on phones), the 640ms move where one card folds as the next opens, the words coming in line by line, the pill that fills and slides to the next dot, the 8px frames and 24px corners, and the colors taken from my text and background colors with no brand color. If something doesn't fit my product, tell me instead of changing it. No new packages, no other files, and none of the Impeccable website's demo parts (the preview card, size buttons and fullscreen, the hint, the Impeccable item pictures, the self-playing TV).
+**Locked:** the row of picture cards joined by curved links, 5 cards on desktop, 3 on tablets and 1 on phones, the open card's layout (result on top, quote and person at the bottom, picture on the right or on top on phones), the 640ms move where one card folds as the next opens, the words coming in line by line, the pill that fills and slides to the next dot, the 8px frames and 24px corners, and the colors taken from my text and background colors with no brand color. If something doesn't fit my product, tell me instead of changing it. No new packages, no other files, and none of the Impeccable website's demo parts (the preview card, size buttons and fullscreen, the hint, the sample portraits, the self-playing TV).
 
 ${CHAIN_SHARED_BUILD}
 

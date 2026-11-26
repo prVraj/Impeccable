@@ -52,8 +52,10 @@ for (const slug of order.filter((s) => folders.includes(s))) {
   if (it.infoSlug !== slug) errors.push(`${where}: slug is "${it.infoSlug}", but the folder is "${slug}". They must match.`);
   for (const k of ["name", "group", "blurb", "description", "added"]) if (!it[k]) errors.push(`${where}: "${k}" is missing.`);
   if (it.name?.includes("-")) errors.push(`${where}: name "${it.name}" has a dash. Write it in plain words with spaces, like "Price slider" (the dash belongs only in the slug).`);
-  if (it.group && !["components", "buttons", "loaders", "backgrounds", "sections", "skills", "animations", "interactions"].includes(it.group))
-    errors.push(`${where}: group must be components, buttons, loaders, backgrounds, sections, skills, animations or interactions (it is "${it.group}").`);
+  if (it.group && !["components", "intentional", "buttons", "loaders", "backgrounds", "sections", "skills", "animations", "interactions"].includes(it.group))
+    errors.push(`${where}: group must be components, intentional, buttons, loaders, backgrounds, sections, skills, animations or interactions (it is "${it.group}").`);
+  if (it.group === "intentional" && !/^\s*logic:\s*\[/m.test(src))
+    errors.push(`${where}: items in the Intentional group list their rules in a "logic" field (the Logic checkpoint on their page).`);
   if (it.added && !/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(it.added))
     errors.push(`${where}: added must look like "2026-11-12 14:30" (it is "${it.added}").`);
   if (it.updated && !/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(it.updated))

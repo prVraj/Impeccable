@@ -1,6 +1,8 @@
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { Children } from "react";
 import Link from "next/link";
-import { COMPONENTS, GITHUB, TALK, GROUPS, isSideActive, neighbours, sideItems } from "@/lib/site";
+import { COMPONENTS, FAMILIES, GITHUB, LIBRARY, TALK, GROUPS, familyMembers, isSideActive, neighbours, sideItems } from "@/lib/site";
 import { cx } from "@/lib/utils";
 import { ArrowUpRight01Icon } from "./hugeicons";
 import { Button } from "./button";
@@ -14,6 +16,26 @@ import { Toc } from "./toc";
 import { SideDropdown } from "./side-dropdown";
 import { Redraw } from "./page-redraw";
 import { NewChip } from "./new-chip";
+import { GroupPeek, type GroupPeekData } from "./group-peek";
+import { ItemPeek, type ItemPeekData } from "./item-peek";
+
+/** Stills (public/previews/<slug>-light/-dark.webp) are checked once, when the site is built. */
+const hasStill = (slug: string) =>
+  ["light", "dark"].every((t) => existsSync(join(process.cwd(), "public/previews", `${slug}-${t}.webp`)));
+
+/** What each group's hover card shows: its 5 newest items (by `added`) and how many it has in all. */
+const PEEKS: GroupPeekData[] = GROUPS.map((g) => {
+  const all = LIBRARY.filter((i) => i.group === g.id);
+  return { id: g.id, label: g.label, count: all.length, newest: all.slice(0, 5).map((i) => ({ slug: i.slug, name: i.name, added: i.added })) };
+});
+
+/** What each side panel item's hover card shows: its still, name and blurb. A family page borrows its first member's still. */
+const ITEM_PEEKS: Record<string, ItemPeekData> = Object.fromEntries(
+  [...COMPONENTS, ...FAMILIES].map((i) => {
+    const still = [i.slug, ...familyMembers(i.slug).map((m) => m.slug)].find(hasStill);
+    return [i.slug, { name: i.name, blurb: i.blurb, still }];
+  }),
+);
 
 export type DocSection = { id: string; title: string };
 
@@ -94,6 +116,7 @@ export function DocsLayout({
                         href={`/docs/${c.slug}`}
                         active={isSideActive(c.slug, slug)}
                         badge={<NewChip slug={c.slug} />}
+                        peek={c.slug}
                       >
                         {c.name}
                       </SideLink>
@@ -106,6 +129,9 @@ export function DocsLayout({
             })}
           </Redraw>
         </div>
+        {/* Rest on a group heading: a card with its 5 newest items and +N for the rest. */}
+        <GroupPeek groups={PEEKS} />
+        <ItemPeek items={ITEM_PEEKS} />
       </aside>
 
       {/* The page itself: a raised sheet with the tab cut into its top right corner. */}
@@ -234,17 +260,21 @@ function SideLink({
   active,
   badge,
   icon,
+  peek,
   children,
 }: {
   href: string;
   active?: boolean;
   badge?: React.ReactNode;
   icon?: React.ReactNode;
+  /** The item's slug: its hover card (ItemPeek) shows its still, name and blurb. */
+  peek?: string;
   children: React.ReactNode;
 }) {
   return (
     <Link
       href={href}
+      data-peek-item={peek}
       aria-current={active ? "page" : undefined}
       className={cx(
         "flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-label-14 transition-colors",

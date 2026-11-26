@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { cx } from "@/lib/utils";
 import { scrollToElement } from "@/lib/scroll";
+import { BrainCircuitIcon } from "./hugeicons";
 
 /** "On this page" list that highlights the section you're reading. */
 export function Toc({ sections }: { sections: { id: string; title: string }[] }) {
@@ -78,7 +79,15 @@ export function Toc({ sections }: { sections: { id: string; title: string }[] })
                   : "border-transparent text-[var(--muted)] hover:text-[var(--fg)]",
               )}
             >
-              {s.title}
+              {s.id === "logic-checkpoint" ? (
+                // The Logic checkpoint stands out in the list too: the brain circuit icon, in purple.
+                <span className="flex items-center gap-1.5 text-[var(--accent)]">
+                  <BrainCircuitIcon size={14} className="shrink-0" />
+                  {s.title}
+                </span>
+              ) : (
+                s.title
+              )}
             </a>
           </li>
         ))}

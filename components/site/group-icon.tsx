@@ -1,5 +1,5 @@
 import type { Group } from "@/lib/site";
-import { Book02Icon, GridIcon, Loading03Icon, MousePointerClickIcon, DashboardSquare01Icon, EaseCurveControlPointsIcon, Layout01Icon, SplinePointerIcon } from "./hugeicons";
+import { BrainCircuitIcon, Book02Icon, GridIcon, Loading03Icon, MousePointerClickIcon, DashboardSquare01Icon, EaseCurveControlPointsIcon, Layout01Icon, SplinePointerIcon } from "./hugeicons";
 
 /**
  * One Hugeicons icon (components/site/hugeicons.tsx) per part of the library,
@@ -8,6 +8,7 @@ import { Book02Icon, GridIcon, Loading03Icon, MousePointerClickIcon, DashboardSq
  */
 const GROUP_ICONS: Record<Group, typeof Book02Icon> = {
   components: DashboardSquare01Icon,
+  intentional: BrainCircuitIcon,
   buttons: MousePointerClickIcon,
   loaders: Loading03Icon,
   backgrounds: GridIcon,

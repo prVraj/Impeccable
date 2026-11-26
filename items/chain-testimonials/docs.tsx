@@ -30,7 +30,7 @@ export function Reviews() {
 const PROPS: [string, string, string][] = [
   ["items", "6 made-up reviews", "The reviews, in order: { heading, quote, name, role, image, alt }. 5 or more fills the desktop row (3 or more on tablets); with fewer, the row shows fewer cards so nobody shows twice. An empty list shows nothing."],
   ["items[].heading", "—", "The result, short and concrete, like \"Our launch page went live in 2 days\". The biggest words on the card, up to 3 lines."],
-  ["items[].image", "—", "The picture: a product shot, their work or a portrait. Square or portrait pictures crop best. Without one (or if it fails to load), the card shows initials."],
+  ["items[].image", "—", "The picture: a portrait of the person, or their work. Square or portrait pictures crop best. Without one (or if it fails to load), the card shows initials."],
   ["title", '"Loved by 100k+ humans"', "The heading above the row. null hides it."],
   ["description", '"Real words from people who build with Impeccable UI."', "The line under the heading. null hides it."],
   ["interval", "6000", "Milliseconds each review stays open before the chain moves on (1500 at least). 0 turns the timer off."],
@@ -56,7 +56,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
     { id: "props", title: "Props" },
   ];
 
-  const code = "font-mono text-code-inline text-[var(--fg)]";
+  const code = "font-mono text-[13px] text-[var(--fg)]";
   const link = "font-medium text-[var(--fg)] underline decoration-[var(--line)] underline-offset-4 hover:decoration-[var(--fg)]";
 
   return (
@@ -101,7 +101,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
       <DocSection id="usage" title="Usage">
         <Lede>Put it after your features or pricing, where people want proof, and give it your own reviews and pictures.</Lede>
         <Tabs tabs={[{ id: "usage", label: "components/reviews.tsx", copy: USAGE, body: <Html html={usageHtml} /> }]} />
-        <p className="mt-4 max-w-prose text-copy-16 text-[var(--muted)]">
+        <p className="mt-4 text-[15px] leading-relaxed text-[var(--muted)]">
           The open card&apos;s words are laid out at its full size, so they never re-wrap while it opens. It counts its own room, not the screen: 5 cards
           from 1000px (a row up to 1240px), 3 from 600px (up to 820px) and 1 card on phones (up to 420px), where the picture sits above the
           words and the next card slides in. The preview box here is narrower than a desktop, so press Desktop or Fullscreen above to see all 5. Colors come from your theme: it reads{" "}

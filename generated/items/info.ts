@@ -17,6 +17,7 @@ import { info as rollingClock } from "@/items/rolling-clock/info";
 import { info as peekList } from "@/items/peek-list/info";
 import { info as peekIndex } from "@/items/peek-index/info";
 import { info as settleCounter } from "@/items/settle-counter/info";
+import { info as intentSidebar } from "@/items/intent-sidebar/info";
 import { info as peterTingleButton } from "@/items/peter-tingle-button/info";
 import { info as venomButton } from "@/items/venom-button/info";
 import { info as pixelButton } from "@/items/pixel-button/info";
@@ -69,6 +70,7 @@ export const INFO: Record<string, ItemInfo> = {
   "peek-list": peekList,
   "peek-index": peekIndex,
   "settle-counter": settleCounter,
+  "intent-sidebar": intentSidebar,
   "peter-tingle-button": peterTingleButton,
   "venom-button": venomButton,
   "pixel-button": pixelButton,
