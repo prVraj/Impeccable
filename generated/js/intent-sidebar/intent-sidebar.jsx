@@ -482,7 +482,7 @@ export function IntentSidebar({
     closingT.current = window.setTimeout(() => setMenu((m) => (m?.closing ? null : m)), 130);
   }, []);
 
-  const openMenu = (chat, keyboard, real) => {
+  const openMenu = (chat, keyboard, real, at) => {
     const dots = dotEls.current.get(chat.id);
     const row = rowEls.current.get(chat.id);
     const f = frame();
@@ -493,20 +493,14 @@ export function IntentSidebar({
     const r = row.getBoundingClientRect();
     setSub(null);
     setHi(keyboard ? { level: 0, index: 0 } : null);
-    // Under the ⋯ button, pulled left when the screen is too narrow for the whole menu.
+    // Under the ⋯ button (or at the pointer after a right click), pulled left when the screen is too narrow for the whole menu.
+    const x = at ? (at.x - f.r.left) / f.s : (d.left - f.r.left) / f.s - 14;
     const left = Math.max(
       8 - f.r.left / f.s,
-      Math.min((d.left - f.r.left) / f.s - 14, (window.innerWidth - 8 - f.r.left) / f.s - 236),
+      Math.min(x, (window.innerWidth - 8 - f.r.left) / f.s - 236),
     );
-    setMenu({
-      chatId: chat.id,
-      left,
-      top: (r.bottom - f.r.top) / f.s + 4,
-      up: false,
-      closing: false,
-      keyboard,
-      real,
-    });
+    const top = at ? (at.y - f.r.top) / f.s + 2 : (r.bottom - f.r.top) / f.s + 4;
+    setMenu({ chatId: chat.id, left, top, up: false, closing: false, keyboard, real, at: at?.y });
   };
 
   // Place the menu: under the chat, or over it when there is no room below. Then focus it.
@@ -519,8 +513,15 @@ export function IntentSidebar({
     if (!menu.up && row) {
       const r = row.getBoundingClientRect();
       const h = el.offsetHeight * f.s;
-      if (r.bottom + 4 + h > window.innerHeight - 8 && r.top - 4 - h > 8) {
-        setMenu({ ...menu, top: (r.top - f.r.top) / f.s - el.offsetHeight - 4, up: true });
+      // A right-click menu grows up from the pointer instead.
+      const below = menu.at ?? r.bottom;
+      const above = menu.at ?? r.top;
+      if (below + 4 + h > window.innerHeight - 8 && above - 4 - h > 8) {
+        setMenu({
+          ...menu,
+          top: (above - f.r.top) / f.s - el.offsetHeight - (menu.at === undefined ? 4 : 2),
+          up: true,
+        });
         return;
       }
     }
@@ -821,6 +822,21 @@ export function IntentSidebar({
                         !touch && (card?.show ? card.chatId === chat.id : hoverId === chat.id)
                       }
                       data-menu={menu?.chatId === chat.id && !menu.closing}
+                      onContextMenu={(e) => {
+                        // A right click opens the same menu as ⋯, at the pointer (a long press on phones opens the sheet).
+                        e.preventDefault();
+                        const dots = dotEls.current.get(chat.id);
+                        if (touch)
+                          return dots && openSheet(chat.id, "menu", dots, e.nativeEvent.isTrusted);
+                        // The keyboard's menu key has no pointer spot: open under ⋯ like a keyboard press.
+                        const fromKeys = e.clientX === 0 && e.clientY === 0;
+                        openMenu(
+                          chat,
+                          fromKeys,
+                          e.nativeEvent.isTrusted,
+                          fromKeys ? undefined : { x: e.clientX, y: e.clientY },
+                        );
+                      }}
                       onPointerEnter={(e) => {
                         if (e.pointerType === "touch") return;
                         setHoverId(chat.id);

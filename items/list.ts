@@ -43,6 +43,7 @@ export const ORDER = [
   // Backgrounds
   "loupe-grid",
   "isometric-wall",
+  "velvet-grain",
   // Sections
   "login-pages",
   "hex-login",
@@ -68,4 +69,5 @@ export const ORDER = [
   // Interactions
   "click-pop",
   "cube-flip-image",
+  "particle-wake",
 ];

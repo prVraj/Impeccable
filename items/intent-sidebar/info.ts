@@ -15,7 +15,7 @@ export const info: ItemInfo = {
   added: "2026-11-26 16:30",
   // Search words for Google and AI tools (see the seo field in lib/site.ts). The visible name stays as it is.
   seo: { keyword: "react sidebar hover card submenu", title: "Chat Sidebar with Hover Cards for React" },
-  // The Logic checkpoint: every rule this sidebar follows, shown right after Installation.
+  // The Logic section: every rule this sidebar follows, shown right after Installation.
   // Each rule earns its place: it changes what a person sees or does here, and says why when the why isn't obvious.
   // Generic menu basics (flip when there's no room, close on outside click) are left out on purpose.
   logic: [
@@ -41,6 +41,7 @@ export const info: ItemInfo = {
       title: "The ⋯ menu",
       rules: [
         "⋯ shows on the chat you point at and stays lit while its menu is open, so you know which chat the menu is for.",
+        "Right-click a chat to open the same menu right at your pointer.",
         "Every action has a letter: O, P, U, R, S, A or D picks it while the menu is open.",
         "Notifications and Move to project show their current choice, so you can see it without opening them.",
         "An unread chat shows its name a little bolder, with no dot. Opening it marks it read.",

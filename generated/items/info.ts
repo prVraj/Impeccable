@@ -30,6 +30,7 @@ import { info as tugOfWorkLoader } from "@/items/tug-of-work-loader/info";
 import { info as liquidOrbitLoader } from "@/items/liquid-orbit-loader/info";
 import { info as loupeGrid } from "@/items/loupe-grid/info";
 import { info as isometricWall } from "@/items/isometric-wall/info";
+import { info as velvetGrain } from "@/items/velvet-grain/info";
 import { info as loginPages } from "@/items/login-pages/info";
 import { info as hexLogin } from "@/items/hex-login/info";
 import { info as faqSections } from "@/items/faq-sections/info";
@@ -51,6 +52,7 @@ import { info as uiTongue } from "@/items/ui-tongue/info";
 import { info as healthCheck } from "@/items/health-check/info";
 import { info as clickPop } from "@/items/click-pop/info";
 import { info as cubeFlipImage } from "@/items/cube-flip-image/info";
+import { info as particleWake } from "@/items/particle-wake/info";
 
 export const INFO: Record<string, ItemInfo> = {
   "text-mirroring": textMirroring,
@@ -83,6 +85,7 @@ export const INFO: Record<string, ItemInfo> = {
   "liquid-orbit-loader": liquidOrbitLoader,
   "loupe-grid": loupeGrid,
   "isometric-wall": isometricWall,
+  "velvet-grain": velvetGrain,
   "login-pages": loginPages,
   "hex-login": hexLogin,
   "faq-sections": faqSections,
@@ -104,4 +107,5 @@ export const INFO: Record<string, ItemInfo> = {
   "health-check": healthCheck,
   "click-pop": clickPop,
   "cube-flip-image": cubeFlipImage,
+  "particle-wake": particleWake,
 };

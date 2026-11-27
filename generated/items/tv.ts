@@ -37,6 +37,7 @@ export const TV: Record<string, Channel> = {
   "liquid-orbit-loader": lazy(() => import("@/items/liquid-orbit-loader/tv")),
   "loupe-grid": lazy(() => import("@/items/loupe-grid/tv")),
   "isometric-wall": lazy(() => import("@/items/isometric-wall/tv")),
+  "velvet-grain": lazy(() => import("@/items/velvet-grain/tv")),
   "hex-login": lazy(() => import("@/items/hex-login/tv")),
   "coffee-faq": lazy(() => import("@/items/coffee-faq/tv")),
   "window-stats": lazy(() => import("@/items/window-stats/tv")),
@@ -51,4 +52,5 @@ export const TV: Record<string, Channel> = {
   "tile-flip-image": lazy(() => import("@/items/tile-flip-image/tv")),
   "click-pop": lazy(() => import("@/items/click-pop/tv")),
   "cube-flip-image": lazy(() => import("@/items/cube-flip-image/tv")),
+  "particle-wake": lazy(() => import("@/items/particle-wake/tv")),
 };

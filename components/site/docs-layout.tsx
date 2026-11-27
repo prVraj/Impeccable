@@ -18,6 +18,7 @@ import { Redraw } from "./page-redraw";
 import { NewChip } from "./new-chip";
 import { GroupPeek, type GroupPeekData } from "./group-peek";
 import { ItemPeek, type ItemPeekData } from "./item-peek";
+import { HeaderAscii } from "./header-ascii";
 
 /** Stills (public/previews/<slug>-light/-dark.webp) are checked once, when the site is built. */
 const hasStill = (slug: string) =>
@@ -108,7 +109,7 @@ export function DocsLayout({
               const items = sideItems(g.id);
               const count = COMPONENTS.filter((c) => c.group === g.id).length;
               return (
-                <SideDropdown key={g.id} group={g.id} title={g.label} count={count} icon={<GroupIcon group={g.id} />}>
+                <SideDropdown key={g.id} group={g.id} title={g.label} count={count} icon={<GroupIcon group={g.id} />} particles={g.id === "intentional"}>
                   {items.length ? (
                     items.map((c) => (
                       <SideLink
@@ -141,7 +142,10 @@ export function DocsLayout({
             don't leave a big gap on the left), and "On this page" sits at the right edge. */}
         {/* Plain CSS rather than new Tailwind classes, so a running pnpm dev picks it up straight away. */}
         <style>{`@media (min-width: 80rem) { .docs-main { padding-top: 3rem; } .docs-toc { position: sticky; top: 8px; height: calc(100dvh - 16px); display: flex; flex-direction: column; justify-content: center; width: 13rem; padding-block: 112px; margin-right: 38px; } } .docs-toc-list { min-height: 0; max-height: 100%; overflow-y: auto; }`}</style>
-        <div className="flex gap-12 px-4 sm:px-6 lg:px-10">
+        {/* A quiet gray ASCII field in the empty space above the page title; it fades out by the
+            bottom of the title. The row below is "relative" so the page paints over it. */}
+        <HeaderAscii />
+        <div className="relative flex gap-12 px-4 sm:px-6 lg:px-10">
           {/* 1024 to 1279px: the title starts lower so a long one clears the hanging bulb. From 1280px the
               bulb sits right of the text, so the title moves up close to the top of the sheet. */}
           <main className={cx("docs-main min-w-0 flex-1 pt-12 pb-24 lg:pt-23", wide ? "max-w-6xl" : "max-w-3xl")}>
@@ -190,7 +194,7 @@ function SheetTab() {
       <div className="absolute inset-x-[-1px] -top-[9px] h-[9px] bg-[var(--frame)]" />
       {/* Frame colour behind the rounded corners, so the sheet's straight
           side lines scrolling underneath never show outside the curve. */}
-      <div className="absolute inset-x-[-1px] -top-px h-4 bg-[var(--frame)]">
+      <div className="sheet-cover absolute inset-x-[-1px] -top-px h-4 bg-[var(--frame)]">
         <div className="size-full rounded-t-2xl border-x border-t border-[var(--line)] bg-[var(--sheet)]" />
       </div>
       <div className="pointer-events-auto absolute -top-px -right-px flex h-11 items-stretch">

@@ -69,7 +69,7 @@ export default async function Docs({ info }: { info: ItemInfo }) {
   const SECTIONS = [
     { id: "preview", title: "Preview" },
     { id: "installation", title: "Installation" },
-    { id: "logic-checkpoint", title: "Logic checkpoint" },
+    { id: "logic", title: "Logic" },
     { id: "prompts", title: "Prompts" },
     { id: "usage", title: "Usage" },
     { id: "props", title: "Props" },

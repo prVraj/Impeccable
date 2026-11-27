@@ -32,6 +32,7 @@ const WAIT = {
   "burning-toast": 1700, // the toast is up
   "window-stats": 5000, // a photo card has slid over the blurred statement
   "reel-stats": 3200, // a picture has rolled in and its number has counted up
+  "velvet-grain": 4200, // the pointer has rested, so the auto brush has swept a track through the grain
 };
 
 const args = process.argv.slice(2);

@@ -574,6 +574,32 @@
           "target": "components/ui/intent-sidebar.tsx"
         }
       ]
+    },
+    {
+      "name": "velvet-grain",
+      "type": "registry:component",
+      "title": "Velvet Grain",
+      "description": "A fine grain background you brush like velvet. A heavy, soft brush trails your pointer and the track slowly fills back in. Put it behind a calm hero.",
+      "files": [
+        {
+          "path": "items/velvet-grain/velvet-grain.tsx",
+          "type": "registry:component",
+          "target": "components/ui/velvet-grain.tsx"
+        }
+      ]
+    },
+    {
+      "name": "particle-wake",
+      "type": "registry:component",
+      "title": "Particle Wake",
+      "description": "Your logo or a word in tiny dots that the pointer sweeps away, then they drift back home. Use it as the one big moment of a hero or a footer.",
+      "files": [
+        {
+          "path": "items/particle-wake/particle-wake.tsx",
+          "type": "registry:component",
+          "target": "components/ui/particle-wake.tsx"
+        }
+      ]
     }
   ]
 }

@@ -9,7 +9,7 @@ export type Group = "components" | "intentional" | "buttons" | "loaders" | "back
 /** The parts of the library, in sidebar order. */
 export const GROUPS: { id: Group; label: string }[] = [
   { id: "components", label: "Components" },
-  // Items with logic behind them: each one lists every rule it follows in its Logic checkpoint.
+  // Items with logic behind them: each one lists every rule it follows in its Logic section.
   { id: "intentional", label: "Intentional" },
   // Buttons of every kind. Its own dropdown, because there will be many.
   { id: "buttons", label: "Buttons" },
@@ -55,16 +55,16 @@ export type ItemInfo = {
    */
   seo?: { keyword: string; title: string };
   /**
-   * The Logic checkpoint: every rule the item follows, in groups, each rule one plain sentence.
+   * The Logic section: every rule the item follows, in groups, each rule one plain sentence.
    * Shown as its own section right after Installation. Items in the Intentional group have one.
    */
   logic?: LogicGroup[];
 };
 
-/** One group of rules in a Logic checkpoint, like "Hover card". */
+/** One group of rules in a Logic section, like "Hover card". */
 export type LogicGroup = { title: string; rules: string[] };
 
-/** How many rules an item's Logic checkpoint lists (0 when it has none). */
+/** How many rules an item's Logic section lists (0 when it has none). */
 export function logicCount(info: Pick<ItemInfo, "logic">) {
   return info.logic?.reduce((n, g) => n + g.rules.length, 0) ?? 0;
 }

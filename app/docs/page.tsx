@@ -33,7 +33,7 @@ const GETS: [string, string][] = [
 /** One line for each sidebar group. A group added to GROUPS in lib/site.ts needs its line here. */
 const GROUP_LINES: Record<Group, string> = {
   components: "Building blocks with motion built in: galleries, cards, counters, uploads.",
-  intentional: "Pieces with logic behind them. Each page lists every rule it follows in its Logic checkpoint.",
+  intentional: "Pieces with logic behind them. Each page lists every rule it follows in its Logic section.",
   buttons: "Buttons that answer a press, each with its own small moment.",
   loaders: "What people see while they wait.",
   backgrounds: "Grids and patterns that sit behind a section or a whole page.",
